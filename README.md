@@ -16,8 +16,10 @@ A_swap est une appli web qui permet de créer et gérer des monaies associative 
   ```
 
 2. ne surtout pas faire de git init dans le htdocs (hein Bud ? :p)
-3. on fait un git pull origin master avant toute modification, si il y a conflit appeler Oshiiro !
+3. on fait un git pull origin master avant toute modification, si il y a conflit appeler Oshiiro le maitre de github.
 4. pas de git push origin master bande de voyous.
+5. créer votre config
+
 
 ####Mise à jour :
 
