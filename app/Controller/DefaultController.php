@@ -27,6 +27,14 @@ class DefaultController extends AppController
 	}
 
 	/**
+	 * Page de CGU
+	 */
+	public function cgu()
+	{
+		$this->show('default/cgu');
+	}
+
+	/**
 	 * Page d'inscription
 	 */
 	public function register()
