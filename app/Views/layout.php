@@ -9,6 +9,14 @@
 </head>
 <body>
 		<header>
+			<div class="container-fluid navbar">
+				<div class="row">
+
+					<img src="">
+					<a>Connexion</a>
+					<a>Inscripiton</a>
+				</div>
+			</div>
 			<h1>W :: <?= $this->e($title) ?></h1>
 		</header>
 
