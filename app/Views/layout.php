@@ -10,6 +10,7 @@
 <body>
 		<header>
 			<h1>W :: <?= $this->e($title) ?></h1>
+
 		</header>
 
 		<section>
