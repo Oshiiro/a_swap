@@ -13,8 +13,8 @@
 				<div class="row">
 
 					<img src="">
-					<a>Connexion</a>
-					<a>Inscripiton</a>
+					<a href="<?php echo $this->url('login') ?>">Connexion</a>
+					<a href="<?php echo $this->url('register') ?>">Inscription</a>
 				</div>
 			</div>
 			<h1>W :: <?= $this->e($title) ?></h1>
