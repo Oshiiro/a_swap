@@ -10,11 +10,18 @@ html {
 body {
   height: 100%;
   width : 100%;
-  /*background: url(../img/fond.jpg) no-repeat;*/
+  background: #FFFFE4;
   background-size: cover;
   background-attachment: fixed;
 
 }
+
+.container-fluid {
+  padding : 0;
+  margin : 0;
+}
+
+
 
 /* BARRE DE MENU; */
 .navbar a {
@@ -22,35 +29,45 @@ body {
   font-weight: 900;
   font-size: 25px;
   color: rgb(21, 138, 138);
-  float: right;
-  padding : 30px;
+  padding : 2em;
 }
 
-.logo {
-  height: 150px;
-  width: auto;
-}
+.menu {
+margin: 30px;
+float: right;
+text-align: right;}
 
 
+/* HOME */
 
 .barreEmailInscription {
-width: 500px;
-height: 150px;
+width: 31em;
+height: 9em;
 background-color: rgb(100, 178, 137);
-padding : 20px;
-border-radius: 15px;
+padding : 1em;
+margin : 6em;
+border-radius: 1em;
 margin-left: auto;
 margin-right: auto;
 }
 
+.check {
+float: right;
+margin-right: 10px;
+
+
+
+}
 h3 {
   font-family: 'Space Mono', monospace;
   color : white;
+  margin-top: 0.5em;
+  display: inline-block;
 }
 
 .inscripAssos {
-width: 300px;
-
+display: inline-block;;
+width: 18em;
 }
 
 .AdresseMail {
@@ -58,15 +75,59 @@ width: 300px;
   justify-content: space-between;
 }
 
+
 h2  {
 font-family: monospace;
 color : darkgrey;
 text-align: center;
-margin-top: 70px;
-margin-bottom: 50px;
+margin-top: 4em;
+margin-bottom: 2em;
 }
 
 .infographieDiv {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 3em;
+}
+
+.explications {
+font-size: 12px;
+color : white;
+font-family: monospace;
+padding : 2em 20em;
+background-color: rgb(21, 138, 138);
+}
+
+.texteExplicatif {
+
+  color : #1C1C1C;
+  font-family: monospace;
+  text-align: center;
+  margin-top : 20px;
+  margin-bottom: 100px;
+
+}
+
+/* FOOTER: */
+
+.lienFooter {
+width: 100%;
+font-size: 10px;
+color :rgb(21, 138, 138);;
+background-color: rgb(100, 178, 137);
+padding : 2em 130em 2em 21em;
+display: flex;
+justify-content: space-between;
+}
+.lienUtiles {
+color : rgb(21, 138, 138);;
+float: center;
+text-align: left;
+}
+.lienReseaux {
+color : rgb(21, 138, 138);;
+float : right;
+text-align: left;
+}
+.lienFooter a {
+color : white;
 }
