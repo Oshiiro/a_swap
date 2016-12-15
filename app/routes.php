@@ -11,14 +11,18 @@
 		['GET', '/cgu', 'Default#cgu', 'cgu'],
 
 		// Inscription
-		['GET', '/inscription', 'Default#register', 'register'],
-		['POST', '/inscription', 'Default#tryRegister', 'try_register'],
+		['GET', '/inscription', 'User#register', 'register'],
+		['POST', '/inscription', 'User#tryRegister', 'try_register'],
 
 		// Connexion
-		['GET', '/connexion', 'Default#login', 'login'],
-		['POST', '/connexion', 'Default#tryLogin', 'try_login'],
+		['GET', '/connexion', 'User#login', 'login'],
+		['POST', '/connexion', 'User#tryLogin', 'try_login'],
 
-		
+		// AdminAssociation
+		['GET', '/admin/association', 'AssociationAdmin#adminAssociation', 'admin_association'],
 
+		// Formulaire pour mettre à jour son assos (changer logo, texte...)
+		['GET', '/admin/association/update/[i:id]', 'AssociationAdmin#updateform', 'admin_association_update_form'],
+		['POST', '/admin/association/update/[i:id]', 'AssociationAdmin#updateaction', 'admin_association_update_action'],
 
 	);

@@ -4,34 +4,33 @@ namespace Controller;
 
 use \Controller\AppController;
 
-class DefaultController extends AppController
+class AssociationAdminController extends AppController
 {
 
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
 // ===================================================================================================================
 	/**
-	 * Page d'accueil par défaut
+	 * Page d'accueil d'Admin association
 	 */
-	public function home()
-	{
-		$this->show('default/home');
-	}
+  public function adminAssociation()
+  {
+    $this->show('association/adminassociation');
+  }
 
-	/**
-	 * Page de contact
+  /**
+	 * Page d'accueil d'Admin association
 	 */
-	public function contact()
-	{
-		$this->show('default/contact');
-	}
+  public function updateform($id)
+  {
 
-	/**
-	 * Page de CGU
-	 */
-	public function cgu()
-	{
-		$this->show('default/cgu');
-	}
+  }
+
+  public function updateaction($id)
+  {
+
+  }
+
+
 
 }
