@@ -11,9 +11,11 @@
 		<header>
 			<div class="container-fluid navbar">
 				<div class="row">
-					<a class="logo" href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>"></a>
-					<a href="<?php echo $this->url('login') ?>">Connexion</a>
-					<a href="<?php echo $this->url('register_user') ?>">Inscription</a>
+					<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
+					<div class="menu">
+						<a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a>
+						<a href="<?php echo $this->url('register_user') ?>" class="inscription">Inscription</a>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -34,7 +36,7 @@
 					<a>CGU</a><br><a>Concept</a>
 				</div>
 				<div class="lienReseaux">
-					<p>Rejoingez-nous :</p>
+					<p>Rejoignez-nous :</p>
 					<a>Facebook</a><br>
 					<a>Instagram</a><br>
 					<a>Twitter</a><br>

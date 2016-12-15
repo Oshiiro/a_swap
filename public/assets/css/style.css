@@ -16,26 +16,29 @@ body {
 
 }
 
+.container-fluid {
+  padding : 0;
+  margin : 0;
+}
+
+
+
 /* BARRE DE MENU; */
 .navbar a {
   font-family: 'Space Mono', monospace;
   font-weight: 900;
   font-size: 25px;
   color: rgb(21, 138, 138);
-  float: right;
   padding : 2em;
 }
 
-.logo {
-  height: 150px;
-  width: auto;
-}
+.menu {
+margin: 30px;
+float: right;
+text-align: right;}
 
-.container-fluid {
-  padding : 0;
-  margin : 0;
-}
 
+/* HOME */
 
 .barreEmailInscription {
 width: 31em;
@@ -48,15 +51,22 @@ margin-left: auto;
 margin-right: auto;
 }
 
+.check {
+float: right;
+margin-right: 10px;
 
 
+
+}
 h3 {
   font-family: 'Space Mono', monospace;
   color : white;
   margin-top: 0.5em;
+  display: inline-block;
 }
 
 .inscripAssos {
+display: inline-block;;
 width: 18em;
 }
 
@@ -64,6 +74,7 @@ width: 18em;
   display: flex;
   justify-content: space-between;
 }
+
 
 h2  {
 font-family: monospace;
@@ -76,7 +87,6 @@ margin-bottom: 2em;
 .infographieDiv {
   text-align: center;
   margin-top: 3em;
-
 }
 
 .explications {
@@ -84,26 +94,25 @@ font-size: 12px;
 color : white;
 font-family: monospace;
 padding : 2em 20em;
-margin : 0;
 background-color: rgb(21, 138, 138);
 }
 
 .texteExplicatif {
-  font-size: 12px;
+
   color : #1C1C1C;
   font-family: monospace;
   text-align: center;
   margin-top : 20px;
   margin-bottom: 100px;
-}
 
+}
 
 /* FOOTER: */
 
 .lienFooter {
-  font-size: 10px;
+width: 100%;
+font-size: 10px;
 color :rgb(21, 138, 138);;
- width: 100%;
 background-color: rgb(100, 178, 137);
 padding : 2em 130em 2em 21em;
 display: flex;
@@ -119,7 +128,6 @@ color : rgb(21, 138, 138);;
 float : right;
 text-align: left;
 }
-
 .lienFooter a {
 color : white;
 }
