@@ -27,6 +27,25 @@
 		</section>
 
 		<footer>
+
+			<div class="lienFooter">
+				<div class="lienRedirectionSite">
+					<p>Site :</p>
+				<a>Accueil</a><br><a>Connexion</a><br><a>Inscription</a><br><a>Contact</a>
+			</div>
+			<div class="lienUtiles">
+					<p>Liens utiles :</p>
+				<a>CGU</a><br><a>Concept</a>
+			</div>
+			<div class="lienReseaux">
+					<p>Rejoingez-nous :</p>
+				<a>Facebook</a><br>
+				<a>Instagram</a><br>
+				<a>Twitter</a><br>
+			</div>
+			</div>
+
+
 		</footer>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.0.min.js') ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
