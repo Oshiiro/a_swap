@@ -3,16 +3,16 @@
 <?php $this->start('main_content') ?>
 
 <!-- Infographies -->
-<div class="container-fluid">
-  <div class="row base">
+
+  <div class="row ">
 
     <h2 class="accroche">Petite phrase d'accroche trop styléééééé</h2>
     <div class="barreEmailInscription">
       <h3> Inscris ton assos'</h3>
         <div class="AdresseMail">
-          <form class="" action="<?php echo $this->url('admin_assos_register'); ?>" method="POST">
+          <form class="formEmail" action="<?php echo $this->url('admin_assos_register'); ?>" method="POST">
             <input type="text" name="nom_assos" placeholder="Inscris ton assos' !" class="form-control inscripAssos">
-            <button type="submit" class="check"><i class="fa fa-check-circle fa-4x" aria-hidden="true"></i></button>
+            <button type="submit" class="check"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
           </form>
         </div>
     </div>
@@ -34,6 +34,8 @@
 
     <div class="container-fluid explications">
       <div class="row">
+
+
         <h3>A-Swap, c'est quoi ?</h3>
       <p >
         a-Swap : Késséssé ? <br>
@@ -58,10 +60,11 @@
         Regis souhaite echanger avec Bernard un timbre de collection, mais ce dernier n'a rien a lui proposer en retour. Regis fixe le prix du timbre a 3 stamp coins. Via l'appli accessible depuis son portable, Bernard se connecte a sa session, accede a la partie "effectuer un virement", selectionne Regis comme beneficiaire, indique un montant de 3 coins et valide la transaction.
         Le compte de Regis est debité de 3 coins, celui de Bernard est credité du meme montant.
       </p>
+
     </div>
     </div>
 
 
-  </div>
+
 </div>
 <?php $this->stop('main_content') ?>
