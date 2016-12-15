@@ -14,4 +14,6 @@ a-Swap : Exemp'
 
 L'association "Les Philatelistes du Roumois" decide de creer une monnaie utilisable par les membres de l'association (le "stamp coin") afin de pouvoir s'echanger des timbres
 lors de ses bourses d'echanges.
-Roger, le tresorier de l'association et administrateur de la 
+Roger, le tresorier de l'association et administrateur de la section sur le site decide d'offrir a chaque nouvels inscrits un credit de 10 stamp coins.
+Regis souhaite echanger avec Bernard un timbre de collection, mais ce dernier n'a rien a lui proposer en retour. Regis fixe le prix du timbre a 3 stamp coins. Via l'appli accessible depuis son portable, Bernard se connecte a sa session, accede a la partie "effectuer un virement", selectionne Regis comme beneficiaire, indique un montant de 3 coins et valide la transaction.
+Le compte de Regis est debité de 3 coins, celui de Bernard est credité du meme montant.
