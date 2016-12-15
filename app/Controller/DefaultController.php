@@ -59,6 +59,7 @@ class DefaultController extends AppController
 	 */
 	public function tryRegister()
 	{
+
 		$this->show('default/register');
 	}
 
