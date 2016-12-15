@@ -4,24 +4,26 @@
 	<meta charset="UTF-8">
 	<title><?= $this->e($title) ?></title>
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/font-awesome.min.css') ?>">
+	<link rel="stylesheet" href="<?= $this->assetUrl('css/icons/css/font-awesome.min.css') ?>">
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style.css') ?>">
 </head>
 <body>
 		<header>
-			<div class="container-fluid navbar">
-				<div class="row">
+				<div class="container-fluid navbar">
+					<div class="row">
 
-					<img src="">
-					<a>Connexion</a>
-					<a>Inscripiton</a>
+						<img src="../public/assets/img/logo.png" class="logo">
+						<a>Connexion</a>
+						<a>Inscription</a>
+					</div>
 				</div>
-			</div>
-			<h1>W :: <?= $this->e($title) ?></h1>
+
 		</header>
 
 		<section>
-			<?= $this->section('main_content') ?>
+			<div class="container-fluid">
+				<?= $this->section('main_content') ?>
+			</div>
 		</section>
 
 		<footer>
