@@ -1,4 +1,5 @@
 <?php
+namespace Model;
 
 use \W\Model\UserModel;
 
@@ -8,11 +9,9 @@ use \W\Model\UserModel;
 class UsersModel extends UserModel
 {
 
-  function __construct()
-  {
-    # code...
-  }
-
-
+    public function __construct()
+    {
+      parent::__construct();
+    }
 
 }
