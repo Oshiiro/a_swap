@@ -9,7 +9,7 @@
         <legend>L'association :</legend>
         <!-- partie du formulaire pour la creation de l'asso -->
         <div class="form-group">
-          <input type="text" name="name" placeholder="Nom de l'association" value="">
+          <input type="text" name="name" placeholder="Nom de l'association" value="<?php echo $_POST['nom_assos']?>">
         </div>
 
         <div class="form-group">

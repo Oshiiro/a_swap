@@ -25,9 +25,9 @@ class UserAdminController extends AppController
   /**
 	 * Page d'inscription Admin traitement
 	 */
-	public function tryRegisterAdmin()
-	{
-		$this->show('users/register_user');
-	}
+	// public function tryRegisterAdmin()
+	// {
+	// 	$this->show('users/register_user');
+	// }
 
 }
