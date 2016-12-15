@@ -9,40 +9,36 @@
 </head>
 <body>
 		<header>
-
 			<div class="container-fluid navbar">
 				<div class="row">
-					<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
+					<a class="logo" href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>"></a>
 					<a href="<?php echo $this->url('login') ?>">Connexion</a>
 					<a href="<?php echo $this->url('register_user') ?>">Inscription</a>
 				</div>
 			</div>
-
 		</header>
 
-		<section>
-			<div class="container-fluid">
-				<?= $this->section('main_content') ?>
-			</div>
-		</section>
+		<div class="container-fluid">
+			<?= $this->section('main_content') ?>
+		</div>
 
 		<footer>
 
 			<div class="lienFooter">
 				<div class="lienRedirectionSite">
 					<p>Site :</p>
-				<a>Accueil</a><br><a>Connexion</a><br><a>Inscription</a><br><a>Contact</a>
-			</div>
-			<div class="lienUtiles">
+					<a>Accueil</a><br><a>Connexion</a><br><a>Inscription</a><br><a>Contact</a>
+				</div>
+				<div class="lienUtiles">
 					<p>Liens utiles :</p>
-				<a>CGU</a><br><a>Concept</a>
-			</div>
-			<div class="lienReseaux">
+					<a>CGU</a><br><a>Concept</a>
+				</div>
+				<div class="lienReseaux">
 					<p>Rejoingez-nous :</p>
-				<a>Facebook</a><br>
-				<a>Instagram</a><br>
-				<a>Twitter</a><br>
-			</div>
+					<a>Facebook</a><br>
+					<a>Instagram</a><br>
+					<a>Twitter</a><br>
+				</div>
 			</div>
 
 

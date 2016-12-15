@@ -23,6 +23,10 @@
 		['GET', '/connexion', 'User#login', 'login'],
 		['POST', '/connexion', 'User#tryLogin', 'try_login'],
 
+		// Messagerie
+		['GET', '/messagerie', 'Message#message', 'message'],
+		['POST', '/messagerie', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
+
 		// AdminAssociation
 		['GET', '/admin/association', 'AssociationAdmin#adminAssociation', 'admin_association'],
 
