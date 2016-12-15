@@ -7,12 +7,15 @@ use \Controller\AppController;
 class UserController extends AppController
 {
 
+// ===================================================================================================================
+// 																								AFFICHAGE DES PAGES
+// ===================================================================================================================
 	/**
 	 * Page d'inscription
 	 */
-	public function register()
+	public function registerUser()
 	{
-		$this->show('default/register');
+		$this->show('users/register_user');
 	}
 
 	/**
@@ -20,7 +23,7 @@ class UserController extends AppController
 	 */
 	public function login()
 	{
-		$this->show('default/login');
+		$this->show('users/login');
 	}
 
 
@@ -28,19 +31,19 @@ class UserController extends AppController
 // 																							TRAITEMENT DES FORMULAIRES
 // ===================================================================================================================
 	/**
-	 * Page d'inscription
+	 * Page d'inscription traitement
 	 */
 	public function tryRegister()
 	{
-		$this->show('default/register');
+		$this->show('users/register_user');
 	}
 
 	/**
-	 * Page d'inscription
+	 * Page de connexion traitement
 	 */
 	public function tryLogin()
 	{
-		$this->show('default/login');
+		$this->show('users/login');
 	}
 
 

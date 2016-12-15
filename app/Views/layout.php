@@ -11,10 +11,9 @@
 		<header>
 			<div class="container-fluid navbar">
 				<div class="row">
-
 					<img src="">
 					<a href="<?php echo $this->url('login') ?>">Connexion</a>
-					<a href="<?php echo $this->url('register') ?>">Inscription</a>
+					<a href="<?php echo $this->url('register_user') ?>">Inscription</a>
 				</div>
 			</div>
 			<h1>W :: <?= $this->e($title) ?></h1>

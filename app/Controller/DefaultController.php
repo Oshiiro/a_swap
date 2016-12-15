@@ -34,4 +34,15 @@ class DefaultController extends AppController
 		$this->show('default/cgu');
 	}
 
+// ===================================================================================================================
+// 																							TRAITEMENT DES FORMULAIRES
+// ===================================================================================================================
+/**
+ * Page de contact - Envois du mail traitement
+ */
+public function sendMailContact()
+{
+	$this->show('default/contact');
+}
+
 }
