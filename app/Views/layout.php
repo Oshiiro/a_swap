@@ -12,7 +12,7 @@
 
 			<div class="container-fluid navbar">
 				<div class="row">
-					<img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo">
+					<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
 					<a href="<?php echo $this->url('login') ?>">Connexion</a>
 					<a href="<?php echo $this->url('register_user') ?>">Inscription</a>
 				</div>
