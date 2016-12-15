@@ -1,19 +1,72 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
 
-.html {
+/* BASE */
+
+html {
   height: 100%;
   width: auto;
 }
 
-.body {
+body {
   height: 100%;
-  width : auto;
+  width : 100%;
+  /*background: url(../img/fond.jpg) no-repeat;*/
+  background-size: cover;
+  background-attachment: fixed;
+
 }
+
+/* BARRE DE MENU; */
 .navbar a {
   font-family: 'Space Mono', monospace;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 25px;
   color: rgb(21, 138, 138);
   float: right;
   padding : 30px;
+}
+
+.logo {
+  height: 150px;
+  width: auto;
+}
+
+
+
+.barreEmailInscription {
+width: 500px;
+height: 150px;
+background-color: rgb(100, 178, 137);
+padding : 20px;
+border-radius: 15px;
+margin-left: auto;
+margin-right: auto;
+}
+
+h3 {
+  font-family: 'Space Mono', monospace;
+  color : white;
+}
+
+.inscripAssos {
+width: 300px;
+
+}
+
+.AdresseMail {
+  display: flex;
+  justify-content: space-between;
+}
+
+h2  {
+font-family: monospace;
+color : darkgrey;
+text-align: center;
+margin-top: 70px;
+margin-bottom: 50px;
+}
+
+.infographieDiv {
+  text-align: center;
+  margin-top: 50px;
 }
