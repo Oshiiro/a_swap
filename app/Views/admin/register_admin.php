@@ -14,7 +14,8 @@
 
 			      <div class="form-group">
 			        <input type="text" name="nom_assos" class="form-control" placeholder="Nom de l'association" value="<?php if(!empty($_GET['nom_assos'])) { echo $_GET['nom_assos']; } ?>">
-			      </div>
+							<span class="errorMessage"><?php if(!empty($error['name_asso'])) { echo($error['name_asso']);} ?></span>
+						</div>
 
 		        <div class="form-group">
 		          <textarea name="description_assos"  class="form-control" placeholder="Descriptif de votre association"></textarea>
@@ -38,30 +39,35 @@
     			<!-- Si le champ est remplie aucune données entre en BDD -->
     			<input type="text" name="antiBot" value="" class="hide">
 
-    			<div class="form-group">
-    	    	<input type="text" class="form-control" name="firstname" placeholder="Nom">
-    			</div>
-    			<div class="form-group">
-    				<input type="text" class="form-control" name="lastname" placeholder="Prenom">
-    			</div>
-    			<div class="form-group">
-    				<input type="text" class="form-control" name="username" placeholder="Pseudo">
-    			</div>
-    			<div class="form-group">
-    				<input type="email" class="form-control" name="email" placeholder="Adresse mail">
-    			</div>
-    			<div class="form-group">
-    				<input type="password" class="form-control" name="password" placeholder="Mot de passe">
-    			</div>
-    			<div class="form-group">
-    				<input type="password" class="form-control" name="password_confirm" placeholder="Veuillez confirmer votre mot de passe">
-    			</div>
+					<div class="form-group">
+						<input type="text" class="form-control" name="lastname" placeholder="Nom" value="<?php if(!empty($_POST['lastname'])) {echo $_POST['lastname'];} ?>">
+						<span class="errorMessage"><?php if(!empty($error['lastname'])) { echo($error['lastname']);} ?></span>
+					</div>
+					<div class="form-group">
+			    	<input type="text" class="form-control" name="firstname" placeholder="Prenom" value="<?php if(!empty($_POST['firstname'])) {echo $_POST['firstname'];} ?>">
+						<span class="errorMessage"><?php if(!empty($error['firstname'])) { echo($error['firstname']);} ?></span>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" name="username" placeholder="Pseudo" value="<?php if(!empty($_POST['username'])) {echo $_POST['username'];} ?>">
+						<span class="errorMessage"><?php if(!empty($error['username'])) { echo($error['username']);} ?></span>
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" name="email" placeholder="Email" value="<?php if(!empty($_POST['email'])) {echo $_POST['email'];} ?>">
+						<span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="password" placeholder="Mot de passe">
+						<span class="errorMessage"><?php if(!empty($error['password'])) { echo($error['password']);} ?></span>
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control" name="password_confirm" placeholder="Veuillez confirmer votre mot de passe">
+						<span class="errorMessage"><?php if(!empty($error['password_confirm'])) { echo($error['password_confirm']);} ?></span>
+					</div>
 					<div class="form-group">
 						<label><p class="acceptCGU"> <input type="checkbox" name="checkbox" value=""> J'accepte les <u><a href="<?php echo $this->url('cgu'); ?>">CGU</a></u></p></label>
 						<span class="errorMessage"><br><?php if(!empty($error['checkbox'])) { echo($error['checkbox']);} ?></span>
 					</div>
-    		</div>
-    	  <button type="submit" class="btn btn-default">Submit</button>
+					<input type="submit" class="btn btn-default">
       </fieldset>
     </form>
   </div>

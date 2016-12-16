@@ -86,10 +86,14 @@ class UserAdminController extends AppController
 
 
     // Verification des champs partie assos
-    // verifier que le nom de l'asso est dispo.
-
-
-
+    // verifier que le nom de l'asso est libre.
+    $exist = $this->model_assos->assoExists($nom_assos);
+    if($exist == true)
+    {
+      $error['name_asso'] = 'Ce nom d\'association est déjà pris';
+    } else {
+      $error['name_asso']   = $this->valid->textValid($nom_assos,'nom d\'association', 3, 50);
+    }
 
 
     // Verification des champs partie admin
