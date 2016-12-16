@@ -13,7 +13,7 @@
 				<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
 				<div class="menu">
 					<?php if(!empty($_SESSION['user']['role'])) { ?>
-					<a href="">Messagerie</a>
+					<a href="<?php echo $this->url('message') ?>">Messagerie</a>
 					<a href="">Association</a>
 						<?php if ($_SESSION['user']['role'] == 'admin') { ?>
 						<a href="">Back Office</a>
@@ -38,25 +38,26 @@
 		</div>
 
 		<footer>
-			<div class="lienFooter">
-				<div class="lienRedirectionSite">
+			<div class="container lienFooter">
+				<div class="lienRedirectionSite col-sm-1">
 					<p>Site :</p>
 					<a>Accueil</a><br>
 					<a>Connexion</a><br>
 					<a>Inscription</a><br>
 					<a>Contact</a>
 				</div>
-				<div class="lienUtiles">
+				<div class="lienUtiles col-sm-1">
 					<p>Liens utiles :</p>
 					<a>CGU</a><br>
 					<a>Concept</a>
 				</div>
-				<div class="lienReseaux">
+				<div class="lienReseaux col-sm-1">
 					<p>Rejoignez-nous :</p>
 					<a>Facebook</a><br>
 					<a>Instagram</a><br>
 					<a>Twitter</a><br>
 				</div>
+
 			</div>
 		</footer>
 

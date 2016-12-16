@@ -3,9 +3,12 @@
 namespace Controller;
 
 use \Controller\AppController;
+use \Model\MessageModel;
+use \Model\UsersModel;
 
 class MessageController extends AppController
 {
+
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
 // ===================================================================================================================
@@ -14,7 +17,18 @@ class MessageController extends AppController
 	 */
 	public function message()
 	{
-		$this->show('message/message');
+		$UsersModel = new UsersModel();
+		$users = $UsersModel->findAll();
+		// debug($articles);
+
+		$showMessages = new MessageModel();
+		$messages = $showMessages->AfficherMessages();
+
+		$this->show('message/message', array(
+			'users' => $users,
+			'messages' => $messages
+
+		));
 	}
 	/**
 	* Afficher un message recu
