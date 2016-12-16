@@ -107,10 +107,26 @@ background-color: rgb(21, 138, 138);
 /* -------------------------------------------------------------------------- */
 /* INSCRIPTIONS et CONNEXION*/
 .formulaire h2{
-background-color: #FFFFE4;}
+color :  rgb(100, 178, 137);
+background-color: #FFFFE4;
+border-radius: 20px;}
 
 .formulaire {
-background-color: rgb(100, 178, 137);
+display: block;
+box-shadow: -1px 2px 3px 1px rgba(0, 0, 0, 0.3),
+            -1px 2px 20px rgba(255, 255, 255, 0.6) inset;
+border-radius: 20px;
+padding : 50px 100px;
+background-image: linear-gradient(#64B289,
+#158A8A);
+}
+
+.formulaire a {
+color : white;
+
+}
+ .acceptCGU {
+color : white;
 }
 
 /* FOOTER: */
