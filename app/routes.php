@@ -40,6 +40,7 @@
 
 		// Admin Association Back
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
+		['GET', '/admin/back/association/modification', 'AssociationAdmin#backAssosTryModif', 'admin_back_assos_try_modif'],
 		['POST', '/admin/back/association', 'AssociationAdmin#backAssosModify', 'admin_back_assos_modified'],
 
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)

@@ -18,24 +18,42 @@ class AssociationAdminController extends AppController
 		$this->show('association/back_assos');
 	}
 
+	/**
+	 * Page Back Association Admin ( page de modif )
+	 */
+	public function backAssosTryModif()
+	{
+		$this->show('association/modifassos_admin_back');
+	}
+
 
 // ===================================================================================================================
 // 																						TRAITEMENT DES FORMULAIRES
 // ===================================================================================================================
+	/**
+	* Ajout de crédit à un membre
+	*/
+	public function addCoinToUser()
+	{
+		$this->show('association/back_assos');
+	}
+
   /**
 	 * Page d'inscription Admin traitement
 	 */
 	public function backAssosModify()
 	{
-		$this->show('association/back_assos');
+		$this->show('association/modifassos_admin_back');
 	}
+
+
 
   /**
 	 *
 	 */
   public function updateform($id)
   {
-
+		$this->show('association/modifassos_admin_back');
   }
 
 	/**
@@ -43,7 +61,7 @@ class AssociationAdminController extends AppController
 	 */
   public function updateaction($id)
   {
-
+		$this->show('association/modifassos_admin_back');
   }
 
 
