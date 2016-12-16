@@ -135,6 +135,27 @@ class UserController extends AppController
 	 */
 	public function tryLogin()
 	{
+		$error = array();
+
+		$usernameOrEmail  = trim(strip_tags($_POST['emailOrPseudo']));
+		$plainPassword   = trim(strip_tags($_POST['mdp']));
+
+		$user = $this->model->getUserByUsernameOrEmail($usernameOrEmail);
+
+      if(!empty($user)){
+        if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
+
+          $this->authentificationmodel->logUserIn($user);
+          debug($_SESSION['user']);
+          $this->redirectToRoute('default_home');
+
+        } else {
+          $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
+        }
+      } else {
+        $error['emailOrPseudo'] = "Ce compte n'existe pas";
+      }
+
 		$this->show('users/login');
 	}
 
