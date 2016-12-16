@@ -1,12 +1,12 @@
 <?php
 namespace Model;
 
-use \W\Model\UserModel;
+use \W\Model\UsersModel as UModel;
 
 /**
  *
  */
-class UsersModel extends UserModel
+class UsersModel extends UModel
 {
 
     public function __construct()
