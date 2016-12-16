@@ -9,28 +9,32 @@
     <form class="formulaire" action="" method="POST">
       <fieldset>
         <legend><h2>L'association :</h2></legend>
-        <!-- partie du formulaire pour la creation de l'asso -->
+	        <!-- partie du formulaire pour la creation de l'asso -->
+					<div class="form-group">
 
-        <div class="form-group">
-          <input type="text" name="nom_assos" placeholder="Nom de l'association" value="<?php if(!empty($_GET['nom_assos'])) { echo $_GET['nom_assos']; } ?>">
-        </div>
+			      <div class="form-group">
+			        <input type="text" name="nom_assos" class="form-control" placeholder="Nom de l'association" value="<?php if(!empty($_GET['nom_assos'])) { echo $_GET['nom_assos']; } ?>">
+			      </div>
 
-        <div class="form-group">
-          <textarea name="description_assos" placeholder="Descriptif de votre association"></textarea>
-        </div>
+		        <div class="form-group">
+		          <textarea name="description_assos"  class="form-control" placeholder="Descriptif de votre association"></textarea>
+		        </div>
 
-        <div class="form-group">
-          <input type="text" name="money_name" placeholder="Nom de votre monnaie" value="">
-        </div>
+		        <div class="form-group">
+		          <input type="text" name="money_name" class="form-control" placeholder="Nom de votre monnaie" value="">
+		        </div>
 
-        <div class="form-group">
-          <textarea name="rules_assos" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative"></textarea>
-        </div>
+		        <div class="form-group">
+		          <textarea name="rules_assos" class="form-control" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative"></textarea>
+		        </div>
+
+					</div>
       </fieldset>
-
+			<br><br><br><br>
       <fieldset>
-        <legend>Le tresorier :</legend>
+        <legend><h2>Le tresorier :</h2></legend>
       <!-- formulaire de creation de l'admin -->
+<<<<<<< HEAD
     	  <div class="form-group">
     			<!-- Si le champ est remplie aucune données entre en BDD -->
     			<input type="text" name="antiBot" value="" class="hide">
@@ -58,6 +62,33 @@
 						<span class="errorMessage"><br><?php if(!empty($error['checkbox'])) { echo($error['checkbox']);} ?></span>
 					</div>
     		</div>
+=======
+	    	  <div class="form-group">
+	    			<!-- Si le champ est remplie aucune données entre en BDD -->
+	    			<input type="text" name="antiBot" value="" class="hide">
+	    			<div class="form-group">
+	    	    	<input type="text" class="form-control" name="firstname" placeholder="Nom">
+	    			</div>
+	    			<div class="form-group">
+	    				<input type="text" class="form-control" name="lastname" placeholder="Prenom">
+	    			</div>
+	    			<div class="form-group">
+	    				<input type="text" class="form-control" name="username" placeholder="Pseudo">
+	    			</div>
+	    			<div class="form-group">
+	    				<input type="email" class="form-control" name="email" placeholder="Adresse mail">
+	    			</div>
+	    			<div class="form-group">
+	    				<input type="password" class="form-control" name="password" placeholder="Mot de passe">
+	    			</div>
+	    			<div class="form-group">
+	    				<input type="password" class="form-control" name="password_confirm" placeholder="Veuillez confirmer votre mot de passe">
+	    			</div>
+	    			<div class="form-group">
+	    				<label><input type="checkbox" value="">J'accepte les <a href="<?php echo $this->url('cgu'); ?>" target="_blank">CGU</a></label>
+	    			</div>
+	    		</div>
+>>>>>>> 5ccf486eed470a298e3341c5eefb42b242485514
     	  <button type="submit" class="btn btn-default">Submit</button>
       </fieldset>
     </form>
