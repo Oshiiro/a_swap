@@ -140,13 +140,13 @@ class UserController extends AppController
 		$usernameOrEmail  = trim(strip_tags($_POST['emailOrPseudo']));
 		$plainPassword   = trim(strip_tags($_POST['password']));
 
-		$user = $this->model->getUserByUsernameOrEmail($usernameOrEmail);
+		$sessionActive = $this->model->getUserByUsernameOrEmail($usernameOrEmail);
 
-      if(!empty($user)){
+      if(!empty($sessionActive)){
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
 
-          $this->authentificationmodel->logUserIn($user);
-          debug($_SESSION['user']);
+          $this->authentificationmodel->logUserIn($sessionActive);
+
           $this->redirectToRoute('default_home');
 
         } else {

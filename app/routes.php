@@ -12,7 +12,7 @@
 		['GET', '/cgu', 'Default#cgu', 'cgu'],
 
 		// Deconnexion
-		['GET', '/deconnexion', 'User#Deconnexion', 'deconnexion'],
+		['GET', '/deconnexion', 'User#deconnexion', 'deconnexion'],
 
 		// Inscription User
 		['GET', '/inscription/user', 'User#registerUser', 'register_user'],
@@ -42,6 +42,7 @@
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
 		['GET', '/admin/back/association/modification', 'AssociationAdmin#backAssosTryModif', 'admin_back_assos_try_modif'],
 		['POST', '/admin/back/association', 'AssociationAdmin#backAssosModify', 'admin_back_assos_modified'],
+		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)
 		['GET', '/admin/association/update/[i:id]', 'AssociationAdmin#updateform', 'admin_association_update_form'],
