@@ -102,7 +102,7 @@ class UserAdminController extends AppController
     if (isset($_POST['checkbox'])){
 
     } else {
-      $error['checkbox'] = 'Vous n\'avez pas valider les CGU.';;
+      $error['checkbox'] = 'Vous n\'avez pas validé les CGU.';
     }
     // verif que le pseudo de l'admin est libre
     $exist = $this->model_user->usernameExists($username,'username', 3, 50);
@@ -116,7 +116,7 @@ class UserAdminController extends AppController
     // verif que le mail de l'admin est libre
     $exist = $this->model_user->emailExists($email,'email', 3, 50);
     if($exist == true){
-      $error['email'] = 'le mail et deja prit';
+      $error['email'] = 'Le mail est déjà pris';
     } else {
       $error['email'] = $this->valid->emailValid($email,'email', 3, 50);
     }
