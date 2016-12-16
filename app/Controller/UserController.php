@@ -108,7 +108,6 @@ class UserController extends AppController
 
 		if($password == $password_confirm){
 
-
 			$passwordHash = $this->authentificationmodel->hashPassword($password);
 			if ($this->valid->IsValid($error)) {
 				$token = StringUtils::randomString();
@@ -152,11 +151,8 @@ class UserController extends AppController
 
       if(!empty($sessionActive)){
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
-
           $this->authentificationmodel->logUserIn($sessionActive);
-
           $this->redirectToRoute('default_home');
-
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
         }
@@ -174,11 +170,54 @@ class UserController extends AppController
     $this->redirectToRoute('default_home');
 	}
 
-	// Deconnexion
-		public function updateProfil()
+/**
+ * Page de profil modification traitement
+ */
+	public function updateProfil()
+	{
+		// protection XSS
+		$lastname   = trim(strip_tags($_POST['lastname']));
+		$firstname   = trim(strip_tags($_POST['firstname']));
+		$username   = trim(strip_tags($_POST['username']));
+
+		// verif de pseudo
+		$exist = $this->model->usernameExists($username,'username', 3, 50);
+		if($exist == true)
 		{
-	    $this->show('users/profil');
+			$error['username'] = 'Votre pseudo et deja prit';
+		} else {
+			$error['username']   = $this->valid->textValid($username,'username', 3, 50);
 		}
+
+		// verif de lastname
+		if(empty($_POST['lastname'])){
+			$error['lastname'] = 'Veuillez renseigner un prenom';
+		} else {
+			$error['lastname']   = $this->valid->textValid($lastname,'lastname', 3, 50);
+		}
+
+		// verif de firstname
+		if(empty($_POST['firstname'])){
+			$error['firstname'] = 'Veuillez renseigner un nom';
+		} else {
+			$error['firstname']   = $this->valid->textValid($firstname,'firstname', 3, 50);
+		}
+
+		// verif antibot
+		if(empty($_POST['antiBot'])){
+		} else {
+			$error['antiBot'] = 'BIM';
+		}
+
+		// GG si il n'y a pas d'erreur
+		if ($this->valid->IsValid($error)) {
+
+			echo "OUAI prout";
+
+		}
+
+    $this->show('users/profil', array('error' => $error));
+	}
 
 
 

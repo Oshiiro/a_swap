@@ -10,12 +10,12 @@
 					<!-- Si le champ est remplie aucune données entre en BDD -->
 					<input type="text" name="antiBot" value="" class="hide">
 					<div class="form-group">
-			    	<input type="text" class="form-control" name="firstname" placeholder="Nom" value="<?php if(!empty($_POST['firstname'])) {echo $_POST['firstname'];} ?>">
-						<span class="errorMessage"><?php if(!empty($error['firstname'])) { echo($error['firstname']);} ?></span>
+						<input type="text" class="form-control" name="lastname" placeholder="Nom" value="<?php if(!empty($_POST['lastname'])) {echo $_POST['lastname'];} ?>">
+						<span class="errorMessage"><?php if(!empty($error['lastname'])) { echo($error['lastname']);} ?></span>
 					</div>
 					<div class="form-group">
-						<input type="text" class="form-control" name="lastname" placeholder="Prenom" value="<?php if(!empty($_POST['lastname'])) {echo $_POST['lastname'];} ?>">
-						<span class="errorMessage"><?php if(!empty($error['lastname'])) { echo($error['lastname']);} ?></span>
+			    	<input type="text" class="form-control" name="firstname" placeholder="Prénom" value="<?php if(!empty($_POST['firstname'])) {echo $_POST['firstname'];} ?>">
+						<span class="errorMessage"><?php if(!empty($error['firstname'])) { echo($error['firstname']);} ?></span>
 					</div>
 					<div class="form-group">
 						<input type="text" class="form-control" name="username" placeholder="Pseudo" value="<?php if(!empty($_POST['username'])) {echo $_POST['username'];} ?>">
@@ -38,8 +38,8 @@
 						<span class="errorMessage"><br><?php if(!empty($error['checkbox'])) { echo($error['checkbox']);} ?></span>
 					</div>
 					<input type="submit" class="btn btn-default">
-
-		</fieldset>
-	</form>
-</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
 <?php $this->stop('main_content') ?>
