@@ -4,7 +4,7 @@
 
 	<h2>Creez la page de votre asso</h2>
   <!-- RESTE A PREVOIR/FAIRE : uploader le logo de l'assoc -->
-<?php debug($error); ?>
+<?php if(!empty($error)) { debug($error); } ?>
   <div class="container">
     <form class="formulaire" action="" method="POST">
       <fieldset>

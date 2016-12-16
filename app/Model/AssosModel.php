@@ -7,6 +7,11 @@ use \W\Model\ConnectionModel;
 
 class AssosModel extends UModel
 {
+  public function __construct()
+  {
+    parent::__construct();
+    $this->setTable('assos');
+  }
 
   public function assoExists($nom_asso)
 	{
@@ -25,7 +30,7 @@ class AssosModel extends UModel
 	    return false;
 	}
 
-  
+
 
 
 }

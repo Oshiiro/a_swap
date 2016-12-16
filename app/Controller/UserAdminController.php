@@ -5,7 +5,7 @@ namespace Controller;
 use \Controller\AppController;
 use \Services\Tools\ValidationTools;
 use \Services\Tools\Tools;
-use \W\Model\UsersModel;
+use \Model\UsersModel;
 use \Model\AssosModel;
 use \Model\IntermediaireModel;
 use \W\Security\AuthentificationModel;
@@ -15,6 +15,7 @@ use \W\Security\StringUtils;
 class UserAdminController extends AppController
 {
   private $valid;
+  private $tools;
   private $model_user;
 	private $model_assos;
 	private $model_intermediaire;
@@ -23,6 +24,7 @@ class UserAdminController extends AppController
   public function __construct()
 	{
 		$this->valid = new ValidationTools();
+    $this->tools = new Tools();
 		$this->model_user = new UsersModel();
     $this->model_assos = new AssosModel();
     $this->model_intermediaire = new IntermediaireModel();
@@ -133,11 +135,11 @@ class UserAdminController extends AppController
 
     if($password == $password_confirm){
 
-      $passwordHash = AuthentificationModel::hashPassword($password);
+      $passwordHash = $this->authentificationmodel->hashPassword($password);
 
       if ($this->valid->IsValid($error)) {
         $token = StringUtils::randomString();
-        $slug = Tools::slugify($nom_assos);
+        $slug = $this->tools->slugify($nom_assos);
 
         $data_asso = array(
           // Champs de la partie assos
@@ -189,7 +191,7 @@ class UserAdminController extends AppController
       }
 
     }	else {
-      $error['password'] = 'Les mot de passe ne sont pas identique';
+      $error['password'] = 'Les mots de passe ne sont pas identiques';
       $this->show('admin/register_admin', array(
         'error' => $error
       ));

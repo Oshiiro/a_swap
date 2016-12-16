@@ -119,6 +119,7 @@ class UserController extends AppController
 					'token' => $token,
 					'password' => $passwordHash,
 					'role' => 'user',
+					'active' => 1,
 					'created_at' => date('Y-m-d H:i:s'),
 				);
 
