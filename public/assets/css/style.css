@@ -109,6 +109,36 @@ background-color: rgb(21, 138, 138);
 }
 
 /* -------------------------------------------------------------------------- */
+/* MESSAGERIE */
+
+h5 {
+  font-family: monospace;
+  color : darkgrey;
+  text-align: center;
+  font-size: 20px;
+}
+
+td {
+border-bottom: 1px dotted darkgrey;
+border-left: 1px dotted darkgrey;
+font-family: monospace;
+padding : 3px;
+font-size: 15px;
+text-align: center;
+}
+
+th {
+font-family: monospace;
+font-size: 21px;
+margin-bottom: 8px;
+text-align: center;
+padding-bottom: 15px;
+}
+
+table {
+width: 100%;}
+
+
 /* INSCRIPTIONS et CONNEXION*/
 .formulaire h2{
 color :  rgb(100, 178, 137);
@@ -132,6 +162,8 @@ color : white;
  .acceptCGU {
 color : white;
 }
+
+/*-------------------------------------------------------------------------*/
 
 /* FOOTER: */
 
