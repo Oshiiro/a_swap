@@ -3,7 +3,6 @@
 <?php $this->start('main_content') ?>
 
 <!-- Infographies -->
-  <div class="row ">
     <h2 class="accroche">Petite phrase d'accroche trop styléééééé</h2>
     <div class="barreEmailInscription">
       <h3> Inscris ton assos'</h3>
@@ -59,6 +58,5 @@
         </div>
       </div>
     </div>
-  </div>
 
 <?php $this->stop('main_content') ?>

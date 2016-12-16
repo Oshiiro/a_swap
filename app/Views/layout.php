@@ -10,12 +10,10 @@
 <body>
 		<header>
 			<div class="container-fluid navbar">
-				<div class="row">
-					<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
-					<div class="menu">
-						<a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a>
-						<a href="<?php echo $this->url('register_user') ?>" class="inscription">Inscription</a>
-					</div>
+				<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
+				<div class="menu">
+					<a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a>
+					<a href="<?php echo $this->url('register_user') ?>" class="inscription">Inscription</a>
 				</div>
 			</div>
 		</header>
