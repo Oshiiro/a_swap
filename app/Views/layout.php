@@ -1,3 +1,4 @@
+<?php debug($_SESSION); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

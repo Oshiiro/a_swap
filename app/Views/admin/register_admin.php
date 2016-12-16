@@ -4,8 +4,7 @@
 
 	<h2>Creez la page de votre asso</h2>
   <!-- RESTE A PREVOIR/FAIRE : uploader le logo de l'assoc -->
-<?php debug($data); ?>
-
+<?php debug($error); ?>
   <div class="container">
     <form class="formulaire" action="" method="POST">
       <fieldset>
@@ -54,9 +53,10 @@
     			<div class="form-group">
     				<input type="password" class="form-control" name="password_confirm" placeholder="Veuillez confirmer votre mot de passe">
     			</div>
-    			<div class="form-group">
-    				<label><input type="checkbox" value="">J'accepte les <a href="<?php echo $this->url('cgu'); ?>" target="_blank">CGU</a></label>
-    			</div>
+					<div class="form-group">
+						<label><p class="acceptCGU"> <input type="checkbox" name="checkbox" value=""> J'accepte les <u><a href="<?php echo $this->url('cgu'); ?>">CGU</a></u></p></label>
+						<span class="errorMessage"><br><?php if(!empty($error['checkbox'])) { echo($error['checkbox']);} ?></span>
+					</div>
     		</div>
     	  <button type="submit" class="btn btn-default">Submit</button>
       </fieldset>
