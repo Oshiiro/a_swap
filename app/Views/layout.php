@@ -23,7 +23,6 @@
 		</div>
 
 		<footer>
-
 			<div class="lienFooter">
 				<div class="lienRedirectionSite">
 					<p>Site :</p>
@@ -40,9 +39,9 @@
 					<a>Twitter</a><br>
 				</div>
 			</div>
-
-
 		</footer>
+
+
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.0.min.js') ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
 </body>
