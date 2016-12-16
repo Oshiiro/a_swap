@@ -13,7 +13,7 @@
 				<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
 				<div class="menu">
 					<?php if(!empty($_SESSION['user'])) { ?>
-					<a href="">Deconnexion</a>
+					<a href="<?= $this->url('deconnexion') ?>">Deconnexion</a>
 					<a> Hello, <?php echo $_SESSION['user']['username'] ?> </a>
 					<?php } else { ?>
 					<a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a>

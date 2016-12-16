@@ -7,9 +7,9 @@
 <?php debug($_POST); ?>
 
   <div class="container">
-    <form class="" action="" method="POST">
+    <form class="formulaire" action="" method="POST">
       <fieldset>
-        <legend>L'association :</legend>
+        <legend><h2>L'association :<h2></legend>
         <!-- partie du formulaire pour la creation de l'asso -->
         <div class="form-group">
           <input type="text" name="nom_assos" placeholder="Nom de l'association" value="<?php echo $nom_assos; ?>">
