@@ -22,7 +22,7 @@
 		['POST', '/inscription/user', 'User#tryRegister', 'try_register'],
 
 		// Inscription Admin
-		['POST', '/inscription/admin_assos', 'UserAdmin#registerAdmin', 'admin_assos_register'],
+		['GET', '/inscription/admin_assos', 'UserAdmin#registerAdmin', 'admin_assos_register'],
 		['POST', '/inscription/admin_assos', 'UserAdmin#tryRegisterAdmin', 'admin_assos_try_register'],
 
 		// Connexion
