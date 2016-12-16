@@ -50,17 +50,43 @@ class UserController extends AppController
 	 */
 	public function tryRegister()
 	{
+		$lastname   = trim(strip_tags($_POST['lastname']));
+		$firstname   = trim(strip_tags($_POST['firstname']));
 		$username   = trim(strip_tags($_POST['username']));
 		$email = trim(strip_tags($_POST['email']));
 		$password  = trim(strip_tags($_POST['password']));
 		$password_confirm  = trim(strip_tags($_POST['password_confirm']));
-
+		// verif de pseudo
 		$exist = $this->model->usernameExists($username,'username', 3, 50);
 		if($exist == true)
 		{
-			$error['username'] = 'Votre username et deja prit';
+			$error['username'] = 'Votre pseudo et deja prit';
 		} else {
 			$error['username']   = $this->valid->textValid($username,'username', 3, 50);
+		}
+
+		if(empty($_POST['lastname'])){
+			$error['lastname'] = 'Veuillez renseigner un prenom';
+		} else {
+			$error['lastname']   = $this->valid->textValid($lastname,'lastname', 3, 50);
+		}
+
+		if(empty($_POST['firstname'])){
+			$error['firstname'] = 'Veuillez renseigner un nom';
+		} else {
+			$error['firstname']   = $this->valid->textValid($firstname,'firstname', 3, 50);
+		}
+
+		if(empty($_POST['antiBot'])){
+
+		} else {
+			$error['antiBot'] = 'BIM';
+		}
+
+		if (isset($_POST['checkbox'])){
+
+		} else {
+			$error['checkbox'] = 'Vous n\'avez pas valider les CGU.';;
 		}
 
 		$exist = $this->model->emailExists($email,'email', 3, 50);
@@ -79,11 +105,13 @@ class UserController extends AppController
 			if ($this->valid->IsValid($error)) {
 				$token = StringUtils::randomString();
 				$data = array(
+					'firstname' => $firstname,
+					'lastname' => $lastname,
 					'username' => $username,
 					'email' => $email,
-					'password' => $passwordHash,
 					'token' => $token,
-					'role' => 'utilisateur',
+					'password' => $passwordHash,
+					'role' => 'user',
 					'created_at' => date('Y-m-d H:i:s'),
 				);
 
