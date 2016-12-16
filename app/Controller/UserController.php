@@ -167,12 +167,20 @@ class UserController extends AppController
 		$this->show('users/login', array('error' => $error));
 	}
 
-
 // Deconnexion
 	public function Deconnexion()
 	{
 		$this->authentificationmodel->logUserOut();
     $this->redirectToRoute('default_home');
 	}
+
+	// Deconnexion
+		public function updateProfil()
+		{
+	    $this->show('users/profil');
+		}
+
+
+
 
 } // Class

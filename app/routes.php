@@ -10,6 +10,7 @@
 
 		// profil
 		['GET', '/profil', 'User#profil', 'profil'],
+		['POST', '/profil', 'User#updateProfil', 'update_profil'],
 
 		// CGU
 		['GET', '/cgu', 'Default#cgu', 'cgu'],

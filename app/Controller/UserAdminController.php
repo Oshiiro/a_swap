@@ -164,7 +164,5 @@ class UserAdminController extends AppController
         'error' => $error
       ));
     }
-
   }
-
 }
