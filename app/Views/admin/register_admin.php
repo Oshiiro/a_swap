@@ -4,7 +4,7 @@
 
 	<h2>Creez la page de votre asso</h2>
   <!-- RESTE A PREVOIR/FAIRE : uploader le logo de l'assoc -->
-<?php debug($_POST); ?>
+<?php debug($data); ?>
 
   <div class="container">
     <form class="" action="" method="POST">
@@ -12,7 +12,7 @@
         <legend>L'association :</legend>
         <!-- partie du formulaire pour la creation de l'asso -->
         <div class="form-group">
-          <input type="text" name="nom_assos" placeholder="Nom de l'association" value="<?php echo $nom_assos; ?>">
+          <input type="text" name="nom_assos" placeholder="Nom de l'association" value="<?php if(!empty($_GET['nom_assos'])) { echo $_GET['nom_assos']; } ?>">
         </div>
 
         <div class="form-group">

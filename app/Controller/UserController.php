@@ -3,7 +3,7 @@
 namespace Controller;
 
 use \Controller\AppController;
-use \Services\ValidationTool;
+use \Services\Tools\ValidationTools;
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
@@ -16,7 +16,7 @@ class UserController extends AppController
 
 	public function __construct()
 	{
-		$this->valid = new ValidationTool();
+		$this->valid = new ValidationTools();
 		$this->model = new UsersModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}

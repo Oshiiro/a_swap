@@ -1,7 +1,7 @@
 <?php
-namespace Services;
+namespace Services\Tools;
 
-class ValidationTool
+class ValidationTools
 {
   protected $errors = array();
 
