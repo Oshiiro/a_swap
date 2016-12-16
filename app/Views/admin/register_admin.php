@@ -1,19 +1,22 @@
 <?php $this->layout('layout', ['title' => 'Contact']) ?>
 
 <?php $this->start('main_content') ?>
+
 	<h2>Creez la page de votre asso</h2>
+  <!-- RESTE A PREVOIR/FAIRE : uploader le logo de l'assoc -->
+<?php debug($_POST); ?>
 
   <div class="container">
-    <form class="" action="index.html" method="POST">
+    <form class="" action="" method="POST">
       <fieldset>
         <legend>L'association :</legend>
         <!-- partie du formulaire pour la creation de l'asso -->
         <div class="form-group">
-          <input type="text" name="name" placeholder="Nom de l'association" value="<?php echo $_POST['nom_assos']?>">
+          <input type="text" name="nom_assos" placeholder="Nom de l'association" value="<?php echo $nom_assos; ?>">
         </div>
 
         <div class="form-group">
-          <textarea name="description" placeholder="Descriptif de votre association" rows="8" cols="80"></textarea>
+          <textarea name="description_assos" placeholder="Descriptif de votre association" rows="8" cols="80"></textarea>
         </div>
 
         <div class="form-group">
@@ -21,7 +24,7 @@
         </div>
 
         <div class="form-group">
-          <textarea name="rules" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative" rows="8" cols="80"></textarea>
+          <textarea name="rules_assos" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative" rows="8" cols="80"></textarea>
         </div>
       </fieldset>
 
@@ -51,7 +54,7 @@
     				<input type="password" class="form-control" name="password_confirm" placeholder="Veuillez confirmer votre mot de passe">
     			</div>
     			<div class="form-group">
-    				<label><input type="checkbox" value="">J'accepte les <a href="<?php echo $this->url('cgu'); ?>">CGU</a></label>
+    				<label><input type="checkbox" value="">J'accepte les <a href="<?php echo $this->url('cgu'); ?>" target="_blank">CGU</a></label>
     			</div>
     		</div>
     	  <button type="submit" class="btn btn-default">Submit</button>
