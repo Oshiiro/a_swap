@@ -9,7 +9,7 @@
   <div class="container">
     <form class="formulaire" action="" method="POST">
       <fieldset>
-        <legend><h2>L'association :<h2></legend>
+        <legend><h2>L'association :</h2></legend>
         <!-- partie du formulaire pour la creation de l'asso -->
 
         <div class="form-group">
