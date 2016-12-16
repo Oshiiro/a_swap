@@ -24,6 +24,13 @@ class UserAdminController extends AppController
     ));
   }
 
+  /**
+   * Page Back de l'admin
+   */
+  public function back()
+  {
+    $this->show('admin/Back');
+  }
 
 // ===================================================================================================================
 // 																						TRAITEMENT DES FORMULAIRES
@@ -55,9 +62,6 @@ class UserAdminController extends AppController
     // redirection
 
     // prout prout
-
-
-
 
 
   }

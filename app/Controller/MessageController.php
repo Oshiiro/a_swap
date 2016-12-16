@@ -16,6 +16,13 @@ class MessageController extends AppController
 	{
 		$this->show('message/message');
 	}
+	/**
+	* Afficher un message recu
+	*/
+	public function getMessage()
+	{
+		$this->show('message/message');
+	}
 
 // ===================================================================================================================
 // 																							TRAITEMENT DES FORMULAIRES
@@ -27,5 +34,14 @@ class MessageController extends AppController
   {
   	$this->show('message/message');
   }
+
+	/**
+	 * Envois d'un message
+	 */
+	public function confirmAssosInvit()
+	{
+		$this->show('message/message');
+	}
+
 
 }
