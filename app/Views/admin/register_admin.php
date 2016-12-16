@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group">
-          <textarea name="description_assos" placeholder="Descriptif de votre association" rows="8" cols="80"></textarea>
+          <textarea name="description_assos" placeholder="Descriptif de votre association" rows="8" cols="40"></textarea>
         </div>
 
         <div class="form-group">
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-          <textarea name="rules_assos" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative" rows="8" cols="80"></textarea>
+          <textarea name="rules_assos" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative" rows="8" cols="40"></textarea>
         </div>
       </fieldset>
 
