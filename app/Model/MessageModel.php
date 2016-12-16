@@ -20,11 +20,14 @@ class MessageModel extends Model
     $id = $_SESSION['user']['id'];
     debug($id);
 
-      $affMessages = $this->dbh->prepare("SELECT * FROM private_message
-              WHERE id_user_sender = :id OR id_user_receiver = :id
-              LEFT JOIN users ON private_message.id_user_receiver = users.id");
+      $affMessages = $this->dbh->prepare("SELECT * FROM private_message AS pm
+        LEFT JOIN users AS u ON pm.id_user_receiver = u.id
+        WHERE (pm.id_user_sender = :id OR pm.id_user_receiver = :id)
+              ");
       $affMessages->bindValue(':id', $id);
       $affMessages->execute();
       return $affMessages->fetchAll();
     }
+
+
 }
