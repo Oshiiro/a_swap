@@ -138,7 +138,7 @@ class UserController extends AppController
 		$error = array();
 
 		$usernameOrEmail  = trim(strip_tags($_POST['emailOrPseudo']));
-		$plainPassword   = trim(strip_tags($_POST['mdp']));
+		$plainPassword   = trim(strip_tags($_POST['password']));
 
 		$user = $this->model->getUserByUsernameOrEmail($usernameOrEmail);
 
@@ -156,8 +156,15 @@ class UserController extends AppController
         $error['emailOrPseudo'] = "Ce compte n'existe pas";
       }
 
-		$this->show('users/login');
+		$this->show('users/login', array('error' => $error));
 	}
 
 
-}
+// Deconnexion
+	public function Deconnexion()
+	{
+		$this->authentificationmodel->logUserOut();
+    $this->redirectToRoute('default_home');
+	}
+
+} // Class

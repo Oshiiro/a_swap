@@ -12,7 +12,7 @@
 		['GET', '/cgu', 'Default#cgu', 'cgu'],
 
 		// Deconnexion
-		['GET', '/deconnexion', 'User#deconnexion', 'deconnexion'],
+		['GET', '/deconnexion', 'User#Deconnexion', 'deconnexion'],
 
 		// Inscription User
 		['GET', '/inscription/user', 'User#registerUser', 'register_user'],

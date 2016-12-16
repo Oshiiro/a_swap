@@ -19,7 +19,6 @@ body {
 .container-fluid {
   padding : 0;
   margin : 0;
-
 }
 /* -------------------------------------------------------------------------- */
 
@@ -107,14 +106,19 @@ background-color: rgb(21, 138, 138);
 
 /* -------------------------------------------------------------------------- */
 /* INSCRIPTIONS et CONNEXION*/
+.formulaire h2{
+background-color: #FFFFE4;}
 
+.formulaire {
+background-color: rgb(100, 178, 137);
+}
 
 /* FOOTER: */
 
 .lienFooter {
 width: 100%;
 font-size: 10px;
-color :rgb(21, 138, 138);;
+color :rgb(21, 138, 138);
 background-color: rgb(100, 178, 137);
 padding : 2em 130em 2em 21em;
 display: flex;
