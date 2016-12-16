@@ -34,7 +34,6 @@
       <fieldset>
         <legend><h2>Le tresorier :</h2></legend>
       <!-- formulaire de creation de l'admin -->
-<<<<<<< HEAD
     	  <div class="form-group">
     			<!-- Si le champ est remplie aucune données entre en BDD -->
     			<input type="text" name="antiBot" value="" class="hide">
@@ -62,33 +61,6 @@
 						<span class="errorMessage"><br><?php if(!empty($error['checkbox'])) { echo($error['checkbox']);} ?></span>
 					</div>
     		</div>
-=======
-	    	  <div class="form-group">
-	    			<!-- Si le champ est remplie aucune données entre en BDD -->
-	    			<input type="text" name="antiBot" value="" class="hide">
-	    			<div class="form-group">
-	    	    	<input type="text" class="form-control" name="firstname" placeholder="Nom">
-	    			</div>
-	    			<div class="form-group">
-	    				<input type="text" class="form-control" name="lastname" placeholder="Prenom">
-	    			</div>
-	    			<div class="form-group">
-	    				<input type="text" class="form-control" name="username" placeholder="Pseudo">
-	    			</div>
-	    			<div class="form-group">
-	    				<input type="email" class="form-control" name="email" placeholder="Adresse mail">
-	    			</div>
-	    			<div class="form-group">
-	    				<input type="password" class="form-control" name="password" placeholder="Mot de passe">
-	    			</div>
-	    			<div class="form-group">
-	    				<input type="password" class="form-control" name="password_confirm" placeholder="Veuillez confirmer votre mot de passe">
-	    			</div>
-	    			<div class="form-group">
-	    				<label><input type="checkbox" value="">J'accepte les <a href="<?php echo $this->url('cgu'); ?>" target="_blank">CGU</a></label>
-	    			</div>
-	    		</div>
->>>>>>> 5ccf486eed470a298e3341c5eefb42b242485514
     	  <button type="submit" class="btn btn-default">Submit</button>
       </fieldset>
     </form>

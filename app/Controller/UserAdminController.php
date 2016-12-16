@@ -91,6 +91,7 @@ class UserAdminController extends AppController
 
 
 
+
     // Verification des champs partie admin
     if (isset($_POST['checkbox'])){
 

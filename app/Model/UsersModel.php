@@ -3,7 +3,6 @@ namespace Model;
 
 use \W\Model\UsersModel as UModel;
 
-
 /**
  *
  */
