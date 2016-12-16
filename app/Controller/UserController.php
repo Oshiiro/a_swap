@@ -40,6 +40,14 @@ class UserController extends AppController
 		$this->show('users/login');
 	}
 
+	/**
+	 * Page de profil
+	 */
+	public function profil()
+	{
+		$this->show('users/profil');
+	}
+
 
 // ===================================================================================================================
 // 																							TRAITEMENT DES FORMULAIRES

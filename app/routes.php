@@ -8,6 +8,9 @@
 		['GET', '/contact', 'Default#contact', 'contact'],
 		['POST', '/contact', 'Default#sendMailContact', 'send_mail_contact'],
 
+		// profil
+		['GET', '/profil', 'User#profil', 'profil'],
+
 		// CGU
 		['GET', '/cgu', 'Default#cgu', 'cgu'],
 

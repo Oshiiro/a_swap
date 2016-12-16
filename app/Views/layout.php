@@ -22,12 +22,11 @@
 
 					<?php if(!empty($_SESSION['user'])) { ?>
 					<a href="<?= $this->url('deconnexion') ?>">Deconnexion</a>
-					<a><?php echo $_SESSION['user']['username'] ?></a>
+					<a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?></a>
 					<?php } else { ?>
 					<a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a>
 					<a href="<?php echo $this->url('register_user') ?>" class="inscription">Inscription</a>
 					<?php } ?>
-
 
 				</div>
 			</div>
