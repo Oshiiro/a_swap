@@ -11,12 +11,13 @@
       <fieldset>
         <legend><h2>L'association :<h2></legend>
         <!-- partie du formulaire pour la creation de l'asso -->
+
         <div class="form-group">
           <input type="text" name="nom_assos" placeholder="Nom de l'association" value="<?php echo $nom_assos; ?>">
         </div>
 
         <div class="form-group">
-          <textarea name="description_assos" placeholder="Descriptif de votre association" rows="8" cols="40"></textarea>
+          <textarea name="description_assos" placeholder="Descriptif de votre association"></textarea>
         </div>
 
         <div class="form-group">
@@ -24,7 +25,7 @@
         </div>
 
         <div class="form-group">
-          <textarea name="rules_assos" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative" rows="8" cols="40"></textarea>
+          <textarea name="rules_assos" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative"></textarea>
         </div>
       </fieldset>
 
