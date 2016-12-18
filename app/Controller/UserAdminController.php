@@ -185,10 +185,6 @@ class UserAdminController extends AppController
         // redirection
         $this->show('admin/register_admin', array(
           'data_intermediaire' => $data_intermediaire,
-          // 'data' => $data,
-          //dataassos
-          //data_user
-          //dataintermediaire
         ));
 
       } else {
