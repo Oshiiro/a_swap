@@ -96,17 +96,27 @@ class UserAdminController extends AppController
     } else {
       $error['name_asso']   = $this->valid->textValid($nom_assos,'nom d\'association', 3, 50);
     }
+    // verifier que le descriptif n'est pas trop long
+    if(!empty($_POST['description_assos'])){
+      $error['description_assos']   = $this->valid->textValid($description_assos,'description de l\'association', 0, 5000);
+    }
+    // verifier que le nom de la monnaie n'est ni trop court, ni trop long
+    if(empty($_POST['money_name'])){
+      $error['money_name'] = 'Veuillez donner un nom à votre monnaie';
+    } else {
+      $error['money_name']   = $this->valid->textValid($money_name,'nom de monnaie', 3, 50);
+    }
+    // verifier que le reglement n'est pas trop long
+    if(!empty($_POST['rules_assos'])){
+      $error['rules_assos']   = $this->valid->textValid($rules_assos,'regles de fonctionnement', 0, 5000);
+    }
 
 
     // Verification des champs partie admin
     if (isset($_POST['checkbox'])){
 
     } else {
-<<<<<<< HEAD
-      $error['checkbox'] = 'Vous n\'avez pas validé les CGU.';;
-=======
       $error['checkbox'] = 'Vous n\'avez pas validé les CGU.';
->>>>>>> b9c44b6c8070732e79a7d4dbef2275c2f926972a
     }
     // verif que le pseudo de l'admin est libre
     $exist = $this->model_user->usernameExists($username,'username', 3, 50);
@@ -120,11 +130,7 @@ class UserAdminController extends AppController
     // verif que le mail de l'admin est libre
     $exist = $this->model_user->emailExists($email,'email', 3, 50);
     if($exist == true){
-<<<<<<< HEAD
       $error['email'] = 'Ce mail est déjà pris';
-=======
-      $error['email'] = 'Le mail est déjà pris';
->>>>>>> b9c44b6c8070732e79a7d4dbef2275c2f926972a
     } else {
       $error['email'] = $this->valid->emailValid($email,'email', 3, 50);
     }

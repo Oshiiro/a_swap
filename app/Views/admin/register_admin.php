@@ -24,11 +24,13 @@
 
 		        <div class="form-group">
 		          <input type="text" name="money_name" class="form-control" placeholder="Nom de votre monnaie" value="<?php if(!empty($_POST['money_name'])) { echo $_POST['money_name']; } ?>">
-		        </div>
+							<span class="errorMessage"><?php if(!empty($error['money_name'])) { echo($error['money_name']);} ?></span>
+					  </div>
 
 		        <div class="form-group">
 		          <textarea name="rules_assos" class="form-control" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative (facultatif)"><?php if(!empty($_POST['rules_assos'])) { echo $_POST['rules_assos']; } ?></textarea>
-		        </div>
+							<span class="errorMessage"><?php if(!empty($error['rules_assos'])) { echo($error['rules_assos']);} ?></span>
+					  </div>
 
 					</div>
       </fieldset>
