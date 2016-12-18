@@ -13,20 +13,21 @@
 					<div class="form-group">
 
 			      <div class="form-group">
-			        <input type="text" name="nom_assos" class="form-control" placeholder="Nom de l'association" value="<?php if(!empty($_GET['nom_assos'])) { echo $_GET['nom_assos']; } ?>">
+			        <input type="text" name="nom_assos" class="form-control" placeholder="Nom de l'association" value="<?php if(!empty($_GET['nom_assos'])) { echo $_GET['nom_assos']; } elseif(!empty($_POST['nom_assos'])) { echo $_POST['nom_assos']; } ?>">
 							<span class="errorMessage"><?php if(!empty($error['name_asso'])) { echo($error['name_asso']);} ?></span>
 						</div>
 
 		        <div class="form-group">
-		          <textarea name="description_assos"  class="form-control" placeholder="Descriptif de votre association"></textarea>
+		          <textarea name="description_assos"  class="form-control" placeholder="Descriptif de votre association (facultatif)"><?php if(!empty($_POST['description_assos'])) { echo $_POST['description_assos']; } ?></textarea>
+							<span class="errorMessage"><?php if(!empty($error['description_assos'])) { echo($error['description_assos']);} ?></span>
+					  </div>
+
+		        <div class="form-group">
+		          <input type="text" name="money_name" class="form-control" placeholder="Nom de votre monnaie" value="<?php if(!empty($_POST['money_name'])) { echo $_POST['money_name']; } ?>">
 		        </div>
 
 		        <div class="form-group">
-		          <input type="text" name="money_name" class="form-control" placeholder="Nom de votre monnaie" value="">
-		        </div>
-
-		        <div class="form-group">
-		          <textarea name="rules_assos" class="form-control" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative"></textarea>
+		          <textarea name="rules_assos" class="form-control" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative (facultatif)"><?php if(!empty($_POST['rules_assos'])) { echo $_POST['rules_assos']; } ?></textarea>
 		        </div>
 
 					</div>

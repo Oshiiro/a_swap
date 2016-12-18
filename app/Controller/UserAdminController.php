@@ -102,7 +102,7 @@ class UserAdminController extends AppController
     if (isset($_POST['checkbox'])){
 
     } else {
-      $error['checkbox'] = 'Vous n\'avez pas valider les CGU.';;
+      $error['checkbox'] = 'Vous n\'avez pas validé les CGU.';;
     }
     // verif que le pseudo de l'admin est libre
     $exist = $this->model_user->usernameExists($username,'username', 3, 50);
@@ -116,7 +116,7 @@ class UserAdminController extends AppController
     // verif que le mail de l'admin est libre
     $exist = $this->model_user->emailExists($email,'email', 3, 50);
     if($exist == true){
-      $error['email'] = 'le mail et deja prit';
+      $error['email'] = 'Ce mail est déjà pris';
     } else {
       $error['email'] = $this->valid->emailValid($email,'email', 3, 50);
     }
@@ -131,6 +131,14 @@ class UserAdminController extends AppController
       $error['firstname'] = 'Veuillez renseigner un nom';
     } else {
       $error['firstname']   = $this->valid->textValid($firstname,'firstname', 3, 50);
+    }
+
+    if(empty($_POST['password'])){
+      $error['password'] = 'Veuillez renseginer le mot de passe';
+    }
+
+    if(empty($_POST['password_confirm'])){
+      $error['password_confirm'] = 'Veuillez saisir votre mot de passe une seconde fois';
     }
 
     if($password == $password_confirm){
@@ -163,21 +171,20 @@ class UserAdminController extends AppController
           'active' => 1,
           'created_at' => date('Y-m-d H:i:s'),
         );
-        $data_intermediaire = array(
-
-        );
 
         // Insert dans la table assos
         $this->model_assos->insert($data_asso);
         // Insert dans la table users
         $this->model_user->insert($data_user);
+
+        // Preparation de l'array $data_intermediaire
+        $data_intermediaire = $this->model_intermediaire->getAssoAndAdmin($slug, $username);
         // Insert dans la table intermediaire
-        // $this->model_intermediaire->insert($data_intermediaire);
-
-
+        $this->model_intermediaire->insert($data_intermediaire);
 
         // redirection
         $this->show('admin/register_admin', array(
+          'data_intermediaire' => $data_intermediaire,
           // 'data' => $data,
           //dataassos
           //data_user
@@ -187,14 +194,17 @@ class UserAdminController extends AppController
       } else {
         $this->show('admin/register_admin', array(
           'error' => $error,
+
         ));
       }
 
     }	else {
       $error['password'] = 'Les mots de passe ne sont pas identiques';
       $this->show('admin/register_admin', array(
-        'error' => $error
+        'error' => $error,
+
       ));
     }
+
   }
 }
