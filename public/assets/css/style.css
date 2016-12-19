@@ -27,6 +27,10 @@ body {
 .center {
   text-align: center;
 }
+
+.hide2 {
+  display: none;
+}
 /* -------------------------------------------------------------------------- */
 
 
@@ -37,6 +41,10 @@ body {
   font-size: 25px;
   color: rgb(21, 138, 138);
   padding : 2em;
+}
+
+.navbar-default {
+  background-color: #FFFFE4;
 }
 
 .menu {

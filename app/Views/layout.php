@@ -42,14 +42,14 @@
 			<div class="container lienFooter">
 				<div class="lienRedirectionSite col-sm-1">
 					<p>Site :</p>
-					<a>Accueil</a><br>
-					<a>Connexion</a><br>
-					<a>Inscription</a><br>
-					<a>Contact</a>
+					<a href="<?php echo $this->url('default_home') ?>">Accueil</a><br>
+					<a href="<?php echo $this->url('login') ?>">Connexion</a><br>
+					<a href="<?php echo $this->url('register_user') ?>">Inscription</a><br>
+					<a href="<?php echo $this->url('contact') ?>">Contact</a>
 				</div>
 				<div class="lienUtiles col-sm-1">
 					<p>Liens utiles :</p>
-					<a>CGU</a><br>
+					<a href="<?php echo $this->url('cgu') ?>">CGU</a><br>
 					<a>Concept</a>
 				</div>
 				<div class="lienReseaux col-sm-1">
@@ -65,5 +65,6 @@
 
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.0.min.js') ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+	<script type="text/javascript" src="<?= $this->assetUrl('js/app.js') ?>"></script>
 </body>
 </html>
