@@ -63,5 +63,6 @@
 
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.0.min.js') ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+	<script type="text/javascript" src="<?= $this->assetUrl('js/app.js') ?>"></script>
 </body>
 </html>

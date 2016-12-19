@@ -27,7 +27,7 @@
 
 
 
-    <form class="form-group formulaire hidden" name="class" method="POST" action="">
+    <form class="form-group formulaire" style="display : none;" name="class" method="POST" action="">
       <h4>Envoyer un message</h4>
       <label for="">Destinataire</label>
       <select class="form-control" name="destinataire" >
