@@ -21,6 +21,10 @@ body {
   margin : 0;
 }
 
+.center {
+  text-align: center;
+}
+/* -------------------------------------------------------------------------- */
 
 
 /* BARRE DE MENU; */
@@ -54,10 +58,8 @@ margin-right: auto;
 .check {
 float: right;
 margin-right: 10px;
-
-
-
 }
+
 h3 {
   font-family: 'Space Mono', monospace;
   color : white;
@@ -74,7 +76,6 @@ width: 18em;
   display: flex;
   justify-content: space-between;
 }
-
 
 h2  {
 font-family: monospace;
@@ -107,31 +108,82 @@ background-color: rgb(21, 138, 138);
 
 }
 
-/* FOOTER: */
+/* -------------------------------------------------------------------------- */
+/* MESSAGERIE */
 
-.lienFooter {
-width: 100%;
-font-size: 10px;
-color :rgb(21, 138, 138);;
-background-color: rgb(100, 178, 137);
-padding : 2em 130em 2em 21em;
-display: flex;
-justify-content: space-between;
+h5 {
+  font-family: monospace;
+  color : darkgrey;
+  text-align: center;
+  font-size: 20px;
 }
-.lienUtiles {
-color : rgb(21, 138, 138);;
-float: center;
-text-align: left;
+
+td {
+border-bottom: 1px dotted darkgrey;
+border-left: 1px dotted darkgrey;
+font-family: monospace;
+padding : 3px;
+font-size: 15px;
+text-align: center;
 }
-.lienReseaux {
-color : rgb(21, 138, 138);;
-float : right;
-text-align: left;
+
+th {
+font-family: monospace;
+font-size: 21px;
+margin-bottom: 8px;
+text-align: center;
+padding-bottom: 15px;
 }
-.lienFooter a {
+
+table {
+width: 100%;}
+
+
+/* INSCRIPTIONS et CONNEXION*/
+.formulaire h2{
+color :  rgb(100, 178, 137);
+background-color: #FFFFE4;
+border-radius: 20px;}
+
+.formulaire {
+display: block;
+box-shadow: -1px 2px 3px 1px rgba(0, 0, 0, 0.3),
+            -1px 2px 20px rgba(255, 255, 255, 0.6) inset;
+border-radius: 20px;
+padding : 50px 100px;
+background-image: linear-gradient(#64B289,
+#158A8A);
+}
+
+.formulaire a {
+color : white;
+
+}
+ .acceptCGU {
 color : white;
 }
 
+/*-------------------------------------------------------------------------*/
+
+/* FOOTER: */
+
+.lienFooter {
+
+padding : 20px;
+text-align: center;
+width: 100%;
+font-size: 10px;
+color :rgb(21, 138, 138);
+background-color: rgb(100, 178, 137);
+}
+
+.lienUtiles, .lienReseaux, .lienRedirectionSite {
+color : rgb(21, 138, 138);;
+}
+
+.lienFooter a {
+color : white;
+}
 .errorMessage {
   color: red;
 }
