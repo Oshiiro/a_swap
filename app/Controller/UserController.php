@@ -279,6 +279,8 @@ class UserController extends AppController
 
 	    // On créé une nouvelle instance de la classe
 	    $mail = new PHPMailer();
+			// $mail->CharSet = 'UTF-8';
+			$mail->CharSet = "utf8";
 	    // De qui vient le message, e-mail puis nom
 	    $mail->From = "no.reply@a-swap.com";
 	    $mail->FromName = "A-Swap Admin";
@@ -319,24 +321,42 @@ class UserController extends AppController
 
 		$error['password']  = $this->valid->textValid($password,'password', 3, 50);
 
-		if($password == $password_confirm){
-
-			$passwordHash = $this->authentificationmodel->hashPassword($password);
-			if ($this->valid->IsValid($error)) {
-				$token = StringUtils::randomString();
-				$data = array(
-					'token' => $token,
-					'password' => $passwordHash,
-					'modified_at' => date('Y-m-d H:i:s'),
-				);
-				// Modifie une ligne en fonction d'un identifiant
-				// Le premier argument est un tableau associatif de valeurs à insérer
-				// Le second est l'identifiant de la ligne à modifier
-				$this->model->update($data, $id);
-			}
-				// redirection
-				$this->show('users/login');
+		//Verfication que le token est bien le bon dans la BDD (si non, cela veux dire que c'est un ancien mail)
+		$verif_token = $getId->tokenIsActive();
+		if($verif_token == false){
+			$error['token'] = 'Le mail que vous avez utilisé n\'est plus valide.';
 		}
+
+		if(!empty($password)) {
+
+			if($password == $password_confirm){
+
+				$passwordHash = $this->authentificationmodel->hashPassword($password);
+				if ($this->valid->IsValid($error)) {
+					$token = StringUtils::randomString();
+					$data = array(
+						'token' => $token,
+						'password' => $passwordHash,
+						'modified_at' => date('Y-m-d H:i:s'),
+					);
+					// Modifie une ligne en fonction d'un identifiant
+					// Le premier argument est un tableau associatif de valeurs à insérer
+					// Le second est l'identifiant de la ligne à modifier
+					$this->model->update($data, $id);
+					//Redirection vers la page de login
+					$this->show('users/login');
+				}
+
+				$this->show('users/modify_password', array(
+					'error' => $error,
+				));
+			}
+		} else {
+			$error['password'] = 'Merci de definir un nouveau mot de passe';
+		}
+		$this->show('users/modify_password', array(
+			'error' => $error,
+		));
 	}
 
 } // Class

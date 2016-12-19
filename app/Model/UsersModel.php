@@ -51,4 +51,26 @@ class UsersModel extends UModel
     return $id['id'];
   }
 
+  // Fonction qui verifie que le token est bien le bon
+  public function tokenIsActive()
+  {
+    $tokenGET = trim(strip_tags($_GET['token']));
+    $email = trim(strip_tags($_GET['email']));
+
+    $app = getApp();
+    $sql = 'SELECT token FROM users WHERE email = :email LIMIT 1';
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':email', $email);
+    $sth->execute();
+    $tokenBDD = $sth->fetch();
+
+    if($tokenBDD['token'] == $tokenGET){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 }
