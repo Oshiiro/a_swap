@@ -16,7 +16,7 @@
 					<a href="<?php echo $this->url('message') ?>">Messagerie</a>
 					<a href="">Association</a>
 						<?php if ($_SESSION['user']['role'] == 'admin') { ?>
-						<a href="">Back Office</a>
+						<a href="<?php echo $this->url('admin_back') ?>">Back Office</a>
 						<?php } ?>
 					<?php } ?>
 
