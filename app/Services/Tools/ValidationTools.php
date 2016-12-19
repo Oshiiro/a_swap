@@ -1,7 +1,7 @@
 <?php
-namespace Services;
+namespace Services\Tools;
 
-class ValidationTool
+class ValidationTools
 {
   protected $errors = array();
 
@@ -50,9 +50,9 @@ class ValidationTool
     if(!empty($text)) {
       $strtext = strlen($text);
       if($strtext > $max) {
-        $error = 'Your ' . $title . ' is too long.';
+        $error = 'Le ' . $title . ' est trop long';
       } elseif($strtext < $min) {
-        $error = 'Your ' . $title . ' is too short.';
+        $error = 'Le ' . $title . ' est trop court';
       }
     } else {
       if(!$empty) {
