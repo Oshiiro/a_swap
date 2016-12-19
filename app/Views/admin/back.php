@@ -18,5 +18,16 @@
 				</tr>
 			<?php } ?>
 			</table>
+
 	</div>
+	<div class="container">
+		<button id="invitation">Inviter un nouveau membre</button>
+		<!-- A FAIRE : animation JS qui affiche le from ci-dessous lorqu'on clique sur le button si dessus -->
+		<form class="" action="" method="POST">
+			<input type="text" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
+			<input type="submit" name="submit" value="Inviter">
+		</form>
+	</div>
+
+
 <?php $this->stop('main_content') ?>
