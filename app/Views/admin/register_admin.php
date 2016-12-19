@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Contact']) ?>
+<?php $this->layout('layout', ['title' => 'Creez votre association']) ?>
 
 <?php $this->start('main_content') ?>
 
