@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \Controller\AppController;
+use \Model\BackModel;
 use \Services\Tools\ValidationTools;
 use \Services\Tools\Tools;
 use \Model\UsersModel;
@@ -31,6 +32,7 @@ class UserAdminController extends AppController
     $this->model_assos = new AssosModel();
     $this->model_intermediaire = new IntermediaireModel();
 		$this->authentificationmodel = new AuthentificationModel();
+    $this->backmodel = new BackModel();
 	}
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
@@ -60,7 +62,14 @@ class UserAdminController extends AppController
    */
   public function back()
   {
-    $this->show('admin/Back');
+
+    $adherants = $this->backmodel->affAdherants();
+    $trans = $this->backmodel->GetTrans();
+    
+    $this->show('admin/Back', array(
+      'trans' => $trans,
+      'adherants' => $adherants
+    ));
   }
 
 // ===================================================================================================================
