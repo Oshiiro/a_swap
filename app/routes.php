@@ -49,6 +49,8 @@
 
 		// Admin Back
 		['GET', '/admin/back', 'UserAdmin#back', 'admin_back'],
+		['GET', '/admin/transaction', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'],
+		['POST', '/admin/transaction', 'TransactionAdmin#makeTransaction', 'admin_back_transac_valid'], //transaction de l'admin
 
 		// Admin Association Back
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
