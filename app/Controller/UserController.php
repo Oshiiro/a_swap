@@ -13,6 +13,7 @@ class UserController extends AppController
 	private $valid;
 	private $model;
 	private $authentificationmodel;
+	private $success; // permet le flashmessage "votre vompte a bien été créer"
 
 	public function __construct()
 	{
@@ -29,7 +30,10 @@ class UserController extends AppController
 	 */
 	public function registerUser()
 	{
-		$this->show('users/register_user');
+		if ($this->success != true) {
+			$this->success = false;
+		}
+		$this->show('users/register_user', array('success' => $this->success));
 	}
 
 	/**
@@ -124,23 +128,20 @@ class UserController extends AppController
 				);
 
 				$this->model->insert($data);
-
-				// redirection
-				$this->show('users/register_user');
-
+				$this->success = true;
+				$this->registerUser();
 			} else {
-				$this->show('users/register_user', array('error' => $error));
+				$this->show('users/register_user', array('error' => $error, 'success' => $this->success));
 			}
-
 		}	else {
 			$error['password'] = 'Les mot de passe ne sont pas identique';
-			$this->show('users/register_user', array('error' => $error));
+			$this->show('users/register_user', array('error' => $error,'success' => $this->success));
 		}
 	}
 
-	/**
-	 * Page de connexion traitement
-	 */
+/**
+	* Page de connexion traitement
+	*/
 	public function tryLogin()
 	{
 		$error = array();
@@ -164,7 +165,9 @@ class UserController extends AppController
 		$this->show('users/login', array('error' => $error));
 	}
 
-// Deconnexion
+/**
+ * Deconnexion
+ */
 	public function Deconnexion()
 	{
 		$this->authentificationmodel->logUserOut();

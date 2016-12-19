@@ -6,6 +6,7 @@
   <!-- RESTE A PREVOIR/FAIRE : uploader le logo de l'assoc -->
 <?php if(!empty($error)) { debug($error); } ?>
   <div class="container">
+		<?php if ($success == false) { ?>
     <form class="formulaire" action="" method="POST">
       <fieldset>
         <legend><h2>L'association :</h2></legend>
@@ -73,6 +74,9 @@
 					<input type="submit" class="btn btn-default">
       </fieldset>
     </form>
+		<?php } else { ?>
+		<p>Votre compte et votre assos ont bien été créer.</p>
+		<?php } ?>
   </div>
 
 <?php $this->stop('main_content') ?>

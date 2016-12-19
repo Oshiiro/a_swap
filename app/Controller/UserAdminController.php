@@ -20,6 +20,7 @@ class UserAdminController extends AppController
 	private $model_assos;
 	private $model_intermediaire;
   private $authentificationmodel;
+  private $success; // permet le flashmessage "votre vompte a bien été créer"
 
   public function __construct()
 	{
@@ -38,12 +39,18 @@ class UserAdminController extends AppController
    */
   public function registerAdmin()
   {
+    if ($this->success != true) {
+			$this->success = false;
+		}
+    echo $this->success;
+
     $nom_assos = (!empty($_POST['nom_assos'])) ? trim(strip_tags($_POST['nom_assos'])) : null;
     $data = 'test';
 
     $this->show('admin/register_admin', array(
       'nom_assos' => $nom_assos,
       'data' => $data,
+      'success' => $this->success,
     ));
   }
 
@@ -195,16 +202,18 @@ class UserAdminController extends AppController
         $data_intermediaire = $this->model_intermediaire->getAssoAndAdmin($slug, $username);
         // Insert dans la table intermediaire
         $this->model_intermediaire->insert($data_intermediaire);
+        $this->success = true;
 
         // redirection
         $this->show('admin/register_admin', array(
           'data_intermediaire' => $data_intermediaire,
+          'success' => $this->success,
         ));
 
       } else {
         $this->show('admin/register_admin', array(
           'error' => $error,
-
+          'success' => $this->success,
         ));
       }
 
@@ -212,7 +221,7 @@ class UserAdminController extends AppController
       $error['password'] = 'Les mots de passe ne sont pas identiques';
       $this->show('admin/register_admin', array(
         'error' => $error,
-
+        'success' => $this->success,
       ));
     }
 

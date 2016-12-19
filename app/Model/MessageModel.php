@@ -43,7 +43,6 @@ class MessageModel extends Model
             $insMessages->bindValue(':id_receiver', $id_receiver);
             $insMessages->execute();
 
-
     }
   }
 

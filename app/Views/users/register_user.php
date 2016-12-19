@@ -2,13 +2,13 @@
 
 <?php $this->start('main_content') ?>
 	<div class="container">
+		<?php if ($success == false) { ?>
 		<form method="POST" action="<?php echo $this->url('try_register') ?>" class="form-horizontal well formulaire">
 			<fieldset>
 				<legend><h2>Créer votre compte</h2></legend>
 				<?php if(!empty($error)) { debug($error); } ?>
 
 	  		<div class="col-md-12">
-
 					<!-- Si le champ est remplie aucune données entre en BDD -->
 					<input type="text" name="antiBot" value="" class="hide">
 					<div class="form-group">
@@ -43,5 +43,8 @@
 				</div>
 			</fieldset>
 		</form>
+		<?php } else { ?>
+		<p>Votre compte à bien été créer.</p>
+		<?php } ?>
 	</div>
 <?php $this->stop('main_content') ?>
