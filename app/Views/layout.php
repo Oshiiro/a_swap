@@ -33,6 +33,8 @@
 		</header>
 
 		<div class="container-fluid">
+
+			<?php echo $this->getFlash(); ?>
 			<?= $this->section('main_content') ?>
 		</div>
 

@@ -8,6 +8,7 @@ use \W\Model\UsersModel;
 use \Model\UsersModel as OurUModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
+use \Services\Flash\FlashBags;
 use PHPMailer;
 
 class UserController extends AppController
@@ -32,9 +33,6 @@ class UserController extends AppController
 	 */
 	public function registerUser()
 	{
-		if ($this->success != true) {
-			$this->success = false;
-		}
 		$this->show('users/register_user', array('success' => $this->success));
 	}
 
@@ -130,8 +128,10 @@ class UserController extends AppController
 				);
 
 				$this->model->insert($data);
-				$this->success = true;
-				$this->registerUser();
+				// $this->success = true;
+				$flash = new FlashBags();
+				$flash->setFlash('warning', 'bravo vous etes inscrit');
+				$this->show('users/login');
 			} else {
 				$this->show('users/register_user', array(
 					'error' => $error,
@@ -232,11 +232,13 @@ class UserController extends AppController
 
 		// GG si il n'y a pas d'erreur
 		if ($this->valid->IsValid($error)){
-			echo "OUAI prout";
+			$token = StringUtils::randomString();
 			$data = array(
 				'firstname' => $firstname,
 				'lastname' => $lastname,
 				'username' => $username,
+				'token' => $token,
+				'modified_at' => date('Y-m-d H:i:s'),
 			);
 			$this->model->update($data, $id);
 			$this->authentificationmodel->refreshUser();
@@ -291,8 +293,6 @@ class UserController extends AppController
 	    $mail->AddAddress($email);
 	    // Pour finir, on envoi l'e-mail
 	    $mail->send();
-
-
 
 		}
 
