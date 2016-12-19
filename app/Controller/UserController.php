@@ -131,11 +131,17 @@ class UserController extends AppController
 				$this->success = true;
 				$this->registerUser();
 			} else {
-				$this->show('users/register_user', array('error' => $error, 'success' => $this->success));
+				$this->show('users/register_user', array(
+					'error' => $error,
+					'success' => $this->success
+				));
 			}
 		}	else {
 			$error['password'] = 'Les mot de passe ne sont pas identique';
-			$this->show('users/register_user', array('error' => $error,'success' => $this->success));
+			$this->show('users/register_user', array(
+				'error' => $error,
+				'success' => $this->success
+			));
 		}
 	}
 
@@ -166,8 +172,8 @@ class UserController extends AppController
 	}
 
 /**
- * Deconnexion
- */
+  * Deconnexion
+  */
 	public function Deconnexion()
 	{
 		$this->authentificationmodel->logUserOut();
@@ -175,17 +181,26 @@ class UserController extends AppController
 	}
 
 /**
- * Page de profil modification traitement
- */
+  * Page de profil modification traitement
+  */
 	public function updateProfil()
 	{
 		// protection XSS
 		$lastname   = trim(strip_tags($_POST['lastname']));
 		$firstname   = trim(strip_tags($_POST['firstname']));
 		$username   = trim(strip_tags($_POST['username']));
+		$id = $_SESSION['user']['id'];
 
 		// verif de pseudo
 		$exist = $this->model->usernameExists($username,'username', 3, 50);
+
+		// si le pseudo est le même que celui de la session, alors c'est good
+		if($username == $_SESSION['user']['username'])
+		{
+			$exist = false;
+		}
+
+		// si l'utilisateur tente de prendre un pseudo deja existant, on le bloque mamene
 		if($exist == true)
 		{
 			$error['username'] = 'Votre pseudo et deja prit';
@@ -214,16 +229,19 @@ class UserController extends AppController
 		}
 
 		// GG si il n'y a pas d'erreur
-		if ($this->valid->IsValid($error)) {
-
+		if ($this->valid->IsValid($error)){
 			echo "OUAI prout";
-
+			$data = array(
+				'firstname' => $firstname,
+				'lastname' => $lastname,
+				'username' => $username,
+			);
+			$this->model->update($data, $id);
+			$this->authentificationmodel->refreshUser();
+			$this->profil();
 		}
 
     $this->show('users/profil', array('error' => $error));
 	}
-
-
-
 
 } // Class
