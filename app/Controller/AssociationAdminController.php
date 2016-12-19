@@ -64,6 +64,16 @@ class AssociationAdminController extends AppController
 		$this->show('association/modifassos_admin_back');
   }
 
+	/**
+	* Invitation d'un membre a rejoindre l'assocation
+	*/
+	public function inviteNewMemberByMail()
+	{
+		// recupere le post['email'] et php mailer vers lui
+		// le lien revera vers quoi ?
+		// si user exist => update table user et intermediaire
+		// si user exist pas => redirection vers formulaire inscription
+	}
 
 
 }
