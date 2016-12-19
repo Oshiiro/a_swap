@@ -49,7 +49,7 @@ $this->show('message/message');
   {
 $newMessages = new MessageModel();
 $message = $newMessages->sendMessages();
-  $this->show('message/message');
+  $this->message();
   }
 
 /**

@@ -1,7 +1,7 @@
 <?php
 	$w_routes = array(
 
-		// home / acceuil
+		// home / accueil
 		['GET', '/', 'Default#home', 'default_home'],
 
 		// contact
@@ -25,6 +25,14 @@
 		// Inscription Admin
 		['GET', '/inscription/admin_assos', 'UserAdmin#registerAdmin', 'admin_assos_register'],
 		['POST', '/inscription/admin_assos', 'UserAdmin#tryRegisterAdmin', 'admin_assos_try_register'],
+
+		// Forgot password
+		['GET', '/connexion/forgot_password', 'User#forgotPassword', 'forgot_password'],
+		['POST', '/connexion/forgot_password', 'User#tryForgotPassword', 'try_forgot_password'],
+
+		// Modify password
+		['GET', '/connexion/modify_password', 'User#modifyPassword', 'modify_password'],
+		['POST', '/connexion/modify_password', 'User#tryModifyPassword', 'try_modify_password'],
 
 		// Connexion
 		['GET', '/connexion', 'User#login', 'login'],
