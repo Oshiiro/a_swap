@@ -7,7 +7,7 @@
     <h2>Messagerie</h2>
     <h5>Liste des derniers messages</h5>
 
-    <button class="btn btn-default">Envoyer un message</button>
+    <button class="btn btn-default sendMessage">Envoyer un message</button>
     <table>
       <th>Pseudo</th>
       <th>Message</th>
@@ -26,23 +26,23 @@
 
 
 
-    <h4>Envoyer un message</h4>
 
-    <form class="form-group formulaire">
+    <form class="form-group formulaire hidden" name="class" method="POST" action="">
+      <h4>Envoyer un message</h4>
       <label for="">Destinataire</label>
-      <select class="form-control">
+      <select class="form-control" name="destinataire" >
         <?php foreach ($users as $user): ?>
-          <option value="<?php echo $user['slug'] ?>"><?php echo $user['username'];?></option>
+          <option value="<?php echo $user['id'] ?>"><?php echo $user['username'];?></option>
         <?php endforeach; ?>
       </select><br>
       <div class="form-group">
         <label for="">Message</label>
-        <textarea name="rules_assos" class="form-control" placeholder="Votre message"></textarea>
+        <textarea name="message" class="form-control" placeholder="Votre message"></textarea>
       </div>
-      <button class="btn btn-default" type="submit" name="submit" value="">envoyer</button>
+      <input class="btn btn-default" type="submit" name="submit" value="envoyer">
     </form>
   </div>
 </div>
 
-
+<script src="appMessage.js"></script>
 <?php $this->stop('main_content') ?>
