@@ -40,6 +40,10 @@ body {
   padding : 2em;
 }
 
+.navbar-default {
+  background-color: #FFFFE4;
+}
+
 .menu {
 margin: 30px;
 float: right;

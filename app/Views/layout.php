@@ -16,7 +16,7 @@
 					<a href="<?php echo $this->url('message') ?>">Messagerie</a>
 					<a href="">Association</a>
 						<?php if ($_SESSION['user']['role'] == 'admin') { ?>
-						<a href="">Back Office</a>
+						<a href="<?php echo $this->url('admin_back') ?>">Back Office</a>
 						<?php } ?>
 					<?php } ?>
 
@@ -40,14 +40,14 @@
 			<div class="container lienFooter">
 				<div class="lienRedirectionSite col-sm-1">
 					<p>Site :</p>
-					<a>Accueil</a><br>
-					<a>Connexion</a><br>
-					<a>Inscription</a><br>
-					<a>Contact</a>
+					<a href="<?php echo $this->url('default_home') ?>">Accueil</a><br>
+					<a href="<?php echo $this->url('login') ?>">Connexion</a><br>
+					<a href="<?php echo $this->url('register_user') ?>">Inscription</a><br>
+					<a href="<?php echo $this->url('contact') ?>">Contact</a>
 				</div>
 				<div class="lienUtiles col-sm-1">
 					<p>Liens utiles :</p>
-					<a>CGU</a><br>
+					<a href="<?php echo $this->url('cgu') ?>">CGU</a><br>
 					<a>Concept</a>
 				</div>
 				<div class="lienReseaux col-sm-1">
