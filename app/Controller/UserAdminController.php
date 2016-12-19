@@ -22,6 +22,7 @@ class UserAdminController extends AppController
   private $authentificationmodel;
   private $success; // permet le flashmessage "votre vompte a bien été créer"
 
+
   public function __construct()
 	{
 		$this->valid = new ValidationTools();
