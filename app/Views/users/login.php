@@ -18,7 +18,7 @@
 
 					</div>
 					<div class="checkbox">
-						<a href ="#">Mot de passe oublié</a>
+						<a href ="<?php echo $this->url('forgot_password') ?>">Mot de passe oublié</a>
 					</div>
 					<input type="submit" class="btn btn-default">
 

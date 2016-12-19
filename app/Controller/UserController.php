@@ -5,8 +5,10 @@ namespace Controller;
 use \Controller\AppController;
 use \Services\Tools\ValidationTools;
 use \W\Model\UsersModel;
+use \Model\UsersModel as OurUModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
+use PHPMailer;
 
 class UserController extends AppController
 {
@@ -220,7 +222,97 @@ class UserController extends AppController
     $this->show('users/profil', array('error' => $error));
 	}
 
+// =============================================================================
+// ===============================FORGOT PASSWORD===============================
+// =============================================================================
+	public function forgotPassword()
+	{
+		$this->show('users/forgot_password');
+	}
+
+	public function tryForgotPassword()
+	{
+		$email   = trim(strip_tags($_POST['email']));
+
+		// verif que le mail existe bien dans la BDD
+		$exist = $this->model->emailExists($email,'email', 3, 50);
+		if($exist == false){
+			$error['email'] = 'Cet utilisateur n\'existe pas.';
+		} else {
+			$error['email'] = $this->valid->emailValid($email,'email', 3, 50);
+		}
+
+		// S'il n'y a pas d'erreurs
+		if ($this->valid->IsValid($error)) {
 
 
+			$usersModel = new OurUModel();
+			$token = $usersModel->recupToken($email);
+			//encodage de l'email
+	    $mailEncode = urlencode($email);
+
+	    // On créé une nouvelle instance de la classe
+	    $mail = new PHPMailer();
+	    // De qui vient le message, e-mail puis nom
+	    $mail->From = "no.reply@a-swap.com";
+	    $mail->FromName = "A-Swap Admin";
+	    // Définition du sujet/objet
+	    $mail->Subject = "Récupération du mot de passe";
+	    // On définit le corps du message
+			// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
+			// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
+	    $mail->Body = 'Cliquez : ' . '<a href="http://localhost/a_swap/public/connexion/modify_password?email=' . '' . $email . '&token=' . $token . '">Creer un nouveau mot de passe</a>';
+	    // Il reste encore à ajouter au moins un destinataire
+	    // (ou plus, par plusieurs appel à cette méthode)
+	    $mail->AddAddress($email);
+	    // Pour finir, on envoi l'e-mail
+	    $mail->send();
+
+
+
+		}
+
+		$this->show('users/forgot_password', array(
+			'error' => $error,
+		));
+
+	}
+
+//==============================================================================
+//================================MODIFY PASSWORD===============================
+//==============================================================================
+	public function modifyPassword()
+	{
+		$this->show('users/modify_password');
+	}
+
+	public function tryModifyPassword()
+	{
+		$getId = new OurUModel();
+		$id = $getId->getIdByEmailAndToken();
+		$password  = trim(strip_tags($_POST['password']));
+		$password_confirm  = trim(strip_tags($_POST['repeat']));
+
+		$error['password']  = $this->valid->textValid($password,'password', 3, 50);
+
+		if($password == $password_confirm){
+
+			$passwordHash = $this->authentificationmodel->hashPassword($password);
+			if ($this->valid->IsValid($error)) {
+				$token = StringUtils::randomString();
+				$data = array(
+					'token' => $token,
+					'password' => $passwordHash,
+					'modified_at' => date('Y-m-d H:i:s'),
+				);
+				// Modifie une ligne en fonction d'un identifiant
+				// Le premier argument est un tableau associatif de valeurs à insérer
+				// Le second est l'identifiant de la ligne à modifier
+				$this->model->update($data, $id);
+			}
+				// redirection
+				$this->show('users/login');
+		}
+	}
 
 } // Class
