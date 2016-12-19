@@ -20,6 +20,7 @@ class UserAdminController extends AppController
 	private $model_assos;
 	private $model_intermediaire;
   private $authentificationmodel;
+  private $backmodel;
 
   public function __construct()
 	{
