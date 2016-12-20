@@ -30,6 +30,23 @@ class AssosModel extends UModel
 	    return false;
 	}
 
+  public function getToken($id_admin)
+  {
+    $app = getApp();
+    $sql = 'SELECT a.token FROM assos AS a
+            INNER JOIN intermediaire AS i ON a.id = i.id_assos
+            INNER JOIN users AS u ON :id_admin = i.id_users
+            LIMIT 1';
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':id_admin', $id_admin);
+    $sth->execute();
+    $token = $sth->fetch();
+
+    return $token['token'];
+  }
+
 
 
 

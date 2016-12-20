@@ -6,6 +6,7 @@ use \Controller\AppController;
 use \W\Model\UsersModel;
 use \Model\UsersModel as OurUModel;
 use \Model\IntermediaireModel;
+use \Model\AssosModel;
 use PHPMailer;
 
 
@@ -13,12 +14,14 @@ class AssociationAdminController extends AppController
 {
 
 	private $model;
+	private $assos;
 	private $our_u_model;
 	private $intermediaire;
 
 	public function __construct()
 	{
 		$this->model = new UsersModel();
+		$this->assos = new AssosModel();
 		$this->our_u_model = new OurUModel();
 		$this->intermediaire = new IntermediaireModel();
 	}
@@ -84,6 +87,7 @@ class AssociationAdminController extends AppController
 	*/
 	public function inviteNewMemberByMail()
 	{
+		$id_admin = $_SESSION['user']['id'];
 		$email   = trim(strip_tags($_POST['mail_invite']));
 		// On verifie que c'est bien une adresse mail qui a été renseignée
 		// A FAIRE !!!
@@ -92,6 +96,7 @@ class AssociationAdminController extends AppController
 		$exist = $this->model->emailExists($email,'email', 3, 50);
 		if($exist == false)
 		{
+			$token_assos = $this->assos->getToken($id_admin);
 			// On envoi l'invit par mail
 			$mailEncode = urlencode($email);
 			$mail = new PHPMailer();
@@ -101,7 +106,7 @@ class AssociationAdminController extends AppController
 			$mail->Subject = "Invitation a rejoindre une association";
 			// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
 			// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
-			$mail->Body = 'Cliquez : ' . '<a href="#">Rejoindre l\'association</a>';
+			$mail->Body = 'Cliquez : ' . '<a href="http://localhost/a_swap/public/inscription/user?token=' .$token_assos. '">Rejoindre l\'association</a>';
 			$mail->AddAddress($email);
 			$mail->send();
 		} else {
@@ -121,7 +126,7 @@ class AssociationAdminController extends AppController
 		// le lien revera vers quoi ?
 		// si user exist => update table user et intermediaire
 		$this->show('admin/back', array(
-			'test' => $test,
+
 		));
 	}
 

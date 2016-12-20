@@ -214,7 +214,7 @@ class UserAdminController extends AppController
         $this->model_user->insert($data_user);
 
         // Preparation de l'array $data_intermediaire
-        $data_intermediaire = $this->model_intermediaire->getAssoAndAdmin($slug, $username);
+        $data_intermediaire = $this->model_intermediaire->getAssoAndAdmin($slug_asso, $username);
         // Insert dans la table intermediaire
         $this->model_intermediaire->insert($data_intermediaire);
         $this->success = true;
