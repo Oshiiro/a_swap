@@ -2,7 +2,6 @@
 
 <?php $this->start('main_content') ?>
 	<div class="container">
-		<?php if ($success == false) { ?>
 		<form method="POST" action="<?php echo $this->url('try_register') ?>" class="form-horizontal well formulaire">
 			<fieldset>
 				<legend><h2>Créer votre compte</h2></legend>
@@ -43,8 +42,5 @@
 				</div>
 			</fieldset>
 		</form>
-		<?php } else { ?>
-		<p>Votre compte à bien été créer.</p>
-		<?php } ?>
 	</div>
 <?php $this->stop('main_content') ?>

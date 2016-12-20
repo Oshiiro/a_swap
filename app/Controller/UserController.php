@@ -16,7 +16,6 @@ class UserController extends AppController
 	private $valid;
 	private $model;
 	private $authentificationmodel;
-	private $success; // permet le flashmessage "votre vompte a bien été créer"
 
 	public function __construct()
 	{
@@ -33,7 +32,7 @@ class UserController extends AppController
 	 */
 	public function registerUser()
 	{
-		$this->show('users/register_user', array('success' => $this->success));
+		$this->show('users/register_user');
 	}
 
 	/**
@@ -128,21 +127,18 @@ class UserController extends AppController
 				);
 
 				$this->model->insert($data);
-				// $this->success = true;
 				$flash = new FlashBags();
 				$flash->setFlash('warning', 'bravo vous etes inscrit');
 				$this->show('users/login');
 			} else {
 				$this->show('users/register_user', array(
 					'error' => $error,
-					'success' => $this->success
 				));
 			}
 		}	else {
 			$error['password'] = 'Les mot de passe ne sont pas identique';
 			$this->show('users/register_user', array(
 				'error' => $error,
-				'success' => $this->success
 			));
 		}
 	}
@@ -344,6 +340,8 @@ class UserController extends AppController
 					// Le second est l'identifiant de la ligne à modifier
 					$this->model->update($data, $id);
 					//Redirection vers la page de login
+					$flash = new FlashBags();
+					$flash->setFlash('warning', 'Votre mot de passe a bien été changer');
 					$this->show('users/login');
 				}
 
