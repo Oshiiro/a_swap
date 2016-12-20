@@ -7,6 +7,8 @@ use \W\Model\UsersModel;
 use \Model\UsersModel as OurUModel;
 use \Model\IntermediaireModel;
 use \Model\AssosModel;
+use \Model\MessageModel;
+use \Services\Flash\FlashBags;
 use PHPMailer;
 
 
@@ -109,6 +111,9 @@ class AssociationAdminController extends AppController
 			$mail->Body = 'Cliquez : ' . '<a href="http://localhost/a_swap/public/inscription/user?token=' .$token_assos. '">Rejoindre l\'association</a>';
 			$mail->AddAddress($email);
 			$mail->send();
+
+			$flash = new FlashBags();
+			$flash->setFlash('warning', 'L\'utilisateur recevera votre invitation par mail.');
 		} else {
 			// On verifie que ce user est libre (pas dans la table intermediaire)
 			$id_user = $this->our_u_model->getIdByEmail($email);
@@ -116,10 +121,15 @@ class AssociationAdminController extends AppController
 
 			if($free == true){
 				// On envoi un MP d'invitation au membre
+				$invitation = new MessageModel();
+			  $message = $invitation->sendInvitation();
 
+				$flash = new FlashBags();
+				$flash->setFlash('warning', 'L\'utilisateur recevera votre invitation dans son espace messagerie.');
 			} else {
 				// On affiche un message d'erreur "ce user a deja rejoint une association"
-				$test = 'user PAS libre';
+				$flash = new FlashBags();
+				$flash->setFlash('warning', 'Cet utilisateur ne peux pas être invité car il a déjà rejoint une association');
 			}
 
 		}
