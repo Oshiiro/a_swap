@@ -4,6 +4,7 @@ namespace Controller;
 
 use \Controller\AppController;
 use \Services\Tools\ValidationTools;
+use \Services\Tools\Tools;
 use \W\Model\UsersModel;
 use \Model\UsersModel as OurUModel;
 use \W\Security\AuthentificationModel;
@@ -15,12 +16,14 @@ class UserController extends AppController
 {
 	private $valid;
 	private $model;
+	private $tools;
 	private $authentificationmodel;
 	private $success; // permet le flashmessage "votre vompte a bien été créer"
 
 	public function __construct()
 	{
 		$this->valid = new ValidationTools();
+		$this->tools = new Tools();
 		$this->model = new UsersModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}
@@ -115,12 +118,15 @@ class UserController extends AppController
 			$passwordHash = $this->authentificationmodel->hashPassword($password);
 			if ($this->valid->IsValid($error)) {
 				$token = StringUtils::randomString();
+				$slug = $firstname. ' ' .$username. ' ' .$lastname;
+				$slug = $this->tools->slugify($slug);
 				$data = array(
 					'firstname' => $firstname,
 					'lastname' => $lastname,
 					'username' => $username,
 					'email' => $email,
 					'token' => $token,
+					'slug' => $slug,
 					'password' => $passwordHash,
 					'role' => 'user',
 					'active' => 1,

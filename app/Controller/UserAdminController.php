@@ -65,7 +65,7 @@ class UserAdminController extends AppController
 
     $adherants = $this->backmodel->affAdherants();
     $trans = $this->backmodel->GetTrans();
-    
+
     $this->show('admin/Back', array(
       'trans' => $trans,
       'adherants' => $adherants
@@ -177,8 +177,11 @@ class UserAdminController extends AppController
       $passwordHash = $this->authentificationmodel->hashPassword($password);
 
       if ($this->valid->IsValid($error)) {
-        $token = StringUtils::randomString();
-        $slug = $this->tools->slugify($nom_assos);
+        $token_asso = StringUtils::randomString();
+        $slug_asso = $this->tools->slugify($nom_assos);
+        $token_user = StringUtils::randomString();
+        $slug_user = $firstname. ' ' .$username. ' ' .$lastname;
+        $slug_user = $this->tools->slugify($slug_user);
 
         $data_asso = array(
           // Champs de la partie assos
@@ -188,7 +191,8 @@ class UserAdminController extends AppController
           'rules' => $rules_assos,
           'created_at' => date('Y-m-d H:i:s'),
           'active' => 1,
-          'slug' => $slug,
+          'slug' => $slug_asso,
+          'token' => $token_asso,
         );
         $data_user = array(
           // Champs de la partie admin
@@ -196,7 +200,8 @@ class UserAdminController extends AppController
           'lastname' => $lastname,
           'username' => $username,
           'email' => $email,
-          'token' => $token,
+          'token' => $token_user,
+          'slug' => $slug_user,
           'password' => $passwordHash,
           'role' => 'admin',
           'active' => 1,

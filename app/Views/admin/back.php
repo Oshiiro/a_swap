@@ -53,13 +53,12 @@
 	</div>
 	<div class="container">
 		<button id="invitation">Inviter un nouveau membre</button>
-		<!-- A FAIRE : animation JS qui affiche le from ci-dessous lorqu'on clique sur le button si dessus -->
-		<form class="" action="" method="POST">
+		<!-- A FAIRE : animation JS qui affiche le form ci-dessous lorqu'on clique sur le button si dessus -->
+		<form class="" action="<?php echo $this->url('admin_association_invite'); ?>" method="POST">
 			<input type="text" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
-			<input type="submit" name="submit" value="Inviter">
+			<input type="submit" value="Inviter">
 		</form>
 	</div>
-
 	<a href="<?php echo $this->url('admin_back_transac'); ?>">Faire une transaction</a>
-	
+
 <?php $this->stop('main_content') ?>

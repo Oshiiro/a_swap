@@ -31,6 +31,21 @@ class UsersModel extends UModel
     return $token['token'];
   }
 
+  // Fonction qui recupere et retourn l'ID correspondant au mail passé en argument
+  public function getIdByEmail($mail)
+  {
+    $app = getApp();
+    $sql = 'SELECT id FROM users WHERE email = :email LIMIT 1';
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':email', $mail);
+    $sth->execute();
+    $id = $sth->fetch();
+
+    return $id['id'];
+  }
+
   // Fonction qui recupere et retourne l'id de la ligne en dont l'adrese mail et
   // le token sont passés en GET
   public function getIdByEmailAndToken()
