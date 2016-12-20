@@ -55,7 +55,8 @@ class MessageModel extends Model
   {
     $id_sender = $_SESSION['user']['id'];
     $id_receiver = 'TOTO';
-    $message = '(nom du sender) souhaite vous inviter a rejoindre son association "(nom de l assos)". <a href=""> Cliquez ici pour accepter </a>';
+    $message =  $_SESSION['user']['firstname']. ' ' .$_SESSION['user']['lastname'].
+                ' souhaite vous inviter a rejoindre son association "(nom de l assos)". <a href=""> Cliquez ici pour accepter </a>';
 
     $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at)
                                         VALUES (:id_sender, :id_receiver, :message, NOW())");
