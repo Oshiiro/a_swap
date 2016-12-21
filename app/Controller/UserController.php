@@ -5,9 +5,9 @@ namespace Controller;
 use \Controller\AppController;
 use \Services\Tools\ValidationTools;
 use \Services\Tools\Tools;
-use \W\Model\UsersModel;
 use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
+use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
 use \Services\Flash\FlashBags;
@@ -27,6 +27,7 @@ class UserController extends AppController
 		$this->tools = new Tools();
 		$this->model = new UsersModel();
 		$this->model_intermediaire = new IntermediaireModel();
+		$this->ourumodel = new OurUModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}
 
@@ -61,6 +62,12 @@ class UserController extends AppController
 	{
 		$this->show('users/profil');
 	}
+
+
+
+
+
+
 
 
 // ===================================================================================================================
@@ -184,7 +191,7 @@ class UserController extends AppController
       if(!empty($sessionActive)){
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
-          $this->redirectToRoute('default_home');
+          $this->redirectToRoute('users_accueil');
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
         }
@@ -193,6 +200,7 @@ class UserController extends AppController
       }
 
 		$this->show('users/login', array('error' => $error));
+
 	}
 
 /**
@@ -385,5 +393,20 @@ class UserController extends AppController
 			'error' => $error,
 		));
 	}
+
+// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
+	public function usersAccueil()
+	{
+
+			$adherants = $this->ourumodel->affAdherants();
+			$trans = $this->ourumodel->GetItsTrans();
+			$this->show('users/accueil', array(
+				'adherants' => $adherants,
+				'trans' => $trans
+
+			));
+
+	}
+
 
 } // Class
