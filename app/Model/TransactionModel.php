@@ -26,6 +26,8 @@ public function MakeTransactionAdmin() {
     $sum = trim(strip_tags($_POST['sum']));
     $description = trim(strip_tags($_POST['description']));
 
+      if($_POST['sum'] > 0) {
+
     // Insersion dans transaction
       $sql ="INSERT INTO transaction (`id_user_buyer`, `id_user_seller`, `sum`, `description`, `created_at`) VALUES (:id_user_buyer, :id_user_seller, :sum, :description, NOW())";
       $query = $this->dbh->prepare($sql);
@@ -43,15 +45,21 @@ public function MakeTransactionAdmin() {
       $query->bindValue(':sum', $sum);
       $query->execute();
 
-  } // Submit
+    } else {
+     echo 'Veuillez indiquer un montant supérieur à 0.';
+    }
+  } else {
+    echo 'Veuillez indiquer un montant supérieur à 0.';
+  }
 } // MakeTransaction
 
 
 
 // Transaction pour users
-  public function MakeTransaction() {
+  public function makeTransactionUser() {
 
     // debug($_POST['destinataire']);
+
     if(!empty($_POST['submit'])) {
 
       $id_buyer = $_SESSION['user']['id'];
@@ -64,7 +72,8 @@ public function MakeTransactionAdmin() {
       $query->bindValue(':id_user_buyer', $id_buyer);
       $query->execute();
       $montant = $query->fetch();
-      debug($montant);
+
+        if ($_POST['sum'] > 0) {
 
       // verifier que le buyer a assez de fond pour transferer de l'argent
         if($montant['wallet'] >= $sum) {
@@ -84,6 +93,8 @@ public function MakeTransactionAdmin() {
         $query->bindValue(':id_user_seller', $id_seller);
         $query->bindValue(':sum', $sum);
         $query->execute();
+        debug(($_POST['destinataire']));
+
       // Update du portfeuille -
         $sql = "UPDATE intermediaire SET wallet = wallet - :sum
         WHERE id_users = :id_user_buyer
@@ -93,10 +104,16 @@ public function MakeTransactionAdmin() {
         $query->bindValue(':sum', $sum);
         $query->execute();
 
+
+
       } else
         {
           echo 'Pas assez de sousou mon ti pere';
         }
+
+      } else {
+        echo 'Veuillez indiquer un chiffre supérieur à 0.';
+      }
     } // Submit
   } // MakeTransaction
 

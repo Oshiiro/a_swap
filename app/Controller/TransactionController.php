@@ -26,12 +26,12 @@ class TransactionController extends AppController
     ));
   }
 
-  public function makeTransaction()
+  public function makeTransactionUser()
   {
-  $newTransactions = $this->transactionModel->MakeTransaction();
+  $newTransac = $this->transactionModel->makeTransactionUser();
   $adherants = $this->usersModel->affAdherants();
   $this->show('transaction/users_transaction', array(
-  'newTransactions' => $newTransactions,
+  'newTransac' => $newTransac,
   'adherants' => $adherants
   ));
   }

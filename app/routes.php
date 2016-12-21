@@ -50,7 +50,7 @@
 		// Admin Back
 		['GET', '/admin/back', 'UserAdmin#back', 'admin_back'],
 		['GET', '/admin/transaction', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'],
-		['POST', '/admin/transaction', 'TransactionAdmin#MakeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
+		['POST', '/admin/transaction', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
 
 		// Admin Association Back
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
@@ -61,7 +61,7 @@
 		// Page accueil users connecter
 		['GET', '/users', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
 		['GET', '/users/transaction', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
-		['POST', '/users/transaction', 'Transaction#makeTransaction', 'users_accueil_transac_valid'], // Post de la transaction user
+		['POST', '/users/transaction', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
 
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)
 		['GET', '/admin/association/update/[i:id]', 'AssociationAdmin#updateform', 'admin_association_update_form'],
