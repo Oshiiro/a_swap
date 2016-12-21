@@ -108,7 +108,7 @@ class AssociationAdminController extends AppController
 			$mail->Subject = "Invitation a rejoindre une association";
 			// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
 			// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
-			$mail->Body = 'Cliquez : ' . '<a href="http://localhost/a_swap/public/inscription/user?token=' .$token_assos. '">Rejoindre l\'association</a>';
+			$mail->Body = 'Cliquez : ' . '<a href="http://localhost/a_swap/public/inscription/user/' .$token_assos. '">Rejoindre l\'association</a>';
 			$mail->AddAddress($email);
 			$mail->send();
 

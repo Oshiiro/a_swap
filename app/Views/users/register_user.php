@@ -5,7 +5,8 @@
 		<form method="POST" action="<?php echo $this->url('try_register') ?>" class="form-horizontal well formulaire">
 			<fieldset>
 				<legend><h2>Créer votre compte</h2></legend>
-				<?php if(!empty($error)) { debug($error); } ?>
+				<?php if(!empty($error)) { debug($error); }
+				if(!empty($token_asso)) { echo $token_asso; } else { echo 'pas de token'; }?>
 
 	  		<div class="col-md-12">
 					<!-- Si le champ est remplie aucune données entre en BDD -->
