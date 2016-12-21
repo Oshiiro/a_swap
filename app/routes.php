@@ -59,9 +59,9 @@
 		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Page accueil users connecter
-		['GET', '/users', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
-		['GET', '/users/transaction', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
-		['POST', '/users/transaction', 'Transaction#makeTransaction', 'users_accueil_transac_valid'], // Post de la transaction user
+		['GET', '/acceuil', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
+		['GET', '/transaction', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
+		['POST', '/transaction', 'Transaction#makeTransaction', 'users_accueil_transac_valid'], // Post de la transaction user
 
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)
 		['GET', '/admin/association/update/[i:id]', 'AssociationAdmin#updateform', 'admin_association_update_form'],
@@ -70,5 +70,6 @@
 		// Formulaire pour inviter un nouveau membre
 		['GET', '/admin/back/invite', 'UserAdmin#back', 'admin_association_invite'],
 		['POST', '/admin/back/invite', 'AssociationAdmin#inviteNewMemberByMail', 'admin_association_invite_action'],
+
 
 	);

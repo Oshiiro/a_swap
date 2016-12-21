@@ -23,6 +23,19 @@ class Tools
     }
     return $text;
   }
+
+  function isLogged()
+  {
+   if((!empty($_SESSION['user'])) && (!empty($_SESSION['user']['id'])) && (!empty($_SESSION['user']['username']))) {
+    //  $ip = $_SERVER['REMOTE_ADDR'];
+    //  if($ip == $_SESSION['user']['ip']){
+    //    return true;
+    //  }
+     return true;
+   } else {
+     return false;
+   }
+  }
 }
 
 

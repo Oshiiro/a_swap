@@ -39,12 +39,14 @@ class UserController extends AppController
 	 */
 	public function registerUser()
 	{
-
-		$token_asso = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : null;
-		$this->show('users/register_user', array(
-			'success' => $this->success,
-			'token_asso' => $token_asso,
-		));
+		if ($this->tools->isLogged() == false) {
+			$token_asso = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : null;
+			$this->show('users/register_user', array(
+				'token_asso' => $token_asso,
+			));
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
 	}
 
 	/**
@@ -52,7 +54,11 @@ class UserController extends AppController
 	 */
 	public function login()
 	{
+		if ($this->tools->isLogged() == false) {
 		$this->show('users/login');
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
 	}
 
 	/**
@@ -60,15 +66,25 @@ class UserController extends AppController
 	 */
 	public function profil()
 	{
+		$this->allowTo(array('user','admin'));
 		$this->show('users/profil');
 	}
 
+	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
+	public function usersAccueil()
+	{
+		if ($this->tools->isLogged() == true) {
+			$adherants = $this->ourumodel->affAdherants();
+			$trans = $this->ourumodel->GetItsTrans();
+			$this->show('users/accueil', array(
+				'adherants' => $adherants,
+				'trans' => $trans
+			));
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
 
-
-
-
-
-
+	}
 
 // ===================================================================================================================
 // 																							TRAITEMENT DES FORMULAIRES
@@ -394,19 +410,6 @@ class UserController extends AppController
 		));
 	}
 
-// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
-	public function usersAccueil()
-	{
-
-			$adherants = $this->ourumodel->affAdherants();
-			$trans = $this->ourumodel->GetItsTrans();
-			$this->show('users/accueil', array(
-				'adherants' => $adherants,
-				'trans' => $trans
-
-			));
-
-	}
 
 
 } // Class
