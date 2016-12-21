@@ -22,6 +22,7 @@ class UserController extends AppController
 	{
 		$this->valid = new ValidationTools();
 		$this->model = new UsersModel();
+		$this->model2 = new OurUModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}
 
@@ -51,6 +52,12 @@ class UserController extends AppController
 	{
 		$this->show('users/profil');
 	}
+
+
+
+
+
+
 
 
 // ===================================================================================================================
@@ -162,7 +169,7 @@ class UserController extends AppController
       if(!empty($sessionActive)){
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
-          $this->redirectToRoute('default_home');
+          $this->redirectToRoute('users_accueil');
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
         }
@@ -171,6 +178,7 @@ class UserController extends AppController
       }
 
 		$this->show('users/login', array('error' => $error));
+
 	}
 
 /**
@@ -358,5 +366,20 @@ class UserController extends AppController
 			'error' => $error,
 		));
 	}
+
+// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
+	public function usersAccueil()
+	{
+
+			$adherants = $this->model2->affAdherants();
+			$trans = $this->model2->GetItsTrans();
+			$this->show('users/accueil', array(
+				'adherants' => $adherants,
+				'trans' => $trans
+
+			));
+
+	}
+
 
 } // Class

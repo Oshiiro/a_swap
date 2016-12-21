@@ -15,7 +15,40 @@ class TransactionModel extends Model
     $this->setTable('transaction');
   }
 
+// Transaction pour admin
+public function MakeTransactionAdmin() {
 
+  // debug($_POST['destinataire']);
+  if(!empty($_POST['submit'])) {
+
+    $id_buyer = $_SESSION['user']['id'];
+    $id_seller = trim(strip_tags($_POST['destinataire']));
+    $sum = trim(strip_tags($_POST['sum']));
+    $description = trim(strip_tags($_POST['description']));
+
+    // Insersion dans transaction
+      $sql ="INSERT INTO transaction (`id_user_buyer`, `id_user_seller`, `sum`, `description`, `created_at`) VALUES (:id_user_buyer, :id_user_seller, :sum, :description, NOW())";
+      $query = $this->dbh->prepare($sql);
+      $query->bindValue(':description', $description);
+      $query->bindValue(':id_user_buyer', $id_buyer);
+      $query->bindValue(':id_user_seller', $id_seller);
+      $query->bindValue(':sum', $sum);
+      $query->execute();
+    //  Upadate du portfeuille +
+      $sql = "UPDATE intermediaire SET wallet = wallet + :sum
+      WHERE id_users = :id_user_seller
+      ";
+      $query = $this->dbh->prepare($sql);
+      $query->bindValue(':id_user_seller', $id_seller);
+      $query->bindValue(':sum', $sum);
+      $query->execute();
+
+  } // Submit
+} // MakeTransaction
+
+
+
+// Transaction pour users
   public function MakeTransaction() {
 
     // debug($_POST['destinataire']);

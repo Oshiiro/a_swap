@@ -29,7 +29,7 @@ class TransactionAdminController extends AppController
 
   public function makeTransaction()
   {
-  $newTransactions = $this->transactionModel->MakeTransaction();
+  $newTransactions = $this->transactionModel->MakeTransactionAdmin();
   $adherants = $this->backModel->affAdherants();
   $this->show('transaction/admin_transaction', array(
   'newTransactions' => $newTransactions,
