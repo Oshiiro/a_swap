@@ -4,7 +4,9 @@ namespace Controller;
 
 use \Controller\AppController;
 use \Services\Tools\ValidationTools;
+use \Services\Tools\Tools;
 use \W\Model\UsersModel;
+use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
@@ -15,12 +17,16 @@ class UserController extends AppController
 {
 	private $valid;
 	private $model;
+	private $tools;
+	private $model_intermediaire;
 	private $authentificationmodel;
 
 	public function __construct()
 	{
 		$this->valid = new ValidationTools();
+		$this->tools = new Tools();
 		$this->model = new UsersModel();
+		$this->model_intermediaire = new IntermediaireModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}
 
@@ -32,7 +38,12 @@ class UserController extends AppController
 	 */
 	public function registerUser()
 	{
-		$this->show('users/register_user');
+
+		$token_asso = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : null;
+		$this->show('users/register_user', array(
+			'success' => $this->success,
+			'token_asso' => $token_asso,
+		));
 	}
 
 	/**
@@ -61,6 +72,8 @@ class UserController extends AppController
 	 */
 	public function tryRegister()
 	{
+		// recuperer le token en GET pour ligne 146 ci-dessous
+		$token_asso = 'test';
 		$lastname   = trim(strip_tags($_POST['lastname']));
 		$firstname   = trim(strip_tags($_POST['firstname']));
 		$username   = trim(strip_tags($_POST['username']));
@@ -114,12 +127,15 @@ class UserController extends AppController
 			$passwordHash = $this->authentificationmodel->hashPassword($password);
 			if ($this->valid->IsValid($error)) {
 				$token = StringUtils::randomString();
+				$slug = $firstname. ' ' .$username. ' ' .$lastname;
+				$slug = $this->tools->slugify($slug);
 				$data = array(
 					'firstname' => $firstname,
 					'lastname' => $lastname,
 					'username' => $username,
 					'email' => $email,
 					'token' => $token,
+					'slug' => $slug,
 					'password' => $passwordHash,
 					'role' => 'user',
 					'active' => 1,
@@ -127,6 +143,16 @@ class UserController extends AppController
 				);
 
 				$this->model->insert($data);
+
+				if($token_asso != null){
+					$data_intermediaire = array(
+						'id_users' => 1,
+						'id_assos' => 1,
+						'created_at' => date('Y-m-d H:i:s'),
+					);
+					$this->model_intermediaire->insert($data_intermediaire);
+				}
+
 				$flash = new FlashBags();
 				$flash->setFlash('warning', 'bravo vous etes inscrit');
 				$this->show('users/login');

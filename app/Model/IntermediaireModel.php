@@ -42,6 +42,26 @@ class IntermediaireModel extends UModel
     return $data_intermediaire;
   }
 
+  // Fonction qui verifie que le user dont l'ID est passé en argument n'est PAS
+  // inscrit dans la table intermediaire.
+  public function isFree($id)
+  {
+    $app = getApp();
+    $info = "SELECT id FROM intermediaire WHERE id_users = :id";
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($info);
+    $sth->bindValue(':id', $id);
+    $sth->execute();
+    $exist = $sth->fetch();
+
+    if (empty($exist['id'])){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
 }
 ?>

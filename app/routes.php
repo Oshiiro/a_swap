@@ -62,7 +62,8 @@
 		['GET', '/admin/association/update/[i:id]', 'AssociationAdmin#updateform', 'admin_association_update_form'],
 		['POST', '/admin/association/update/[i:id]', 'AssociationAdmin#updateaction', 'admin_association_update_action'],
 
-		// Formualire pour inviter un nouveau membre
-		['POST', '/admin/back/invite', 'AssociationAdmin#inviteNewMemberByMail', 'admin_association_invite'],
+		// Formulaire pour inviter un nouveau membre
+		['GET', '/admin/back/invite', 'UserAdmin#back', 'admin_association_invite'],
+		['POST', '/admin/back/invite', 'AssociationAdmin#inviteNewMemberByMail', 'admin_association_invite_action'],
 
 	);

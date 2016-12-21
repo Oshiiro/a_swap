@@ -18,18 +18,17 @@ class MessageController extends AppController
 */
 public function message()
 {
-$UsersModel = new UsersModel();
-$users = $UsersModel->findAll();
-// debug($articles);
+  $UsersModel = new UsersModel();
+  $users = $UsersModel->findAll();
+  // debug($articles);
 
-$showMessages = new MessageModel();
-$messages = $showMessages->AfficherMessages();
+  $showMessages = new MessageModel();
+  $messages = $showMessages->AfficherMessages();
 
-$this->show('message/message', array(
-'users' => $users,
-'messages' => $messages
-
-));
+  $this->show('message/message', array(
+    'users' => $users,
+    'messages' => $messages,
+  ));
 }
 /**
 * Afficher un message recu
@@ -43,15 +42,15 @@ $this->show('message/message');
 // ===================================================================================================================
 // TRAITEMENT DES FORMULAIRES
 // ===================================================================================================================
-  /**
-   * Envois d'un message
-   */
-  public function sendMessage()
-  {
-$newMessages = new MessageModel();
-$message = $newMessages->sendMessages();
+/**
+* Envois d'un message
+*/
+public function sendMessage()
+{
+  $newMessages = new MessageModel();
+  $message = $newMessages->sendMessages();
   $this->message();
-  }
+}
 
 /**
 * Envois d'un message
