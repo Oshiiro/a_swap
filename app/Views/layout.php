@@ -14,7 +14,7 @@
 				<div class="menu">
 					<?php if(!empty($_SESSION['user']['role'])) { ?>
 					<a href="<?php echo $this->url('message') ?>">Messagerie</a>
-					<a href="">Association</a>
+						<a href="<?php echo $this->url('users_accueil') ?>">Association</a>
 						<?php if ($_SESSION['user']['role'] == 'admin') { ?>
 						<a href="<?php echo $this->url('admin_back') ?>">Back Office</a>
 						<?php } ?>

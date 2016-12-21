@@ -27,7 +27,7 @@ class TransactionAdminController extends AppController
     ));
   }
 
-  public function makeTransaction()
+  public function makeTransactionAdmin()
   {
   $newTransactions = $this->transactionModel->MakeTransactionAdmin();
   $adherants = $this->backModel->affAdherants();

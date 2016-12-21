@@ -4,7 +4,7 @@
 
 
 	<!-- /////////////////////// FAIRE TRANSACTION ////////////////////////// -->
-		<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('admin_back_transac') ?>">
+		<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('users_accueil_transac') ?>">
 			<h4>Faire une transaction</h4>
 			<label for="">Destinataire</label>
 			<select class="form-control" name="destinataire" >

@@ -4,7 +4,7 @@ namespace Controller;
 
 use \Controller\AppController;
 use \Model\MessageModel;
-use \Model\UsersModel;
+use \Model\UsersModel AS OurUModel;
 
 class MessageController extends AppController
 {
@@ -18,11 +18,11 @@ class MessageController extends AppController
 */
 public function message()
 {
-  $UsersModel = new UsersModel();
-  $users = $UsersModel->findAll();
+$showMessages = new MessageModel();
+  $users = $showMessages->OurfindAll();
   // debug($articles);
 
-  $showMessages = new MessageModel();
+
   $messages = $showMessages->AfficherMessages();
 
   $this->show('message/message', array(
