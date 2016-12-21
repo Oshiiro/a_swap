@@ -267,7 +267,6 @@ class UserController extends AppController
 		// S'il n'y a pas d'erreurs
 		if ($this->valid->IsValid($error)) {
 
-
 			$usersModel = new OurUModel();
 			$token = $usersModel->recupToken($email);
 			//encodage de l'email
