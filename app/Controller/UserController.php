@@ -291,6 +291,10 @@ class UserController extends AppController
 	    // Pour finir, on envoi l'e-mail
 	    $mail->send();
 
+			$flash = new FlashBags();
+			$flash->setFlash('warning', 'Un email vous a été envoyer');
+			$this->show('users/login');
+
 		}
 
 		$this->show('users/forgot_password', array(
