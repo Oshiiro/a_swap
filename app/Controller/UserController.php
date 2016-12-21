@@ -37,16 +37,17 @@ class UserController extends AppController
 	/**
 	 * Page d'inscription
 	 */
-	public function registerUser()
+	public function registerUser($token=null)
 	{
 		if ($this->tools->isLogged() == false) {
-			$token_asso = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : null;
+			$token_asso = (!empty($token)) ? trim(strip_tags($token)) : null;
 			$this->show('users/register_user', array(
 				'token_asso' => $token_asso,
 			));
 		} else {
 			$this->showForbidden(); // erreur 403
 		}
+
 	}
 
 	/**
@@ -93,10 +94,10 @@ class UserController extends AppController
 	/**
 	 * Page d'inscription traitement
 	 */
-	public function tryRegister()
+	public function tryRegister($token)
 	{
 		// recuperer le token en GET pour ligne 146 ci-dessous
-		$token_asso = 'test';
+		$token_asso = $token;
 		$lastname   = trim(strip_tags($_POST['lastname']));
 		$firstname   = trim(strip_tags($_POST['firstname']));
 		$username   = trim(strip_tags($_POST['username']));

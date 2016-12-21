@@ -19,6 +19,8 @@
 		['GET', '/deconnexion', 'User#deconnexion', 'deconnexion'],
 
 		// Inscription User
+		['GET', '/inscription/user/[:token]', 'User#registerUser', 'register_user_from_invite'],
+		['POST', '/inscription/user/[:token]', 'User#tryRegisterFromInvite', 'try_register_from_invite'],
 		['GET', '/inscription/user', 'User#registerUser', 'register_user'],
 		['POST', '/inscription/user', 'User#tryRegister', 'try_register'],
 
