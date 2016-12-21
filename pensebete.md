@@ -1,11 +1,14 @@
-PENSE BETE DES TRUCS A FAIRE :
+####PENSE BETE DES TRUCS A FAIRE :
 
-General :
+1. General :
 
-Tatain :
+2. Tatain :
 
-Bud :
+3. Bud :
 
-Oshiiro :
+4. Oshiiro :
 
-JL :
+5. JL :
+* layout->association = liste des membres + mes derniere transac ( utilisateur et admin )
+* layout->back = toutes les transac des membres
+* layout_back->gestion_association = liste des membres ( supprimer, ajouter argent, inviter membre) ( admin uniquement )

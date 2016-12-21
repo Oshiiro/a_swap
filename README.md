@@ -20,7 +20,6 @@ Coucou les copains
 4. pas de git push origin master bande de voyous.
 5. créer votre config
 
-
 ####Mise à jour :
 
 
