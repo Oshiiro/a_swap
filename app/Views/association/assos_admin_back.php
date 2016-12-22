@@ -2,4 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
+<h2>Gestion association</h2>
+
 <?php $this->stop('main_content') ?>

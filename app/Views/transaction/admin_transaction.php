@@ -1,7 +1,6 @@
-<?php $this->layout('layout', ['title' => 'Back']) ?>
+<?php $this->layout('layout_admin_back', ['title' => 'Back']) ?>
 
 <?php $this->start('main_content') ?>
-
 
 	<!-- /////////////////////// FAIRE TRANSACTION ////////////////////////// -->
 		<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('admin_back_transac') ?>">

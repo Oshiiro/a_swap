@@ -1,7 +1,8 @@
 <?php $this->layout('layout_admin_back', ['title' => 'Back A-Swap']) ?>
 
 <?php $this->start('main_content') ?>
-	<h2>Back</h2>
+	<h2>Transaction</h2>
+	<?php debug($_SESSION); ?>
 	<div class="panel panel-default container">
 		<div class="panel-heading">Transaction</div>
 		  <table class="col-md-offset-1 col-md-9">
