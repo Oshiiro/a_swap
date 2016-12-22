@@ -35,7 +35,7 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssos()
 	{
-		$this->show('association/back_assos');
+		$this->show('association/assos_admin_back');
 	}
 
 	/**

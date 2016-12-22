@@ -3,7 +3,8 @@
 <?php $this->start('main_content') ?>
 
 <!-- Infographies -->
-    <h2 class="accroche">Petite phrase d'accroche trop styléééééé</h2>
+  <?php if(empty($_SESSION['user']['role'])) { ?>
+    <h2 class="accroche">Petite phrase d'accroche trop stylééééé</h2>
     <div class="barreEmailInscription">
       <h3> Inscris ton assos'</h3>
       <div class="AdresseMail">
@@ -13,6 +14,7 @@
         </form>
       </div>
     </div>
+  <?php } ?>
     <div class="container textes">
       <div class="row">
         <div class="col-sm-6 col-md-4">
