@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+
+/* BASE */
+
+html {
+  height: 100%;
+  width: auto;
+}
+
+body {
+  height: 100%;
+  width : 100%;
+  background-color: black;
+  /*background-image: url(../img/fond1.jpg);*/
+  /*background-color: rgba(0, 0, 0, 1);*/
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* BARRE DE MENU; */
+.navbar a {
+  font-family: 'Space Mono', monospace;
+  font-weight: 900;
+  font-size: 25px;
+  color: darkgrey;
+  padding : 2em;
+}
+
+.menu {
+margin: 30px;
+float: right;
+text-align: right;
+}
+
+h2  {
+font-family: monospace;
+color : darkgrey;
+text-align: center;
+margin-top: 4em;
+margin-bottom: 2em;
+}

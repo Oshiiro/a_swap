@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Back']) ?>
+<?php $this->layout('layout_admin_back', ['title' => 'Back A-Swap']) ?>
 
 <?php $this->start('main_content') ?>
 	<h2>Back</h2>

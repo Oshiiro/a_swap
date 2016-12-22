@@ -3,6 +3,7 @@
 <?php $this->start('main_content') ?>
 
 <!-- Infographies -->
+  <?php if(empty($_SESSION['user']['role'])) { ?>
     <h2 class="accroche">Petite phrase d'accroche trop styléééééé</h2>
     <div class="barreEmailInscription">
       <h3> Inscris ton assos'</h3>
@@ -13,6 +14,8 @@
         </form>
       </div>
     </div>
+  <?php } ?>
+
 
     <div class="infographieDiv">
       <img src="../public/assets/img/infographie.png" alt="" class="info">
