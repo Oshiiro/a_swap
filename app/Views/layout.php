@@ -14,7 +14,7 @@
 				<div class="menu">
 					<?php if(!empty($_SESSION['user']['role'])) { ?>
 					<a href="<?php echo $this->url('message') ?>">Messagerie</a>
-					<a href="">Association</a>
+						<a href="<?php echo $this->url('users_accueil') ?>">Association</a>
 						<?php if ($_SESSION['user']['role'] == 'admin') { ?>
 						<a href="<?php echo $this->url('admin_back') ?>">Back Office</a>
 						<?php } ?>
@@ -25,7 +25,7 @@
 					<a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?></a>
 					<?php } else { ?>
 					<a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a>
-					<a href="<?php echo $this->url('register_user') ?>" class="inscription">Inscription</a>
+					<a href="<?php echo $this->url('try_register') ?>" class="inscription">Inscription</a>
 					<?php } ?>
 
 				</div>
@@ -33,6 +33,8 @@
 		</header>
 
 		<div class="container-fluid">
+
+			<?php echo $this->getFlash(); ?>
 			<?= $this->section('main_content') ?>
 		</div>
 

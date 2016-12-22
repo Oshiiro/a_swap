@@ -4,23 +4,30 @@ namespace Controller;
 
 use \Controller\AppController;
 use \Services\Tools\ValidationTools;
-use \W\Model\UsersModel;
+use \Services\Tools\Tools;
+use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
+use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
+use \Services\Flash\FlashBags;
 use PHPMailer;
 
 class UserController extends AppController
 {
 	private $valid;
 	private $model;
+	private $tools;
+	private $model_intermediaire;
 	private $authentificationmodel;
-	private $success; // permet le flashmessage "votre vompte a bien été créer"
 
 	public function __construct()
 	{
 		$this->valid = new ValidationTools();
+		$this->tools = new Tools();
 		$this->model = new UsersModel();
+		$this->model_intermediaire = new IntermediaireModel();
+		$this->ourumodel = new OurUModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}
 
@@ -30,12 +37,17 @@ class UserController extends AppController
 	/**
 	 * Page d'inscription
 	 */
-	public function registerUser()
+	public function registerUser($token=null)
 	{
-		if ($this->success != true) {
-			$this->success = false;
+		if ($this->tools->isLogged() == false) {
+			$token_asso = (!empty($token)) ? trim(strip_tags($token)) : null;
+			$this->show('users/register_user', array(
+				'token_asso' => $token_asso,
+			));
+		} else {
+			$this->showForbidden(); // erreur 403
 		}
-		$this->show('users/register_user', array('success' => $this->success));
+
 	}
 
 	/**
@@ -43,7 +55,11 @@ class UserController extends AppController
 	 */
 	public function login()
 	{
+		if ($this->tools->isLogged() == false) {
 		$this->show('users/login');
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
 	}
 
 	/**
@@ -51,9 +67,25 @@ class UserController extends AppController
 	 */
 	public function profil()
 	{
+		$this->allowTo(array('user','admin'));
 		$this->show('users/profil');
 	}
 
+	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
+	public function usersAccueil()
+	{
+		if ($this->tools->isLogged() == true) {
+			$adherants = $this->ourumodel->affAdherants();
+			$trans = $this->ourumodel->GetItsTrans();
+			$this->show('users/accueil', array(
+				'adherants' => $adherants,
+				'trans' => $trans
+			));
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
+
+	}
 
 // ===================================================================================================================
 // 																							TRAITEMENT DES FORMULAIRES
@@ -62,8 +94,10 @@ class UserController extends AppController
 	/**
 	 * Page d'inscription traitement
 	 */
-	public function tryRegister()
+	public function tryRegister($token)
 	{
+		// recuperer le token en GET pour ligne 146 ci-dessous
+		$token_asso = $token;
 		$lastname   = trim(strip_tags($_POST['lastname']));
 		$firstname   = trim(strip_tags($_POST['firstname']));
 		$username   = trim(strip_tags($_POST['username']));
@@ -117,12 +151,15 @@ class UserController extends AppController
 			$passwordHash = $this->authentificationmodel->hashPassword($password);
 			if ($this->valid->IsValid($error)) {
 				$token = StringUtils::randomString();
+				$slug = $firstname. ' ' .$username. ' ' .$lastname;
+				$slug = $this->tools->slugify($slug);
 				$data = array(
 					'firstname' => $firstname,
 					'lastname' => $lastname,
 					'username' => $username,
 					'email' => $email,
 					'token' => $token,
+					'slug' => $slug,
 					'password' => $passwordHash,
 					'role' => 'user',
 					'active' => 1,
@@ -130,19 +167,28 @@ class UserController extends AppController
 				);
 
 				$this->model->insert($data);
-				$this->success = true;
-				$this->registerUser();
+
+				if($token_asso != null){
+					$data_intermediaire = array(
+						'id_users' => 1,
+						'id_assos' => 1,
+						'created_at' => date('Y-m-d H:i:s'),
+					);
+					$this->model_intermediaire->insert($data_intermediaire);
+				}
+
+				$flash = new FlashBags();
+				$flash->setFlash('warning', 'bravo vous etes inscrit');
+				$this->show('users/login');
 			} else {
 				$this->show('users/register_user', array(
 					'error' => $error,
-					'success' => $this->success
 				));
 			}
 		}	else {
 			$error['password'] = 'Les mot de passe ne sont pas identique';
 			$this->show('users/register_user', array(
 				'error' => $error,
-				'success' => $this->success
 			));
 		}
 	}
@@ -162,7 +208,7 @@ class UserController extends AppController
       if(!empty($sessionActive)){
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
-          $this->redirectToRoute('default_home');
+          $this->redirectToRoute('users_accueil');
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
         }
@@ -171,6 +217,7 @@ class UserController extends AppController
       }
 
 		$this->show('users/login', array('error' => $error));
+
 	}
 
 /**
@@ -232,11 +279,13 @@ class UserController extends AppController
 
 		// GG si il n'y a pas d'erreur
 		if ($this->valid->IsValid($error)){
-			echo "OUAI prout";
+			$token = StringUtils::randomString();
 			$data = array(
 				'firstname' => $firstname,
 				'lastname' => $lastname,
 				'username' => $username,
+				'token' => $token,
+				'modified_at' => date('Y-m-d H:i:s'),
 			);
 			$this->model->update($data, $id);
 			$this->authentificationmodel->refreshUser();
@@ -269,7 +318,6 @@ class UserController extends AppController
 		// S'il n'y a pas d'erreurs
 		if ($this->valid->IsValid($error)) {
 
-
 			$usersModel = new OurUModel();
 			$token = $usersModel->recupToken($email);
 			//encodage de l'email
@@ -277,6 +325,8 @@ class UserController extends AppController
 
 	    // On créé une nouvelle instance de la classe
 	    $mail = new PHPMailer();
+			// $mail->CharSet = 'UTF-8';
+			$mail->CharSet = "utf8";
 	    // De qui vient le message, e-mail puis nom
 	    $mail->From = "no.reply@a-swap.com";
 	    $mail->FromName = "A-Swap Admin";
@@ -292,7 +342,9 @@ class UserController extends AppController
 	    // Pour finir, on envoi l'e-mail
 	    $mail->send();
 
-
+			$flash = new FlashBags();
+			$flash->setFlash('warning', 'Un email vous a été envoyer');
+			$this->show('users/login');
 
 		}
 
@@ -319,24 +371,46 @@ class UserController extends AppController
 
 		$error['password']  = $this->valid->textValid($password,'password', 3, 50);
 
-		if($password == $password_confirm){
-
-			$passwordHash = $this->authentificationmodel->hashPassword($password);
-			if ($this->valid->IsValid($error)) {
-				$token = StringUtils::randomString();
-				$data = array(
-					'token' => $token,
-					'password' => $passwordHash,
-					'modified_at' => date('Y-m-d H:i:s'),
-				);
-				// Modifie une ligne en fonction d'un identifiant
-				// Le premier argument est un tableau associatif de valeurs à insérer
-				// Le second est l'identifiant de la ligne à modifier
-				$this->model->update($data, $id);
-			}
-				// redirection
-				$this->show('users/login');
+		//Verfication que le token est bien le bon dans la BDD (si non, cela veux dire que c'est un ancien mail)
+		$verif_token = $getId->tokenIsActive();
+		if($verif_token == false){
+			$error['token'] = 'Le mail que vous avez utilisé n\'est plus valide.';
 		}
+
+		if(!empty($password)) {
+
+			if($password == $password_confirm){
+
+				$passwordHash = $this->authentificationmodel->hashPassword($password);
+				if ($this->valid->IsValid($error)) {
+					$token = StringUtils::randomString();
+					$data = array(
+						'token' => $token,
+						'password' => $passwordHash,
+						'modified_at' => date('Y-m-d H:i:s'),
+					);
+					// Modifie une ligne en fonction d'un identifiant
+					// Le premier argument est un tableau associatif de valeurs à insérer
+					// Le second est l'identifiant de la ligne à modifier
+					$this->model->update($data, $id);
+					//Redirection vers la page de login
+					$flash = new FlashBags();
+					$flash->setFlash('warning', 'Votre mot de passe a bien été changer');
+					$this->show('users/login');
+				}
+
+				$this->show('users/modify_password', array(
+					'error' => $error,
+				));
+			}
+		} else {
+			$error['password'] = 'Merci de definir un nouveau mot de passe';
+		}
+		$this->show('users/modify_password', array(
+			'error' => $error,
+		));
 	}
+
+
 
 } // Class

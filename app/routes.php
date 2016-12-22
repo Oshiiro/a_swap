@@ -19,6 +19,8 @@
 		['GET', '/deconnexion', 'User#deconnexion', 'deconnexion'],
 
 		// Inscription User
+		['GET', '/inscription/user/[:token]', 'User#registerUser', 'register_user_from_invite'],
+		['POST', '/inscription/user/[:token]', 'User#tryRegisterFromInvite', 'try_register_from_invite'],
 		['GET', '/inscription/user', 'User#registerUser', 'register_user'],
 		['POST', '/inscription/user', 'User#tryRegister', 'try_register'],
 
@@ -49,6 +51,8 @@
 
 		// Admin Back
 		['GET', '/admin/back', 'UserAdmin#back', 'admin_back'],
+		['GET', '/admin/transaction', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'],
+		['POST', '/admin/transaction', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
 
 		// Admin Association Back
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
@@ -56,8 +60,18 @@
 		['POST', '/admin/back/association', 'AssociationAdmin#backAssosModify', 'admin_back_assos_modified'],
 		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
+		// Page accueil users connecter
+		['GET', '/accueil', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
+		['GET', '/transaction', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
+		['POST', '/transaction', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
+
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)
 		['GET', '/admin/association/update/[i:id]', 'AssociationAdmin#updateform', 'admin_association_update_form'],
 		['POST', '/admin/association/update/[i:id]', 'AssociationAdmin#updateaction', 'admin_association_update_action'],
+
+		// Formulaire pour inviter un nouveau membre
+		['GET', '/admin/back/invite', 'UserAdmin#back', 'admin_association_invite'],
+		['POST', '/admin/back/invite', 'AssociationAdmin#inviteNewMemberByMail', 'admin_association_invite_action'],
+
 
 	);

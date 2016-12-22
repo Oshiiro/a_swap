@@ -3,6 +3,7 @@
 namespace Controller;
 
 use \Controller\AppController;
+use \Model\BackModel;
 use \Services\Tools\ValidationTools;
 use \Services\Tools\Tools;
 use \Model\UsersModel;
@@ -10,6 +11,7 @@ use \Model\AssosModel;
 use \Model\IntermediaireModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
+use \Services\Flash\FlashBags;
 
 
 class UserAdminController extends AppController
@@ -20,7 +22,6 @@ class UserAdminController extends AppController
 	private $model_assos;
 	private $model_intermediaire;
   private $authentificationmodel;
-  private $success; // permet le flashmessage "votre vompte a bien été créer"
 
 
   public function __construct()
@@ -31,6 +32,7 @@ class UserAdminController extends AppController
     $this->model_assos = new AssosModel();
     $this->model_intermediaire = new IntermediaireModel();
 		$this->authentificationmodel = new AuthentificationModel();
+    $this->backmodel = new BackModel();
 	}
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
@@ -40,18 +42,12 @@ class UserAdminController extends AppController
    */
   public function registerAdmin()
   {
-    if ($this->success != true) {
-			$this->success = false;
-		}
-    echo $this->success;
-
     $nom_assos = (!empty($_POST['nom_assos'])) ? trim(strip_tags($_POST['nom_assos'])) : null;
     $data = 'test';
 
     $this->show('admin/register_admin', array(
       'nom_assos' => $nom_assos,
       'data' => $data,
-      'success' => $this->success,
     ));
   }
 
@@ -60,7 +56,14 @@ class UserAdminController extends AppController
    */
   public function back()
   {
-    $this->show('admin/Back');
+
+    $adherants = $this->backmodel->affAdherants();
+    $trans = $this->backmodel->GetTrans();
+
+    $this->show('admin/Back', array(
+      'trans' => $trans,
+      'adherants' => $adherants
+    ));
   }
 
 // ===================================================================================================================
@@ -168,8 +171,11 @@ class UserAdminController extends AppController
       $passwordHash = $this->authentificationmodel->hashPassword($password);
 
       if ($this->valid->IsValid($error)) {
-        $token = StringUtils::randomString();
-        $slug = $this->tools->slugify($nom_assos);
+        $token_asso = StringUtils::randomString();
+        $slug_asso = $this->tools->slugify($nom_assos);
+        $token_user = StringUtils::randomString();
+        $slug_user = $firstname. ' ' .$username. ' ' .$lastname;
+        $slug_user = $this->tools->slugify($slug_user);
 
         $data_asso = array(
           // Champs de la partie assos
@@ -179,7 +185,8 @@ class UserAdminController extends AppController
           'rules' => $rules_assos,
           'created_at' => date('Y-m-d H:i:s'),
           'active' => 1,
-          'slug' => $slug,
+          'slug' => $slug_asso,
+          'token' => $token_asso,
         );
         $data_user = array(
           // Champs de la partie admin
@@ -187,7 +194,8 @@ class UserAdminController extends AppController
           'lastname' => $lastname,
           'username' => $username,
           'email' => $email,
-          'token' => $token,
+          'token' => $token_user,
+          'slug' => $slug_user,
           'password' => $passwordHash,
           'role' => 'admin',
           'active' => 1,
@@ -200,21 +208,18 @@ class UserAdminController extends AppController
         $this->model_user->insert($data_user);
 
         // Preparation de l'array $data_intermediaire
-        $data_intermediaire = $this->model_intermediaire->getAssoAndAdmin($slug, $username);
+        $data_intermediaire = $this->model_intermediaire->getAssoAndAdmin($slug_asso, $username);
         // Insert dans la table intermediaire
         $this->model_intermediaire->insert($data_intermediaire);
-        $this->success = true;
 
         // redirection
-        $this->show('admin/register_admin', array(
-          'data_intermediaire' => $data_intermediaire,
-          'success' => $this->success,
-        ));
+        $flash = new FlashBags();
+				$flash->setFlash('warning', 'bravo vous etes inscrit, et votre assos a bien été créer');
+        $this->show('users/login');
 
       } else {
         $this->show('admin/register_admin', array(
           'error' => $error,
-          'success' => $this->success,
         ));
       }
 
@@ -222,7 +227,6 @@ class UserAdminController extends AppController
       $error['password'] = 'Les mots de passe ne sont pas identiques';
       $this->show('admin/register_admin', array(
         'error' => $error,
-        'success' => $this->success,
       ));
     }
 

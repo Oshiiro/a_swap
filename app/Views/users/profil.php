@@ -2,8 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-<?php debug($error); ?>
-
 <div class="container">
   <div class="row">
     <form method="POST" action="<?php echo $this->url('update_profil') ?>" class="form-horizontal well formulaire">

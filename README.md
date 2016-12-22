@@ -1,7 +1,7 @@
 ## W
 
 A_swap est une appli web qui permet de créer et gérer des monaies associative ou local.
-
+Coucou les copains
 ---
 
 ####Pour télécharger le projet :
@@ -19,7 +19,6 @@ A_swap est une appli web qui permet de créer et gérer des monaies associative 
 3. on fait un git pull origin master avant toute modification, si il y a conflit appeler Oshiiro le maitre de github.
 4. pas de git push origin master bande de voyous.
 5. créer votre config
-
 
 ####Mise à jour :
 

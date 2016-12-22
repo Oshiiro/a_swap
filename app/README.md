@@ -8,4 +8,4 @@ C'est ici que vous définissez vos contrôleurs, vos gestionnaires, vos fichiers
 
 * config.php : le fichier principal, où vous devez configurer votre application
 * config.dist.php : le fichier à versionner et à partager, sans données sensibles ou persos.
-* routes.php : contient toutes vos routes prout
+* routes.php : contient toutes vos routes
