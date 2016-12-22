@@ -99,6 +99,7 @@ class AssociationAdminController extends AppController
 		if($exist == false)
 		{
 			$token_assos = $this->assos->getToken($id_admin);
+			$name_asso = $this->assos->getNameByIdAdmin($id_admin);
 			// On envoi l'invit par mail
 			$mailEncode = urlencode($email);
 			$mail = new PHPMailer();
@@ -108,7 +109,9 @@ class AssociationAdminController extends AppController
 			$mail->Subject = "Invitation a rejoindre une association";
 			// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
 			// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
-			$mail->Body = 'Cliquez : ' . '<a href="http://localhost/a_swap/public/inscription/user/' .$token_assos. '">Rejoindre l\'association</a>';
+			$mail->Body = $_SESSION['user']['firstname']. ' '. $_SESSION['user']['lastname'] .
+										' souhaite vous inviter a rejoindre son association : "' . $name_asso . '". Cliquez ici pour le rejoindre :
+										<a href="http://localhost/a_swap/public/inscription/user/' .$token_assos. '">Rejoindre l\'association</a>';
 			$mail->AddAddress($email);
 			$mail->send();
 
