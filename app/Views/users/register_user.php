@@ -5,12 +5,13 @@
 		<form method="POST" action="<?php echo $this->url('try_register') ?>" class="form-horizontal well formulaire">
 			<fieldset>
 				<legend><h2>Créer votre compte</h2></legend>
-				<?php if(!empty($error)) { debug($error); }
-				if(!empty($token_asso)) { echo $token_asso; } else { echo 'pas de token'; }?>
+				<?php if(!empty($error)) { debug($error); } ?>
 
 	  		<div class="col-md-12">
 					<!-- Si le champ est remplie aucune données entre en BDD -->
 					<input type="text" name="antiBot" value="" class="hide">
+					<input type="text" name="token_asso" class="hide" value="<?php if(!empty($token_asso)) { echo $token_asso; } elseif(!empty($_POST['token_asso'])) { echo($_POST['token_asso']);} ?>">
+
 					<div class="form-group">
 						<input type="text" class="form-control" name="lastname" placeholder="Nom" value="<?php if(!empty($_POST['lastname'])) {echo $_POST['lastname'];} ?>">
 						<span class="errorMessage"><?php if(!empty($error['lastname'])) { echo($error['lastname']);} ?></span>

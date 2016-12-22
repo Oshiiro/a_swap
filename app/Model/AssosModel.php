@@ -47,6 +47,20 @@ class AssosModel extends UModel
     return $token['token'];
   }
 
+  public function getIdByToken($token_asso)
+  {
+    $app = getApp();
+    $sql = 'SELECT id FROM assos WHERE token = :token_asso LIMIT 1';
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':token_asso', $token_asso);
+    $sth->execute();
+    $token = $sth->fetch();
+
+    return $token['id'];
+  }
+
 
 
 

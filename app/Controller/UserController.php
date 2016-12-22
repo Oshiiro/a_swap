@@ -7,6 +7,7 @@ use \Services\Tools\ValidationTools;
 use \Services\Tools\Tools;
 use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
+use \Model\AssosModel;
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
@@ -19,6 +20,7 @@ class UserController extends AppController
 	private $model;
 	private $tools;
 	private $model_intermediaire;
+	private $model_assos;
 	private $authentificationmodel;
 
 	public function __construct()
@@ -27,6 +29,7 @@ class UserController extends AppController
 		$this->tools = new Tools();
 		$this->model = new UsersModel();
 		$this->model_intermediaire = new IntermediaireModel();
+		$this->model_assos = new AssosModel();
 		$this->ourumodel = new OurUModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}
@@ -37,7 +40,20 @@ class UserController extends AppController
 	/**
 	 * Page d'inscription
 	 */
-	public function registerUser($token=null)
+	public function registerUserFromInvite($token)
+	{
+		if ($this->tools->isLogged() == false) {
+			$token_asso = (!empty($token)) ? trim(strip_tags($token)) : null;
+			$this->show('users/register_user', array(
+				'token_asso' => $token_asso,
+			));
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
+
+	}
+
+	public function registerUser()
 	{
 		if ($this->tools->isLogged() == false) {
 			$token_asso = (!empty($token)) ? trim(strip_tags($token)) : null;
@@ -94,10 +110,10 @@ class UserController extends AppController
 	/**
 	 * Page d'inscription traitement
 	 */
-	public function tryRegister($token)
+	public function tryRegister()
 	{
 		// recuperer le token en GET pour ligne 146 ci-dessous
-		$token_asso = $token;
+		$token_asso = trim(strip_tags($_POST['token_asso']));
 		$lastname   = trim(strip_tags($_POST['lastname']));
 		$firstname   = trim(strip_tags($_POST['firstname']));
 		$username   = trim(strip_tags($_POST['username']));
@@ -125,9 +141,7 @@ class UserController extends AppController
 			$error['firstname']   = $this->valid->textValid($firstname,'firstname', 3, 50);
 		}
 
-		if(empty($_POST['antiBot'])){
-
-		} else {
+		if(!empty($_POST['antiBot'])){
 			$error['antiBot'] = 'BIM';
 		}
 
@@ -169,10 +183,14 @@ class UserController extends AppController
 				$this->model->insert($data);
 
 				if($token_asso != null){
+					$id_users = $this->ourumodel->getIdByEmail($email);
+					$id_assos = $this->model_assos->getIdByToken($token_asso);
+
 					$data_intermediaire = array(
-						'id_users' => 1,
-						'id_assos' => 1,
+						'id_users' => $id_users,
+						'id_assos' => $id_assos,
 						'created_at' => date('Y-m-d H:i:s'),
+						'role' => 'user',
 					);
 					$this->model_intermediaire->insert($data_intermediaire);
 				}
