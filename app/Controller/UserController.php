@@ -164,7 +164,7 @@ class UserController extends AppController
 
 			$passwordHash = $this->authentificationmodel->hashPassword($password);
 			if ($this->valid->IsValid($error)) {
-				$token = StringUtils::randomString();
+				$token = StringUtils::randomString(40);
 				$slug = $firstname. ' ' .$username. ' ' .$lastname;
 				$slug = $this->tools->slugify($slug);
 				$data = array(
@@ -297,7 +297,7 @@ class UserController extends AppController
 
 		// GG si il n'y a pas d'erreur
 		if ($this->valid->IsValid($error)){
-			$token = StringUtils::randomString();
+			$token = StringUtils::randomString(40);
 			$data = array(
 				'firstname' => $firstname,
 				'lastname' => $lastname,
@@ -401,7 +401,7 @@ class UserController extends AppController
 
 				$passwordHash = $this->authentificationmodel->hashPassword($password);
 				if ($this->valid->IsValid($error)) {
-					$token = StringUtils::randomString();
+					$token = StringUtils::randomString(40);
 					$data = array(
 						'token' => $token,
 						'password' => $passwordHash,

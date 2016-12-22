@@ -80,15 +80,18 @@ class MessageModel extends Model
   }
 
   // Fonction qui envoie une invitation en MP au user dont l'id est passé en argument a rejoindre l'asso.
-  public function sendInvitation($id_receiver) //passer en argument l'id receiver
+  public function sendInvitation($id_receiver)
   {
     $id_sender = $_SESSION['user']['id'];
     // requete pour recup le nom de l'asso.
     $name_asso = AssosModel::getNameByIdAdmin($id_sender);
+    $token_asso = AssosModel::getToken($id_sender);
 
     $message =  $_SESSION['user']['firstname']. ' ' .$_SESSION['user']['lastname'].
                 ' souhaite vous inviter a rejoindre son association "' .$name_asso. '".
-                <a href=""> Cliquez ici pour accepter </a>';
+                <a href="http://localhost/a_swap/public/machinbidule/' .$token_asso. '"> Cliquez ici pour accepter </a>';
+                // ajoute-t-on un boutton pour refuser ? si oui, il faudra certainement
+                // rajouter une colone "active" a la table "private-message"
 
     $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at)
                                         VALUES (:id_sender, :id_receiver, :message, NOW())");

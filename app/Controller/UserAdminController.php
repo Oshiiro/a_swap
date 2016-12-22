@@ -171,9 +171,9 @@ class UserAdminController extends AppController
       $passwordHash = $this->authentificationmodel->hashPassword($password);
 
       if ($this->valid->IsValid($error)) {
-        $token_asso = StringUtils::randomString();
+        $token_asso = StringUtils::randomString(40);
         $slug_asso = $this->tools->slugify($nom_assos);
-        $token_user = StringUtils::randomString();
+        $token_user = StringUtils::randomString(40);
         $slug_user = $firstname. ' ' .$username. ' ' .$lastname;
         $slug_user = $this->tools->slugify($slug_user);
 
