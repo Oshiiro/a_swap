@@ -4,7 +4,7 @@
 
 <!-- Infographies -->
   <?php if(empty($_SESSION['user']['role'])) { ?>
-    <h2 class="accroche">Petite phrase d'accroche trop stylééé</h2>
+    <h2 class="accroche">Petite phrase d'accroche trop stylééééé</h2>
     <div class="barreEmailInscription">
       <h3> Inscris ton assos'</h3>
       <div class="AdresseMail">
