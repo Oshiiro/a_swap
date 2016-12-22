@@ -125,7 +125,7 @@ class AssociationAdminController extends AppController
 			if($free == true){
 				// On envoi un MP d'invitation au membre
 				$invitation = new MessageModel();
-			  $message = $invitation->sendInvitation();
+			  $message = $invitation->sendInvitation($id_user);
 
 				$flash = new FlashBags();
 				$flash->setFlash('warning', 'L\'utilisateur recevera votre invitation dans son espace messagerie.');
