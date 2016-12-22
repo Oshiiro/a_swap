@@ -13,24 +13,38 @@
         </form>
       </div>
     </div>
-
-    <div class="infographieDiv">
-      <img src="../public/assets/img/infographie.png" alt="" class="info">
-    </div>
-
     <div class="container textes">
       <div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-          <div class="texteExplicatif col-sm-4">Pour acceder aux nos services, il suffit de t'inscrire, suite à l'invitation du président de ton assos'</div>
-          <div class="texteExplicatif  col-sm-4">Tu es ensuite connecté avec tout les membres de ton association, et tu peux facilement les contacter grâce à la messagerie</div>
-          <div class="texteExplicatif  col-sm-4">Il ne te reste plus qu'à faire des échanges avec eux, et gérer ta monnaie virtuelle comme bon te semble</div>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail texteExplicatif">
+            <img src="../public/assets/img/01swap.png" alt="...">
+            <div class="caption">
+              <p>Pour acceder aux nos services, il suffit de t'inscrire, suite à l'invitation du président de ton assos'</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail texteExplicatif">
+            <img src="../public/assets/img/02swap.png" alt="...">
+            <div class="caption">
+              <p>Tu es ensuite connecté avec tout les membres de ton association, et tu peux facilement les contacter grâce à la messagerie</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="thumbnail texteExplicatif">
+            <img src="../public/assets/img/03swap.png" alt="...">
+            <div class="caption">
+              <p>Il ne te reste plus qu'à faire des échanges avec eux, et gérer ta monnaie virtuelle comme bon te semble</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="container-fluid explications">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-md-push-3">
           <h3>A-Swap, c'est quoi ?</h3>
           <p>
             a-Swap : Késséssé ? <br>
