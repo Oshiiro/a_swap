@@ -4,26 +4,29 @@
 
 <div class="container">
   <div class="row">
-    <h2>Messagerie</h2>
+
     <h5>Liste des derniers messages</h5>
 
     <button class="btn btn-default sendMessage">Envoyer un message</button>
+
     <table>
       <th>Pseudo</th>
       <th>Message</th>
       <th>Reçu le</th>
       <th>Lu le</th>
 
-      <?php foreach ($messages as $message): ?>
-      <tr>
-        <td><b><?php echo $message['username'];?></b></td>
-        <td><?php echo $message['content'];?></td>
-        <td><?php echo $message['created_at'];?></td>
-        <td><?php echo $message['read_at'];?></td>
-      </tr>
-      <?php endforeach; ?>
+      <?php if(!empty($messages)) {
+        foreach ($messages as $message) { ?>
+          <tr>
+            <td><b><?php echo $message['username'];?></b></td>
+            <td><?php echo $message['content'];?></td>
+            <td><?php echo $message['created_at'];?></td>
+            <td><?php echo $message['read_at'];?></td>
+          </tr>
+        <?php } } else {
+          echo 'Vous n\'avez aucun message';
+        }?>
     </table>
-
 
 
 

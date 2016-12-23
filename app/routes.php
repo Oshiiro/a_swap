@@ -51,8 +51,11 @@
 
 		// Admin Back
 		['GET', '/admin/back', 'UserAdmin#back', 'admin_back'],
-		['GET', '/admin/transaction', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'],
+		['GET', '/admin/transaction', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'], //transaction de l'admin
 		['POST', '/admin/transaction', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
+		['GET', '/admin/deleteuser/[i:id]', 'AssociationAdmin#deleteUser', 'admin_back_delete'], // Delete user
+
+
 
 		// Admin Association Back
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],

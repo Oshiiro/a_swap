@@ -33,6 +33,7 @@ class UserAdminController extends AppController
     $this->model_intermediaire = new IntermediaireModel();
 		$this->authentificationmodel = new AuthentificationModel();
     $this->backmodel = new BackModel();
+
 	}
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
@@ -59,6 +60,7 @@ class UserAdminController extends AppController
 
     $adherants = $this->backmodel->affAdherants();
     $trans = $this->backmodel->GetTrans();
+  
 
     $this->show('admin/Back', array(
       'trans' => $trans,

@@ -2,8 +2,9 @@
 
 <?php $this->start('main_content') ?>
 	<h2>Transaction</h2>
-	<?php debug($_SESSION); ?>
-	<div class="panel panel-default container">
+
+	<!-- <div class="panel panel-default container">
+>>>>>>> bc177c2549d661055158f2fecb54f3c0ae9807db
 		<div class="panel-heading">Transaction</div>
 		  <table class="col-md-offset-1 col-md-9">
 				<tr>
@@ -24,7 +25,7 @@
 				</tr>
 			<?php } ?>
 			</table>
-	</div>
+	</div> -->
 
 <!-- ////////////////////// LISTE DES ADHERANTS /////////////////////////////-->
 
@@ -45,6 +46,8 @@
 					<td><?php echo $adherant['username']; ?></td>
 					<td><?php echo $adherant['email']; ?></td>
 					<td><?php echo $adherant['wallet']; ?></td>
+					<td> <i class="fa fa-money" aria-hidden="true"> <a href=""></a> </i> </td>
+					<td> <a href="<?php echo $this->url('admin_back_delete', array('id' => $adherant['id_users'])) ; ?>"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
 
 
 				</tr>

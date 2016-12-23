@@ -9,6 +9,7 @@ use \Model\IntermediaireModel;
 use \Model\AssosModel;
 use \Model\MessageModel;
 use \Services\Flash\FlashBags;
+use \Model\BackModel;
 use PHPMailer;
 
 
@@ -26,6 +27,7 @@ class AssociationAdminController extends AppController
 		$this->assos = new AssosModel();
 		$this->our_u_model = new OurUModel();
 		$this->intermediaire = new IntermediaireModel();
+		$this->backmodel = new BackModel();
 	}
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
@@ -140,5 +142,15 @@ class AssociationAdminController extends AppController
 		));
 	}
 
+
+//Supprimer un membre de l'assocaiton
+public function deleteUser($id) {
+	$supprimerIntermediaire = $this->intermediaire->DeleteIntermediaireUser($id_user);
+  $supprimer = $this->model->delete($id);
+	$this->redirectToRoute('admin_back');
+
+
+
+}
 
 }
