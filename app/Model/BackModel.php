@@ -16,10 +16,9 @@ class BackModel extends UModel
     $this->setTable('assos');
   }
 
+// Afficher les transactions de son assocation
   public function GetTrans()
   {
-
-
     $id = $_SESSION['user']['id'];
     $sql ="SELECT * FROM transaction, intermediaire
     LEFT JOIN users ON intermediaire.id_users = users.id
@@ -46,7 +45,7 @@ class BackModel extends UModel
     $sql ="SELECT * FROM users
     LEFT JOIN intermediaire ON intermediaire.id_users = users.id
     WHERE intermediaire.id_assos = $result
-    AND users.id != $id 
+    AND users.id != $id
     ";
 
     $query = $this->dbh->prepare($sql);
@@ -54,6 +53,7 @@ class BackModel extends UModel
     $query->execute();
     return $query->fetchAll();
   }
+
 
 }
 ?>
