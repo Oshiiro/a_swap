@@ -4,10 +4,12 @@ namespace Controller;
 
 use \Controller\AppController;
 use \W\Model\UsersModel;
+use \W\Security\StringUtils;
 use \Model\UsersModel as OurUModel;
 use \Model\IntermediaireModel;
 use \Model\AssosModel;
 use \Model\MessageModel;
+use \Model\InvitationModel;
 use \Services\Flash\FlashBags;
 use \Model\BackModel;
 use PHPMailer;
@@ -20,6 +22,7 @@ class AssociationAdminController extends AppController
 	private $assos;
 	private $our_u_model;
 	private $intermediaire;
+	private $invitation;
 
 	public function __construct()
 	{
@@ -27,7 +30,8 @@ class AssociationAdminController extends AppController
 		$this->assos = new AssosModel();
 		$this->our_u_model = new OurUModel();
 		$this->intermediaire = new IntermediaireModel();
-		$this->backmodel = new BackModel();
+		$this->backmodel = new BackModel(); //
+		$this->invitation = new InvitationModel();
 	}
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
@@ -101,6 +105,8 @@ class AssociationAdminController extends AppController
 		if($exist == false)
 		{
 			$token_assos = $this->assos->getToken($id_admin);
+			$name_asso = $this->assos->getNameByIdAdmin($id_admin);
+			$token_invitation = StringUtils::randomString(40);
 			// On envoi l'invit par mail
 			$mailEncode = urlencode($email);
 			$mail = new PHPMailer();
@@ -110,13 +116,30 @@ class AssociationAdminController extends AppController
 			$mail->Subject = "Invitation a rejoindre une association";
 			// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
 			// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
-			$mail->Body = 'Cliquez : ' . '<a href="http://localhost/a_swap/public/inscription/user/' .$token_assos. '">Rejoindre l\'association</a>';
+			$mail->Body = $_SESSION['user']['firstname']. ' '. $_SESSION['user']['lastname'] .
+										' souhaite vous inviter a rejoindre son association : "' . $name_asso . '". Cliquez ici pour le rejoindre :
+										<a href="http://localhost/a_swap/public/inscription/user/' .$token_assos. '/' .$token_invitation. '">Rejoindre l\'association</a>';
 			$mail->AddAddress($email);
 			$mail->send();
+
+			$data_invit = array(
+				'email_sender' => $_SESSION['user']['email'],
+				'email_receiver' => $email,
+				'token_asso' => $token_assos,
+				'token_invit' => $token_invitation,
+				'type' => 'email',
+				'created_at' => date('Y-m-d H:i:s'),
+				'status' => 'waiting',
+			);
+			$this->invitation->insert($data_invit);
+
 
 			$flash = new FlashBags();
 			$flash->setFlash('warning', 'L\'utilisateur recevera votre invitation par mail.');
 		} else {
+			$token_assos = $this->assos->getToken($id_admin);
+			$token_invitation = StringUtils::randomString(40);
+
 			// On verifie que ce user est libre (pas dans la table intermediaire)
 			$id_user = $this->our_u_model->getIdByEmail($email);
 			$free = $this->intermediaire->isFree($id_user);
@@ -124,7 +147,18 @@ class AssociationAdminController extends AppController
 			if($free == true){
 				// On envoi un MP d'invitation au membre
 				$invitation = new MessageModel();
-			  $message = $invitation->sendInvitation();
+			  $message = $invitation->sendInvitation($id_user, $token_invitation);
+
+				$data_invit = array(
+					'email_sender' => $_SESSION['user']['email'],
+					'email_receiver' => $email,
+					'token_asso' => $token_assos,
+					'token_invit' => $token_invitation,
+					'type' => 'private_message',
+					'created_at' => date('Y-m-d H:i:s'),
+					'status' => 'waiting',
+				);
+				$this->invitation->insert($data_invit);
 
 				$flash = new FlashBags();
 				$flash->setFlash('warning', 'L\'utilisateur recevera votre invitation dans son espace messagerie.');

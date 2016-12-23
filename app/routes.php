@@ -19,8 +19,7 @@
 		['GET', '/deconnexion', 'User#deconnexion', 'deconnexion'],
 
 		// Inscription User
-		['GET', '/inscription/user/[:token]', 'User#registerUser', 'register_user_from_invite'],
-		['POST', '/inscription/user/[:token]', 'User#tryRegisterFromInvite', 'try_register_from_invite'],
+		['GET', '/inscription/user/[:token_asso]/[:token_invit]', 'User#registerUserFromInvite', 'register_user_from_invite'],
 		['GET', '/inscription/user', 'User#registerUser', 'register_user'],
 		['POST', '/inscription/user', 'User#tryRegister', 'try_register'],
 
@@ -75,6 +74,9 @@
 		// Formulaire pour inviter un nouveau membre
 		['GET', '/admin/back/invite', 'UserAdmin#back', 'admin_association_invite'],
 		['POST', '/admin/back/invite', 'AssociationAdmin#inviteNewMemberByMail', 'admin_association_invite_action'],
+
+		// Action pour accepter une invitation reçu en MP
+		['GET', '/acceptinvitation/[:token_asso]/[:token_invit]', 'Invitation#accept', 'accept_invitation'],
 
 
 	);
