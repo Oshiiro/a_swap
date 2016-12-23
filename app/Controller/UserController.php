@@ -8,6 +8,7 @@ use \Services\Tools\Tools;
 use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
 use \Model\AssosModel;
+use \Model\InvitationModel;
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
@@ -21,6 +22,7 @@ class UserController extends AppController
 	private $tools;
 	private $model_intermediaire;
 	private $model_assos;
+	private $model_invitation;
 	private $authentificationmodel;
 
 	public function __construct()
@@ -30,6 +32,7 @@ class UserController extends AppController
 		$this->model = new UsersModel();
 		$this->model_intermediaire = new IntermediaireModel();
 		$this->model_assos = new AssosModel();
+		$this->model_invitation = new InvitationModel();
 		$this->ourumodel = new OurUModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}
@@ -40,12 +43,14 @@ class UserController extends AppController
 	/**
 	 * Page d'inscription
 	 */
-	public function registerUserFromInvite($token)
+	public function registerUserFromInvite($token_asso, $token_invit)
 	{
 		if ($this->tools->isLogged() == false) {
-			$token_asso = (!empty($token)) ? trim(strip_tags($token)) : null;
+			$token_asso = (!empty($token_asso)) ? trim(strip_tags($token_asso)) : null;
+			$token_invit = (!empty($token_invit)) ? trim(strip_tags($token_invit)) : null;
 			$this->show('users/register_user', array(
 				'token_asso' => $token_asso,
+				'token_invit' => $token_invit,
 			));
 		} else {
 			$this->showForbidden(); // erreur 403
@@ -112,8 +117,8 @@ class UserController extends AppController
 	 */
 	public function tryRegister()
 	{
-		// recuperer le token en GET pour ligne 146 ci-dessous
 		$token_asso = trim(strip_tags($_POST['token_asso']));
+		$token_invit = trim(strip_tags($_POST['token_invit']));
 		$lastname   = trim(strip_tags($_POST['lastname']));
 		$firstname   = trim(strip_tags($_POST['firstname']));
 		$username   = trim(strip_tags($_POST['username']));
@@ -148,7 +153,7 @@ class UserController extends AppController
 		if (isset($_POST['checkbox'])){
 
 		} else {
-			$error['checkbox'] = 'Vous n\'avez pas valider les CGU.';;
+			$error['checkbox'] = 'Vous n\'avez pas validé les CGU.';;
 		}
 
 		$exist = $this->model->emailExists($email,'email', 3, 50);
@@ -160,6 +165,15 @@ class UserController extends AppController
 
 		$error['password']  = $this->valid->textValid($password,'password', 3, 50);
 
+		if($token_asso != null) {
+			// si un token d'asso est present, on verifie qu'il existe bien une invitation
+			// dans la table invitation avec ce mail, ce token_asso et ce token_invit
+			$invit_exist = $this->model_invitation->invationIsValid($email, $token_asso, $token_invit);
+			if($invit_exist == false){
+				$error['tokens'] = 'Vous utilisez un mail d\'invitation invalide.';
+			}
+		}
+
 		if($password == $password_confirm){
 
 			$passwordHash = $this->authentificationmodel->hashPassword($password);
@@ -167,7 +181,7 @@ class UserController extends AppController
 				$token = StringUtils::randomString(40);
 				$slug = $firstname. ' ' .$username. ' ' .$lastname;
 				$slug = $this->tools->slugify($slug);
-				$data = array(
+				$data_user = array(
 					'firstname' => $firstname,
 					'lastname' => $lastname,
 					'username' => $username,
@@ -180,7 +194,7 @@ class UserController extends AppController
 					'created_at' => date('Y-m-d H:i:s'),
 				);
 
-				$this->model->insert($data);
+				$this->model->insert($data_user);
 
 				if($token_asso != null){
 					$id_users = $this->ourumodel->getIdByEmail($email);
@@ -193,10 +207,19 @@ class UserController extends AppController
 						'role' => 'user',
 					);
 					$this->model_intermediaire->insert($data_intermediaire);
+
+					$id_invitation = $this->model_invitation->getIdByTokens($token_asso, $token_invit);
+					$data_invitation = array(
+						'token_invit' => StringUtils::randomString(40),
+						'status' => 'accepted',
+						'modified_at' => date('Y-m-d H:i:s'),
+					);
+					// MAJ du token_invit, du status et du modified_at
+					$this->model_invitation->update($data_invitation, $id_invitation);
 				}
 
 				$flash = new FlashBags();
-				$flash->setFlash('warning', 'bravo vous etes inscrit');
+				$flash->setFlash('warning', 'Bravo vous etes inscrit');
 				$this->show('users/login');
 			} else {
 				$this->show('users/register_user', array(
@@ -204,7 +227,7 @@ class UserController extends AppController
 				));
 			}
 		}	else {
-			$error['password'] = 'Les mot de passe ne sont pas identique';
+			$error['password'] = 'Les mots de passe ne sont pas identiques';
 			$this->show('users/register_user', array(
 				'error' => $error,
 			));

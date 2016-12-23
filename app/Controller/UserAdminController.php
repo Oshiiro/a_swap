@@ -214,7 +214,7 @@ class UserAdminController extends AppController
 
         // redirection
         $flash = new FlashBags();
-				$flash->setFlash('warning', 'bravo vous etes inscrit, et votre assos a bien été créer');
+				$flash->setFlash('warning', 'Bravo vous etes inscrit et votre association a bien été créée');
         $this->show('users/login');
 
       } else {

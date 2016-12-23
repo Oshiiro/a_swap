@@ -10,7 +10,11 @@
 	  		<div class="col-md-12">
 					<!-- Si le champ est remplie aucune données entre en BDD -->
 					<input type="text" name="antiBot" value="" class="hide">
-					<input type="text" name="token_asso" class="hide" value="<?php if(!empty($token_asso)) { echo $token_asso; } elseif(!empty($_POST['token_asso'])) { echo($_POST['token_asso']);} ?>">
+					<input type="text" class="hide" name="token_asso" value="<?php if(!empty($token_asso)) { echo $token_asso; } elseif(!empty($_POST['token_asso'])) { echo($_POST['token_asso']);} ?>">
+					<input type="text" class="hide" name="token_invit" value="<?php if(!empty($token_invit)) { echo $token_invit; } elseif(!empty($_POST['token_invit'])) { echo($_POST['token_invit']);} ?>">
+
+					<!-- Affichage d'erreur(s) si un des (les) token(s) sont erronés -->
+					<span class="errorMessage"><?php if(!empty($error['tokens'])) { echo($error['tokens']);} ?></span>
 
 					<div class="form-group">
 						<input type="text" class="form-control" name="lastname" placeholder="Nom" value="<?php if(!empty($_POST['lastname'])) {echo $_POST['lastname'];} ?>">
