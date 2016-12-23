@@ -135,6 +135,9 @@ class AssociationAdminController extends AppController
 			$flash = new FlashBags();
 			$flash->setFlash('warning', 'L\'utilisateur recevera votre invitation par mail.');
 		} else {
+			$token_assos = $this->assos->getToken($id_admin);
+			$token_invitation = StringUtils::randomString(40);
+
 			// On verifie que ce user est libre (pas dans la table intermediaire)
 			$id_user = $this->our_u_model->getIdByEmail($email);
 			$free = $this->intermediaire->isFree($id_user);
@@ -142,7 +145,7 @@ class AssociationAdminController extends AppController
 			if($free == true){
 				// On envoi un MP d'invitation au membre
 				$invitation = new MessageModel();
-			  $message = $invitation->sendInvitation($id_user);
+			  $message = $invitation->sendInvitation($id_user, $token_invitation);
 
 				$data_invit = array(
 					'email_sender' => $_SESSION['user']['email'],

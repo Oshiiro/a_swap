@@ -13,18 +13,16 @@ class InvitationModel extends UModel
     $this->setTable('invitation');
   }
 
-  public function invationIsValid($email, $token_asso, $token_invit)
+  public function invationIsValid($token_asso, $token_invit)
   {
     $app = getApp();
     $sql = "SELECT id FROM invitation WHERE status = 'waiting'
-            AND email_receiver = :email
             AND token_asso = :token_asso
             AND token_invit = :token_invit
             LIMIT 1";
 
     $dbh = ConnectionModel::getDbh();
     $sth = $dbh->prepare($sql);
-    $sth->bindValue(':email', $email);
     $sth->bindValue(':token_asso', $token_asso);
     $sth->bindValue(':token_invit', $token_invit);
     $sth->execute();

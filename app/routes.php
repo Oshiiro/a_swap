@@ -72,5 +72,8 @@
 		['GET', '/admin/back/invite', 'UserAdmin#back', 'admin_association_invite'],
 		['POST', '/admin/back/invite', 'AssociationAdmin#inviteNewMemberByMail', 'admin_association_invite_action'],
 
+		// Action pour accepter une invitation reçu en MP
+		['GET', '/acceptinvitation/[:token_asso]/[:token_invit]', 'Invitation#accept', 'accept_invitation'],
+
 
 	);

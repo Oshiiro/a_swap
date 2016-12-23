@@ -23,6 +23,7 @@ class UserController extends AppController
 	private $model_intermediaire;
 	private $model_assos;
 	private $model_invitation;
+	private $ourumodel;
 	private $authentificationmodel;
 
 	public function __construct()
@@ -168,7 +169,7 @@ class UserController extends AppController
 		if($token_asso != null) {
 			// si un token d'asso est present, on verifie qu'il existe bien une invitation
 			// dans la table invitation avec ce mail, ce token_asso et ce token_invit
-			$invit_exist = $this->model_invitation->invationIsValid($email, $token_asso, $token_invit);
+			$invit_exist = $this->model_invitation->invationIsValid($token_asso, $token_invit);
 			if($invit_exist == false){
 				$error['tokens'] = 'Vous utilisez un mail d\'invitation invalide.';
 			}
