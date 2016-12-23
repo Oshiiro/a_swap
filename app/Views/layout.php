@@ -34,7 +34,10 @@
 
 		<div class="container-fluid">
 
-			<?php echo $this->getFlash(); ?>
+			<?php if (!empty($_SESSION['flash']['message'])) { ?>
+				<?php echo $this->getFlash(); ?>
+			<?php } ?>
+
 			<?= $this->section('main_content') ?>
 		</div>
 

@@ -4,7 +4,6 @@
 	<h2>Transaction</h2>
 
 	<!-- <div class="panel panel-default container">
->>>>>>> bc177c2549d661055158f2fecb54f3c0ae9807db
 		<div class="panel-heading">Transaction</div>
 		  <table class="col-md-offset-1 col-md-9">
 				<tr>
