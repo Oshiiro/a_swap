@@ -13,7 +13,6 @@
 * condition pour verifier que le input hide contenant le token d'asso dans le formulaire
   d'inscription contient un token qui existe (pour eviter que des bots fassent
   n'importe quoi ...)
-* Truc a revoir dans inviteNewMemberByMail (noté en commentaire) dans AssociationAdminController
 ________
 DIFFICULTE RENCONTRéES (soutenance) :
 * Pbm de securité dans le systeme d'invitation ; obligé de refaire une journée de travail et de creer
