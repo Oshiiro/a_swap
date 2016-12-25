@@ -60,7 +60,8 @@
 		<!-- A FAIRE : animation JS qui affiche le form ci-dessous lorqu'on clique sur le button si dessus -->
 		<form class="" action="<?php echo $this->url('admin_association_invite'); ?>" method="POST">
 			<input type="text" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
-			<input type="submit" value="Inviter">
+			<input type="submit" value="Inviter"><br>
+			<span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
 		</form>
 	</div>
 	<a href="<?php echo $this->url('admin_back_transac'); ?>">Faire une transaction</a>
