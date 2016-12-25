@@ -19,7 +19,7 @@
 						<a href="<?php echo $this->url('admin_back') ?>">Back Office</a>
 						<?php } ?>
 					<?php } ?>
-
+kaka
 					<?php if(!empty($_SESSION['user'])) { ?>
 					<a href="<?= $this->url('deconnexion') ?>">Deconnexion</a>
 					<a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?></a>
