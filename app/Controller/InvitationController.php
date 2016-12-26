@@ -55,11 +55,10 @@ class InvitationController extends AppController
     } else {
       // sinon, on fait un insert dans intermediaire et on maj l'invitation dans la table
       // correspondante puis on redirige.
-      $id_users = $_SESSION['user']['id'];
       $id_assos = $this->model_assos->getIdByToken($token_asso);
 
       $data_intermediaire = array(
-        'id_users' => $id_users,
+        'id_users' => $id_user,
         'id_assos' => $id_assos,
         'created_at' => date('Y-m-d H:i:s'),
         'role' => 'user',
