@@ -41,7 +41,10 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssos()
 	{
-		$this->show('association/assos_admin_back');
+		$adherants = $this->backmodel->affAdherants();
+		$this->show('association/assos_admin_back', array( 'adherants' => $adherants));
+
+
 	}
 
 	/**
@@ -183,8 +186,8 @@ public function deleteUser($id) {
   $supprimer = $this->model->delete($id);
 	$this->redirectToRoute('admin_back');
 
-
-
 }
+
+
 
 }

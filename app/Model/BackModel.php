@@ -17,17 +17,33 @@ class BackModel extends UModel
   }
 
 // Afficher les transactions de son assocation
+  // public function GetTrans()
+  // {
+  //   $id = $_SESSION['user']['id'];
+  //   $sql ="SELECT * FROM transaction
+  //   INNER JOIN intermediaire ON (transaction.id_user_buyer = intermediaire.id_users OR transaction.id_user_seller = intermediaire.id_users)
+  //   INNER JOIN users ON intermediaire.id_users = users.id
+  //   INNER JOIN assos ON intermediaire.id_assos = assos.id
+  //   WHERE intermediaire.id_users = :id
+  //   LIMIT 10";
+  //
+  //   $query = $this->dbh->prepare($sql);
+  //   $query->bindValue(':id', $id);
+  //   $query->execute();
+  //   return $query->fetchAll();
+  // }
+
   public function GetTrans()
   {
-    $id = $_SESSION['user']['id'];
-    $sql ="SELECT * FROM transaction, intermediaire
-    LEFT JOIN users ON intermediaire.id_users = users.id
-    LEFT JOIN assos ON intermediaire.id_assos = assos.id
-    WHERE intermediaire.id_users = :id
+
+
+    $sql ="SELECT * FROM transaction
+    LEFT JOIN intermediaire ON (transaction.id_user_seller OR transaction.id_user_seller) = intermediaire.id_users
+    LEFT JOIN users ON  (transaction.id_user_seller OR transaction.id_user_seller) = users.id
     LIMIT 10";
 
     $query = $this->dbh->prepare($sql);
-    $query->bindValue(':id', $id);
+
     $query->execute();
     return $query->fetchAll();
   }

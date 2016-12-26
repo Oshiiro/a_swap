@@ -53,6 +53,4 @@
 	</div>
 
 
-	<a href="<?php echo $this->url('users_accueil_transac'); ?>">Faire une transaction</a>
-
 <?php $this->stop('main_content') ?>
