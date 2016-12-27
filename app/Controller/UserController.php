@@ -130,7 +130,7 @@ class UserController extends AppController
 		$exist = $this->model->usernameExists($username,'username', 3, 50);
 		if($exist == true)
 		{
-			$error['username'] = 'Votre pseudo et deja prit';
+			$error['username'] = 'Votre pseudo est deja pris';
 		} else {
 			$error['username']   = $this->valid->textValid($username,'username', 3, 50);
 		}

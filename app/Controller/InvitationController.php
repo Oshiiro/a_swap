@@ -33,7 +33,9 @@ class InvitationController extends AppController
 	*/
 	public function accept($token_asso, $token_invit)
 	{
-  
+
+    $id_user = $_SESSION['user']['id'];
+    $user_is_free = $this->model_intermediaire->isFree($id_user);
     $invit_exist = $this->model_invitation->invationIsValid($token_asso, $token_invit);
 
     if($invit_exist == false){
@@ -43,14 +45,20 @@ class InvitationController extends AppController
       $flash = new FlashBags();
       $flash->setFlash('warning', 'Vous utilisez une invitation privée invalide');
       $this->redirectToRoute('message');
+    } elseif ($user_is_free == false) {
+      // si le user a deja rejoint une asso (il est deja dans la table intermediaire) :
+      // on renvoi vers la page de messagerie avec un flashMessage d'erreur.
+
+      $flash = new FlashBags();
+      $flash->setFlash('warning', 'Vous ne pouvez pas rejoindre plusieurs associations.');
+      $this->redirectToRoute('message');
     } else {
       // sinon, on fait un insert dans intermediaire et on maj l'invitation dans la table
       // correspondante puis on redirige.
-      $id_users = $_SESSION['user']['id'];
       $id_assos = $this->model_assos->getIdByToken($token_asso);
 
       $data_intermediaire = array(
-        'id_users' => $id_users,
+        'id_users' => $id_user,
         'id_assos' => $id_assos,
         'created_at' => date('Y-m-d H:i:s'),
         'role' => 'user',

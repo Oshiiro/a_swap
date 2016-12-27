@@ -13,6 +13,28 @@ class InvitationModel extends UModel
     $this->setTable('invitation');
   }
 
+
+  public function invitationExist($email_sender, $email_receiver)
+  {
+    $app = getApp();
+    $sql = "SELECT id FROM invitation WHERE status = 'waiting'
+            AND email_sender = :email_sender
+            AND email_receiver = :email_receiver
+            LIMIT 1";
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':email_sender', $email_sender);
+    $sth->bindValue(':email_receiver', $email_receiver);
+    $sth->execute();
+    $foundInvit = $sth->fetch();
+    if(!empty($foundInvit['id'])){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public function invationIsValid($token_asso, $token_invit)
   {
     $app = getApp();
