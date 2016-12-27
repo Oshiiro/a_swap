@@ -64,7 +64,8 @@ class IntermediaireModel extends UModel
 
 public function DeleteIntermediaireUser($id_user) {
 
-  $sql = "DELETE FROM `intermediaire` WHERE id_user = $id_user";
+  $sql = "DELETE FROM intermediaire WHERE id_users = $id_user";
+  $dbh = ConnectionModel::getDbh();
   $sth = $dbh->prepare($sql);
   $sth->execute();
 

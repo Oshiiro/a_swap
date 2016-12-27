@@ -57,6 +57,9 @@
 		L'équipe de développement ne peut garantir une disponibilité du site et/ou des services, une fiabilité des transmissions et des performances en terme de temps de réponse ou de qualité. Il n’est prévu aucune assistance technique vis à vis de l’utilisateur que ce soit par des moyens électronique ou téléphonique.
 	</p>
 	<p>
+		Les âmes de toutes personnes utilisant le site a-Swap sans en avoir reelement lu les CGU au prealable appartiennent à l'équipe de developpement, sans qu'aucune reclamation ne puisse etre effectuée.
+	</p>
+	<p>
 		La responsabilité de l’équipe de développement ne saurait être engagée en cas d’impossibilité d’accès à ce site et/ou d’utilisation des services.
 	</p>
 	<p>

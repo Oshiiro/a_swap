@@ -13,6 +13,10 @@
 * condition pour verifier que le input hide contenant le token d'asso dans le formulaire
   d'inscription contient un token qui existe (pour eviter que des bots fassent
   n'importe quoi ...)
+* Message de confirmation "etes vous sure de vouloir renvoyer cet utilisateur de votre asso ?"
+      tu met sur un lien un event click qui fait un confirm. Si confirm == fasle (donc annulation) tu fais un preventDefault qui annulera la redirection de ton lien
+      la location tu y touche pas.Tu met ton lien comme d'habitude
+      js va juste bloquer la redirection si besoin sinon il laissera faire la redirection du lien comme dab
 ________
 DIFFICULTE RENCONTRéES (soutenance) :
 * Pbm de securité dans le systeme d'invitation ; obligé de refaire une journée de travail et de creer
