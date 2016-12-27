@@ -46,6 +46,6 @@
     </form>
   </div>
 </div>
-
-<script src="appMessage.js"></script>
+<!--
+<script src="appMessage.js"></script> ??????? ne semble pas necessaire-->
 <?php $this->stop('main_content') ?>

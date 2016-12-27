@@ -11,7 +11,7 @@ body {
   height: 100%;
   width : 100%;
   /*background: #FFFFE4;*/
-  /*background-image: url(../img/fond1.jpg);*/
+  /*background-image: url(../img/fond3.png);*/
   /*background-color: rgba(0, 0, 0, 1);*/
   background-size: cover;
   background-attachment: fixed;
@@ -29,6 +29,7 @@ body {
 .hide2 {
   display: none;
 }
+
 /* -------------------------------------------------------------------------- */
 
 

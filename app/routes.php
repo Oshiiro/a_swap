@@ -53,6 +53,8 @@
 		['GET', '/admin/transaction', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'], //transaction de l'admin
 		['POST', '/admin/transaction', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
 		['GET', '/admin/deleteuser/[i:id]', 'AssociationAdmin#deleteUser', 'admin_back_delete'], // Delete user
+		['GET', '/admin/crediter', 'TransactionAdmin#ShowFormTransaction', 'admin_back_credite'], //credite de l'admin
+		['POST', '/admin/crediter', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
 
 
 

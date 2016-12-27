@@ -44,8 +44,6 @@
 					<td><?php echo $adherant['username']; ?></td>
 					<td><?php echo $adherant['email']; ?></td>
 					<td><?php echo $adherant['wallet']; ?></td>
-
-
 				</tr>
 			<?php } ?>
 			</table>
@@ -53,6 +51,5 @@
 	</div>
 
 
-	<a href="<?php echo $this->url('users_accueil_transac'); ?>">Faire une transaction</a>
 
 <?php $this->stop('main_content') ?>

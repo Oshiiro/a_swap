@@ -55,17 +55,17 @@ class UserAdminController extends AppController
   /**
    * Page Back de l'admin
    */
+
+
+
   public function back()
   {
-
-    $adherants = $this->backmodel->affAdherants();
     $trans = $this->backmodel->GetTrans();
-  
-
-    $this->show('admin/Back', array(
-      'trans' => $trans,
-      'adherants' => $adherants
-    ));
+    $this->show('admin/back',
+     array(
+      'trans' => $trans
+    )
+  );
   }
 
 // ===================================================================================================================
