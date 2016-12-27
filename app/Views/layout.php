@@ -9,27 +9,36 @@
 </head>
 <body>
 		<header>
-			<div class="container-fluid navbar">
-				<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
-				<div class="menu">
-					<?php if(!empty($_SESSION['user']['role'])) { ?>
-					<a href="<?php echo $this->url('message') ?>">Messagerie</a>
-						<a href="<?php echo $this->url('users_accueil') ?>">Association</a>
-						<?php if ($_SESSION['user']['role'] == 'admin') { ?>
-						<a href="<?php echo $this->url('admin_back') ?>">Back Office</a>
-						<?php } ?>
-					<?php } ?>
-
-					<?php if(!empty($_SESSION['user'])) { ?>
-					<a href="<?= $this->url('deconnexion') ?>">Deconnexion</a>
-					<a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?></a>
-					<?php } else { ?>
-					<a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a>
-					<a href="<?php echo $this->url('try_register') ?>" class="inscription">Inscription</a>
-					<?php } ?>
-
-				</div>
-			</div>
+			<nav class="navbar navbar">
+			  <div class="container-fluid">
+			    <div class="navbar-header">
+			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+						<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
+					</div>
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      <ul class="nav navbar-nav navbar-right">
+			        <?php if(!empty($_SESSION['user']['role'])) { ?>
+			        <li><a href="<?php echo $this->url('message') ?>">Messagerie</a></li>
+			        <li><a href="<?php echo $this->url('users_accueil') ?>">Association</a></li>
+			          <?php if ($_SESSION['user']['role'] == 'admin') { ?>
+			        <li><a href="<?php echo $this->url('admin_back') ?>">Back Office</a></li>
+			          <?php } ?>
+			        <?php } ?>
+			        <?php if(!empty($_SESSION['user'])) { ?>
+			        <li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a></li>
+			        <li><a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?></a></li>
+			        <?php } else { ?>
+			        <li><a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a></li>
+			        <li><a href="<?php echo $this->url('try_register') ?>" class="inscription">Inscription</a></li>
+			        <?php } ?>
+			    </div>
+			  </div>
+			</nav>
 		</header>
 
 		<div class="container-fluid">
