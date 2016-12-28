@@ -17,6 +17,8 @@
       tu met sur un lien un event click qui fait un confirm. Si confirm == fasle (donc annulation) tu fais un preventDefault qui annulera la redirection de ton lien
       la location tu y touche pas.Tu met ton lien comme d'habitude
       js va juste bloquer la redirection si besoin sinon il laissera faire la redirection du lien comme dab
+  A VOIR LE 2 JANVIER AVEC GEELIK !!!
+* Voir avec Benjamin fonctionnement allowTo pour superadminback (quel est le role referent ? celui dans la table User ?)
 ________
 DIFFICULTE RENCONTRéES (soutenance) :
 * Pbm de securité dans le systeme d'invitation ; obligé de refaire une journée de travail et de creer
@@ -46,3 +48,5 @@ une nouvelle table "invitation" dans la BDD.
       dans le affAdherants() de usersModel.
 * Dans la messagerie, la date de reception des messages n'est pas bonne : la valeur est toujours
   egal au creeated_at du users.
+
+* Plein de route, non securisées par des allowTo ou autres verifs de role. Il faudra TOUTES les checker !
