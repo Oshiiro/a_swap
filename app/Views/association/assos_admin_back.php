@@ -13,7 +13,7 @@
 
 <!-- A FAIRE :  JS qui affiche le form ci-dessous lorqu'on clique sur le button si dessus -->
 <!-- NE FONCTIONNE PAS  -->
-		<form class="formInvit hidden" action="<?php echo $this->url('admin_association_invite'); ?>" method="POST">
+		<form class="formInvit" action="<?php echo $this->url('admin_association_invite'); ?>" method="POST">
 			<input type="text" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
 			<input type="submit" value="Inviter">
 		</form>

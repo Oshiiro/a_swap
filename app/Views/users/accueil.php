@@ -19,7 +19,6 @@
 					<td><?php echo $tran['sum']; ?></td>
 					<td><?php echo $tran['description']; ?></td>
 					<td><?php echo $tran['created_at']; ?></td>
-
 				</tr>
 			<?php } ?>
 			</table>

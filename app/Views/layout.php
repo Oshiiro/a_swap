@@ -41,13 +41,14 @@
 			</nav>
 		</header>
 
-		<div class="container-fluid">
+		<div class="container-fluid allContent">
 
 			<?php if (!empty($_SESSION['flash']['message'])) { ?>
 				<?php echo $this->getFlash(); ?>
 			<?php } ?>
 
 			<?= $this->section('main_content') ?>
+
 		</div>
 
 		<footer>
