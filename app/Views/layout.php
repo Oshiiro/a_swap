@@ -9,15 +9,18 @@
 </head>
 <body>
 		<header>
-			<nav class="navbar navbar">
+			<nav class="navbar">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
+						<div class="navbar-default">
+				      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				        <span class="sr-only">Toggle navigation</span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				        <span class="icon-bar"></span>
+				      </button>
+						</div>
+
 						<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
 					</div>
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -30,13 +33,14 @@
 			          <?php } ?>
 			        <?php } ?>
 			        <?php if(!empty($_SESSION['user'])) { ?>
-			        <li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a></li>
 			        <li><a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?></a></li>
+							<li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a></li>
 			        <?php } else { ?>
-			        <li><a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a></li>
-			        <li><a href="<?php echo $this->url('try_register') ?>" class="inscription">Inscription</a></li>
-			        <?php } ?>
-			    </div>
+								<li><a href="<?php echo $this->url('try_register') ?>" class="inscription">Inscription</a></li>
+			        	<li><a href="<?php echo $this->url('login') ?>" class="connexion">Connexion</a></li>
+			    		<?php } ?>
+						</ul>
+					</div>
 			  </div>
 			</nav>
 		</header>
@@ -64,11 +68,11 @@
 					<a href="<?php echo $this->url('cgu') ?>">CGU</a><br>
 					<a>Concept</a>
 				</div>
-				<div class="lienReseaux col-sm-1">
+				<div class="lienReseaux col-sm-1 navbar-right">
 					<p>Rejoignez-nous :</p>
-					<a>Facebook</a><br>
+					<a><i class="fa fa-facebook-official" aria-hidden="true"></i></a><br>
 					<a>Instagram</a><br>
-					<a>Twitter</a><br>
+					<a href="https://twitter.com/aswap" class="twitter-follow-button" data-show-count="false">Follow @a-swap</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><br>
 				</div>
 
 			</div>
