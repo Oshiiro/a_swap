@@ -56,8 +56,8 @@
   <div class="panel panel-default container">
     <div class="panel-heading">  Liste des assos (idem) :</div>
       <table class="col-md-offset-1 col-md-9">
-        <?php foreach ($allUsers as $user) {
-          echo '<tr><td>' .$user['slug']. '</td></tr>';
+        <?php foreach ($allAssos as $asso) {
+          echo '<tr><td>' .$asso['name']. '</td></tr>';
         } ?>
       </table>
     </div>

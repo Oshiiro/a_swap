@@ -29,6 +29,7 @@ class SuperAdminController extends AppController
     $nombreUsers = $this->model_stats->countNbUser();
     $lastUser = $this->model_stats->lastUser();
     $allUsers = $this->model_stats->allUsers();
+    $allAssos = $this->model_stats->allAssos();
     $most_money_asso = $this->model_stats->mostMoneyAsso();
 
 
@@ -40,6 +41,7 @@ class SuperAdminController extends AppController
         'lastAsso' => $lastAsso,
         'lastUser' => $lastUser,
         'allUsers' => $allUsers,
+        'allAssos' => $allAssos,
         'most_money_asso' => $most_money_asso,
       ));
 		} else {

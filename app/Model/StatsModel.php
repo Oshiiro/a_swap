@@ -81,6 +81,20 @@ class StatsModel extends UModel
     return $users;
   }
 
+  // fonction qui retourne la liste de toutes les assos inscrites sur le site.
+  public function allAssos()
+  {
+    $app = getApp();
+    $sql = "SELECT * FROM assos";
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $assos = $sth->fetchAll();
+
+    return $assos;
+  }
+
   // Fonction qui retourne des infos sur l'asso ayant actuellement le + de coins en circulation.
  public function mostMoneyAsso()
  {
