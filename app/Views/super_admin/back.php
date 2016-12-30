@@ -63,6 +63,17 @@
     </div>
   </div>
 
+	<div class="panel panel-default container">
+    <div class="panel-heading">  L'association avec le plus de coins actuellement en circulation est :</div>
+      <table class="col-md-offset-1 col-md-9">
+				<tr>
+          <td><?php echo $most_money_asso['name']. ' avec ' .$most_money_asso['money']['SUM(wallet)']. ' ' .$most_money_asso['money_name']. ' en cours' ?></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+
 
 
 

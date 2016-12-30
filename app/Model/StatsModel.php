@@ -81,6 +81,50 @@ class StatsModel extends UModel
     return $users;
   }
 
+  // Fonction qui retourne des infos sur l'asso ayant actuellement le + de coins en circulation.
+ public function mostMoneyAsso()
+ {
+  $app = getApp();
+  $sql = "SELECT DISTINCT id_assos FROM intermediaire";
+
+  $dbh = ConnectionModel::getDbh();
+  $sth = $dbh->prepare($sql);
+  $sth->execute();
+  $assos = $sth->fetchAll();
+
+  $most_money_asso = array('name'=>'Aucun', 'money'=>0);
+  foreach ($assos as $asso) {
+    $sql = "SELECT SUM(wallet) FROM intermediaire WHERE id_assos = $asso[id_assos]";
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $result =  $sth->fetch();
+
+    if($result > $most_money_asso['money']) {
+      $app = getApp();
+      $sql = "SELECT name, money_name FROM assos WHERE id=$asso[id_assos]";
+
+      $dbh = ConnectionModel::getDbh();
+      $sth = $dbh->prepare($sql);
+      $sth->execute();
+      $name = $sth->fetch();
+
+      $most_money_asso['name'] = $name['name'];
+      $most_money_asso['money_name'] = $name['money_name'];
+      $most_money_asso['money'] = $result;
+    }
+  }
+
+  return $most_money_asso;
+ }
+
+ // Fonction qui retourne des infos sur l'asso qui a la moyenne de nombre de transaction par jour la + elevée.
+ public function mostActiveAsso()
+ {
+
+ }
+
 
 }
 
