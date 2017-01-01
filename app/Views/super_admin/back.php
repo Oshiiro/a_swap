@@ -38,7 +38,7 @@
       <table class="col-md-offset-1 col-md-9">
         <tr>
           <td><?php echo 'L\'association la plus active  est : '. $most_active_asso['name'].
-										'avec une moyenne de ' .$most_active_asso['transaction']. ' transactions par jour depuis sa creation'; ?></td>
+										' avec une moyenne de ' .$most_active_asso['transaction']. ' transactions par jour depuis sa creation'; ?></td>
         </tr>
       </table>
     </div>

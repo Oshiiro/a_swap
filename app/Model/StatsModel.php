@@ -136,7 +136,6 @@ class StatsModel extends UModel
  // Fonction qui retourne des infos sur l'asso qui a la moyenne de nombre de transaction par jour la + elevée.
   public function mostActiveAsso()
   {
-    // partant du principe qu'il y a une colonne id-assos dans la table transaction
     $app = getApp();
     $sql = "SELECT DISTINCT id_asso FROM transaction";
 
@@ -185,18 +184,10 @@ class StatsModel extends UModel
       }
 
     }
-
     return $most_active_asso;
-    // select distinct de chaque asso.
-    // $best = 0;
-    // pour chaque asso : - calculer l'ancienneté en jour
-    //                    - count nmb de transaction (count id from transaction where id_assos)
-    //                    - moyenne = nb transaction / ancieneté
-    // if moyenne > $best { $best = array( asso.nom, count_transac  }
-
-    // return $best
-
   }
+
+
 
 
 }
