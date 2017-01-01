@@ -34,10 +34,11 @@
   </div>
 
   <div class="panel panel-default container">
-    <div class="panel-heading"></div>
+    <div class="panel-heading">Asso la plus active (nombre transaction/jour en moyenne) :</div>
       <table class="col-md-offset-1 col-md-9">
         <tr>
-          <td>Asso la plus active (nombre transaction/jour en moyenne) :</td>
+          <td><?php echo 'L\'association la plus active  est : '. $most_active_asso['name'].
+										'avec une moyenne de ' .$most_active_asso['transaction']. ' transactions par jour depuis sa creation'; ?></td>
         </tr>
       </table>
     </div>
@@ -64,7 +65,7 @@
   </div>
 
 	<div class="panel panel-default container">
-    <div class="panel-heading">  L'association avec le plus de coins actuellement en circulation est :</div>
+    <div class="panel-heading">L'association avec le plus de coins actuellement en circulation est :</div>
       <table class="col-md-offset-1 col-md-9">
 				<tr>
           <td><?php echo $most_money_asso['name']. ' avec ' .$most_money_asso['money']['SUM(wallet)']. ' ' .$most_money_asso['money_name']. ' en cours' ?></td>

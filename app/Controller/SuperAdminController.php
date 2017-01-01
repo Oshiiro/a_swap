@@ -31,6 +31,7 @@ class SuperAdminController extends AppController
     $allUsers = $this->model_stats->allUsers();
     $allAssos = $this->model_stats->allAssos();
     $most_money_asso = $this->model_stats->mostMoneyAsso();
+    $most_active_asso = $this->model_stats->mostActiveAsso();
 
 
     if ($this->tools->isLogged() && $_SESSION['user']['role']=='superadmin') {
@@ -43,6 +44,7 @@ class SuperAdminController extends AppController
         'allUsers' => $allUsers,
         'allAssos' => $allAssos,
         'most_money_asso' => $most_money_asso,
+        'most_active_asso' => $most_active_asso,
       ));
 		} else {
 			$this->showForbidden(); // erreur 403

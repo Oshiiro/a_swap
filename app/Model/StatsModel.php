@@ -134,20 +134,69 @@ class StatsModel extends UModel
  }
 
  // Fonction qui retourne des infos sur l'asso qui a la moyenne de nombre de transaction par jour la + elevée.
- public function mostActiveAsso()
- {
-  // partant du principe qu'il y a une colonne id-assos dans la table transaction
+  public function mostActiveAsso()
+  {
+    // partant du principe qu'il y a une colonne id-assos dans la table transaction
+    $app = getApp();
+    $sql = "SELECT DISTINCT id_asso FROM transaction";
 
-  // select distinct de chaque asso.
-  // $best = 0;
-  // pour chaque asso : - calculer l'ancienneté en jour
-  //                    - count nmb de transaction (count id from transaction where id_assos)
-  //                    - moyenne = nb transaction / ancieneté
-  // if moyenne > $best { $best = array( asso.nom, count_transac  }
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+    $assos = $sth->fetchAll();
 
-  // return $best
+    $most_active_asso = array('name'=>'Aucun', 'transaction'=>0);
+    $today = time();
 
- }
+    foreach ($assos as $asso) {
+      $sql = "SELECT created_at FROM assos WHERE id = $asso[id_asso]";
+
+      $dbh = ConnectionModel::getDbh();
+      $sth = $dbh->prepare($sql);
+      $sth->execute();
+      $created_at =  $sth->fetch();
+      $created_at = strtotime($created_at['created_at']);
+
+      $temps=$today-$created_at; // On fait la différence des deux
+      $ancien=$temps / 86400; // On transforme ça en jours
+
+      $sql = "SELECT id FROM transaction WHERE id_asso = $asso[id_asso]";
+
+      $dbh = ConnectionModel::getDbh();
+      $sth = $dbh->prepare($sql);
+      $sth->execute();
+      $count = $sth->fetchAll();
+      $count = count($count);
+
+      $moyenne = $count/$ancien;
+      $moy = number_format($moyenne, 2, ',', ' ');
+
+      if($moyenne > $most_active_asso['transaction']) {
+        $app = getApp();
+        $sql = "SELECT name FROM assos WHERE id=$asso[id_asso]";
+
+        $dbh = ConnectionModel::getDbh();
+        $sth = $dbh->prepare($sql);
+        $sth->execute();
+        $name = $sth->fetch();
+
+        $most_active_asso['name'] = $name['name'];
+        $most_active_asso['transaction'] = $moy;
+      }
+
+    }
+
+    return $most_active_asso;
+    // select distinct de chaque asso.
+    // $best = 0;
+    // pour chaque asso : - calculer l'ancienneté en jour
+    //                    - count nmb de transaction (count id from transaction where id_assos)
+    //                    - moyenne = nb transaction / ancieneté
+    // if moyenne > $best { $best = array( asso.nom, count_transac  }
+
+    // return $best
+
+  }
 
 
 }
