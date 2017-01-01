@@ -16,7 +16,7 @@
 					<a href="<?php echo $this->url('admin_back_assos') ?>">Gestion</a>
 					<a href="<?php echo $this->url('default_home') ?>">Front Office</a>
 					<a href="<?= $this->url('deconnexion') ?>">Deconnexion</a>
-					<a href="<?php echo $this->url('profil') ?>">nom de l'assos</a> <!-- possibilité de modifier l'assos -->
+					<a href="<?php echo $this->url('admin_back_modifassos') ?>">nom de l'assos</a> <!-- possibilité de modifier l'assos -->
 				</div>
 			</div>
 		</header>

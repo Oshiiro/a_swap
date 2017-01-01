@@ -2,9 +2,12 @@
 
 <?php $this->start('main_content') ?>
 
+<?php debug($_POST); ?>
+<?php debug($_FILES); ?>
+
 <div class="container">
   <div class="row">
-    <form method="POST" action="<?php echo $this->url('update_profil') ?>" class="form-horizontal well formulaire">
+    <form method="POST" action="<?php echo $this->url('update_profil') ?>" class="form-horizontal well formulaire" enctype="multipart/form-data">
       <fieldset>
         <legend><h2>Profil</h2></legend>
 
@@ -15,7 +18,7 @@
         <div class="col-md-9">
           <div class="form-group">
             <label for="photodeprofil">Photo de Profil</label>
-            <input type="file" id="photodeprofil">
+            <input type="file" name="foo">
           </div>
           <div class="form-group">
             <label for="firstname">Prénom</label>

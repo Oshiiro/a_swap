@@ -2,6 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-<h2>page de modif assos</h2>
+<h2>Editer Votre Association</h2>
 
 <?php $this->stop('main_content') ?>

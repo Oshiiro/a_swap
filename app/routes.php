@@ -11,6 +11,7 @@
 		// profil
 		['GET', '/profil', 'User#profil', 'profil'],
 		['POST', '/profil', 'User#updateProfil', 'update_profil'],
+		['POST', '/profil/img', 'User#updateProfilImg', 'update_profil_img'],
 
 		// CGU
 		['GET', '/cgu', 'Default#cgu', 'cgu'],
@@ -56,12 +57,10 @@
 		['GET', '/admin/crediter', 'TransactionAdmin#ShowFormTransaction', 'admin_back_credite'], //credite de l'admin
 		['POST', '/admin/crediter', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
 
-
-
 		// Admin Association Back
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
-		['GET', '/admin/back/association/modification', 'AssociationAdmin#backAssosTryModif', 'admin_back_assos_try_modif'],
-		['POST', '/admin/back/association', 'AssociationAdmin#backAssosModify', 'admin_back_assos_modified'],
+		['GET', '/admin/back/association/modification', 'AssociationAdmin#backAssosModif', 'admin_back_modifassos'],
+		['POST', '/admin/back/association/modification', 'AssociationAdmin#backAssosTryModif', 'admin_back_assos_trymodif'],
 		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Page accueil users connecter
