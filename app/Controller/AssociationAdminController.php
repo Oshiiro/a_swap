@@ -50,7 +50,7 @@ class AssociationAdminController extends AppController
 	}
 
 	/**
-	 * Page Back Association Admin ( page de modif )
+	 * Modification Association Admin ( page de modif )
 	 */
 	public function backAssosModif()
 	{
@@ -76,8 +76,6 @@ class AssociationAdminController extends AppController
 	{
 		$this->show('association/modifassos_admin_back');
 	}
-
-
 
   /**
 	 *
