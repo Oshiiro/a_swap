@@ -195,11 +195,14 @@ class AssociationAdminController extends AppController
 	}
 
 
-//Supprimer un membre de l'assocaiton
-public function deleteUser($id) {
+//Supprimer un membre de l'association (le compte user existe toujours, mais il ne figure
+// plus dans la table intermediaire.)
+public function deleteUser($id_user) {
 	$supprimerIntermediaire = $this->intermediaire->DeleteIntermediaireUser($id_user);
-  $supprimer = $this->model->delete($id);
-	$this->redirectToRoute('admin_back');
+	// doit-on faire apparaitre un message de confirmation ?
+	$flash = new FlashBags();
+	$flash->setFlash('warning', 'Cet utilisateur ne fait désormais plus parti de votre association.');
+	$this->redirectToRoute('admin_back_assos');
 
 }
 

@@ -37,14 +37,20 @@
 					<td><?php echo $adherant['wallet']; ?></td>
 					<td><a href="<?php echo $this->url('admin_back_transac') ?>"> <i class="fa fa-exchange fa-2x" aria-hidden="true"></i></a>  </td>
 					<td><a href="<?php echo $this->url('admin_back_credite') ?>"><i class="fa fa-money fa-2x" aria-hidden="true"> </i></a> </td>
-					<td><a href="<?php echo $this->url('admin_back_delete', array('id' => $adherant['id_users'])) ; ?>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
+					<td>
+						<a class="confirmDeleteUser" href="<?php echo $this->url('admin_back_delete', array('id' => $adherant['id_users'])) ; ?>">
+							<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+						</a>
+					</td>
 				</tr>
 			<?php } ?>
 			</table>
 
 </div>
+<a id="confirm_button" href="www.google.fr">Lien test confirm</a>
 
 
-
-
+<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.0.min.js') ?>"></script>
+<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
+<script type="text/javascript" src="<?= $this->assetUrl('js/app.js') ?>"></script>
 <?php $this->stop('main_content') ?>

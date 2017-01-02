@@ -79,5 +79,11 @@
 		// Action pour accepter une invitation reçu en MP
 		['GET', '/acceptinvitation/[:token_asso]/[:token_invit]', 'Invitation#accept', 'accept_invitation'],
 
+		//Super Admin Back
+		['GET', '/superadmin/back', 'SuperAdmin#superAccueil', 'super_admin_back'],
+		// Super Admin route user
+		// super Admin route asso
+		// Super Admin route messagerie.
+
 
 	);
