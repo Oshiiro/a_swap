@@ -91,18 +91,29 @@ class UsersModel extends UModel
 // Fonction permettant d'afficher ses derniers transactions et seulement les siennes (pour user).
   public function GetItsTrans()
   {
+
     $id = $_SESSION['user']['id'];
+
+    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':id', $id);
+    $query->execute();
+    $result = $query->fetch();
+
+  
+
     $sql = "SELECT assos.name,transaction.created_at, transaction.sum,transaction.description ,userbuyer.username as username_buyer,userseller.username as username_seller FROM transaction
             LEFT JOIN users as userbuyer ON transaction.id_user_buyer = userbuyer.id
             LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
             LEFT JOIN assos ON transaction.id_asso = assos.id
-            LIMIT 10
+            WHERE transaction.id_asso = :result
     ";
 
     $query = $this->dbh->prepare($sql);
-    $query->bindValue(':id', $id);
+    $query->bindValue(':result', $result['id_assos']);
     $query->execute();
     return $query->fetchAll();
+
   }
 
   public function registerProfilImage($id_user)

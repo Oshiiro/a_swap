@@ -183,10 +183,8 @@ class AssociationAdminController extends AppController
 
 				}
 			}
+			$this->redirectToRoute('admin_back_assos');
 
-			$this->show('admin/back', array(
-
-			));
 		} else {
 			$this->show('admin/back', array(
 				'error' => $error,
