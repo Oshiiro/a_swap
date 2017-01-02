@@ -1,6 +1,8 @@
 <?php $this->layout('layout', ['title' => 'Connexion']) ?>
 
 <?php $this->start('main_content') ?>
+<div class="extansion-head">
+</div>
 <div class="container">
 	<div class="row">
 		<form method="POST" action="<?php echo $this->url('try_login') ?>" class="form-horizontal well formulaire">
