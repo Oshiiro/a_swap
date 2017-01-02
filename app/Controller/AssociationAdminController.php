@@ -43,7 +43,7 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssos()
 	{
-		$adherants = $this->backmodel->affAdherants();
+		$adherants = $this->backmodel->affAllAdherants();
 		$this->show('association/assos_admin_back', array( 'adherants' => $adherants));
 
 
