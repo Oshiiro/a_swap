@@ -70,8 +70,28 @@ class BackModel extends UModel
 
   }
 
+  // Afficher liste des adhérerants y compris l'admin
+    public function affAllAdherants()
+    {
+  // Recuperation de l'idée de l'assos via l'id user de la session
+      $id = $_SESSION['user']['id'];
 
-// Afficher liste des adhérents pour transaction
+      $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+      $query = $this->dbh->prepare($sql);
+      $query->bindValue(':id', $id);
+      $query->execute();
+      $result = $query->fetch();
+
+
+      $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
+      WHERE intermediaire.id_assos = :result";
+      $query = $this->dbh->prepare($sql);
+      $query->bindValue(':result', $result['id_assos']);
+      $query->execute();
+      return $query->fetchAll();
+    }
+
+// Afficher liste des adhérerants sauf l'admin
   public function affAdherants()
   {
 // Recuperation de l'idée de l'assos via l'id user de la session
@@ -84,17 +104,17 @@ class BackModel extends UModel
     $result = $query->fetch();
 
 
-  $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
-  WHERE intermediaire.id_assos = :result AND users.id != :id";
+    $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
+    WHERE intermediaire.id_assos = :result AND users.id != :id";
     $query = $this->dbh->prepare($sql);
     $query->bindValue(':result', $result['id_assos']);
-      $query->bindValue(':id', $id);
+    $query->bindValue(':id', $id);
     $query->execute();
     return $query->fetchAll();
   }
 
 
-    //Function d'affichage des différents membres de l'association y compris d'admin pour créditation
+    //Function d'affichage de l'adhérant choisis par l'admin pour une créditation
       public function affOneAdherants($id)
       {
         // Recuperation de l'idée de l'assos via l'id user de la session
