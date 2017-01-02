@@ -17,19 +17,80 @@ body {
   background-attachment: fixed;
 }
 
+.extansion-head {
+  background-color: rgb(21, 138, 138);
+  height: 150px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.70);
+  position: absolute;
+  width: 100%;
+}
+
+.block{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
+  margin-top: 1em;
+  background-color: #F5F5F5;
+  padding: 1em;
+}
+
+.block-message {
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.block-message-1 {
+  height: 150px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------------------------------------------------------------- */
 /* BARRE DE MENU; */
 .navbar a {
   font-family: 'Space Mono', monospace;
   font-weight: 900;
-  font-size: 25px;
-  color: darkgrey;
+  font-size: 15px;
+  color: white;
   padding : 2em;
+  transition: color 1s;
+  transition: background-color 1s;
+}
+
+.navbar {
+  background-color: rgb(21, 138, 138);
+  border-radius: 0;
+  margin-bottom: 0;
+  border: none;
 }
 
 .menu {
 margin: 30px;
 float: right;
 text-align: right;
+}
+
+.navbar-nav a:hover {
+    color: rgb(21, 138, 138);
+    background-color: white;
+}
+
+.logo {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: rgb(100, 178, 137);
+}
+
+.navbar-default .navbar-toggle {
+  border-color: rgb(100, 178, 137);
+  margin-right: 2em;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
 }
 
 h2  {
