@@ -12,7 +12,7 @@
         <label for="">Destinataire</label>
         <select class="form-control" name="destinataire" >
           <?php foreach ($users as $user): ?>
-            <option value="<?php echo $user['id'] ?>"><?php echo $user['username'];?></option>
+            <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
           <?php endforeach; ?>
         </select><br>
         <div class="form-group">
@@ -26,13 +26,12 @@
       <table>
         <?php if(!empty($messages)) {
           foreach ($messages as $message) { ?>
-              <th><?php echo $message['username'];?></th>
+              <th>Message de :<?php echo ' ' .$message['username'];?></th>
+              <tr>
+                <td><?php echo 'Envoyé le : ' .$message['created_at'];?></td>
+              </tr>
             <tr>
               <td><?php echo $message['content'];?></td>
-            </tr>
-            <tr>
-              <td><?php echo $message['created_at'];?></td>
-              <td><?php echo $message['read_at'];?></td>
             </tr>
           <?php } } else {
             echo '<div class="block-message-1">Vous n\'avez aucun message<div>';

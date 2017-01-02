@@ -22,14 +22,14 @@ class MessageModel extends Model
     // Affiche les messages envoyer, et recu par la personne connecté
     public function AfficherMessages()
     {
-    $id = $_SESSION['user']['id'];
+      $id = $_SESSION['user']['id'];
 
-      $affMessages = $this->dbh->prepare("SELECT * FROM private_message AS pm
-        LEFT JOIN users AS u ON pm.id_user_receiver = u.id
-        WHERE pm.id_user_receiver = :id AND pm.active = 1");
+      $sql = "SELECT pm.created_at, pm.content, u.username FROM private_message AS pm
+              LEFT JOIN users AS u ON pm.id_user_sender = u.id
+              WHERE pm.id_user_receiver = :id AND pm.active = 1";
+      $affMessages = $this->dbh->prepare($sql);
       $affMessages->bindValue(':id', $id);
       $affMessages->execute();
-      debug($id);
       return $affMessages->fetchAll();
 
     }
@@ -37,25 +37,22 @@ class MessageModel extends Model
     // Récuperer la liste des adhérants de l'assos, hormis lui même.
     public function ListAdherantsMessage()
     {
-      // Recuperation de l'idée de l'assos via l'id user de la session
-          $id = $_SESSION['user']['id'];
-          $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
-          $query = $this->dbh->prepare($sql);
-          $query->bindValue(':id', $id);
-          $result = $query->execute();
+      $id = $_SESSION['user']['id'];
 
-      // Recuperer les users dont le id assos est égal à celui de l'user connecté
-          $sql ="SELECT * FROM users
-          LEFT JOIN intermediaire ON intermediaire.id_users = users.id
-          WHERE intermediaire.id_assos = $result
-          AND users.id != $id
-          ";
+      $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+      $query = $this->dbh->prepare($sql);
+      $query->bindValue(':id', $id);
+      $query->execute();
+      $result = $query->fetch();
 
-          $query = $this->dbh->prepare($sql);
-          $query->bindValue(':id', $id);
-          $query->execute();
-          return $query->fetchAll();
 
+      $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
+      WHERE intermediaire.id_assos = :result AND users.id != :id";
+      $query = $this->dbh->prepare($sql);
+      $query->bindValue(':result', $result['id_assos']);
+      $query->bindValue(':id', $id);
+      $query->execute();
+      return $query->fetchAll();
     }
 
 
@@ -69,7 +66,7 @@ class MessageModel extends Model
       $id_receiver = trim(strip_tags($_POST['destinataire']));
       $message = trim(strip_tags($_POST['message']));
 
-            $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at) VALUES (:id_sender, :id_receiver, :message, NOW())");
+            $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at, active) VALUES (:id_sender, :id_receiver, :message, NOW(), 1)");
             $insMessages->bindValue(':id_sender', $id_sender);
             $insMessages->bindValue(':id_receiver', $id_receiver);
             $insMessages->bindValue(':message', $message);

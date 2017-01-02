@@ -22,7 +22,6 @@ $showMessages = new MessageModel();
   $users = $showMessages->ListAdherantsMessage();
   // debug($articles);
 
-
   $messages = $showMessages->AfficherMessages();
 
   $this->show('message/message', array(
