@@ -38,8 +38,8 @@ class TransactionAdminController extends AppController
   ));
   }
 
-  public function ShowFormCredit() {
-    $adherants = $this->backModel->affAllAdherants();
+  public function ShowFormCredit($id_seller) {
+    $adherants = $this->backModel->affOneAdherants($id_seller);
     $this->show('transaction/admin_credit', array(
     'adherants' => $adherants
     ));
@@ -47,12 +47,13 @@ class TransactionAdminController extends AppController
 
   public function makeCreditAdmin()
   {
-  $newTransactions = $this->transactionModel->MakeCreditAdmin();
-  $adherants = $this->backModel->affAllAdherants();
-  $this->show('transaction/admin_credit', array(
-  'newTransactions' => $newTransactions,
-  'adherants' => $adherants
-  ));
+    $newTransactions = $this->transactionModel->MakeCreditAdmin();
+    $adherants = $this->backModel->affOneAdherants($_POST['destinataire']);
+    $this->show('transaction/admin_credit', array(
+    'newTransactions' => $newTransactions,
+    'adherants' => $adherants,
+    
+    ));
   }
 
 

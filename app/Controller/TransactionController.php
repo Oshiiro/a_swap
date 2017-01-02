@@ -5,6 +5,7 @@ namespace Controller;
 use \Controller\AppController;
 use \Model\UsersModel as OurUModel;
 use \Model\TransactionModel;
+use \Model\BackModel;
 
 class TransactionController extends AppController
 {
@@ -16,11 +17,12 @@ class TransactionController extends AppController
 
     $this->transactionModel = new TransactionModel();
     $this->usersModel = new OurUModel();
+    $this->backmodel = new BackModel();
   }
 
   // Affichage du formulaire pour transaction, avec liste des adhérants
   public function ShowFormTransaction() {
-    $adherants = $this->usersModel->affAdherants();
+    $adherants = $this->backmodel->affAdherants();
     $this->show('transaction/users_transaction', array(
     'adherants' => $adherants
     ));
@@ -29,7 +31,7 @@ class TransactionController extends AppController
   public function makeTransactionUser()
   {
   $newTransac = $this->transactionModel->makeTransactionUser();
-  $adherants = $this->usersModel->affAdherants();
+  $adherants = $this->backmodel->affAdherants();
   $this->show('transaction/users_transaction', array(
   'newTransac' => $newTransac,
   'adherants' => $adherants

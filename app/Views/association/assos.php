@@ -6,7 +6,7 @@
 
 
 	<button class='btn btn-default'><a href="<?php echo $this->url('admin_back_transac'); ?>">Faire une transaction</a></button>
-	<button class='btn btn-default'><a href="<?php echo $this->url('admin_back_credite'); ?>">Crediter un membre</a></button>
+
 
 	<div class="panel panel-default container">
 		<div class="panel-heading">Transaction</div>

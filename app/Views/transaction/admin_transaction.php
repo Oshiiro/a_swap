@@ -1,8 +1,8 @@
-<?php $this->layout('layout_admin_back', ['title' => 'Back']) ?>
+<?php $this->layout('layout', ['title' => 'Back']) ?>
 
 <?php $this->start('main_content') ?>
 
-		<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('admin_back_transac') ?>">
+		<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('admin_back_transac_valid') ?>">
 			<h4>Faire une transaction</h4>
 			<label for="">Destinataire</label>
 			<select class="form-control" name="destinataire" >
