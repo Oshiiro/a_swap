@@ -28,7 +28,8 @@
           foreach ($messages as $message) { ?>
               <th>Message de :<?php echo ' ' .$message['username'];?></th>
               <tr>
-                <td><?php echo 'Envoyé le : ' .$message['created_at'];?></td>
+                <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($message['created_at'])).
+                               ' à ' .date('H\hi', strtotime($message['created_at']));?></td>
               </tr>
             <tr>
               <td><?php echo $message['content'];?></td>
