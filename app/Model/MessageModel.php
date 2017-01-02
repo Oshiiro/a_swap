@@ -106,8 +106,8 @@ class MessageModel extends Model
                 // rajouter une colone "active" a la table "private-message"
                 // ou delete le private_message.
 
-    $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at)
-                                        VALUES (:id_sender, :id_receiver, :message, NOW())");
+    $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at, active)
+                                        VALUES (:id_sender, :id_receiver, :message, NOW(), 1)");
     $insMessages->bindValue(':id_sender', $id_sender);
     $insMessages->bindValue(':id_receiver', $id_receiver);
     $insMessages->bindValue(':message', $message);
