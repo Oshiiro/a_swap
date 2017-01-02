@@ -2,8 +2,8 @@
 
 <?php $this->start('main_content') ?>
 <div class="extansion-head">
-<button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 </div>
+<button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-9 col-xs-push-2 col-md-push-1 col-lg-10">
