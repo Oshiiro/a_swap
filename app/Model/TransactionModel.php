@@ -21,12 +21,17 @@ public function MakeTransactionAdmin() {
 
   if(!empty($_POST['submit'])) {
 
-    // $id_assos = $_SESSION['intermediaire']['id_assos'];
 
     $id_buyer = $_SESSION['user']['id'];
     $id_seller = trim(strip_tags($_POST['destinataire']));
     $sum = trim(strip_tags($_POST['sum']));
     $description = trim(strip_tags($_POST['description']));
+
+    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id_user_buyer";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':id_user_buyer', $id_buyer);
+    $query->execute();
+    $id_asso = $query->fetch();
 
     $sql = "SELECT wallet FROM intermediaire WHERE id_users = :id_user_buyer";
     $query = $this->dbh->prepare($sql);
@@ -39,11 +44,12 @@ public function MakeTransactionAdmin() {
     // verifier que le buyer a assez de fond pour transferer de l'argent
       if($montant['wallet'] >= $sum) {
     // Insersion dans transaction
-      $sql ="INSERT INTO transaction (`id_user_buyer`, `id_user_seller`, `sum`, `description`, `created_at`) VALUES (:id_user_buyer, :id_user_seller, :sum, :description, NOW())";
+      $sql ="INSERT INTO transaction (id_user_buyer, id_user_seller, id_asso, sum, description, created_at) VALUES (:id_user_buyer, :id_user_seller,:id_asso, :sum, :description, NOW())";
       $query = $this->dbh->prepare($sql);
       $query->bindValue(':description', $description);
       $query->bindValue(':id_user_buyer', $id_buyer);
       $query->bindValue(':id_user_seller', $id_seller);
+      $query->bindValue(':id_asso', $id_asso['id_assos']);
       $query->bindValue(':sum', $sum);
       $query->execute();
     //  Upadate du portfeuille +

@@ -54,7 +54,7 @@ class BackModel extends UModel
 
     $transNbr = $nbre[0]['transNbr'];
     echo $nbre[0]['transNbr'];
-    $nbrParPage = 5;
+    $nbrParPage = 10;
     $nbrPage = ceil($transNbr/$nbrParPage);
     echo $nbrPage;
 
@@ -64,16 +64,26 @@ class BackModel extends UModel
     // }
 
 
-    $sql ="SELECT * FROM transaction
-    LEFT JOIN users ON (transaction.id_user_seller = users.id AND transaction.id_user_buyer = users.id)
-    LIMIT ".(($cPage - 1) * $nbrParPage).",". $nbrParPage ."
+    // $sql ="SELECT description, sum, username FROM users
+    // INNER JOIN transaction ON transaction.id_user_buyer = users.id
+    // LIMIT ".(($cPage - 1) * $nbrParPage).",". $nbrParPage ."
+    // ";
+
+    $sql = "SELECT assos.name,transaction.created_at, transaction.sum,transaction.description ,userbuyer.username as username_buyer,userseller.username as username_seller FROM transaction
+            LEFT JOIN users as userbuyer ON transaction.id_user_buyer = userbuyer.id
+            LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
+            LEFT JOIN assos ON transaction.id_asso = assos.id
+
     ";
+
 
     $query = $this->dbh->prepare($sql);
     $query->execute();
     return $query->fetchAll();
 
-
+    // SELECT id, prenom, nom, date_achat, num_facture, prix_total
+    // FROM utilisateur
+    // INNER JOIN commande ON utilisateur.id = commande.utilisateur_id
 
   }
 

@@ -60,7 +60,6 @@ class UserAdminController extends AppController
   public function back()
   {
     $this->allowTo(array('admin'));
-
     $trans = $this->backmodel->GetTrans();
     $this->show('admin/back',
      array(

@@ -12,20 +12,19 @@
 		<div class="panel-heading">Transaction</div>
 		  <table class="col-md-offset-1 col-md-9">
 				<tr>
-					<th>Buyer</th>
-					<th>Seller</th>
-					<th>Sum</th>
+					<th>Acheteur</th>
+					<th>Vendeur</th>
+					<th>Somme</th>
 					<th>Description</th>
-					<th>Created_at</th>
+					<th>Date de la transaction</th>
 				</tr>
 				<?php foreach ($trans as $tran){ ?>
 				<tr>
-					<td><?php echo $tran['id_user_buyer']; ?></td>
-					<td><?php echo $tran['id_user_seller']; ?></td>
+					<td><?php echo $tran['username_buyer']; ?></td>
+					<td><?php echo $tran['username_seller']; ?></td>
 					<td><?php echo $tran['sum']; ?></td>
 					<td><?php echo $tran['description']; ?></td>
 					<td><?php echo $tran['created_at']; ?></td>
-
 				</tr>
 			<?php } ?>
 			</table>
