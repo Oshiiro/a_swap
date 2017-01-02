@@ -43,24 +43,23 @@ class BackModel extends UModel
     $nbrPage = ceil($transNbr/$nbrParPage);
     echo $nbrPage;
 
+    $id = $_SESSION['user']['id'];
+    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':id', $id);
+    $query->execute();
+    $result = $query->fetch();
 
-    // for($i=1; $i <= $nbrPage ; $i++) {
-    //   echo '<a href= "'. echo $this->url('admin_back').'/'.$i.'"> '.$i.' </a>';
-    // }
-
-    // $sql ="SELECT description, sum, username FROM users
-    // INNER JOIN transaction ON transaction.id_user_buyer = users.id
-    // LIMIT ".(($cPage - 1) * $nbrParPage).",". $nbrParPage ."
-    // ";
 
     $sql = "SELECT assos.name,transaction.created_at, transaction.sum,transaction.description ,userbuyer.username as username_buyer,userseller.username as username_seller FROM transaction
             LEFT JOIN users as userbuyer ON transaction.id_user_buyer = userbuyer.id
             LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
             LEFT JOIN assos ON transaction.id_asso = assos.id
-
+            WHERE transaction.id_asso = :result
     ";
 
     $query = $this->dbh->prepare($sql);
+    $query->bindValue(':result', $result['id_assos']);
     $query->execute();
     return $query->fetchAll();
 
