@@ -39,7 +39,7 @@ class InvitationController extends AppController
     $invit_exist = $this->model_invitation->invationIsValid($token_asso, $token_invit);
 
     if($invit_exist == false){
-      // si les toekns dans l'url ne correspondent pas a une invtitation qui existe
+      // si les tokens dans l'url ne correspondent pas a une invtitation qui existe
       // on renvoi vers la page de messagerie avec un flashMessage d'erreur.
 
       $flash = new FlashBags();
