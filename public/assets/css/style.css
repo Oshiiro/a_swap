@@ -119,6 +119,7 @@ text-align: right;
 
 .navbar-default .navbar-toggle {
   border-color: rgb(100, 178, 137);
+  margin-right: 2em;
 }
 
 .navbar .navbar-collapse {
@@ -190,8 +191,9 @@ background-color: rgb(21, 138, 138);
 .extansion-head {
   background-color: rgb(21, 138, 138);
   height: 150px;
-  margin-top: -20px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.70);
+  position: absolute;
+  width: 100%;
 }
 
 .block{
@@ -202,7 +204,7 @@ background-color: rgb(21, 138, 138);
 }
 
 .block-message {
-  margin-top: -150px;
+  margin-top: 10px;
   margin-bottom: 50px;
 }
 
