@@ -49,21 +49,21 @@
         <div class="col-md-6 col-md-push-3">
           <h3>A-Swap, c'est quoi ?</h3>
           <p>
-            a-Swap : Késséssé ? <br>
+            a-Swap : Qu'est ce que c'est ? <br>
 
             Le site a-Swap est une application web a destination des associations permettant de creer et gerer des monnaies virtuelles.
             Son utilisation est completement gratuite.
             L'appli permet par exemple, la création de Sytemes d'Echanges Locaux (SEL) ou de Systemes d'Echanges Associatifs.
             <br><br>
 
-            a-Swap : Kommenkonfé ? <br>
+            a-Swap : Comment ça marche ? <br>
 
             Chaque association créant sa monnaie via le service a-Swap est libre de l'utiliser et de la gerer comme bon lui semble.
             Pour chaque association un administrateur est designé (dans l'ideal, un membre du bureau de l'association). Celui-ci est libre de creer un reglement regissant le fonctionnement de
             sa monnaie associative, d'inviter des membres a rejoindre son association, d'ajouter des credits (appelé coins sur a-Swap) aux membres de son association, de restreindre l'accés a son association aux membres, etc.
             <br><br>
 
-            a-Swap : Exemp' <br>
+            a-Swap : Exemple <br>
 
             L'association "Les Philatelistes du Roumois" decide de creer une monnaie utilisable par les membres de l'association (le "stamp coin") afin de pouvoir s'echanger des timbres
             lors de ses bourses d'echanges.

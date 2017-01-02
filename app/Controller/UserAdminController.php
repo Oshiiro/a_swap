@@ -61,7 +61,6 @@ class UserAdminController extends AppController
   {
     $trans = $this->backmodel->GetTrans();
 
-
     $this->show('admin/back',
      array(
       'trans' => $trans,

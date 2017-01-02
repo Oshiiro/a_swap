@@ -92,11 +92,12 @@ class UsersModel extends UModel
   public function GetItsTrans()
   {
     $id = $_SESSION['user']['id'];
-    $sql ="SELECT * FROM transaction, intermediaire
-    LEFT JOIN users ON intermediaire.id_users = users.id
-    LEFT JOIN assos ON intermediaire.id_assos = assos.id
-    WHERE intermediaire.id_users = :id
-    LIMIT 10";
+    $sql = "SELECT assos.name,transaction.created_at, transaction.sum,transaction.description ,userbuyer.username as username_buyer,userseller.username as username_seller FROM transaction
+            LEFT JOIN users as userbuyer ON transaction.id_user_buyer = userbuyer.id
+            LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
+            LEFT JOIN assos ON transaction.id_asso = assos.id
+            LIMIT 10
+    ";
 
     $query = $this->dbh->prepare($sql);
     $query->bindValue(':id', $id);
