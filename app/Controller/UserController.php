@@ -347,7 +347,7 @@ class UserController extends AppController
 
 
 			$flash = new FlashBags();
-			$flash->setFlash('warning', 'Votre profil à bien été modifier');
+			$flash->setFlash('warning', 'Votre profil à bien été modifié');
 			$this->profil();
 		}
     $this->show('users/profil', array('error' => $error));

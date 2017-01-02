@@ -77,6 +77,15 @@ th {
   display: none;
 }
 
+.flash p {
+  text-align: center;
+  margin: 0 0 0 0;
+  font-size: 1.5em;
+  background-color: rgb(21, 138, 138);
+  color: white;
+  z-index: 1;
+
+}
 
 /* -------------------------------------------------------------------------- */
 /* BARRE DE MENU; */
@@ -95,6 +104,7 @@ th {
   border-radius: 0;
   margin-bottom: 0;
   border: none;
+  z-index: 1;
 }
 
 .menu {
@@ -191,9 +201,11 @@ background-color: rgb(21, 138, 138);
 .extansion-head {
   background-color: rgb(21, 138, 138);
   height: 150px;
+  margin-top: 0px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.70);
   position: absolute;
   width: 100%;
+  z-index: -1;
 }
 
 .block{
