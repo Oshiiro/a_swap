@@ -15,8 +15,8 @@
 				</tr>
 				<?php foreach ($trans as $tran){ ?>
 				<tr>
-					<td><?php echo $tran['username']; ?></td>
-					<td><?php echo $tran['username']; ?></td>
+					<td><?php echo $tran['username_buyer']; ?></td>
+					<td><?php echo $tran['username_seller']; ?></td>
 					<td><?php echo $tran['sum']; ?></td>
 					<td><?php echo $tran['description']; ?></td>
 					<td><?php echo $tran['created_at']; ?></td>
