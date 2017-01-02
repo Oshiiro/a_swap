@@ -74,8 +74,8 @@ class UserAdminController extends AppController
   public function adminAssos()
   {
     if ($this->tools->isLogged() == true) {
-      $adherants = $this->model_user->affAdherants();
-      $trans = $this->model_user->GetItsTrans();
+      $adherants = $this->backmodel->affAdherants();
+      $trans = $this->backmodel->GetTrans();
       $this->show('association/assos', array(
         'adherants' => $adherants,
         'trans' => $trans

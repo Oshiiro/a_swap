@@ -8,6 +8,7 @@ use \Services\Tools\Tools;
 use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
 use \Model\AssosModel;
+use \Model\BackModel;
 use \Model\InvitationModel;
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
@@ -35,6 +36,7 @@ class UserController extends AppController
 		$this->model_assos = new AssosModel();
 		$this->model_invitation = new InvitationModel();
 		$this->ourumodel = new OurUModel();
+		$this->backmodel = new BackModel();
 		$this->authentificationmodel = new AuthentificationModel();
 	}
 
@@ -97,7 +99,7 @@ class UserController extends AppController
 	public function usersAccueil()
 	{
 		if ($this->tools->isLogged() == true) {
-			$adherants = $this->ourumodel->affAdherants();
+			$adherants = $this->backmodel->affAdherants();
 			$trans = $this->ourumodel->GetItsTrans();
 			$this->show('users/accueil', array(
 				'adherants' => $adherants,

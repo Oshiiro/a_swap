@@ -34,7 +34,6 @@
 					<td><?php echo $adherant['username']; ?></td>
 					<td><?php echo $adherant['email']; ?></td>
 					<td><?php echo $adherant['wallet']; ?></td>
-					<td><a href="<?php echo $this->url('admin_back_transac', array('id' => $adherant['id_users'])) ?>"> <i class="fa fa-exchange fa-2x" aria-hidden="true"></i></a></td>
 					<td><a href="<?php echo $this->url('admin_back_credite', array('id' => $adherant['id_users'])) ?>"><i class="fa fa-money fa-2x" aria-hidden="true"> </i></a></td>
 					<td><a href="<?php echo $this->url('admin_back_delete', array('id' => $adherant['id_users'])) ; ?>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
 				</tr>

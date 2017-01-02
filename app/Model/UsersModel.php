@@ -88,7 +88,7 @@ class UsersModel extends UModel
     }
   }
 
-// Fonction permettant d'afficher ses derniers transactions.
+// Fonction permettant d'afficher ses derniers transactions et seulement les siennes (pour user).
   public function GetItsTrans()
   {
     $id = $_SESSION['user']['id'];
@@ -105,28 +105,6 @@ class UsersModel extends UModel
   }
 
 
-//Function d'affichage des différents membres de l'association
-  public function affAdherants()
-  {
-// Recuperation de l'idée de l'assos via l'id user de la session
-    $id = $_SESSION['user']['id'];
-    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
-    $query = $this->dbh->prepare($sql);
-    $query->bindValue(':id', $id);
-    $result = $query->execute();
-
-// Recuperer les users dont le id assos est égal à celui de l'admin
-    $sql ="SELECT * FROM users
-    LEFT JOIN intermediaire ON intermediaire.id_users = users.id
-    WHERE intermediaire.id_assos = $result
-    AND users.id != $id
-    ";
-
-    $query = $this->dbh->prepare($sql);
-    $query->bindValue(':id', $id);
-    $query->execute();
-    return $query->fetchAll();
-  }
 
 
 
