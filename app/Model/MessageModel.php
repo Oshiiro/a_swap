@@ -26,10 +26,10 @@ class MessageModel extends Model
 
       $affMessages = $this->dbh->prepare("SELECT * FROM private_message AS pm
         LEFT JOIN users AS u ON pm.id_user_receiver = u.id
-        WHERE (pm.id_user_sender = :id OR pm.id_user_receiver = :id)
-              AND pm.active = 1");
+        WHERE pm.id_user_receiver = :id AND pm.active = 1");
       $affMessages->bindValue(':id', $id);
       $affMessages->execute();
+      debug($id);
       return $affMessages->fetchAll();
 
     }
