@@ -30,7 +30,7 @@ class CuztomPlates implements ExtensionInterface
 	  public function getFlash() {
 			 $flashBag = new FlashBags();
 			 if(!empty($flashBag->getFlash())) {
-				 echo '<div class="alert alert-'.$flashBag->getFlash()['type'].'"><p>'.$flashBag->getFlash()['message'].'</p></div>';
+				 echo '<div class=""><p>'.$flashBag->getFlash()['message'].'</p></div>';
 				 $flashBag->unsetFlash();
 			 }
 			 return NULL;

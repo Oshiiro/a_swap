@@ -93,6 +93,7 @@ th {
 .navbar {
   background-color: rgb(21, 138, 138);
   border-radius: 0;
+  margin-bottom: 0;
   border: none;
 }
 
