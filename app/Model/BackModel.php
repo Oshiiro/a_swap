@@ -14,6 +14,7 @@ class BackModel extends UModel
     parent::__construct();
     $this->setTable('transaction');
     $this->setTable('assos');
+    $this->setTable('intermediaire');
   }
 
 // Afficher les transactions de son assocation
@@ -36,17 +37,48 @@ class BackModel extends UModel
   public function GetTrans()
   {
 
-
-    $sql ="SELECT * FROM transaction
-    LEFT JOIN intermediaire ON (transaction.id_user_seller OR transaction.id_user_seller) = intermediaire.id_users
-    LEFT JOIN users ON  (transaction.id_user_seller OR transaction.id_user_seller) = users.id
-    LIMIT 10";
+    $sql ="SELECT COUNT(id) as transNbr FROM transaction
+    -- LEFT JOIN users ON (transaction.id_user_seller = users.id AND transaction.id_user_buyer = users.id)
+    ";
 
     $query = $this->dbh->prepare($sql);
+    $query->execute();
+    $nbre = $query->fetchAll();
+    print_r($nbre);
 
+    if(isset($_GET['p'])) {
+      $cPage = $_GET['p'];
+    } else {
+      $cPage = 1;
+    }
+
+    $transNbr = $nbre[0]['transNbr'];
+    echo $nbre[0]['transNbr'];
+    $nbrParPage = 5;
+    $nbrPage = ceil($transNbr/$nbrParPage);
+    echo $nbrPage;
+
+
+    for($i=1; $i <= $nbrPage ; $i++) {
+      echo '<a href= "'. echo $this->url('admin_back').'/'.$i.'"> '.$i.' </a>';
+    }
+
+    $sql ="SELECT * FROM transaction
+    LEFT JOIN users ON (transaction.id_user_seller = users.id AND transaction.id_user_buyer = users.id)
+    LIMIT ".(($cPage - 1) * $nbrParPage).",". $nbrParPage ."
+    ";
+
+    $query = $this->dbh->prepare($sql);
     $query->execute();
     return $query->fetchAll();
+
+
+
   }
+
+
+
+
 
   public function affAdherants()
   {
@@ -70,6 +102,28 @@ class BackModel extends UModel
     return $query->fetchAll();
   }
 
+
+    //Function d'affichage des différents membres de l'association y compris d'admin pour créditation
+      public function affAllAdherants()
+      {
+    // Recuperation de l'idée de l'assos via l'id user de la session
+        $id = $_SESSION['user']['id'];
+        $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+        $query = $this->dbh->prepare($sql);
+        $query->bindValue(':id', $id);
+        $result = $query->execute();
+
+    // Recuperer les users dont le id assos est égal à celui de l'admin
+        $sql ="SELECT * FROM users
+        LEFT JOIN intermediaire ON intermediaire.id_users = users.id
+        WHERE intermediaire.id_assos = $result
+        ";
+
+        $query = $this->dbh->prepare($sql);
+        $query->bindValue(':id', $id);
+        $query->execute();
+        return $query->fetchAll();
+      }
 
 }
 ?>

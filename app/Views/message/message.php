@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 <div class="extansion-head">
-<button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg col-xs-1" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button> 
+<button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg col-xs-1" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 </div>
 <div class="container block-message">
   <div class="row">

@@ -2,9 +2,8 @@
 
 <?php $this->start('main_content') ?>
 
-	<!-- /////////////////////// FAIRE TRANSACTION ////////////////////////// -->
-		<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('admin_back_credit') ?>">
-			<h4>Faire une transaction</h4>
+		<form class="form-group newCredit" name="newCredit" method="POST" action="<?php echo $this->url('admin_back_credite') ?>">
+			<h4>Crediter un membre</h4>
 			<label for="">Destinataire</label>
 			<select class="form-control" name="destinataire" >
 				<?php foreach ($adherants as $adherant): ?>
