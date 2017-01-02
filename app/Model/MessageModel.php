@@ -35,7 +35,7 @@ class MessageModel extends Model
     }
 
     // Récuperer la liste des adhérants de l'assos, hormis lui même.
-    public function OurfindAll()
+    public function ListAdherantsMessage()
     {
       // Recuperation de l'idée de l'assos via l'id user de la session
           $id = $_SESSION['user']['id'];

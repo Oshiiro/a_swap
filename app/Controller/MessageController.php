@@ -19,7 +19,7 @@ class MessageController extends AppController
 public function message()
 {
 $showMessages = new MessageModel();
-  $users = $showMessages->OurfindAll();
+  $users = $showMessages->ListAdherantsMessage();
   // debug($articles);
 
 
