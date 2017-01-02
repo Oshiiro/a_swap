@@ -9,16 +9,30 @@
 </head>
 <body>
 		<header>
-			<div class="container-fluid navbar">
-				<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
-				<div class="menu">
-					<a href="<?php echo $this->url('admin_back') ?>">Transactions</a>
-					<a href="<?php echo $this->url('admin_back_assos') ?>">Gestion</a>
-					<a href="<?php echo $this->url('default_home') ?>">Front Office</a>
-					<a href="<?= $this->url('deconnexion') ?>">Deconnexion</a>
-					<a href="<?php echo $this->url('admin_back_modifassos') ?>"><?php echo $_SESSION['user']['nom_assos'] ?></a> <!-- possibilité de modifier l'assos -->
+			<nav class="navbar">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<div class="navbar-default">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+					<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
+					</div>
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="<?php echo $this->url('admin_back') ?>">Transactions</a></li>
+							<li><a href="<?php echo $this->url('admin_back_assos') ?>">Gestion</a></li>
+							<li><a href="<?php echo $this->url('default_home') ?>">Front Office</a></li>
+							<li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a><li>
+							<li><a href="<?php echo $this->url('admin_back_modifassos') ?>"><?php echo $_SESSION['user']['nom_assos'] ?></a></li> <!-- possibilité de modifier l'assos -->
+						</ul>
+					</div>
 				</div>
-			</div>
+			</nav>
 		</header>
 
 		<div class="container-fluid">
