@@ -59,9 +59,9 @@ class BackModel extends UModel
     echo $nbrPage;
 
 
-    for($i=1; $i <= $nbrPage ; $i++) {
+    /**for($i=1; $i <= $nbrPage ; $i++) {
       echo '<a href= "'. echo $this->url('admin_back').'/'.$i.'"> '.$i.' </a>';
-    }
+    }**/
 
     $sql ="SELECT * FROM transaction
     LEFT JOIN users ON (transaction.id_user_seller = users.id AND transaction.id_user_buyer = users.id)

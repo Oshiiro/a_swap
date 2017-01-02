@@ -52,15 +52,12 @@ td {
   font-family: monospace;
   padding : 3px;
   font-size: 15px;
-  text-align: center;
 }
 
 th {
   font-family: monospace;
   font-size: 21px;
   margin-bottom: 8px;
-  text-align: center;
-  padding-bottom: 15px;
 }
 
 .container-fluid {
@@ -79,6 +76,7 @@ th {
 .hide2 {
   display: none;
 }
+
 
 /* -------------------------------------------------------------------------- */
 /* BARRE DE MENU; */
@@ -207,6 +205,14 @@ background-color: rgb(21, 138, 138);
   margin-bottom: 50px;
 }
 
+.block-message-1 {
+  height: 150px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
 .btn-circle {
   width: 30px;
   height: 30px;
@@ -221,7 +227,7 @@ background-color: rgb(21, 138, 138);
   height: 70px;
   font-size: 18px;
   line-height: 1.33;
-  margin-left: 1em;
+  margin-left: 5px;
 }
 
 .fa {
