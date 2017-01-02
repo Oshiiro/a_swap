@@ -59,13 +59,12 @@ class UserAdminController extends AppController
 
   public function back()
   {
+    $this->allowTo(array('admin'));
+
     $trans = $this->backmodel->GetTrans();
-
-
     $this->show('admin/back',
      array(
       'trans' => $trans,
-
     )
   );
   }
@@ -73,16 +72,14 @@ class UserAdminController extends AppController
 // Page des dernières transactions et liste des membres sur page association de l'admin
   public function adminAssos()
   {
-    if ($this->tools->isLogged() == true) {
-      $adherants = $this->model_user->affAdherants();
-      $trans = $this->model_user->GetItsTrans();
-      $this->show('association/assos', array(
-        'adherants' => $adherants,
-        'trans' => $trans
-      ));
-    } else {
-      $this->showForbidden(); // erreur 403
-    }
+    $this->allowTo(array('admin'));
+
+    $adherants = $this->model_user->affAdherants();
+    $trans = $this->model_user->GetItsTrans();
+    $this->show('association/assos', array(
+      'adherants' => $adherants,
+      'trans' => $trans
+    ));
 
   }
 

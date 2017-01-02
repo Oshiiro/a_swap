@@ -24,6 +24,8 @@ class SuperAdminController extends AppController
    */
   public function superAccueil()
   {
+    $this->allowTo(array('superadmin'));
+
     $nombreAsso = $this->model_stats->countNbAsso();
     $lastAsso = $this->model_stats->lastAsso();
     $nombreUsers = $this->model_stats->countNbUser();
@@ -34,8 +36,7 @@ class SuperAdminController extends AppController
     $most_active_asso = $this->model_stats->mostActiveAsso();
 
 
-    if ($this->tools->isLogged() && $_SESSION['user']['role']=='superadmin') {
-      // $this->allowTo('superadmin');
+
       $this->show('super_admin/back', array(
         'nombreAsso' => $nombreAsso,
         'nombreUsers' => $nombreUsers,
@@ -46,9 +47,6 @@ class SuperAdminController extends AppController
         'most_money_asso' => $most_money_asso,
         'most_active_asso' => $most_active_asso,
       ));
-		} else {
-			$this->showForbidden(); // erreur 403
-		}
   }
 
 }

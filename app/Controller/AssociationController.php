@@ -17,6 +17,14 @@ class AssociationController extends AppController
 		$this->show('association/assos');
 	}
 
-
+  /**
+   * Récupère les infos de l'assos par l'utilisateur
+   */
+  public function getAssosByUser()
+  {
+    $id_user = $_SESSION['user']['id'];
+    
+    $this->show('association/assos');
+  }
 
 }

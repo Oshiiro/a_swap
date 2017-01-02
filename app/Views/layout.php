@@ -20,7 +20,6 @@
 				        <span class="icon-bar"></span>
 				      </button>
 						</div>
-
 						<a href="<?php echo $this->url('default_home') ?>"><img src="<?php echo $this->assetUrl('img/logo.png') ?>" class="logo"></a>
 					</div>
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

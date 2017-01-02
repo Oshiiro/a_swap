@@ -8,6 +8,7 @@ use \Services\Tools\Tools;
 use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
 use \Model\AssosModel;
+use \Model\AvatarModel;
 use \Model\InvitationModel;
 use \W\Model\UsersModel;
 use \W\Security\AuthentificationModel;
@@ -20,6 +21,7 @@ class UserController extends AppController
 	private $valid;
 	private $model;
 	private $tools;
+	private $model_avatar;
 	private $model_intermediaire;
 	private $model_assos;
 	private $model_invitation;
@@ -31,6 +33,7 @@ class UserController extends AppController
 		$this->valid = new ValidationTools();
 		$this->tools = new Tools();
 		$this->model = new UsersModel();
+		$this->model_avatar = new AvatarModel();
 		$this->model_intermediaire = new IntermediaireModel();
 		$this->model_assos = new AssosModel();
 		$this->model_invitation = new InvitationModel();
@@ -250,6 +253,7 @@ class UserController extends AppController
       if(!empty($sessionActive)){
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
+					$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
           $this->redirectToRoute('users_accueil');
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
@@ -319,6 +323,11 @@ class UserController extends AppController
 			$error['antiBot'] = 'BIM';
 		}
 
+		// upload de la photo de profil
+		if($_FILES['foo']['error'] == 0) {
+			$error['img'] = $this->updateProfilImg();
+		}
+
 		// GG si il n'y a pas d'erreur
 		if ($this->valid->IsValid($error)){
 			$token = StringUtils::randomString(40);
@@ -331,12 +340,9 @@ class UserController extends AppController
 			);
 			$this->model->update($data, $id);
 			$this->authentificationmodel->refreshUser();
+			$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
 
 
-			// upload de la photo de profil
-			if($_FILES['foo']['error'] == 0) {
-				$this->updateProfilImg($_FILES);
-			}
 
 			$flash = new FlashBags();
 			$flash->setFlash('warning', 'Votre profil à bien été modifier');
@@ -348,7 +354,7 @@ class UserController extends AppController
 /**
   * Modifier photo de profil
   */
-	public function updateProfilImg() // noormalement c'est $_FILES, sauf que ça marche pas.
+	public function updateProfilImg()
 	{
 		// endroit ou on sauvegarde l'image
 		$storage = new \Upload\Storage\FileSystem('C:\xampp\htdocs\a_swap\public\assets\img\profil');
@@ -362,7 +368,7 @@ class UserController extends AppController
 		// MimeType List => http://www.iana.org/assignments/media-types/media-types.xhtml
 		$file->addValidations(array(
 		    // Ensure file is of type "image/png"
-		    new \Upload\Validation\Mimetype('image/png'),
+		    new \Upload\Validation\Mimetype(array('image/png', 'image/jpeg',  'image/jpg')),
 
 		    //You can also add multi mimetype validation
 		    //new \Upload\Validation\Mimetype(array('image/png', 'image/gif'))
@@ -385,9 +391,25 @@ class UserController extends AppController
 		try {
 		    // Success!
 		    $file->upload();
+
+				$dataPerso = array(
+					'id_user' 			=> $_SESSION['user']['id'],
+					'origin_name' 	=> 'chépacomenlavoir',
+					'name' 					=> $data['name'],
+					'created_at'	  => date('Y-m-d H:i:s'),
+					'link_absolute' => 'C:\xampp\htdocs\a_swap\public\assets\img\profil\\' . $data['name'],
+					'link_relative' => 'img\profil\\' . $data['name'],
+					'size' 					=> $data['size'],
+					'mimetype'		 	=> $data['mime'],
+					'extension' 		=> $data['extension'],
+					'active' 				=> 1,
+				);
+
+				$this->model_avatar->insert($dataPerso);
 		} catch (\Exception $e) {
 		    // Fail!
 		    $errors = $file->getErrors();
+				return "Erreur lors de l'upload de l'image";
 		}
 	}
 

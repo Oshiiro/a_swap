@@ -104,7 +104,6 @@ class UsersModel extends UModel
     return $query->fetchAll();
   }
 
-
 //Function d'affichage des différents membres de l'association
   public function affAdherants()
   {
@@ -128,8 +127,11 @@ class UsersModel extends UModel
     return $query->fetchAll();
   }
 
+  public function registerProfilImage($id_user)
+  {
 
 
 
+  }
 
 }

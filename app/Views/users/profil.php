@@ -2,9 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-<?php debug($_POST); ?>
-<?php debug($_FILES); ?>
-
 <div class="extansion-head">
 </div>
 <div class="container block-message">
@@ -22,6 +19,7 @@
             <div class="form-group">
               <label for="photodeprofil">Photo de Profil</label>
               <input type="file" name="foo">
+              <span class="errorMessage"><?php if(!empty($error['img'])) { echo($error['img']);} ?></span>
             </div>
             <div class="form-group">
               <label for="firstname">Prénom</label>
