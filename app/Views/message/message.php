@@ -34,6 +34,7 @@
       <h4>Envoyer un message</h4>
       <label for="">Destinataire</label>
       <select class="form-control" name="destinataire" >
+          <option></option>
         <?php foreach ($users as $user): ?>
           <option value="<?php echo $user['id'] ?>"><?php echo $user['username'];?></option>
         <?php endforeach; ?>

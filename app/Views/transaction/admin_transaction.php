@@ -2,7 +2,6 @@
 
 <?php $this->start('main_content') ?>
 
-	<!-- /////////////////////// FAIRE TRANSACTION ////////////////////////// -->
 		<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('admin_back_transac') ?>">
 			<h4>Faire une transaction</h4>
 			<label for="">Destinataire</label>

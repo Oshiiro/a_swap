@@ -24,10 +24,11 @@
 			      <ul class="nav navbar-nav navbar-right">
 			        <?php if(!empty($_SESSION['user']['role'])) { ?>
 			        <li><a href="<?php echo $this->url('message') ?>">Messagerie</a></li>
-			        <li><a href="<?php echo $this->url('users_accueil') ?>">Association</a></li>
+
 			          <?php if ($_SESSION['user']['role'] == 'admin') { ?>
+							<li><a href="<?php echo $this->url('admin_assos') ?>">Association</a></li>
 			        <li><a href="<?php echo $this->url('admin_back') ?>">Back Office</a></li>
-			          <?php } ?>
+			          <?php } else { ?> <li><a href="<?php echo $this->url('users_accueil') ?>">Association</a></li><?php }?>
 			        <?php } ?>
 			        <?php if(!empty($_SESSION['user'])) { ?>
 			        <li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a></li>

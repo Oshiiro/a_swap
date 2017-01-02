@@ -119,7 +119,7 @@ class UsersModel extends UModel
     $sql ="SELECT * FROM users
     LEFT JOIN intermediaire ON intermediaire.id_users = users.id
     WHERE intermediaire.id_assos = $result
-    AND users.id != $id 
+    AND users.id != $id
     ";
 
     $query = $this->dbh->prepare($sql);
@@ -127,6 +127,8 @@ class UsersModel extends UModel
     $query->execute();
     return $query->fetchAll();
   }
+
+
 
 
 

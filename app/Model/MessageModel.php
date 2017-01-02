@@ -3,6 +3,7 @@ namespace Model;
 
 use \W\Model\Model;
 use \Model\AssosModel;
+use \Services\Flash\FlashBags;
 
 
 /**
@@ -58,13 +59,12 @@ class MessageModel extends Model
     }
 
 
-
     // Insert envoi de message privé
     public function sendMessages()
     {
 
-    if(!empty($_POST['submit'])) { //pas utile avec les routes !!!
       if(!empty($_POST['destinataire'])) {
+        if(!empty($_POST['message'])) {
       $id_sender = $_SESSION['user']['id'];
       $id_receiver = trim(strip_tags($_POST['destinataire']));
       $message = trim(strip_tags($_POST['message']));
@@ -75,8 +75,20 @@ class MessageModel extends Model
             $insMessages->bindValue(':message', $message);
             $insMessages->execute();
 
+            $flash = new FlashBags();
+            $flash->setFlash('success', 'Votre message a bien été envoyé!');
+
+        }
+        else {
+          $flash = new FlashBags();
+          $flash->setFlash('danger', 'Veuillez indiquer un message!');
+        }
       }
-    }
+      else {
+        $flash = new FlashBags();
+        $flash->setFlash('danger', 'Veuillez indiquer un destinataire!');
+      }
+
   }
 
   // Fonction qui envoie une invitation en MP au user dont l'id est passé en argument a rejoindre l'asso.

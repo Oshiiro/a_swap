@@ -2,6 +2,7 @@
 namespace Model;
 
 use \W\Model\Model;
+use \Services\Flash\FlashBags;
 
 /**
  *
@@ -20,7 +21,7 @@ public function MakeTransactionAdmin() {
 
   if(!empty($_POST['submit'])) {
 
-    $id_assos = $_SESSION['intermediaire']['id_assos'];
+    // $id_assos = $_SESSION['intermediaire']['id_assos'];
 
     $id_buyer = $_SESSION['user']['id'];
     $id_seller = trim(strip_tags($_POST['destinataire']));
@@ -53,7 +54,7 @@ public function MakeTransactionAdmin() {
       $query->bindValue(':id_user_seller', $id_seller);
       $query->bindValue(':sum', $sum);
       $query->execute();
-      debug(($_POST['destinataire']));
+
 
     // Update du portfeuille -
       $sql = "UPDATE intermediaire SET wallet = wallet - :sum
@@ -64,16 +65,17 @@ public function MakeTransactionAdmin() {
       $query->bindValue(':sum', $sum);
       $query->execute();
 
-
-
+      $flash = new FlashBags();
+      $flash->setFlash('success', 'Transaction effectuée');
 
     } else
       {
-        echo 'Pas assez de sousou mon ti pere';
+        $flash = new FlashBags();
+        $flash->setFlash('danger', 'Vous n\'avez pas assez de crédit');
       }
-
     } else {
-      echo 'Veuillez indiquer un chiffre supérieur à 0.';
+      $flash = new FlashBags();
+      $flash->setFlash('danger', 'Veuillez indiquer un chiffre supérieur à 0.');
     }
   } // Submit
 } // MakeTransaction
@@ -90,7 +92,7 @@ public function MakeCreditAdmin() {
     $sum = trim(strip_tags($_POST['sum']));
     $description = trim(strip_tags($_POST['description']));
 
-
+      if ($_POST['sum'] > 0) {
 
     // Insersion dans transaction
       $sql ="INSERT INTO transaction (`id_user_buyer`, `id_user_seller`, `sum`, `description`, `created_at`) VALUES (:id_user_buyer, :id_user_seller, :sum, :description, NOW())";
@@ -109,9 +111,16 @@ public function MakeCreditAdmin() {
       $query->bindValue(':sum', $sum);
       $query->execute();
 
+      $flash = new FlashBags();
+      $flash->setFlash('success', 'Creditation effectuée');
 
+      } else {
+        $flash = new FlashBags();
+        $flash->setFlash('danger', 'Veuillez indiquer un chiffre supérieur à 0.');
+      }
   } else {
-    echo 'Veuillez indiquer un montant supérieur à 0.';
+    $flash = new FlashBags();
+    $flash->setFlash('danger', 'Veuillez indiquer un chiffre supérieur à 0.');
   }
 } // MakeTransaction
 
@@ -167,15 +176,16 @@ public function MakeCreditAdmin() {
         $query->bindValue(':sum', $sum);
         $query->execute();
 
-
-
+        $flash = new FlashBags();
+        $flash->setFlash('success', 'Transaction effectuée');
       } else
         {
-          echo 'Pas assez de sousou mon ti pere';
+          $flash = new FlashBags();
+          $flash->setFlash('danger', 'Vous n\'avez pas assez de crédit');
         }
-
       } else {
-        echo 'Veuillez indiquer un chiffre supérieur à 0.';
+        $flash = new FlashBags();
+        $flash->setFlash('danger', 'Veuillez indiquer un chiffre supérieur à 0.');
       }
     } // Submit
   } // MakeTransaction

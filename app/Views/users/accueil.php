@@ -2,6 +2,7 @@
 
 <?php $this->start('main_content') ?>
 
+<button><a href="<?php echo $this->url('users_accueil_transac') ?>">Faire une transaction</a></button>
 	<div class="panel panel-default container">
 		<div class="panel-heading">Transaction</div>
 		  <table class="col-md-offset-1 col-md-9">
