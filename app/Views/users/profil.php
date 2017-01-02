@@ -6,7 +6,7 @@
 </div>
 <div class="container block-message">
   <div class="row">
-    <div class="block col-xs-8 col-xs-push-1 col-lg-10">
+    <div class="block col-xs-10 col-xs-push-1 col-lg-10">
       <form method="POST" action="<?php echo $this->url('update_profil') ?>" enctype="multipart/form-data">
         <fieldset>
           <legend><h2>Profil</h2></legend>
