@@ -7,11 +7,11 @@
 		<div class="panel-heading">Transaction</div>
 		  <table class="col-md-offset-1 col-md-9">
 				<tr>
-					<th>Buyer</th>
-					<th>Seller</th>
-					<th>Sum</th>
+					<th>A envoyé</th>
+					<th>A reçu</th>
+					<th>Somme</th>
 					<th>Description</th>
-					<th>Created_at</th>
+					<th>Transféré le</th>
 				</tr>
 				<?php foreach ($trans as $tran){ ?>
 				<tr>

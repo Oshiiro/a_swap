@@ -79,6 +79,49 @@ class AssosModel extends UModel
     return $token['id'];
   }
 
+// Modification de l'association dans le back
+public function ModifAssos()
+{
+
+  $id = $_SESSION['user']['id'];
+  // Récuperer l'id de l'assos en cours
+  $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+  $query = $this->dbh->prepare($sql);
+  $query->bindValue(':id', $id);
+  $query->execute();
+  $id_asso = $query->fetch();
+
+
+  // Selectionner infos de l'asso
+  $sql = "SELECT * FROM assos
+  WHERE id = :id_asso";
+  $query = $this->dbh->prepare($sql);
+  $query->bindValue(':id_asso', $id_asso['id_assos']);
+  $query->execute();
+  $assos = $query->fetch();
+  return $assos;
+}
+
+public function nameAssosExists($name)
+{
+
+    $app = getApp();
+
+    $sql = 'SELECT ' . 'name' . ' FROM ' . $this->table .
+           ' WHERE ' . 'name' . ' = :name LIMIT 1';
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':name', $name);
+    if($sth->execute()){
+        $foundUser = $sth->fetch();
+        if($foundUser){
+            return true;
+        }
+    }
+
+    return false;
+}
 
 
 

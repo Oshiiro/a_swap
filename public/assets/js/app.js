@@ -3,6 +3,10 @@
     $( ".formulaire" ).slideToggle( "slow");
   });
 
+  $( ".MessagesEnvoyes" ).click(function() {
+    $( ".envoyes" ).slideToggle( "slow");
+  });
+
   jQuery(function($) {
     //  Au focus
     $('.field-input').focus(function(){

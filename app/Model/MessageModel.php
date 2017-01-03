@@ -19,7 +19,7 @@ class MessageModel extends Model
     }
 
 
-    // Affiche les messages envoyer, et recu par la personne connecté
+    // Affiche les messages recu par la personne connecté
     public function AfficherMessages()
     {
       $id = $_SESSION['user']['id'];
@@ -31,7 +31,19 @@ class MessageModel extends Model
       $affMessages->bindValue(':id', $id);
       $affMessages->execute();
       return $affMessages->fetchAll();
+    }
 
+    public function AfficherMessagesEnvoyes()
+    {
+      $id = $_SESSION['user']['id'];
+
+      $sql = "SELECT pm.created_at, pm.content, u.username FROM private_message AS pm
+              LEFT JOIN users AS u ON pm.id_user_receiver = u.id
+              WHERE pm.id_user_sender = :id AND pm.active = 1";
+      $affMessages = $this->dbh->prepare($sql);
+      $affMessages->bindValue(':id', $id);
+      $affMessages->execute();
+      return $affMessages->fetchAll();
     }
 
     // Récuperer la liste des adhérants de l'assos, hormis lui même.

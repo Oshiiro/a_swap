@@ -34,6 +34,8 @@ class AssociationAdminController extends AppController
 		$this->intermediaire = new IntermediaireModel();
 		$this->backmodel = new BackModel(); //
 		$this->invitation = new InvitationModel();
+
+
 	}
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
@@ -54,8 +56,83 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssosModif()
 	{
-		$this->show('association/modifassos_admin_back');
+		$association = $this->assos->ModifAssos();
+		$this->show('association/modifassos_admin_back', array('association' => $association));
 	}
+
+	/**
+	 *
+	 */
+	public function updateaction()
+	{
+		// protection XSS
+		$name   = trim(strip_tags($_POST['name']));
+		$description   = trim(strip_tags($_POST['description']));
+		$money_name   = trim(strip_tags($_POST['money_name']));
+		$rules   = trim(strip_tags($_POST['rules']));
+		$id = 5;
+
+		// verif de pseudo
+		$exist = $this->assos->nameAssosExists($name,'name', 3, 50);
+
+		// si le pseudo est le même que celui de la session, alors c'est good
+		if($name == $_SESSION['user']['nom_assos'])
+		{
+			$exist = false;
+		}
+
+		// si l'utilisateur tente de prendre un pseudo deja existant, on le bloque mamene
+		if($exist == true)
+		{
+			$error['name'] = 'Ce nom est déjà pris';
+		} else {
+			$error['name']   = $this->valid->textValid($name,'name', 3, 50);
+		}
+
+		// verif de name
+		if(empty($_POST['name'])){
+			$error['name'] = 'Veuillez renseigner un name pour votre association';
+		} else {
+			$error['name']   = $this->valid->textValid($name,'name', 3, 50);
+		}
+
+		// verif de description
+		if(empty($_POST['description'])){
+			$error['description'] = 'Veuillez renseigner une description';
+		} else {
+			$error['description']   = $this->valid->textValid($description,'description', 3, 150);
+		}
+
+		// verif de la monnaie de l'assos
+		if(empty($_POST['money_name'])){
+			$error['money_name'] = 'Veuillez renseigner un nom pour votre monnaie';
+		} else {
+			$error['money_name']   = $this->valid->textValid($money_name,'money_name', 3, 150);
+		}
+
+		// verif des régles
+		if(empty($_POST['rules'])){
+			$error['rules'] = 'Veuillez renseigner des règles à suivre pour vos adhérants';
+		} else {
+			$error['rules']   = $this->valid->textValid($rules,'rules', 3, 150);
+		}
+
+		// GG si il n'y a pas d'erreur
+		if ($this->valid->IsValid($error)){
+			$token = StringUtils::randomString(40);
+			$data = array(
+				'name' => $name,
+				'description' => $description,
+				'money_name' => $money_name,
+				'rules' => $rules,
+
+			);
+			$this->model->update($data, $id);
+		}
+    	$this->show('association/modifassos_admin_back');
+			// $this->redirectToRoute('admin_association_update_form');
+	}
+
 
 
 // ===================================================================================================================
@@ -69,29 +146,9 @@ class AssociationAdminController extends AppController
 		$this->show('association/back_assos');
 	}
 
-  /**
-	 * Page d'inscription Admin traitement
-	 */
-	public function backAssosModify()
-	{
-		$this->show('association/modifassos_admin_back');
-	}
 
-  /**
-	 *
-	 */
-  public function updateform($id)
-  {
-		$this->show('association/modifassos_admin_back');
-  }
 
-	/**
-	 *
-	 */
-  public function updateaction($id)
-  {
-		$this->show('association/modifassos_admin_back');
-  }
+
 
 	/**
 	* Invitation d'un membre a rejoindre l'assocation

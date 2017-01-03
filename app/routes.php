@@ -60,8 +60,6 @@
 
 		// Admin Association Back
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
-		['GET', '/admin/back/association/modification', 'AssociationAdmin#backAssosModif', 'admin_back_modifassos'],
-		['POST', '/admin/back/association/modification', 'AssociationAdmin#backAssosTryModif', 'admin_back_assos_trymodif'],
 		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Page accueil users connecter
@@ -70,8 +68,8 @@
 		['POST', '/transaction', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
 
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)
-		['GET', '/admin/association/update/[i:id]', 'AssociationAdmin#updateform', 'admin_association_update_form'],
-		['POST', '/admin/association/update/[i:id]', 'AssociationAdmin#updateaction', 'admin_association_update_action'],
+		['GET', '/admin/back/association/modification', 'AssociationAdmin#backAssosModif', 'admin_association_update_form'],
+		['POST', '/admin/back/association/modification', 'AssociationAdmin#updateaction', 'admin_association_update_action'],
 
 		// Formulaire pour inviter un nouveau membre
 		['GET', '/admin/back/invite', 'UserAdmin#back', 'admin_association_invite'],
