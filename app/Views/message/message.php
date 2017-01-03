@@ -30,10 +30,11 @@
               <tr>
                 <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($message['created_at'])).
                                ' à ' .date('H\hi', strtotime($message['created_at']));?></td>
+                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
               </tr>
-            <tr>
-              <td><?php echo $message['content'];?></td>
-            </tr>
+              <tr>
+                <td><?php echo $message['content'];?></td>
+              </tr>
           <?php } } else {
             echo '<div class="block-message-1">Vous n\'avez aucun message<div>';
           }?>

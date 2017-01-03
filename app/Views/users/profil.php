@@ -21,9 +21,9 @@
               <input type="file" name="foo">
               <span class="errorMessage"><?php if(!empty($error['img'])) { echo($error['img']);} ?></span>
             </div>
-            <div class="form-group">
-              <label for="firstname">Prénom</label>
-              <input type="text" class="form-control" name="firstname" placeholder="Nom" value="<?php if(!empty($_POST['firstname'])) {echo $_POST['firstname'];}else{echo $_SESSION['user']['firstname'];} ?>">
+            <div class="form-group field">
+              <label for="firstname" class="field-label">nom</label>
+              <input type="text" class="field-input" name="firstname" value="<?php if(!empty($_POST['firstname'])) {echo $_POST['firstname'];}else{echo $_SESSION['user']['firstname'];} ?>">
               <span class="errorMessage"><?php if(!empty($error['firstname'])) { echo($error['firstname']);} ?></span>
             </div>
             <div class="form-group">
