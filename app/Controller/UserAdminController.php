@@ -68,19 +68,6 @@ class UserAdminController extends AppController
   );
   }
 
-// Page des dernières transactions et liste des membres sur page association de l'admin
-  public function adminAssos()
-  {
-    $this->allowTo(array('admin'));
-
-    $adherants = $this->backmodel->affAdherants();
-    $trans = $this->backmodel->GetTrans();
-    $this->show('association/assos', array(
-      'adherants' => $adherants,
-      'trans' => $trans
-    ));
-
-  }
 
 // ===================================================================================================================
 // 																						TRAITEMENT DES FORMULAIRES

@@ -41,7 +41,7 @@
 		['POST', '/connexion', 'User#tryLogin', 'try_login'],
 
 		// Association
-		['GET', '/association', 'Association#assos', 'association'],
+		['GET', '/association', 'User#Accueil', 'association'], // A faire page detransaction
 
 		// Messagerie
 		['GET', '/messagerie', 'Message#message', 'message'],
@@ -50,7 +50,6 @@
 		['POST', '/messagerie/confirmation', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
 
 		// Admin Back
-		['GET', '/admin/association', 'UserAdmin#adminAssos', 'admin_assos'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
 		['GET', '/admin/back', 'UserAdmin#back', 'admin_back'],
 		['GET', '/admin/transaction/', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'], //transaction de l'admin
 		['POST', '/admin/transaction', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
@@ -60,10 +59,10 @@
 
 		// Admin Association Back
 		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
+
 		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Page accueil users connecter
-		['GET', '/accueil', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
 		['GET', '/transaction', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
 		['POST', '/transaction', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
 
