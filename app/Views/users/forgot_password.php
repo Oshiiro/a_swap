@@ -8,7 +8,7 @@
 				<legend><h2>Mot de passe oublié ?</h2></legend>
 
 					<div class="form-group">
-						<input type="text" class="form-control" name="email" placeholder="Merci d'indiquer votre adresse mail" value="<?php if(!empty($_POST['email'])) {echo $_POST['email'];} ?>">
+						<input type="email" class="form-control" name="email" placeholder="Merci d'indiquer votre adresse mail" value="<?php if(!empty($_POST['email'])) {echo $_POST['email'];} ?>">
 						<span class="errorMessage"><?php if(!empty($error)) { echo($error['email']);} ?></span>
 					</div>
 
