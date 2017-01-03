@@ -99,12 +99,14 @@ class UserController extends AppController
 	}
 
 	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
-	public function usersAccueil()
+	public function usersAccueil($slug)
 	{
 		if ($this->tools->isLogged() == true) {
-			$adherants = $this->backmodel->affAdherants();
+			$slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+			$adherants = $this->backmodel->affAdherants($slug);
 			$trans = $this->ourumodel->GetItsTrans();
 			$this->show('users/accueil', array(
+				'slug' => $slug,
 				'adherants' => $adherants,
 				'trans' => $trans
 			));

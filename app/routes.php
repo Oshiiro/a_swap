@@ -40,8 +40,8 @@
 		['GET', '/connexion', 'User#login', 'login'],
 		['POST', '/connexion', 'User#tryLogin', 'try_login'],
 
-		// Association
-		['GET', '/association', 'Association#assos', 'association'],
+
+
 
 		// Messagerie
 		['GET', '/messagerie', 'Message#message', 'message'],
@@ -49,9 +49,11 @@
 		['POST', '/messagerie', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
 		['POST', '/messagerie/confirmation', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
 
+
 		// Admin Back
-		['GET', '/admin/association', 'UserAdmin#adminAssos', 'admin_assos'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
-		['GET', '/admin/back', 'UserAdmin#back', 'admin_back'],
+/* OK */	['GET', '/admin/association/[:slug]', 'UserAdmin#adminAssos', 'admin_assos'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
+/* OK */	['GET', '/admin/back/[:slug]', 'UserAdmin#back', 'admin_back'],
+		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		['GET', '/admin/transaction/', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'], //transaction de l'admin
 		['POST', '/admin/transaction', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
 		['GET', '/admin/deleteuser/[i:id]', 'AssociationAdmin#deleteUser', 'admin_back_delete'], // Delete user
@@ -64,8 +66,8 @@
 		['POST', '/admin/back/association/modification', 'AssociationAdmin#backAssosTryModif', 'admin_back_assos_trymodif'],
 		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
-		// Page accueil users connecter
-		['GET', '/accueil', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
+		// Page accueil users connecté
+		['GET', '/accueil/[:slug]', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
 		['GET', '/transaction', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
 		['POST', '/transaction', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
 

@@ -19,7 +19,7 @@ class BackModel extends UModel
 
 
 
-  public function GetTrans()
+  public function GetTrans($slug)
   {
 // ----------------------- PAGINATION -----------------------------
     $sql ="SELECT COUNT(id) as transNbr FROM transaction
@@ -44,9 +44,9 @@ class BackModel extends UModel
     echo $nbrPage;
 
     $id = $_SESSION['user']['id'];
-    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+    $sql = "SELECT id FROM assos WHERE slug = :slug";
     $query = $this->dbh->prepare($sql);
-    $query->bindValue(':id', $id);
+    $query->bindValue(':slug', $slug);
     $query->execute();
     $result = $query->fetch();
 
@@ -59,7 +59,7 @@ class BackModel extends UModel
     ";
 
     $query = $this->dbh->prepare($sql);
-    $query->bindValue(':result', $result['id_assos']);
+    $query->bindValue(':result', $result['id']);
     $query->execute();
     return $query->fetchAll();
 
@@ -91,14 +91,14 @@ class BackModel extends UModel
     }
 
 // Afficher liste des adhérerants sauf l'admin
-  public function affAdherants()
+  public function affAdherants($slug)
   {
 // Recuperation de l'idée de l'assos via l'id user de la session
     $id = $_SESSION['user']['id'];
 
-    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+    $sql = "SELECT id FROM assos WHERE slug = :slug";
     $query = $this->dbh->prepare($sql);
-    $query->bindValue(':id', $id);
+    $query->bindValue(':slug', $slug);
     $query->execute();
     $result = $query->fetch();
 
@@ -106,7 +106,7 @@ class BackModel extends UModel
     $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
     WHERE intermediaire.id_assos = :result AND users.id != :id";
     $query = $this->dbh->prepare($sql);
-    $query->bindValue(':result', $result['id_assos']);
+    $query->bindValue(':result', $result['id']);
     $query->bindValue(':id', $id);
     $query->execute();
     return $query->fetchAll();

@@ -1,8 +1,8 @@
-<?php $this->layout('layout', ['title' => 'Association']) ?>
+<?php $this->layout('layout', ['title' => 'Association', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 	<h2>Votre association</h2>
-	
+
 	<button class='btn btn-default'><a href="<?php echo $this->url('admin_back_transac'); ?>">Faire une transaction</a></button>
 
 

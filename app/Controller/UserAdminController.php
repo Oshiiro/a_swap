@@ -57,25 +57,30 @@ class UserAdminController extends AppController
    * Page Back de l'admin
    */
 
-  public function back()
+  public function back($slug)
   {
     $this->allowTo(array('admin'));
-    $trans = $this->backmodel->GetTrans();
+
+    $slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+    $trans = $this->backmodel->GetTrans($slug);
     $this->show('admin/back',
      array(
+      'slug' => $slug,
       'trans' => $trans,
     )
   );
   }
 
-// Page des dernières transactions et liste des membres sur page association de l'admin
+  // Page des dernières transactions et liste des membres sur page association de l'admin
   public function adminAssos()
   {
     $this->allowTo(array('admin'));
 
-    $adherants = $this->backmodel->affAdherants();
-    $trans = $this->backmodel->GetTrans();
+    $slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+    $adherants = $this->backmodel->affAdherants($slug);
+    $trans = $this->backmodel->GetTrans($slug);
     $this->show('association/assos', array(
+      'slug' => $slug,
       'adherants' => $adherants,
       'trans' => $trans
     ));

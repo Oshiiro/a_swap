@@ -65,6 +65,22 @@ class AssosModel extends UModel
     return $name['name'];
   }
 
+  public function getSlugByIdAdmin($id_admin)
+  {
+    $app = getApp();
+    $sql = "SELECT a.slug FROM assos AS a
+            INNER JOIN intermediaire as i ON a.id = i.id_assos
+            INNER JOIN users AS u ON :id_admin = i.id_users";
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':id_admin', $id_admin);
+    $sth->execute();
+    $slug = $sth->fetch();
+
+    return $slug['slug'];
+  }
+
   public function getIdByToken($token_asso)
   {
     $app = getApp();
