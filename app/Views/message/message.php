@@ -27,13 +27,11 @@
         <?php if(!empty($messages)) {
           foreach ($messages as $message) { ?>
               <th><?php echo $message['username'];?></th>
-            <tr>
-              <td><?php echo $message['content'];?></td>
-            </tr>
-            <tr>
               <td><?php echo $message['created_at'];?></td>
-              <td><?php echo $message['read_at'];?></td>
-            </tr>
+              <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+              <tr>
+                <td><?php echo $message['content'];?></td>
+              </tr>
           <?php } } else {
             echo '<div class="block-message-1">Vous n\'avez aucun message<div>';
           }?>
