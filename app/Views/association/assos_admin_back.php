@@ -14,7 +14,7 @@
 <!-- A FAIRE :  JS qui affiche le form ci-dessous lorqu'on clique sur le button si dessus -->
 <!-- NE FONCTIONNE PAS  -->
 		<form class="formInvit" action="<?php echo $this->url('admin_association_invite'); ?>" method="POST">
-			<input type="text" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
+			<input type="email" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
 			<input type="submit" value="Inviter">
 		</form>
 		<br><br><br>
@@ -35,8 +35,8 @@
 					<td><?php echo $adherant['username']; ?></td>
 					<td><?php echo $adherant['email']; ?></td>
 					<td><?php echo $adherant['wallet']; ?></td>
-					<td><a href="<?php echo $this->url('admin_back_credite', array('id' => $adherant['id_users'])) ?>"><i class="fa fa-money fa-2x" aria-hidden="true"> </i></a></td>
-					<td><a href="<?php echo $this->url('admin_back_delete', array('id' => $adherant['id_users'])) ; ?>"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
+					<td><a href="<?php echo $this->url('admin_back_credite', array('id' => $adherant['id_users'])) ?>" title="Créditer le portefeuille"><i class="fa fa-money fa-2x" aria-hidden="true"> </i></a></td>
+					<td><a href="<?php echo $this->url('admin_back_delete', array('id' => $adherant['id_users'])) ; ?>" title="Exclure ce membre"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
 				</tr>
 			<?php } ?>
 			</table>

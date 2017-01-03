@@ -62,15 +62,41 @@ class IntermediaireModel extends UModel
     }
   }
 
-public function DeleteIntermediaireUser($id_user) {
+  public function DeleteIntermediaireUser($id_user)
+  {
+    $sql = "DELETE FROM intermediaire WHERE id_users = $id_user";
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->execute();
+  }
 
-  $sql = "DELETE FROM intermediaire WHERE id_users = $id_user";
-  $dbh = ConnectionModel::getDbh();
-  $sth = $dbh->prepare($sql);
-  $sth->execute();
+  // Fonction qui verifie que le user dont l'id est passé en second argument fait bien parti de
+  // l'asso de l'admin dont l'id est passé en premier argument.
+  public function isInMyTeam($id_admin, $id_user)
+  {
+    $info = "SELECT id_assos FROM intermediaire WHERE id_users = :id_admin AND role = 'admin'";
 
-}
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($info);
+    $sth->bindValue(':id_admin', $id_admin);
+    $sth->execute();
+    $id_asso_admin = $sth->fetch();
 
+    $info = "SELECT id_assos FROM intermediaire WHERE id_users = :id_user AND role = 'user'";
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($info);
+    $sth->bindValue(':id_user', $id_user);
+    $sth->execute();
+    $id_asso_user = $sth->fetch();
+
+    if($id_asso_admin == $id_asso_user){
+      return true;
+    } else {
+      return false;
+    }
+
+  }
 
 }
 ?>

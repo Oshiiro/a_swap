@@ -28,7 +28,7 @@
               <tr>
                 <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($message['created_at'])).
                                ' à ' .date('H\hi', strtotime($message['created_at']));?></td>
-                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                <td><a href="#" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
               </tr>
               <tr>
                 <td><?php echo $message['content'];?></td>

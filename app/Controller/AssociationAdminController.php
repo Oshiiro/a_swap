@@ -193,16 +193,26 @@ class AssociationAdminController extends AppController
 	}
 
 
-//Supprimer un membre de l'association (le compte user existe toujours, mais il ne figure
-// plus dans la table intermediaire.)
-public function deleteUser($id_user) {
-	$supprimerIntermediaire = $this->intermediaire->DeleteIntermediaireUser($id_user);
-	// doit-on faire apparaitre un message de confirmation ?
-	$flash = new FlashBags();
-	$flash->setFlash('warning', 'Cet utilisateur ne fait désormais plus parti de votre association.');
-	$this->redirectToRoute('admin_back_assos');
+	//Supprimer un membre de l'association (le compte user existe toujours, mais il ne figure
+	// plus dans la table intermediaire.)
+	public function deleteUser($id_user) {
+		$this->allowTo(array('admin'));
 
-}
+		$id_logged = $_SESSION['user']['id'];
+
+		// Verifier que le user qu'on est en train de delete fait bien parti de l'asso dont je suis admin
+		$isInMyTeam = $this->intermediaire->isInMyteam($id_logged, $id_user);
+
+		if($isInMyTeam == true) {
+			$supprimerIntermediaire = $this->intermediaire->DeleteIntermediaireUser($id_user);
+			// doit-on faire apparaitre un message de confirmation ?
+			$flash = new FlashBags();
+			$flash->setFlash('warning', 'Cet utilisateur ne fait désormais plus parti de votre association.');
+			$this->redirectToRoute('admin_back_assos');
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
+	}
 
 
 
