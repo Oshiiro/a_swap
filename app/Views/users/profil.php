@@ -19,18 +19,18 @@
               <span class="errorMessage"><?php if(!empty($error['img'])) { echo($error['img']);} ?></span>
             </div>
             <div class="form-group field">
-              <label for="firstname" class="field-label">nom</label>
+              <label for="firstname" class="field-label">Prénom</label>
               <input type="text" class="field-input" name="firstname" value="<?php if(!empty($_POST['firstname'])) {echo $_POST['firstname'];}else{echo $_SESSION['user']['firstname'];} ?>">
               <span class="errorMessage"><?php if(!empty($error['firstname'])) { echo($error['firstname']);} ?></span>
             </div>
-            <div class="form-group">
-              <label for="lastname">Nom</label>
-              <input type="text" class="form-control" name="lastname" placeholder="Prenom" value="<?php if(!empty($_POST['lastname'])) {echo $_POST['lastname'];}else{echo $_SESSION['user']['lastname'];} ?>">
+            <div class="form-group field">
+              <label for="lastname" class="field-label">Nom</label>
+              <input type="text" class="field-input" name="lastname" value="<?php if(!empty($_POST['lastname'])) {echo $_POST['lastname'];}else{echo $_SESSION['user']['lastname'];} ?>">
               <span class="errorMessage"><?php if(!empty($error['lastname'])) { echo($error['lastname']);} ?></span>
             </div>
-            <div class="form-group">
-              <label for="lastname">Pseudo</label>
-              <input type="text" class="form-control" name="username" placeholder="Pseudo" value="<?php if(!empty($_POST['username'])) {echo $_POST['username'];}else{echo $_SESSION['user']['username'];} ?>">
+            <div class="field">
+              <label for="lastname" class="field-label">Pseudo</label>
+              <input type="text" class="field-input" name="username" value="<?php if(!empty($_POST['username'])) {echo $_POST['username'];}else{echo $_SESSION['user']['username'];} ?>">
               <span class="errorMessage"><?php if(!empty($error['username'])) { echo($error['username']);} ?></span>
             </div>
             <br>

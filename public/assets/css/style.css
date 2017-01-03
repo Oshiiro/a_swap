@@ -27,7 +27,6 @@ h2 {
   font-family: monospace;
   color : darkgrey;
   text-align: center;
-  margin-top: 4em;
   margin-bottom: 2em;
 }
 
@@ -99,6 +98,8 @@ th {
 
 /* -------------------------------------------------------------------------- */
 /* FORM; */
+
+
 
 .field {
   position: relative;
@@ -226,6 +227,10 @@ margin-left: auto;
 margin-right: auto;
 }
 
+.accroche {
+margin-top: 4em; 
+}
+
 .check {
 float: right;
 margin-right: 10px;
@@ -310,6 +315,7 @@ background-color: rgb(21, 138, 138);
   border-radius: 50%;
   box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
 }
+
 .btn-circle.btn-lg {
   width: 70px;
   height: 70px;
@@ -329,17 +335,17 @@ font-size: 2em;
 
 /* INSCRIPTIONS et CONNEXION*/
 .formulaire h2{
-color :  rgb(100, 178, 137);
-background-color: #FFFFE4;
-border-radius: 20px;
+  color :  rgb(100, 178, 137);
+  background-color: #FFFFE4;
+  border-radius: 20px;
 }
 
 .formulaire a {
-color : rgb(21, 138, 138);
+  color : rgb(21, 138, 138);
 }
 
  .acceptCGU {
-color : rgb(21, 138, 138);
+  color : rgb(21, 138, 138);
 }
 
 /*-------------------------------------------------------------------------*/
@@ -364,7 +370,7 @@ color : rgb(21, 138, 138);
 }
 
 .lienFooter a {
-color : white;
+  color : white;
 }
 .errorMessage {
   color: red;
