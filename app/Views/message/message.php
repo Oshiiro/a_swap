@@ -21,8 +21,10 @@
         <br><br>
         <legend></legend>
       </form>
-      <table>
-        <?php if(!empty($messages)) {
+
+<!-- Messages reçus -->
+        <table>
+          <?php if(!empty($messages)) {
           foreach ($messages as $message) { ?>
               <th>Message de :<?php echo ' ' .$message['username'];?></th>
               <tr>
@@ -34,9 +36,29 @@
                 <td><?php echo $message['content'];?></td>
               </tr>
           <?php } } else {
-            echo '<div class="block-message-1">Vous n\'avez aucun message<div>';
+            echo '<div class="block-message-1">Vous n\'avez aucun message</div>';
           }?>
+        </table>
+
+<!-- Messages envoyés -->
+<button type ="button" title="Afficher message envoyé" class="btn btn-primary MessagesEnvoyes btn-lg" type="button">Messages envoyés</button>
+        <table class="envoyes"style="display : none;">
+          <br>
+          <?php if(!empty($messagesenvoyes)) {
+            foreach ($messagesenvoyes as $messagesenvoye) { ?>
+              <th>Envoyé à :<?php echo ' ' .$messagesenvoye['username'];?></th>
+              <tr>
+                <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($messagesenvoye['created_at'])).
+                               ' à ' .date('H\hi', strtotime($messagesenvoye['created_at']));?></td>
+                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+              </tr>
+              <tr>
+                <td><?php echo $messagesenvoye['content'];?></td>
+              </tr>
+          <?php  }
+        } else { echo 'Vous n\'avez aucun message envoyé.'; }?>
       </table>
+
     </div>
   </div>
 </div>

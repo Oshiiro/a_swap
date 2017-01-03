@@ -28,7 +28,7 @@
 							<li><a href="<?php echo $this->url('admin_back_assos') ?>">Gestion</a></li>
 							<li><a href="<?php echo $this->url('users_accueil') ?>">Front Office</a></li>
 							<li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a><li>
-							<li><a href="<?php echo $this->url('admin_back_modifassos') ?>"><?php echo $_SESSION['user']['nom_assos'] ?></a></li> <!-- possibilité de modifier l'assos -->
+							<li><a href="<?php echo $this->url('admin_association_update_form') ?>"><?php echo $_SESSION['user']['nom_assos'] ?></a></li> <!-- possibilité de modifier l'assos -->
 						</ul>
 					</div>
 				</div>

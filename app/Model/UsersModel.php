@@ -94,23 +94,14 @@ class UsersModel extends UModel
 
     $id = $_SESSION['user']['id'];
 
-    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
-    $query = $this->dbh->prepare($sql);
-    $query->bindValue(':id', $id);
-    $query->execute();
-    $result = $query->fetch();
-
-  
-
     $sql = "SELECT assos.name,transaction.created_at, transaction.sum,transaction.description ,userbuyer.username as username_buyer,userseller.username as username_seller FROM transaction
             LEFT JOIN users as userbuyer ON transaction.id_user_buyer = userbuyer.id
             LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
             LEFT JOIN assos ON transaction.id_asso = assos.id
-            WHERE transaction.id_asso = :result
+            WHERE transaction.id_user_seller = :id OR transaction.id_user_buyer = :id
     ";
-
     $query = $this->dbh->prepare($sql);
-    $query->bindValue(':result', $result['id_assos']);
+    $query->bindValue(':id', $id);
     $query->execute();
     return $query->fetchAll();
 

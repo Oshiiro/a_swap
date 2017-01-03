@@ -23,10 +23,13 @@ $showMessages = new MessageModel();
   // debug($articles);
 
   $messages = $showMessages->AfficherMessages();
+  $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes();
+  debug($messagesenvoyes);
 
   $this->show('message/message', array(
     'users' => $users,
     'messages' => $messages,
+    'messagesenvoyes' => $messagesenvoyes
   ));
 }
 /**
