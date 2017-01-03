@@ -51,8 +51,8 @@
 
 
 		// Admin Back
-/* OK */	['GET', '/admin/association/[:slug]', 'UserAdmin#adminAssos', 'admin_assos'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
-/* OK */	['GET', '/admin/back/[:slug]', 'UserAdmin#back', 'admin_back'],
+		['GET', '/admin/association/[:slug]', 'UserAdmin#adminAssos', 'admin_assos'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
+		['GET', '/admin/back/[:slug]', 'UserAdmin#back', 'admin_back'],
 		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		['GET', '/admin/transaction/', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'], //transaction de l'admin
 		['POST', '/admin/transaction', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
@@ -61,8 +61,8 @@
 		['POST', '/admin/crediter/', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
 
 		// Admin Association Back
-		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
-		['GET', '/admin/back/association/modification', 'AssociationAdmin#backAssosModif', 'admin_back_modifassos'],
+		['GET', '/admin/back/association/[:slug]', 'AssociationAdmin#backAssos', 'admin_back_assos'],
+		['GET', '/admin/back/association/modification/[:slug]', 'AssociationAdmin#backAssosModif', 'admin_back_modifassos'],
 		['POST', '/admin/back/association/modification', 'AssociationAdmin#backAssosTryModif', 'admin_back_assos_trymodif'],
 		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
