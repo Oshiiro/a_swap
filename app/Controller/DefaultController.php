@@ -28,7 +28,7 @@ class DefaultController extends AppController
 	{
 		if ($this->tools->isLogged() == true){
 			$slug = new AssosModel();
-			$slug = $slug->getSlugByIdAdmin($_SESSION['user']['id']);
+			$slug = $slug->getSlugByIdUser($_SESSION['user']['id']);
 			$this->show('default/home', array(
 				'slug' => $slug,
 			));

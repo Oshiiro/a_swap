@@ -31,7 +31,7 @@ public function message()
     $showMessages = new MessageModel();
     $users = $showMessages->ListAdherantsMessage();
     // debug($articles);
-    $slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+    $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
     $messages = $showMessages->AfficherMessages();
 
     $this->show('message/message', array(

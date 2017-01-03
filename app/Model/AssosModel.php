@@ -30,6 +30,23 @@ class AssosModel extends UModel
 	    return false;
 	}
 
+  public function slugExist($slug_asso)
+  {
+    $app = getApp();
+    $sql = 'SELECT slug FROM assos WHERE slug = :slug_asso LIMIT 1';
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':slug_asso', $slug_asso);
+    if($sth->execute()){
+        $foundAsso = $sth->fetch();
+        if($foundAsso){
+            return true;
+        }
+    }
+    return false;
+  }
+
   public function getToken($id_admin) //renommer en getTokenByIdAdmin ??
   {
     $app = getApp();
@@ -65,16 +82,16 @@ class AssosModel extends UModel
     return $name['name'];
   }
 
-  public function getSlugByIdAdmin($id_admin)
+  public function getSlugByIdUser($id)
   {
     $app = getApp();
     $sql = "SELECT a.slug FROM assos AS a
             INNER JOIN intermediaire as i ON a.id = i.id_assos
-            INNER JOIN users AS u ON :id_admin = i.id_users";
+            INNER JOIN users AS u ON :id = i.id_users";
 
     $dbh = ConnectionModel::getDbh();
     $sth = $dbh->prepare($sql);
-    $sth->bindValue(':id_admin', $id_admin);
+    $sth->bindValue(':id', $id);
     $sth->execute();
     $slug = $sth->fetch();
 

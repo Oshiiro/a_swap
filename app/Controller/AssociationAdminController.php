@@ -43,7 +43,7 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssos($slug)
 	{
-		$slug = $this->assos->getSlugByIdAdmin($_SESSION['user']['id']);
+		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
 		$adherants = $this->backmodel->affAllAdherants();
 		$this->show('association/assos_admin_back', array(
 			'slug' => $slug,
@@ -58,7 +58,7 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssosModif()
 	{
-		$slug = $this->assos->getSlugByIdAdmin($_SESSION['user']['id']);
+		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
 		$this->show('association/modifassos_admin_back', array(
 			'slug' => $slug,
 		));

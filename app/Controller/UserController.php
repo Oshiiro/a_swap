@@ -95,7 +95,7 @@ class UserController extends AppController
 	public function profil()
 	{
 		$this->allowTo(array('user','admin'));
-		$slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+		$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 		$this->show('users/profil', array(
 			'slug' => $slug,
 		));
@@ -105,7 +105,7 @@ class UserController extends AppController
 	public function usersAccueil($slug)
 	{
 		if ($this->tools->isLogged() == true) {
-			$slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+			$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 			$adherants = $this->backmodel->affAdherants($slug);
 			$trans = $this->ourumodel->GetItsTrans();
 			$this->show('users/accueil', array(
@@ -261,7 +261,7 @@ class UserController extends AppController
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
 					$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
-					$slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+					$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
           $this->redirectToRoute('users_accueil', array(
 						'slug' => $slug,
 					));
