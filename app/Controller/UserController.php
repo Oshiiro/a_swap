@@ -94,7 +94,7 @@ class UserController extends AppController
 	 */
 	public function profil()
 	{
-		$this->allowTo(array('user','admin'));
+		$this->allowTo(array('user','admin', 'superadmin'));
 		$this->show('users/profil');
 	}
 

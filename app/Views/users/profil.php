@@ -9,7 +9,7 @@
           <legend><h2>Profil</h2></legend>
 
           <div class="col-md-3">
-            <img src="<?= $this->assetUrl('img/imgprofiltest.jpg') ?>" alt=""><br>
+            <img src="<?= $this->assetUrl('<?php echo $assos['link_relative'] ?>') ?>" alt=""><br>
           </div>
 
           <div class="col-md-9">

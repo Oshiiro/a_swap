@@ -11,14 +11,16 @@
 <!-- Infographies -->
   <?php if(empty($_SESSION['user']['role'])) { ?>
     <h2 class="accroche">Petite phrase d'accroche trop stylé</h2>
-    <div class="barreEmailInscription">
-      <h3> Inscris ton assos'</h3>
-      <div class="AdresseMail">
+    <div class="barreEmailInscription row">
+      <div class="col-md-9">
+        <h3> Inscris ton assos'</h3>
         <form class="formEmail" action="<?php echo $this->url('admin_assos_register'); ?>" method="GET">
-          <input type="text" name="nom_assos" placeholder="Inscris ton assos' !" class="form-control inscripAssos">
-          <button type="submit" class="check"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
+            <input type="text" name="nom_assos" placeholder="Inscris ton assos' !" class="form-control">
+          </div>
+          <div class="col-md-3">
+            <button type="submit" class="btn btn-primary btn-circle btn-lg inscripAssos"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
+          </div>
         </form>
-      </div>
     </div>
   <?php } ?>
     <div class="container textes">
