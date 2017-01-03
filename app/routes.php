@@ -53,7 +53,6 @@
 		// Admin Back
 		['GET', '/admin/association/[:slug]', 'UserAdmin#adminAssos', 'admin_assos'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
 		['GET', '/admin/back/[:slug]', 'UserAdmin#back', 'admin_back'],
-		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		['GET', '/admin/transaction/', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'], //transaction de l'admin
 		['POST', '/admin/transaction/', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
 		['GET', '/admin/deleteuser/[i:id]', 'AssociationAdmin#deleteUser', 'admin_back_delete'], // Delete user
