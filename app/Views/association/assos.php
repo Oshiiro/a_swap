@@ -2,7 +2,7 @@
 
 <?php $this->start('main_content') ?>
 	<h2>Votre association</h2>
-	
+
 	<button class='btn btn-default'><a href="<?php echo $this->url('admin_back_transac'); ?>">Faire une transaction</a></button>
 
 
@@ -31,25 +31,27 @@
 <!-- ////////////////////// LISTE DES ADHERANTS /////////////////////////////-->
 
 	<div class="panel panel-default container">
-		<div class="panel-heading">Liste des adhérents</div>
-		  <table class="col-md-offset-1 col-md-9">
-				<tr>
-					<th>Nom</th>
-					<th>Prénom</th>
-					<th>Pseudo</th>
-					<th>Adresse-mail</th>
-					<th>Portefeuille</th>
-				</tr>
-				<?php foreach ($adherants as $adherant){ ?>
-				<tr>
-					<td><?php echo $adherant['lastname']; ?></td>
-					<td><?php echo $adherant['firstname']; ?></td>
-					<td><?php echo $adherant['username']; ?></td>
-					<td><?php echo $adherant['email']; ?></td>
-					<td><?php echo $adherant['wallet']; ?></td>
-				</tr>
-			<?php } ?>
-			</table>
+		<div class="panel-heading">
+			Liste des adhérents
+		</div>
+	  <table class="col-md-offset-1 col-md-9">
+			<tr>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Pseudo</th>
+				<th>Adresse-mail</th>
+				<th>Portefeuille</th>
+			</tr>
+			<?php foreach ($adherants as $adherant){ ?>
+			<tr>
+				<td><?php echo $adherant['lastname']; ?></td>
+				<td><?php echo $adherant['firstname']; ?></td>
+				<td><?php echo $adherant['username']; ?></td>
+				<td><?php echo $adherant['email']; ?></td>
+				<td><?php echo $adherant['wallet']; ?></td>
+			</tr>
+		<?php } ?>
+		</table>
 
 	</div>
 

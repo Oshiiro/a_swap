@@ -1,6 +1,9 @@
 <?php $this->layout('layout', ['title' => 'Perdu ?']) ?>
-
 <?php $this->start('main_content'); ?>
+<style media="screen">
+.allContent{top: 0;}
+.extension_head{height:0px}
+</style>
 <div class="container wError">
   <h1>Error 404</h1>
   <p>Cette page n'existe pas ou n'existe plus.</p>

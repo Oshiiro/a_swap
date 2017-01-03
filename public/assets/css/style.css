@@ -12,7 +12,7 @@ body {
   height: 100%;
   width : 100%;
   /*background: #FFFFE4;*/
-  /*background-image: url(../img/fond3.png);*/
+  background-image: url(../img/fond3.png);
   /*background-color: rgba(0, 0, 0, 1);*/
   background-size: cover;
   background-attachment: fixed;
@@ -66,7 +66,7 @@ th {
 }
 
 .allContent {
-  min-height: 53.5em;
+  min-height: 42.8em;
   max-width: 1920px;
   margin: auto;
   position: relative;
@@ -108,7 +108,7 @@ th {
   font-family: 'Roboto', sans-serif;
 }
 
-.field::after{
+.field::after {
   content: '';
   height: 2px;
   background-color: #e7e7e7;
@@ -228,7 +228,7 @@ margin-right: auto;
 }
 
 .accroche {
-margin-top: 4em; 
+margin-top: 4em;
 }
 
 .check {
@@ -273,6 +273,7 @@ background-color: rgb(21, 138, 138);
 
 .thumbnail {
   border: none;
+  background-color: transparent;
 }
 
 
@@ -381,7 +382,8 @@ font-size: 2em;
 
 .wError h1 {
   font-size: 6em;
-  margin-bottom: 50px;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
   color: rgb(21, 138, 138);
   font-family: 'Orbitron';
 }
