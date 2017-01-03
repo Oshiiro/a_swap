@@ -50,7 +50,7 @@
 		['POST', '/messagerie/confirmation', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
 
 		// Admin Back
-		['GET', '/admin/back', 'UserAdmin#back', 'admin_back'],
+		['GET', '/admin/back/[:page]', 'UserAdmin#back', 'admin_back'],
 		['GET', '/admin/transaction/', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'], //transaction de l'admin
 		['POST', '/admin/transaction', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'], //transaction de l'admin
 		['GET', '/admin/deleteuser/[i:id]', 'AssociationAdmin#deleteUser', 'admin_back_delete'], // Delete user
@@ -58,9 +58,8 @@
 		['POST', '/admin/crediter/', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
 
 		// Admin Association Back
-		['GET', '/admin/back/association', 'AssociationAdmin#backAssos', 'admin_back_assos'],
-
-		['POST', '/admin/back/association', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
+		['GET', '/admin/back/association/', 'AssociationAdmin#backAssos', 'admin_back_assos'],
+		['POST', '/admin/back/association/', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Page accueil users connecter
 		['GET', '/transaction', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire

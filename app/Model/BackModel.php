@@ -21,27 +21,27 @@ class BackModel extends UModel
 
   public function GetTrans()
   {
+
 // ----------------------- PAGINATION -----------------------------
-    $sql ="SELECT COUNT(id) as transNbr FROM transaction
-    -- LEFT JOIN users ON (transaction.id_user_seller = users.id AND transaction.id_user_buyer = users.id)
-    ";
-
-    $query = $this->dbh->prepare($sql);
-    $query->execute();
-    $nbre = $query->fetchAll();
-    print_r($nbre);
-
-    if(isset($_GET['p'])) {
-      $cPage = $_GET['p'];
-    } else {
-      $cPage = 1;
-    }
-
-    $transNbr = $nbre[0]['transNbr'];
-    echo $nbre[0]['transNbr'];
-    $nbrParPage = 10;
-    $nbrPage = ceil($transNbr/$nbrParPage);
-    echo $nbrPage;
+    // $sql ="SELECT COUNT(id) as transNbr FROM transaction
+    // ";
+    //
+    // $query = $this->dbh->prepare($sql);
+    // $query->execute();
+    // $nbre = $query->fetchAll();
+    // print_r($nbre);
+    //
+    // if(isset($_GET['p'])) {
+    //   $cPage = $_GET['p'];
+    // } else {
+    //   $cPage = 1;
+    // }
+    //
+    // $transNbr = $nbre[0]['transNbr'];
+    // echo $nbre[0]['transNbr'];
+    // $nbrParPage = 3;
+    // $nbrPage = ceil($transNbr/$nbrParPage);
+    // echo $nbrPage;
 
     $id = $_SESSION['user']['id'];
     $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
@@ -56,6 +56,7 @@ class BackModel extends UModel
             LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
             LEFT JOIN assos ON transaction.id_asso = assos.id
             WHERE transaction.id_asso = :result
+            -- LIMIT ".(($cPage-1)).", $nbrParPage
     ";
 
     $query = $this->dbh->prepare($sql);
@@ -63,10 +64,26 @@ class BackModel extends UModel
     $query->execute();
     return $query->fetchAll();
 
+
+
     // SELECT id, prenom, nom, date_achat, num_facture, prix_total
     // FROM utilisateur
     // INNER JOIN commande ON utilisateur.id = commande.utilisateur_id
 
+  }
+  public function GetTransTempo($id_asso,$limit,$offset)
+  {
+    $sql = "SELECT assos.name,transaction.created_at, transaction.sum,transaction.description ,userbuyer.username as username_buyer,userseller.username as username_seller FROM transaction
+            LEFT JOIN users as userbuyer ON transaction.id_user_buyer = userbuyer.id
+            LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
+            LEFT JOIN assos ON transaction.id_asso = assos.id
+            WHERE transaction.id_asso = :result LIMIT $limit OFFSET $offset
+    ";
+
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':result', $id_asso);
+    $query->execute();
+    return $query->fetchAll();
   }
 
   // Afficher liste des adhérerants y compris l'admin
