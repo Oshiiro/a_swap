@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="<?= $this->assetUrl('css/style_back.css') ?>">
 </head>
 <body>
+	<?php debug($_SESSION);?>
 		<header>
 			<nav class="navbar">
 				<div class="container-fluid">
