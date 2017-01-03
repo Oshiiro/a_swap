@@ -41,8 +41,9 @@
         </table>
 
 <!-- Messages envoyés -->
-<button type ="button" title="Afficher message envoyé" class="btn btn-primary MessagesEnvoyes btn-lg" type="button">Messages envoyés</button>
-        <table class="envoyes"style="display : none;">
+<button type ="button" title="Afficher message envoyé" class="btn btn-primary messagesEnvoyes btn-lg" type="button">Messages envoyés</button>
+      <div class="envoyes"style="display : none;">
+        <table>
           <br>
           <?php if(!empty($messagesenvoyes)) {
             foreach ($messagesenvoyes as $messagesenvoye) { ?>
@@ -58,7 +59,7 @@
           <?php  }
         } else { echo 'Vous n\'avez aucun message envoyé.'; }?>
       </table>
-
+      </div>
     </div>
   </div>
 </div>

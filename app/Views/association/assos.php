@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Association']) ?>
 
 <?php $this->start('main_content') ?>
-<button class='btn-primary btn-circle btn-lg sendMessage' style="text-align : center,"><a href="<?php echo $this->url('admin_back_transac'); ?>"><i class="fa fa-exchange" aria-hidden="true" style="color : white"></i></a></button>
+<button class='btn btn-primary btn-circle btn-lg sendMessage' style="text-align : center,"><a href="<?php echo $this->url('admin_back_transac'); ?>"><i class="fa fa-exchange" aria-hidden="true" style="color : white"></i></a></button>
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
@@ -10,7 +10,7 @@
 
 				<div class="panel panel-default container">
 					<div class="panel-heading">Vos transactions</div>
-					  <table>
+					  <table class="col-xs-10">
 							<tr>
 								<th>Acheteur</th>
 								<th>Vendeur</th>
@@ -30,7 +30,6 @@
 						</table>
 				</div>
 
->>>>>>> 37ca756f9d86cca5e55d7beb37f95c1a81b71071
 
 			<!-- ////////////////////// LISTE DES ADHERANTS /////////////////////////////-->
 

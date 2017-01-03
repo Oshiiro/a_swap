@@ -3,7 +3,7 @@
     $( ".formulaire" ).slideToggle( "slow");
   });
 
-  $( ".MessagesEnvoyes" ).click(function() {
+  $( ".messagesEnvoyes" ).click(function() {
     $( ".envoyes" ).slideToggle( "slow");
   });
 
