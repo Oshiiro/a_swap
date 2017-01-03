@@ -228,7 +228,7 @@ margin-right: auto;
 }
 
 .accroche {
-margin-top: 4em; 
+margin-top: 4em;
 }
 
 .check {
@@ -275,7 +275,28 @@ background-color: rgb(21, 138, 138);
   border: none;
 }
 
+/* PAGE ASSOCIATION AVEC LISTE DES ADHERANTS ET TRANSACTIONS;*/
 
+ .panel-default {
+width : auto;
+ }
+
+ .panel-default > .panel-heading {
+   color : rgb(21, 138, 138);
+   text-align: center;
+   font-size: 1.5em;
+   font-family: space mono;
+ }
+
+ th {
+ font-family: space mono;
+ text-align: center;
+ }
+
+ td {
+   text-align: center;
+   border-bottom: 1px solid rgb(100, 178, 137);
+ }
 /* -------------------------------------------------------------------------- */
 /* MESSAGERIE */
 

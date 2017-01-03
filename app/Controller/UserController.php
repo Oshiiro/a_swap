@@ -99,12 +99,12 @@ class UserController extends AppController
 	}
 
 	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
-	public function usersAccueil()
+	public function Accueil()
 	{
 		if ($this->tools->isLogged() == true) {
 			$adherants = $this->backmodel->affAdherants();
 			$trans = $this->ourumodel->GetItsTrans();
-			$this->show('users/accueil', array(
+			$this->show('association/assos', array(
 				'adherants' => $adherants,
 				'trans' => $trans
 			));
@@ -256,7 +256,8 @@ class UserController extends AppController
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
 					$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
-          $this->redirectToRoute('users_accueil');
+						$this->redirectToRoute('association');
+
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
         }

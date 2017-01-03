@@ -24,7 +24,7 @@ $showMessages = new MessageModel();
 
   $messages = $showMessages->AfficherMessages();
   $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes();
-  debug($messagesenvoyes);
+
 
   $this->show('message/message', array(
     'users' => $users,
