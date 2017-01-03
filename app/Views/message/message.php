@@ -4,7 +4,7 @@
 <button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 <div class="container block-message">
   <div class="row">
-    <div class="block col-xs-9 col-xs-push-2 col-md-push-1 col-lg-10">
+    <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
       <form class="form-group formulaire" style="display : none;" name="class" method="POST" action="">
         <h4>Envoyer un message</h4>
         <label for="">Destinataire</label>
