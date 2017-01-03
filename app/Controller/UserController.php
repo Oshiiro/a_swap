@@ -95,7 +95,10 @@ class UserController extends AppController
 	public function profil()
 	{
 		$this->allowTo(array('user','admin'));
-		$this->show('users/profil');
+		$slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+		$this->show('users/profil', array(
+			'slug' => $slug,
+		));
 	}
 
 	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
@@ -258,7 +261,10 @@ class UserController extends AppController
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
 					$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
-          $this->redirectToRoute('users_accueil');
+					$slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+          $this->redirectToRoute('users_accueil', array(
+						'slug' => $slug,
+					));
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
         }
@@ -266,7 +272,10 @@ class UserController extends AppController
         $error['emailOrPseudo'] = "Ce compte n'existe pas";
       }
 
-		$this->show('users/login', array('error' => $error));
+		$this->show('users/login', array(
+			'error' => $error,
+			'slug' => $slug,
+		));
 
 	}
 

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Messagerie']) ?>
+<?php $this->layout('layout', ['title' => 'Messagerie', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 <button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>

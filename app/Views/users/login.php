@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Connexion']) ?>
+<?php $this->layout('layout', ['title' => 'Connexion', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 <div class="extansion-head">

@@ -4,11 +4,20 @@ namespace Controller;
 
 use \Controller\AppController;
 use \Model\MessageModel;
+use \Model\AssosModel;
 use \Model\UsersModel AS OurUModel;
+use \Services\Tools\Tools;
 
 class MessageController extends AppController
 {
+  private $tools;
+  private $model_assos;
 
+  public function __construct()
+	{
+		$this->tools = new Tools();
+    $this->model_assos = new AssosModel();
+  }
 
 // ===================================================================================================================
 // AFFICHAGE DES PAGES
@@ -18,16 +27,21 @@ class MessageController extends AppController
 */
 public function message()
 {
-$showMessages = new MessageModel();
-  $users = $showMessages->ListAdherantsMessage();
-  // debug($articles);
+  if ($this->tools->isLogged() == true) {
+    $showMessages = new MessageModel();
+    $users = $showMessages->ListAdherantsMessage();
+    // debug($articles);
+    $slug = $this->model_assos->getSlugByIdAdmin($_SESSION['user']['id']);
+    $messages = $showMessages->AfficherMessages();
 
-  $messages = $showMessages->AfficherMessages();
-
-  $this->show('message/message', array(
-    'users' => $users,
-    'messages' => $messages,
-  ));
+    $this->show('message/message', array(
+      'slug' => $slug,
+      'users' => $users,
+      'messages' => $messages,
+    ));
+  } else {
+    $this->showForbidden(); // erreur 403
+  }
 }
 /**
 * Afficher un message recu
