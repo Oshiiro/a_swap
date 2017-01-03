@@ -2,6 +2,12 @@
 
 <?php $this->start('main_content') ?>
 
+<!-- sert à ne plus faire le décalage de allContent, sert uniquement pour la page home -->
+<style media="screen">
+  .allContent{top: 0;}
+  .extension_head{height:0px}
+</style>
+
 <!-- Infographies -->
   <?php if(empty($_SESSION['user']['role'])) { ?>
     <h2 class="accroche">Petite phrase d'accroche trop stylé</h2>

@@ -1,9 +1,6 @@
 <?php $this->layout('layout', ['title' => 'Profil']) ?>
 
 <?php $this->start('main_content') ?>
-
-<div class="extansion-head">
-</div>
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-10 col-xs-push-1 col-lg-10">

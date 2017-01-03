@@ -1,8 +1,6 @@
 <?php $this->layout('layout', ['title' => 'Messagerie']) ?>
 
 <?php $this->start('main_content') ?>
-<div class="extansion-head">
-</div>
 <button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 <div class="container block-message">
   <div class="row">
