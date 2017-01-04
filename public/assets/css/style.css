@@ -60,11 +60,6 @@ th {
   margin-bottom: 8px;
 }
 
-.container-fluid {
-  padding : 0;
-  margin : 0;
-}
-
 .allContent {
   min-height: 42.8em;
   max-width: 1920px;
@@ -96,10 +91,12 @@ th {
   margin: auto;
 }
 
+.errorMessage {
+  color: red;
+}
+
 /* -------------------------------------------------------------------------- */
 /* FORM; */
-
-
 
 .field {
   position: relative;
@@ -210,12 +207,13 @@ li a:hover {
 
 .navbar-default .navbar-toggle {
   border-color: rgb(100, 178, 137);
-  margin-right: 2em;
+  margin-right: 1em;
 }
 
 .navbar .navbar-collapse {
   text-align: center;
 }
+
 
 .fa-exchange{
   color: white;
@@ -397,16 +395,10 @@ font-size: 2em;
   text-align: center;
 }
 
-.lienReseaux {
-
-}
-
 .lienFooter a {
   color : white;
 }
-.errorMessage {
-  color: red;
-}
+
 
 /*-------------------------------------------------------------------------*/
 /* ERROR 404 403 : */
