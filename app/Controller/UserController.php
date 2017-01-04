@@ -104,15 +104,20 @@ class UserController extends AppController
 	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
 	public function association($slug)
 	{
+		$slug_is_mine = $this->model_assos->slugIsMine($slug);
 		if ($this->tools->isLogged() == true) {
-			$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-			$adherants = $this->ourumodel->affAdherants($slug);
-			$trans = $this->ourumodel->GetItsTrans();
-			$this->show('association/assos', array(
-				'slug' => $slug,
-				'adherants' => $adherants,
-				'trans' => $trans
-			));
+			if($slug_is_mine == true) {
+				$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+				$adherants = $this->ourumodel->affAdherants($slug);
+				$trans = $this->ourumodel->GetItsTrans();
+				$this->show('association/assos', array(
+					'slug' => $slug,
+					'adherants' => $adherants,
+					'trans' => $trans
+				));
+			} else {
+				$this->showForbidden(); // erreur 403
+			}
 		} else {
 			$this->showForbidden(); // erreur 403
 		}

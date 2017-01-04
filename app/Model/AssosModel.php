@@ -63,6 +63,28 @@ class AssosModel extends UModel
     return false;
   }
 
+  public function slugIsMine($slug)
+  {
+    $myId = $_SESSION['user']['id'];
+    $app = getApp();
+    $sql = "SELECT a.slug FROM assos AS a
+            LEFT JOIN intermediaire AS i ON a.id = i.id_assos
+            LEFT JOIN users AS u ON  i.id_users = u.id
+            WHERE u.id = :myId
+            LIMIT 1";
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':myId', $myId);
+    $sth->execute();
+    $slugOK = $sth->fetchColumn();
+    if($slugOK == $slug){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   public function getToken($id_admin) //renommer en getTokenByIdAdmin ??
   {
     $app = getApp();

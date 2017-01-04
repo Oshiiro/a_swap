@@ -148,8 +148,9 @@ class UsersModel extends UModel
     $result = $query->fetch();
 
 
-    $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
-    WHERE intermediaire.id_assos = :result AND users.id != :id";
+    $sql = "SELECT * FROM users
+            INNER JOIN intermediaire ON users.id = intermediaire.id_users
+            WHERE intermediaire.id_assos = :result AND users.id != :id";
     $query = $this->dbh->prepare($sql);
     $query->bindValue(':result', $result['id']);
     $query->bindValue(':id', $id);
