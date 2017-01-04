@@ -1,16 +1,15 @@
 <?php $this->layout('layout_admin_back', ['title' => 'Admin Association', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
-<h2>Gestion association</h2>
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
-
+      <h2>Gestion association</h2>
 <!-- ////////////////////// LISTE DES ADHERANTS /////////////////////////////-->
-<button title="Envoyer une invitation"  class="btn btn-default invitation" >Inviter un nouveau membre</button>
+<button title="Envoyer une invitation"  class="btn btn-default sendMessage" >Inviter un nouveau membre</button>
 <!-- A FAIRE :  JS qui affiche le form ci-dessous lorqu'on clique sur le button si dessus -->
 <!-- NE FONCTIONNE PAS  -->
-<form class="formInvit" action="<?php echo $this->url('admin_association_invite'); ?>"  method="POST">
+<form class="formulaire" style="display : none;" action="<?php echo $this->url('admin_association_invite'); ?>"  method="POST">
   <input type="email" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
   <input type="submit" value="Inviter">
 </form>
