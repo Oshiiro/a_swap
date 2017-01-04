@@ -99,6 +99,7 @@ class UsersModel extends UModel
             LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
             LEFT JOIN assos ON transaction.id_asso = assos.id
             WHERE transaction.id_user_seller = :id OR transaction.id_user_buyer = :id
+            ORDER BY created_at DESC
             LIMIT $limit OFFSET $offset
     ";
     $query = $this->dbh->prepare($sql);
@@ -128,8 +129,10 @@ class UsersModel extends UModel
       $result = $query->fetch();
 
 
-      $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
-      WHERE intermediaire.id_assos = :result";
+      $sql = "SELECT * FROM users
+              INNER JOIN intermediaire ON users.id = intermediaire.id_users
+              WHERE intermediaire.id_assos = :result
+              ORDER BY username";
       $query = $this->dbh->prepare($sql);
       $query->bindValue(':result', $result['id_assos']);
       $query->execute();

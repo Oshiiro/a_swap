@@ -62,7 +62,7 @@
 		['POST', '/admin/crediter/', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
 
 		// Admin Association Back
-		['GET', '/admin/back/association/[:slug]/[:page]', 'AssociationAdmin#backAssos', 'admin_back_assos'],
+		['GET', '/admin/back/gestion/association/[:slug]/[:page]', 'AssociationAdmin#backAssos', 'admin_back_assos'],
 		['GET', '/admin/back/modification/[:slug]', 'AssociationAdmin#backAssosModif', 'admin_back_modifassos'],
 
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)
