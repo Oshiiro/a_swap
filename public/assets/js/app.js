@@ -7,9 +7,6 @@
     $( ".envoyes" ).slideToggle( "slow");
   });
 
-  $( ".invitation" ).click(function() {
-    $( ".formInvit" ).slideToggle( "slow");
-  });
 
   jQuery(function($) {
     //  Au focus
