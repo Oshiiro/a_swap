@@ -184,6 +184,10 @@ th {
 
 }
 
+.container-fluid>.navbar-header {
+  margin-right: 0;
+}
+
 .menu {
   margin: 30px;
   float: right;
@@ -213,6 +217,10 @@ li a:hover {
   text-align: center;
 }
 
+.fa-exchange{
+  color: white;
+}
+
 /* -------------------------------------------------------------------------- */
 /* HOME */
 
@@ -233,7 +241,7 @@ box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
 }
 
 .btn-circle.btn-lg {
-  margin-left: 10em; 
+  margin-left: 10em;
 }
 
 .accroche {
