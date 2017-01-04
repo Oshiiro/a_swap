@@ -96,8 +96,7 @@ class AssociationAdminController extends AppController
 		$description   = trim(strip_tags($_POST['description']));
 		$money_name   = trim(strip_tags($_POST['money_name']));
 		$rules   = trim(strip_tags($_POST['rules']));
-		$id = 5;
-
+		$id = $this->assos->FindElementByElement('id','name', $_SESSION['user']['nom_assos']);
 		// verif de pseudo
 		$exist = $this->assos->nameAssosExists($name,'name', 3, 50);
 
@@ -151,11 +150,11 @@ class AssociationAdminController extends AppController
 				'description' => $description,
 				'money_name' => $money_name,
 				'rules' => $rules,
-
 			);
-			$this->model->update($data, $id);
+			$this->assos->update($data, $id);
 		}
-    	$this->show('association/modifassos_admin_back');
+
+    	$this->show('association/modifassos_admin_back', array('error' => $error));
 			// $this->redirectToRoute('admin_association_update_form');
 	}
 
