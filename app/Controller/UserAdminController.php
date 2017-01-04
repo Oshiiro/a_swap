@@ -57,17 +57,37 @@ class UserAdminController extends AppController
    * Page Back de l'admin
    */
 
-  public function back()
+  public function back($slug)
   {
     $this->allowTo(array('admin'));
-    $trans = $this->backmodel->GetTrans();
+
+    $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+    $trans = $this->backmodel->GetTrans($slug);
     $this->show('admin/back',
      array(
+      'slug' => $slug,
       'trans' => $trans,
     )
   );
   }
 
+// <<<<<<< HEAD CONFLIT PAS SUR (voir AssociationAdminController)
+// =======
+  // Page des dernières transactions et liste des membres sur page association de l'admin
+  // public function adminAssos()
+  // {
+  //   $this->allowTo(array('admin'));
+  //
+  //   $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+  //   $adherants = $this->backmodel->affAdherants($slug);
+  //   $trans = $this->backmodel->GetTrans($slug);
+  //   $this->show('association/assos', array(
+  //     'slug' => $slug,
+  //     'adherants' => $adherants,
+  //     'trans' => $trans
+  //   ));
+  // }
+// >>>>>>>
 
 // ===================================================================================================================
 // 																						TRAITEMENT DES FORMULAIRES
@@ -85,6 +105,7 @@ class UserAdminController extends AppController
     $description_assos = (!empty($_POST['description_assos'])) ? trim(strip_tags($_POST['description_assos'])) : null;
     $money_name = (!empty($_POST['money_name'])) ? $password = trim(strip_tags($_POST['money_name'])) : null;
     $rules_assos = (!empty($_POST['rules_assos'])) ? trim(strip_tags($_POST['rules_assos'])) : null;
+    $slug_asso = $this->tools->slugify($nom_assos);
 
     //xss partie admin
     $lastname   = (!empty($_POST['lastname'])) ? trim(strip_tags($_POST['lastname'])) : null;
@@ -103,12 +124,18 @@ class UserAdminController extends AppController
 
     // Verification des champs partie assos
     // verifier que le nom de l'asso est libre.
-    $exist = $this->model_assos->assoExists($nom_assos);
-    if($exist == true)
+    $exist_name = $this->model_assos->assoExists($nom_assos);
+    if($exist_name == true)
     {
       $error['name_asso'] = 'Ce nom d\'association est déjà pris';
     } else {
       $error['name_asso']   = $this->valid->textValid($nom_assos,'nom d\'association', 3, 50);
+    }
+    // Verifier que le slug de l'asso est libre
+    $exist_slug = $this->model_assos->slugExist($slug_asso);
+    if($exist_slug == true)
+    {
+      $error['name_asso'] = 'Ce nom d\'association est déjà pris';
     }
     // verifier que le descriptif n'est pas trop long
     if(!empty($_POST['description_assos'])){
@@ -175,7 +202,6 @@ class UserAdminController extends AppController
 
       if ($this->valid->IsValid($error)) {
         $token_asso = StringUtils::randomString(40);
-        $slug_asso = $this->tools->slugify($nom_assos);
         $token_user = StringUtils::randomString(40);
         $slug_user = $firstname. ' ' .$username. ' ' .$lastname;
         $slug_user = $this->tools->slugify($slug_user);

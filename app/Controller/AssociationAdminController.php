@@ -43,10 +43,14 @@ class AssociationAdminController extends AppController
 	/**
 	 * Page Back Association Admin
 	 */
-	public function backAssos()
+	public function backAssos($slug)
 	{
+		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
 		$adherants = $this->backmodel->affAllAdherants();
-		$this->show('association/assos_admin_back', array( 'adherants' => $adherants));
+		$this->show('association/assos_admin_back', array(
+			'slug' => $slug,
+			'adherants' => $adherants,
+		));
 
 
 	}
@@ -57,7 +61,12 @@ class AssociationAdminController extends AppController
 	public function backAssosModif()
 	{
 		$association = $this->assos->ModifAssos();
-		$this->show('association/modifassos_admin_back', array('association' => $association));
+
+		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
+		$this->show('association/modifassos_admin_back', array(
+			'slug' => $slug,
+			'association' => $association,
+		));
 	}
 
 	/**

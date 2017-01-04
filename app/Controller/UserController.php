@@ -95,16 +95,21 @@ class UserController extends AppController
 	public function profil()
 	{
 		$this->allowTo(array('user','admin', 'superadmin'));
-		$this->show('users/profil');
+		$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+		$this->show('users/profil', array(
+			'slug' => $slug,
+		));
 	}
 
 	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
-	public function Accueil()
+	public function association($slug)
 	{
 		if ($this->tools->isLogged() == true) {
-			$adherants = $this->backmodel->affAdherants();
+			$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+			$adherants = $this->backmodel->affAdherants($slug);
 			$trans = $this->ourumodel->GetItsTrans();
 			$this->show('association/assos', array(
+				'slug' => $slug,
 				'adherants' => $adherants,
 				'trans' => $trans
 			));
@@ -256,8 +261,11 @@ class UserController extends AppController
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
 					$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
-						$this->redirectToRoute('association');
 
+					$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+          $this->redirectToRoute('association', array(
+						'slug' => $slug,
+					));
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
         }
@@ -265,7 +273,10 @@ class UserController extends AppController
         $error['emailOrPseudo'] = "Ce compte n'existe pas";
       }
 
-		$this->show('users/login', array('error' => $error));
+		$this->show('users/login', array(
+			'error' => $error,
+			'slug' => $slug,
+		));
 
 	}
 

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Association']) ?>
+<?php $this->layout('layout', ['title' => 'Association', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 <button class='btn btn-primary btn-circle btn-lg sendMessage' style="text-align : center,"><a href="<?php echo $this->url('admin_back_transac'); ?>"><i class="fa fa-exchange" aria-hidden="true" style="color : white"></i></a></button>
@@ -6,8 +6,6 @@
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 				<h2>Votre association</h2>
-
-
 				<div class="panel panel-default container">
 					<div class="panel-heading">Vos transactions</div>
 					  <table class="col-xs-10">
@@ -29,7 +27,6 @@
 						<?php } ?>
 						</table>
 				</div>
-
 
 			<!-- ////////////////////// LISTE DES ADHERANTS /////////////////////////////-->
 

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Profil']) ?>
+<?php $this->layout('layout', ['title' => 'Profil', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 <div class="container block-message">
@@ -9,7 +9,7 @@
           <legend><h2>Profil</h2></legend>
 
           <div class="col-md-3">
-            <img src="<?= $this->assetUrl('<?php echo $assos['link_relative'] ?>') ?>" alt=""><br>
+            <img src="" alt=""><br>
           </div>
 
           <div class="col-md-9">
