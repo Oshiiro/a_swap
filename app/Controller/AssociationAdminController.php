@@ -147,17 +147,6 @@ class AssociationAdminController extends AppController
 // ===================================================================================================================
 // 																						TRAITEMENT DES FORMULAIRES
 // ===================================================================================================================
-	/**
-	* Ajout de crédit à un membre
-	*/
-	public function addCoinToUser()
-	{
-		$this->show('association/back_assos');
-	}
-
-
-
-
 
 	/**
 	* Invitation d'un membre a rejoindre l'assocation

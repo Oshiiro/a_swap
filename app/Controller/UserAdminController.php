@@ -12,6 +12,7 @@ use \Model\IntermediaireModel;
 use \W\Security\AuthentificationModel;
 use \W\Security\StringUtils;
 use \Services\Flash\FlashBags;
+use  \Services\Pagination;
 
 
 class UserAdminController extends AppController
@@ -33,6 +34,7 @@ class UserAdminController extends AppController
     $this->model_intermediaire = new IntermediaireModel();
 		$this->authentificationmodel = new AuthentificationModel();
     $this->backmodel = new BackModel();
+
 
 
 	}
@@ -57,18 +59,31 @@ class UserAdminController extends AppController
    * Page Back de l'admin
    */
 
-  public function back($slug)
+  public function back($slug, $page = 1)
   {
     $this->allowTo(array('admin'));
-
+  //  $trans = $this->backmodel->GetTrans();
     $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-    $trans = $this->backmodel->GetTrans($slug);
+
+    $limit = 5;
+
+    $id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
+    //limit d'affichage par page
+    $Pagination = new Pagination('transaction');
+    //on precise la table a exploiter
+    $calcule = $Pagination->calcule_page('id_asso = \''.$id_asso.'\'',$limit,$page);
+    //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+    //ce qui calcule le nombre de page total et le offset
+    $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back',['slug'=>$slug]);
+    //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+
+    $trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
     $this->show('admin/back',
-     array(
-      'slug' => $slug,
-      'trans' => $trans,
-    )
-  );
+      ['trans'    => $trans,
+      'pagination'=> $affichage_pagination,
+      'slug'      => $slug]
+    );
+
   }
 
 // <<<<<<< HEAD CONFLIT PAS SUR (voir AssociationAdminController)

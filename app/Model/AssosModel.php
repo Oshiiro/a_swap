@@ -13,6 +13,22 @@ class AssosModel extends UModel
     $this->setTable('assos');
   }
 
+  public function FindElementByElement($search,$colone,$where)
+   {
+     $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where LIMIT 1';
+     $sth = $this->dbh->prepare($sql);
+     $sth->bindValue(':where', $where);
+     if($sth->execute()){
+       $foundUser = $sth->fetchColumn();
+       if(!empty($foundUser)){
+         return $foundUser ;
+       }else{
+         return false;
+       }
+     }
+   }
+
+
   public function assoExists($nom_asso)
 	{
 	    $app = getApp();

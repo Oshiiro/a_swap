@@ -29,7 +29,7 @@
 								<li><a href="<?php echo $this->url('message') ?>">Messagerie</a></li>
 								<li><a href="<?php echo $this->url('association',['slug' => $this->e($slug)]) ?>">Association</a></li>
 									<?php if($_SESSION['user']['role'] == 'admin') { ?>
-								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug)]) ?>">Back Office</a></li>
+								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug), 'page'=> 1]) ?>">Back Office</a></li>
 									<?php } ?>
 								<li><a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?></a></li>
 								<li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a></li>

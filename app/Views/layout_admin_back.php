@@ -24,7 +24,7 @@
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug)]) ?>">Transactions</a></li>
+							<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug), 'page'=>1]) ?>">Transactions</a></li>
 							<li><a href="<?php echo $this->url('admin_back_assos', ['slug' => $this->e($slug)]) ?>">Gestion</a></li>
 							<li><a href="<?php echo $this->url('users_accueil', ['slug' => $this->e($slug)]) ?>">Front Office</a></li>
 							<li><a href="<?php echo $this->url('admin_back_modifassos', ['slug' => $this->e($slug)]) ?>"><?php echo $_SESSION['user']['nom_assos'] ?></a></li> <!-- possibilité de modifier l'assos -->

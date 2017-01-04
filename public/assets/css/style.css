@@ -279,6 +279,11 @@ background-color: rgb(21, 138, 138);
 width : auto;
  }
 
+ .pagination {
+  text-align: center;
+
+ }
+
  .panel-default > .panel-heading {
    color : rgb(21, 138, 138);
    text-align: center;

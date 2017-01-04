@@ -21,22 +21,22 @@ class TransactionAdminController extends AppController
 
 // Affichage du formulaire pour transaction, alors liste des adhérants
 
-  public function ShowFormTransaction() {
-    $adherants = $this->backModel->affAdherants();
-    $this->show('transaction/admin_transaction', array(
-    'adherants' => $adherants
-    ));
-  }
-
-  public function makeTransactionAdmin()
-  {
-  $newTransactions = $this->transactionModel->MakeTransactionAdmin();
-  $adherants = $this->backModel->affAdherants();
-  $this->show('transaction/admin_transaction', array(
-  'newTransactions' => $newTransactions,
-  'adherants' => $adherants
-  ));
-  }
+  // public function ShowFormTransaction() {
+  //   $adherants = $this->backModel->affAdherants();
+  //   $this->show('transaction/admin_transaction', array(
+  //   'adherants' => $adherants
+  //   ));
+  // }
+  //
+  // public function makeTransactionAdmin()
+  // {
+  // $newTransactions = $this->transactionModel->MakeTransactionAdmin();
+  // $adherants = $this->backModel->affAdherants();
+  // $this->show('transaction/admin_transaction', array(
+  // 'newTransactions' => $newTransactions,
+  // 'adherants' => $adherants
+  // ));
+  // }
 
   public function ShowFormCredit($id_seller) {
     $adherants = $this->backModel->affOneAdherants($id_seller);
@@ -52,7 +52,7 @@ class TransactionAdminController extends AppController
     $this->show('transaction/admin_credit', array(
     'newTransactions' => $newTransactions,
     'adherants' => $adherants,
-    
+
     ));
   }
 
