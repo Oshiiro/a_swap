@@ -18,7 +18,6 @@
 					<div class="field">
 						<label for="password" class="field-label">Mot de passe</label>
 						<input type="password" class="field-input" name="password">
-
 					</div>
 					<div class="checkbox">
 						<a href ="<?php echo $this->url('forgot_password') ?>">Mot de passe oublié</a>
