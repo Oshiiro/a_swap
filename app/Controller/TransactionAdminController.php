@@ -5,6 +5,7 @@ namespace Controller;
 use \Controller\AppController;
 use \Model\TransactionModel;
 use \Model\BackModel;
+use \Model\UsersModel as OurUModel;
 
 
 class TransactionAdminController extends AppController
@@ -17,6 +18,7 @@ class TransactionAdminController extends AppController
 
     $this->transactionModel = new TransactionModel();
     $this->backModel = new backModel();
+    $this->ourumodel = new OurUModel();
   }
 
 // Affichage du formulaire pour transaction, alors liste des adhérants
@@ -39,7 +41,7 @@ class TransactionAdminController extends AppController
   // }
 
   public function ShowFormCredit($id_seller) {
-    $adherants = $this->backModel->affOneAdherants($id_seller);
+    $adherants = $this->ourumodel->affOneAdherants($id_seller);
     $this->show('transaction/admin_credit', array(
     'adherants' => $adherants
     ));
@@ -48,7 +50,7 @@ class TransactionAdminController extends AppController
   public function makeCreditAdmin()
   {
     $newTransactions = $this->transactionModel->MakeCreditAdmin();
-    $adherants = $this->backModel->affOneAdherants($_POST['destinataire']);
+    $adherants = $this->ourumodel->affOneAdherants($_POST['destinataire']);
     $this->show('transaction/admin_credit', array(
     'newTransactions' => $newTransactions,
     'adherants' => $adherants,

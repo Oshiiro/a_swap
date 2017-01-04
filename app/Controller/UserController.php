@@ -106,7 +106,7 @@ class UserController extends AppController
 	{
 		if ($this->tools->isLogged() == true) {
 			$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-			$adherants = $this->backmodel->affAdherants($slug);
+			$adherants = $this->ourumodel->affAdherants($slug);
 			$trans = $this->ourumodel->GetItsTrans();
 			$this->show('association/assos', array(
 				'slug' => $slug,

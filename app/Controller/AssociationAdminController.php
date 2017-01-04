@@ -46,7 +46,7 @@ class AssociationAdminController extends AppController
 	public function backAssos($slug)
 	{
 		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
-		$adherants = $this->backmodel->affAllAdherants();
+		$adherants = $this->our_u_model->affAllAdherants();
 		$this->show('association/assos_admin_back', array(
 			'slug' => $slug,
 			'adherants' => $adherants,

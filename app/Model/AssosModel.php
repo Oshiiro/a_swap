@@ -172,7 +172,5 @@ public function nameAssosExists($name)
     return false;
 }
 
-
-
 }
 ?>

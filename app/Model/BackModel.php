@@ -86,78 +86,7 @@ class BackModel extends UModel
     return $query->fetchAll();
   }
 
-  // Afficher liste des adhérerants y compris l'admin
-    public function affAllAdherants()
-    {
-  // Recuperation de l'idée de l'assos via l'id user de la session
-      $id = $_SESSION['user']['id'];
 
-      $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
-      $query = $this->dbh->prepare($sql);
-      $query->bindValue(':id', $id);
-      $query->execute();
-      $result = $query->fetch();
-
-
-      $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
-      WHERE intermediaire.id_assos = :result";
-      $query = $this->dbh->prepare($sql);
-      $query->bindValue(':result', $result['id_assos']);
-      $query->execute();
-      return $query->fetchAll();
-    }
-
-// Afficher liste des adhérerants sauf l'admin
-  public function affAdherants($slug)
-  {
-// Recuperation de l'idée de l'assos via l'id user de la session
-    $id = $_SESSION['user']['id'];
-
-    $sql = "SELECT id FROM assos WHERE slug = :slug";
-    $query = $this->dbh->prepare($sql);
-    $query->bindValue(':slug', $slug);
-    $query->execute();
-    $result = $query->fetch();
-
-
-    $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
-    WHERE intermediaire.id_assos = :result AND users.id != :id";
-    $query = $this->dbh->prepare($sql);
-    $query->bindValue(':result', $result['id']);
-    $query->bindValue(':id', $id);
-    $query->execute();
-    return $query->fetchAll();
-  }
-
-
-    //Function d'affichage de l'adhérant choisis par l'admin pour une créditation
-      public function affOneAdherants($id)
-      {
-        // Recuperation de l'idée de l'assos via l'id user de la session
-            $id_session = $_SESSION['user']['id'];
-
-
-            $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
-            $query = $this->dbh->prepare($sql);
-            $query->bindValue(':id', $id_session);
-            $query->execute();
-            $result = $query->fetch();
-
-
-          // $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
-          // WHERE intermediaire.id_assos = :result";
-          //   $query = $this->dbh->prepare($sql);
-          //   $query->bindValue(':result', $result['id_assos']);
-          //   $query->execute();
-          //   return $query->fetchAll();
-
-            $sql = "SELECT * FROM users
-            WHERE id = :id";
-              $query = $this->dbh->prepare($sql);
-              $query->bindValue(':id', $id);
-              $query->execute();
-              return $query->fetchAll();
-      }
 
 }
 ?>

@@ -72,7 +72,7 @@
 
 		// Page accueil users connecté
 		['GET', '/accueil/[:slug]', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
-		['GET', '/transaction/', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
+		['GET', '/transaction/[:slug]', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
 		['POST', '/transaction/', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
 
 		// Formulaire pour inviter un nouveau membre
