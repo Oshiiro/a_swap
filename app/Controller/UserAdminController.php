@@ -64,7 +64,6 @@ class UserAdminController extends AppController
     $this->allowTo(array('admin'));
   //  $trans = $this->backmodel->GetTrans();
 
-
     $limit = 5;
     $id_asso = 5;
     //limit d'affichage par page
@@ -78,7 +77,6 @@ class UserAdminController extends AppController
 
     $trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
     $this->show('admin/back',['trans' => $trans,'pagination'=>$affichage_pagination]);
-
 
   //   $this->show('admin/back',
   //    array(
