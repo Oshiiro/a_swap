@@ -52,6 +52,14 @@ body {
   z-index: -1;
 }
 
+.allContent {
+  min-height: 42.8em;
+  max-width: 1920px;
+  margin: auto;
+  position: relative;
+  top: -10.5em;
+}
+
 .wrap {
   /*height: 100%;*/
   max-width: 1920px;
