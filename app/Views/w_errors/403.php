@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Nothing to see here']) ?>
+<?php $this->layout('layout_error', ['title' => 'Nothing to see here']) ?>
 <?php $this->start('main_content'); ?>
 <style media="screen">
 .allContent{top: 0;}
