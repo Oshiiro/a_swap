@@ -49,9 +49,10 @@ class AssociationAdminController extends AppController
 	public function backAssos($slug, $page=1)
 	{
 		$slug_is_mine = $this->assos->slugIsMine($slug);
+
 		if($slug_is_mine == true) {
 			$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
-			$adherants = $this->our_u_model->affAllAdherants();
+
 
 			$limit = 5;
 
@@ -65,10 +66,11 @@ class AssociationAdminController extends AppController
 			$affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back_assos',['slug'=>$slug]);
 			//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
 
-			$trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
+
+			$adherants = $this->our_u_model->affAllAdherants($id_asso,$limit,$calcule['offset']);
 			$this->show('association/assos_admin_back',
-				['trans'    => $trans,
-				'pagination'=> $affichage_pagination,
+			[
+				'affichage_pagination'=> $affichage_pagination,
 				'adherants' => $adherants,
 				'slug'      => $slug]
 			);

@@ -116,6 +116,11 @@ class UsersModel extends UModel
 
   }
 
+
+
+
+
+
   // Afficher liste des adhérerants y compris l'admin
     public function affAllAdherants()
     {

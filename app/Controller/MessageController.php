@@ -10,6 +10,8 @@ use \Model\UsersModel AS OurUModel;
 use \Services\Tools\Tools;
 use \Services\PaginationDuo;
 
+
+
 class MessageController extends AppController
 {
   private $tools;
@@ -20,6 +22,9 @@ class MessageController extends AppController
 		$this->tools = new Tools();
     $this->model_assos = new AssosModel();
     $this->backmodel = new BackModel();
+    $this->OurUModel = new OurUModel();
+    $this->messageModel = new MessageModel();
+
   }
 
 // ===================================================================================================================
@@ -70,7 +75,9 @@ class MessageController extends AppController
         'slug' => $slug,
         'users' => $users,
         'messages' => $messages,
-        'messagesenvoyes' => $messagesenvoyes
+        'messagesenvoyes' => $messagesenvoyes,
+        'page_rec'=> $page_rec,
+        'page_sen' => $page_sen
       ]
       );
     } else {
@@ -98,6 +105,23 @@ class MessageController extends AppController
   public function confirmAssosInvit()
   {
   $this->show('message/message');
+  }
+
+  /**
+  * Supprimer un message
+  */
+  public function DeleteMessage($page_rec, $page_sen, $id)
+  {
+
+    $active = '0';
+    $data = array(
+      'active' => $active,);
+
+    $this->messageModel->update($data, $id);
+
+
+  // $SupprimerMessage = $deleteMessage->DeleteMessage();
+  $this->redirectToRoute('message',['page_rec'=> $page_rec, 'page_sen' => $page_sen]);
   }
 
 

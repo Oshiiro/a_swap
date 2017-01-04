@@ -26,7 +26,7 @@
 						<div class="collapse navbar-collapse" id="navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
 								<?php if(!empty($_SESSION['user'])) { ?>
-								<li><a href="<?php echo $this->url('message') ?>">Messagerie</a></li>
+								<li><a href="<?php echo $this->url('message',['page_rec'=>1, 'page_sen'=>1])  ?>">Messagerie</a></li>
 								<li><a href="<?php echo $this->url('association',['slug' => $this->e($slug)]) ?>">Association</a></li>
 									<?php if($_SESSION['user']['role'] == 'admin') { ?>
 								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug), 'page'=> 1]) ?>">Back Office</a></li>

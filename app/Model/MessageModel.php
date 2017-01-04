@@ -24,7 +24,7 @@ class MessageModel extends Model
     {
       $id = $_SESSION['user']['id'];
 
-      $sql = "SELECT pm.created_at, pm.content, u.username FROM private_message AS pm
+      $sql = "SELECT pm.created_at, pm.content, u.username, pm.id FROM private_message AS pm
               LEFT JOIN users AS u ON pm.id_user_sender = u.id
               WHERE pm.id_user_receiver = :id AND pm.active = 1 LIMIT $limit OFFSET $offset";
       $affMessages = $this->dbh->prepare($sql);
@@ -37,7 +37,7 @@ class MessageModel extends Model
     {
       $id = $_SESSION['user']['id'];
 
-      $sql = "SELECT pm.created_at, pm.content, u.username FROM private_message AS pm
+      $sql = "SELECT pm.created_at, pm.content, u.username, pm.id FROM private_message AS pm
               LEFT JOIN users AS u ON pm.id_user_receiver = u.id
               WHERE pm.id_user_sender = :id AND pm.active = 1 LIMIT $limit OFFSET $offset";
       $affMessages = $this->dbh->prepare($sql);
@@ -122,5 +122,8 @@ class MessageModel extends Model
     $insMessages->bindValue(':message', $message);
     $insMessages->execute();
   }
+
+
+
 
 }
