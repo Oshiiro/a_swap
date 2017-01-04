@@ -55,10 +55,11 @@ class TransactionAdminController extends AppController
   {
     $newTransactions = $this->transactionModel->MakeCreditAdmin();
     $adherants = $this->ourumodel->affOneAdherants($_POST['destinataire']);
+    $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
     $this->show('transaction/admin_credit', array(
-    'newTransactions' => $newTransactions,
-    'adherants' => $adherants,
-
+      'newTransactions' => $newTransactions,
+      'adherants' => $adherants,
+      'slug' => $slug,
     ));
   }
 
