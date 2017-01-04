@@ -62,27 +62,35 @@ class UserAdminController extends AppController
   public function back($slug, $page = 1)
   {
     $this->allowTo(array('admin'));
-  //  $trans = $this->backmodel->GetTrans();
-    $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 
-    $limit = 5;
+    $slug_is_mine = $this->model_assos->slugIsMine($slug);
 
-    $id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
-    //limit d'affichage par page
-    $Pagination = new Pagination('transaction');
-    //on precise la table a exploiter
-    $calcule = $Pagination->calcule_page('id_asso = \''.$id_asso.'\'',$limit,$page);
-    //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
-    //ce qui calcule le nombre de page total et le offset
-    $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back',['slug'=>$slug]);
-    //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+		if($slug_is_mine == true) {
 
-    $trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
-    $this->show('admin/back',
+      //  $trans = $this->backmodel->GetTrans();
+      $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+      
+      $limit = 5;
+      
+      $id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
+      //limit d'affichage par page
+      $Pagination = new Pagination('transaction');
+      //on precise la table a exploiter
+      $calcule = $Pagination->calcule_page('id_asso = \''.$id_asso.'\'',$limit,$page);
+      //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+      //ce qui calcule le nombre de page total et le offset
+      $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back',['slug'=>$slug]);
+      //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+      
+      $trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
+      $this->show('admin/back',
       ['trans'    => $trans,
       'pagination'=> $affichage_pagination,
       'slug'      => $slug]
-    );
+      );
+    } else {
+      $this->showForbidden(); // erreur 403
+    }
 
   }
 
