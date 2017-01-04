@@ -8,7 +8,7 @@ use \Model\AssosModel;
 use \Model\BackModel;
 use \Model\UsersModel AS OurUModel;
 use \Services\Tools\Tools;
-use \Services\Pagination;
+use \Services\PaginationDuo;
 
 class MessageController extends AppController
 {
@@ -28,30 +28,45 @@ class MessageController extends AppController
 /**
 * Page de messagerie
 */
-  public function message($page = 1)
+  public function message($page_rec = 1,$page_sen =1)
   {
     if ($this->tools->isLogged() == true) {
       $showMessages = new MessageModel();
       $users = $showMessages->ListAdherantsMessage();
       // debug($articles);
       $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-      $messages = $showMessages->AfficherMessages();
-      $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes();
 
-      $limit = 5;
-      $id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
+
+
+      $limit_receiver = 3;
+      $id_receiver = $_SESSION['user']['id'];
       //limit d'affichage par page
-      $Pagination = new Pagination('private_message');
+      $Pagination = new PaginationDuo('private_message');
       //on precise la table a exploiter
-      $calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'',$limit,$page);
+      $calcule_receiver = $Pagination->calcule_page('id_user_receiver = \''.$id_receiver.'\'',$limit_receiver,$page_rec);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
-      $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'message',['slug'=>$slug]);
+      $affichage_pagination_receiver = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_sen' =>$page_sen]);
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
-      $trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
+      $messages = $showMessages->AfficherMessages($limit_receiver,$calcule_receiver['offset']);
+
+      $limit_sender = 3;
+      $id_sender = $_SESSION['user']['id'];
+      //limit d'affichage par page
+      //on precise la table a exploiter
+      $calcule_sender = $Pagination->calcule_page('id_user_sender = \''.$id_sender.'\'',$limit_sender,$page_sen);
+      //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+      //ce qui calcule le nombre de page total et le offset
+      $affichage_pagination_sender = $Pagination->pagination($calcule_sender['page'],'page_sen',$calcule_sender['nb_page'],'message',['page_rec' =>$page_rec]);
+      //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+      $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes($limit_sender,$calcule_sender['offset']);
+
+
+
       $this->show('message/message',
         [
-        'pagination'=> $affichage_pagination,
+        'pagination_receiver'=> $affichage_pagination_receiver,
+        'pagination_sender'=> $affichage_pagination_sender,
         'slug' => $slug,
         'users' => $users,
         'messages' => $messages,

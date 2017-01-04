@@ -70,7 +70,6 @@ class AssociationAdminController extends AppController
 			'adherants' => $adherants,
 			'slug'      => $slug]
 		);
-
 	}
 
 	/**

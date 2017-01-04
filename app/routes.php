@@ -46,9 +46,9 @@
 
 
 		// Messagerie
-		['GET', '/messagerie/', 'Message#message', 'message'],
+		['GET', '/messagerie/[:page_rec]/[:page_sen]', 'Message#message', 'message'],
 		['GET', '/messagerie/reception/', 'Message#getMessage', 'get_message'],
-		['POST', '/messagerie/', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
+		['POST', '/messagerie/[:page]', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
 		['POST', '/messagerie/confirmation/', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
 
 

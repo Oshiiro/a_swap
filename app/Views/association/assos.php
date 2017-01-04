@@ -27,7 +27,7 @@
 					<?php } ?>
 					</table>
 			</div>
-
+        <?php if(!empty($pagination_trans)) { echo $pagination_trans;} ?>
 			<!-- ////////////////////// LISTE DES ADHERANTS /////////////////////////////-->
 
 			<div class="panel panel-default container">
