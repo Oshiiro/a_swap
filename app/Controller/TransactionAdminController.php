@@ -6,19 +6,21 @@ use \Controller\AppController;
 use \Model\TransactionModel;
 use \Model\BackModel;
 use \Model\UsersModel as OurUModel;
-
+use \Model\AssosModel;
 
 class TransactionAdminController extends AppController
 {
 
   private $transactionModel;
+  private $model_assos;
+
 
   public function __construct()
   {
-
     $this->transactionModel = new TransactionModel();
     $this->backModel = new backModel();
     $this->ourumodel = new OurUModel();
+    $this->model_assos = new AssosModel();
   }
 
 // Affichage du formulaire pour transaction, alors liste des adhérants
@@ -42,8 +44,10 @@ class TransactionAdminController extends AppController
 
   public function ShowFormCredit($id_seller) {
     $adherants = $this->ourumodel->affOneAdherants($id_seller);
+    $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
     $this->show('transaction/admin_credit', array(
-    'adherants' => $adherants
+      'adherants' => $adherants,
+      'slug' => $slug,
     ));
   }
 

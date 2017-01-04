@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Perdu ?']) ?>
+<?php $this->layout('layout_error', ['title' => 'Perdu ?', 'slug' => $slug]) ?>
 <?php $this->start('main_content'); ?>
 <style media="screen">
 .allContent{top: 0;}
