@@ -1,23 +1,21 @@
 <?php $this->layout('layout', ['title' => 'Creez votre association']) ?>
 
 <?php $this->start('main_content') ?>
-
-	<h2>Creez la page de votre asso</h2>
   <!-- RESTE A PREVOIR/FAIRE : uploader le logo de l'assoc -->
-  <div class="container">
+  <div class="container block-message">
     <form class="formulaire" action="" method="POST">
-      <fieldset>
-        <legend><h2>L'association :</h2></legend>
 	        <!-- partie du formulaire pour la creation de l'asso -->
-					<div class="form-group">
-
+					<div class="block col-xs-9 col-xs-push-2 col-md-push-1 col-lg-10">
+						<h2>Creez la page de votre asso</h2>
+						<legend><h2>L'association :</h2></legend>
 			      <div class="form-group">
 			        <input type="text" name="nom_assos" class="form-control" placeholder="Nom de l'association" value="<?php if(!empty($_GET['nom_assos'])) { echo $_GET['nom_assos']; } elseif(!empty($_POST['nom_assos'])) { echo $_POST['nom_assos']; } ?>">
 							<span class="errorMessage"><?php if(!empty($error['name_asso'])) { echo($error['name_asso']);} ?></span>
 						</div>
 
-		        <div class="form-group">
-		          <textarea name="description_assos"  class="form-control" placeholder="Descriptif de votre association (facultatif)"><?php if(!empty($_POST['description_assos'])) { echo $_POST['description_assos']; } ?></textarea>
+		        <div class="field">
+							<label for="description_assos" class="field-label">Descriptif de votre association (facultatif)</label>
+		          <textarea name="description_assos"  class="materialize-textarea field-input"><?php if(!empty($_POST['description_assos'])) { echo $_POST['description_assos']; } ?></textarea>
 							<span class="errorMessage"><?php if(!empty($error['description_assos'])) { echo($error['description_assos']);} ?></span>
 					  </div>
 
@@ -30,11 +28,7 @@
 		          <textarea name="rules_assos" class="form-control" placeholder="Vous pouvez ici decrire la façon dont est gérée votre monnaie associative (facultatif)"><?php if(!empty($_POST['rules_assos'])) { echo $_POST['rules_assos']; } ?></textarea>
 							<span class="errorMessage"><?php if(!empty($error['rules_assos'])) { echo($error['rules_assos']);} ?></span>
 					  </div>
-
-					</div>
-      </fieldset>
 			<br><br><br><br>
-      <fieldset>
         <legend><h2>Le tresorier :</h2></legend>
       <!-- formulaire de creation de l'admin -->
     	  <div class="form-group">
@@ -70,8 +64,9 @@
 						<span class="errorMessage"><br><?php if(!empty($error['checkbox'])) { echo($error['checkbox']);} ?></span>
 					</div>
 					<input type="submit" class="btn btn-default">
-      </fieldset>
     </form>
   </div>
+	</div>
+</div>
 
 <?php $this->stop('main_content') ?>
