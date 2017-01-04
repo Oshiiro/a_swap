@@ -103,7 +103,7 @@ class UserController extends AppController
 	}
 
 	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
-	public function association($slug)
+	public function association($slug, $page1=1, $page2 = 1)
 	{
 		$slug_is_mine = $this->model_assos->slugIsMine($slug);
 		if ($this->tools->isLogged() == true) {
@@ -113,18 +113,18 @@ class UserController extends AppController
 				$adherants = $this->ourumodel->affAdherants($slug);
 
 
-				$limit_trans = 5;
-				$id_receiver = $_SESSION['user']['id'];
+				$limit1 = 5;
+				$id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
 				//limit d'affichage par page
 				$Pagination = new Pagination('transaction');
 				//on precise la table a exploiter
-				$calcule_trans = $Pagination->calcule_page('id_user_seller = \''.$id_receiver.'\' OR id_user_buyer = \''.$id_receiver.'\'',$limit_trans,$page);
+				$calcul1 = $Pagination->calcule_page('id_asso = \''.$id_asso.'\'',$limit1,$page1);
 				//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
 				//ce qui calcule le nombre de page total et le offset
-				$pagination_trans = $Pagination->pagination($calcule_trans['page'],$calcule_trans['nb_page'],'message');
+				$pagination_trans = $Pagination->pagination($calcul1['page'],$calcul1['nb_page'],'message', ['page1' =>
+			$page1]);
 				//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
-				$trans = $this->ourumodel->GetItsTrans($limit_trans,$calcule_trans['offset']);
-
+				$trans = $this->ourumodel->GetItsTrans($limit1,$calcul1['offset']);
 
 
 				$this->show('association/assos', array(

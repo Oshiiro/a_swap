@@ -50,6 +50,8 @@
 		['GET', '/messagerie/reception/', 'Message#getMessage', 'get_message'],
 		['POST', '/messagerie/[:page]', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
 		['POST', '/messagerie/confirmation/', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
+		['GET', '/messagerie/deletemessage/[:page_rec]/[:page_sen]/[:id]', 'Message#DeleteMessage', 'delete_message'],
+
 
 
 		// Admin Back

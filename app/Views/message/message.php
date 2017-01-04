@@ -1,7 +1,6 @@
 <?php $this->layout('layout', ['title' => 'Messagerie', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
-
 <button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 <div class="container block-message">
   <div class="row">
@@ -31,7 +30,7 @@
               <tr>
                 <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($message['created_at'])).
                                ' à ' .date('H\hi', strtotime($message['created_at']));?></td>
-                <td><a href="#" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+                <td><a href="<?php echo $this->url('delete_message', array('page_rec'=> $page_rec, 'page_sen' => $page_sen, 'id' => $message['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
               </tr>
               <tr>
                 <td><?php echo $message['content'];?></td>
@@ -47,13 +46,14 @@
       <div class="envoyes"style="display : none;">
         <table>
           <br>
+          <?php debug($messagesenvoyes); ?>
           <?php if(!empty($messagesenvoyes)) {
             foreach ($messagesenvoyes as $messagesenvoye) { ?>
               <th>Envoyé à :<?php echo ' ' .$messagesenvoye['username'];?></th>
               <tr>
                 <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($messagesenvoye['created_at'])).
                                ' à ' .date('H\hi', strtotime($messagesenvoye['created_at']));?></td>
-                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                <td><a href="<?php echo $this->url('delete_message', array('id' => $messagesenvoye['id'])) ?>" title='Supprimer message'><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
               </tr>
               <tr>
                 <td><?php echo $messagesenvoye['content'];?></td>

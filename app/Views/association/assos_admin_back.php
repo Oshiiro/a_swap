@@ -1,6 +1,7 @@
 <?php $this->layout('layout_admin_back', ['title' => 'Admin Association', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
+<?php debug($affichage_pagination); ?>
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
@@ -33,9 +34,9 @@
 							</tr>
 						<?php } ?>
 						</table>
-            <div class="pagination" >  <?php if(!empty($pagination)){
-              echo $pagination;
-            } ?></div>
+
+            <?php  echo $affichage_pagination; ?>
+
 			</div>
 
 		</div>
