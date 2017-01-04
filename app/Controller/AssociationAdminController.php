@@ -48,42 +48,52 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssos($slug, $page=1)
 	{
-		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
-		$adherants = $this->our_u_model->affAllAdherants();
+		$slug_is_mine = $this->assos->slugIsMine($slug);
+		if($slug_is_mine == true) {
+			$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
+			$adherants = $this->our_u_model->affAllAdherants();
 
-		$limit = 5;
+			$limit = 5;
 
-		$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
-		//limit d'affichage par page
-		$Pagination = new Pagination('users');
-		//on precise la table a exploiter
-		$calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'',$limit,$page);
-		//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
-		//ce qui calcule le nombre de page total et le offset
-		$affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back_assos',['slug'=>$slug]);
-		//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+			$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
+			//limit d'affichage par page
+			$Pagination = new Pagination('users');
+			//on precise la table a exploiter
+			$calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'',$limit,$page);
+			//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+			//ce qui calcule le nombre de page total et le offset
+			$affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back_assos',['slug'=>$slug]);
+			//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
 
-		$trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
-		$this->show('association/assos_admin_back',
-			['trans'    => $trans,
-			'pagination'=> $affichage_pagination,
-			'adherants' => $adherants,
-			'slug'      => $slug]
-		);
+			$trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
+			$this->show('association/assos_admin_back',
+				['trans'    => $trans,
+				'pagination'=> $affichage_pagination,
+				'adherants' => $adherants,
+				'slug'      => $slug]
+			);
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
 	}
 
 	/**
 	 * Modification Association Admin ( page de modif )
 	 */
-	public function backAssosModif()
+	public function backAssosModif($slug)
 	{
-		$association = $this->assos->ModifAssos();
+		$slug_is_mine = $this->assos->slugIsMine($slug);
+		if($slug_is_mine == true) {
+			$association = $this->assos->ModifAssos();
 
-		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
-		$this->show('association/modifassos_admin_back', array(
-			'slug' => $slug,
-			'association' => $association,
-		));
+			$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
+			$this->show('association/modifassos_admin_back', array(
+				'slug' => $slug,
+				'association' => $association,
+			));
+		} else {
+			$this->showForbidden(); // erreur 403
+		}
 	}
 
 	/**

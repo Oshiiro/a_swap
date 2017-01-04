@@ -110,7 +110,7 @@ class UserController extends AppController
 			if($slug_is_mine == true) {
 
 				$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-				$adherants = $this->ourumodel->affAdherants($slug);
+				$adherants = $this->ourumodel->affAllAdherants($slug);
 
 
 				$limit_trans = 5;
