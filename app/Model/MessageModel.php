@@ -20,26 +20,26 @@ class MessageModel extends Model
 
 
     // Affiche les messages recu par la personne connecté
-    public function AfficherMessages()
+    public function AfficherMessages($limit, $offset)
     {
       $id = $_SESSION['user']['id'];
 
       $sql = "SELECT pm.created_at, pm.content, u.username FROM private_message AS pm
               LEFT JOIN users AS u ON pm.id_user_sender = u.id
-              WHERE pm.id_user_receiver = :id AND pm.active = 1";
+              WHERE pm.id_user_receiver = :id AND pm.active = 1 LIMIT $limit OFFSET $offset";
       $affMessages = $this->dbh->prepare($sql);
       $affMessages->bindValue(':id', $id);
       $affMessages->execute();
       return $affMessages->fetchAll();
     }
 
-    public function AfficherMessagesEnvoyes()
+    public function AfficherMessagesEnvoyes($limit, $offset)
     {
       $id = $_SESSION['user']['id'];
 
       $sql = "SELECT pm.created_at, pm.content, u.username FROM private_message AS pm
               LEFT JOIN users AS u ON pm.id_user_receiver = u.id
-              WHERE pm.id_user_sender = :id AND pm.active = 1";
+              WHERE pm.id_user_sender = :id AND pm.active = 1 LIMIT $limit OFFSET $offset";
       $affMessages = $this->dbh->prepare($sql);
       $affMessages->bindValue(':id', $id);
       $affMessages->execute();

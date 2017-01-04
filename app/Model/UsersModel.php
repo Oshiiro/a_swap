@@ -89,7 +89,7 @@ class UsersModel extends UModel
   }
 
 // Fonction permettant d'afficher ses derniers transactions et seulement les siennes (pour user).
-  public function GetItsTrans()
+  public function GetItsTrans($limit, $offset)
   {
 
     $id = $_SESSION['user']['id'];
@@ -99,6 +99,7 @@ class UsersModel extends UModel
             LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
             LEFT JOIN assos ON transaction.id_asso = assos.id
             WHERE transaction.id_user_seller = :id OR transaction.id_user_buyer = :id
+            LIMIT $limit OFFSET $offset
     ";
     $query = $this->dbh->prepare($sql);
     $query->bindValue(':id', $id);

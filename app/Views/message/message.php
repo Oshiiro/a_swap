@@ -1,6 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Messagerie', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
+
 <button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 <div class="container block-message">
   <div class="row">
@@ -12,9 +13,6 @@
           <?php foreach ($users as $user): ?>
             <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
           <?php endforeach; ?>
-          <div class="pagination" >  <?php if(!empty($Pagination)){
-            echo $Pagination;
-          } ?></div>
         </select><br>
         <div class="form-group">
           <label for="">Message</label>
@@ -42,6 +40,7 @@
             echo '<div class="block-message-1">Vous n\'avez aucun message</div>';
           }?>
         </table>
+        <?php echo $pagination_receiver; ?>
 
 <!-- Messages envoyés -->
 <button type ="button" title="Afficher message envoyé" class="btn btn-primary messagesEnvoyes btn-lg" type="button">Messages envoyés</button>
@@ -62,6 +61,7 @@
           <?php  }
         } else { echo 'Vous n\'avez aucun message envoyé.'; }?>
       </table>
+      <?php echo $pagination_sender; ?>
       </div>
     </div>
   </div>

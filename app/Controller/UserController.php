@@ -5,6 +5,7 @@ namespace Controller;
 use \Controller\AppController;
 use \Services\Tools\ValidationTools;
 use \Services\Tools\Tools;
+use \Services\Pagination;
 use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
 use \Model\AssosModel;
@@ -107,8 +108,25 @@ class UserController extends AppController
 		if ($this->tools->isLogged() == true) {
 			$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 			$adherants = $this->ourumodel->affAdherants($slug);
-			$trans = $this->ourumodel->GetItsTrans();
+
+
+			$limit_trans = 5;
+			$id_receiver = $_SESSION['user']['id'];
+			//limit d'affichage par page
+			$Pagination = new Pagination('transaction');
+			//on precise la table a exploiter
+			$calcule_trans = $Pagination->calcule_page('id_user_seller = \''.$id_receiver.'\' OR id_user_buyer = \''.$id_receiver.'\'',$limit_trans,$page);
+			//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+			//ce qui calcule le nombre de page total et le offset
+			$pagination_trans = $Pagination->pagination($calcule_trans['page'],$calcule_trans['nb_page'],'message');
+			//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+			$trans = $this->ourumodel->GetItsTrans($limit_trans,$calcule_trans['offset']);
+
+
+
 			$this->show('association/assos', array(
+				'pagination_trans'=> $pagination_trans,
+        // 'pagination_adh'=>$pagination_adh,
 				'slug' => $slug,
 				'adherants' => $adherants,
 				'trans' => $trans
