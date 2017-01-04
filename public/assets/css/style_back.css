@@ -45,6 +45,19 @@ body {
   flex-direction: column;
 }
 
+.extension_head {
+  height: 150px;
+  margin-top: 0px;
+  width: 100%;
+  z-index: -1;
+}
+
+.wrap {
+  /*height: 100%;*/
+  max-width: 1920px;
+  margin: auto;
+}
+
 /* -------------------------------------------------------------------------- */
 /* BARRE DE MENU; */
 .navbar a {
