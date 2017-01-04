@@ -12,6 +12,8 @@ use \Model\MessageModel;
 use \Model\InvitationModel;
 use \Services\Flash\FlashBags;
 use \Services\Tools\ValidationTools;
+use \Services\Pagination;
+
 use \Model\BackModel;
 use PHPMailer;
 
@@ -36,6 +38,7 @@ class AssociationAdminController extends AppController
 		$this->invitation = new InvitationModel();
 
 
+
 	}
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
@@ -43,15 +46,30 @@ class AssociationAdminController extends AppController
 	/**
 	 * Page Back Association Admin
 	 */
-	public function backAssos($slug)
+	public function backAssos($slug, $page=1)
 	{
 		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
 		$adherants = $this->our_u_model->affAllAdherants();
-		$this->show('association/assos_admin_back', array(
-			'slug' => $slug,
-			'adherants' => $adherants,
-		));
 
+		$limit = 5;
+
+		$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
+		//limit d'affichage par page
+		$Pagination = new Pagination('users');
+		//on precise la table a exploiter
+		$calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'',$limit,$page);
+		//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+		//ce qui calcule le nombre de page total et le offset
+		$affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back_assos',['slug'=>$slug]);
+		//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+
+		$trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
+		$this->show('association/assos_admin_back',
+			['trans'    => $trans,
+			'pagination'=> $affichage_pagination,
+			'adherants' => $adherants,
+			'slug'      => $slug]
+		);
 
 	}
 

@@ -5,8 +5,10 @@ namespace Controller;
 use \Controller\AppController;
 use \Model\MessageModel;
 use \Model\AssosModel;
+use \Model\BackModel;
 use \Model\UsersModel AS OurUModel;
 use \Services\Tools\Tools;
+use \Services\Pagination;
 
 class MessageController extends AppController
 {
@@ -17,6 +19,7 @@ class MessageController extends AppController
 	{
 		$this->tools = new Tools();
     $this->model_assos = new AssosModel();
+    $this->backmodel = new BackModel();
   }
 
 // ===================================================================================================================
@@ -25,7 +28,7 @@ class MessageController extends AppController
 /**
 * Page de messagerie
 */
-  public function message()
+  public function message($page = 1)
   {
     if ($this->tools->isLogged() == true) {
       $showMessages = new MessageModel();
@@ -33,27 +36,33 @@ class MessageController extends AppController
       // debug($articles);
       $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
       $messages = $showMessages->AfficherMessages();
-
       $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes();
 
-    $this->show('message/message', array(
-      'slug' => $slug,
-      'users' => $users,
-      'messages' => $messages,
-      'messagesenvoyes' => $messagesenvoyes
-    ));
+      $limit = 5;
+      $id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
+      //limit d'affichage par page
+      $Pagination = new Pagination('private_message');
+      //on precise la table a exploiter
+      $calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'',$limit,$page);
+      //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+      //ce qui calcule le nombre de page total et le offset
+      $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'message',['slug'=>$slug]);
+      //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+      $trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
+      $this->show('message/message',
+        [
+        'pagination'=> $affichage_pagination,
+        'slug' => $slug,
+        'users' => $users,
+        'messages' => $messages,
+        'messagesenvoyes' => $messagesenvoyes
+      ]
+      );
     } else {
       $this->showForbidden(); // erreur 403
     }
   }
-  /**
-  * Afficher un message recu
-  */
-  public function getMessage()
-  {
 
-  $this->show('message/message');
-  }
 
   // ===================================================================================================================
   // TRAITEMENT DES FORMULAIRES

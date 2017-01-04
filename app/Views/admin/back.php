@@ -9,6 +9,7 @@
       <div class="pagination" >  <?php if(!empty($pagination)){
         echo $pagination;
       } ?></div>
+      
 			<br>
 
 			  <table class="col-md-offset-2 col-md-8">

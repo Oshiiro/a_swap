@@ -12,6 +12,9 @@
           <?php foreach ($users as $user): ?>
             <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
           <?php endforeach; ?>
+          <div class="pagination" >  <?php if(!empty($Pagination)){
+            echo $Pagination;
+          } ?></div>
         </select><br>
         <div class="form-group">
           <label for="">Message</label>

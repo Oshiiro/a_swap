@@ -37,6 +37,9 @@
 							</tr>
 						<?php } ?>
 						</table>
+            <div class="pagination" >  <?php if(!empty($pagination)){
+              echo $pagination;
+            } ?></div>
 			</div>
 
 		</div>
