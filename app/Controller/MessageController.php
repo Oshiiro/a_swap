@@ -28,7 +28,7 @@ class MessageController extends AppController
 /**
 * Page de messagerie
 */
-  public function message($page_rec = 1,$page_sen =1)
+  public function message($page_rec = 1,$page_sen = 1)
   {
     if ($this->tools->isLogged() == true) {
       $showMessages = new MessageModel();
@@ -46,7 +46,7 @@ class MessageController extends AppController
       $calcule_receiver = $Pagination->calcule_page('id_user_receiver = \''.$id_receiver.'\'',$limit_receiver,$page_rec);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
-      $affichage_pagination_receiver = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_sen' =>$page_sen]);
+      $affichage_pagination_receiver = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_rec' =>$page_rec]);
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
       $messages = $showMessages->AfficherMessages($limit_receiver,$calcule_receiver['offset']);
 
@@ -57,7 +57,7 @@ class MessageController extends AppController
       $calcule_sender = $Pagination->calcule_page('id_user_sender = \''.$id_sender.'\'',$limit_sender,$page_sen);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
-      $affichage_pagination_sender = $Pagination->pagination($calcule_sender['page'],'page_sen',$calcule_sender['nb_page'],'message',['page_rec' =>$page_rec]);
+      $affichage_pagination_sender = $Pagination->pagination($calcule_sender['page'],'page_sen',$calcule_sender['nb_page'],'message',['page_sen' =>$page_sen]);
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
       $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes($limit_sender,$calcule_sender['offset']);
 
