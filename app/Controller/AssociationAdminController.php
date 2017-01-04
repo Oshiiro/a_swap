@@ -46,37 +46,33 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssos($slug, $page=1)
 	{
-		if ($this->tools->isLogged() == true){
+		$this->allowTo(array('admin'));
+		$slug_is_mine = $this->assos->slugIsMine($slug);
 
-			$slug_is_mine = $this->assos->slugIsMine($slug);
-
-			if($slug_is_mine == true) {
-				$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
-
-
-				$limit = 5;
-
-				$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
-				//limit d'affichage par page
-				$Pagination = new Pagination('users');
-				//on precise la table a exploiter
-				$calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'',$limit,$page);
-				//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
-				//ce qui calcule le nombre de page total et le offset
-				$affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back_assos',['slug'=>$slug]);
-				//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+		if($slug_is_mine == true) {
+			$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
 
 
-				$adherants = $this->our_u_model->affAllAdherants($id_asso,$limit,$calcule['offset']);
-				$this->show('association/assos_admin_back',
-				[
-					'affichage_pagination'=> $affichage_pagination,
-					'adherants' => $adherants,
-					'slug'      => $slug]
-				);
-			} else {
-				$this->showForbidden(); // erreur 403
-			}
+			$limit = 5;
+
+			$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
+			//limit d'affichage par page
+			$Pagination = new Pagination('users');
+			//on precise la table a exploiter
+			$calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'',$limit,$page);
+			//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+			//ce qui calcule le nombre de page total et le offset
+			$affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back_assos',['slug'=>$slug]);
+			//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+
+
+			$adherants = $this->our_u_model->affAllAdherants($id_asso,$limit,$calcule['offset']);
+			$this->show('association/assos_admin_back',
+			[
+				'affichage_pagination'=> $affichage_pagination,
+				'adherants' => $adherants,
+				'slug'      => $slug]
+			);
 		} else {
 			$this->showForbidden(); // erreur 403
 		}
@@ -87,19 +83,16 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssosModif($slug)
 	{
-		if ($this->tools->isLogged() == true){
-			$slug_is_mine = $this->assos->slugIsMine($slug);
-			if($slug_is_mine == true) {
-				$association = $this->assos->ModifAssos();
+		$this->allowTo(array('admin'));
+		$slug_is_mine = $this->assos->slugIsMine($slug);
+		if($slug_is_mine == true) {
+			$association = $this->assos->ModifAssos();
 
-				$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
-				$this->show('association/modifassos_admin_back', array(
-					'slug' => $slug,
-					'association' => $association,
-				));
-			} else {
-				$this->showForbidden(); // erreur 403
-			}
+			$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
+			$this->show('association/modifassos_admin_back', array(
+				'slug' => $slug,
+				'association' => $association,
+			));
 		} else {
 			$this->showForbidden(); // erreur 403
 		}
