@@ -6,7 +6,7 @@
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
       <form class="formulaire" action="<?php echo $this->url('admin_association_update_action') ?>" method="POST">
-        <legend><h2>Editer Votre Association</h2></legend>
+        <h2>Editer Votre Association</h2>
 
           <div class="field">
             <label for="name" class="field-label">Nom de l'association</label>

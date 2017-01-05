@@ -13,9 +13,9 @@
             <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
           <?php endforeach; ?>
         </select><br>
-        <div class="form-group">
-          <label for="">Message</label>
-          <textarea name="message" class="form-control" placeholder="Votre message"></textarea>
+        <div class="field">
+          <label for="message" class="field-label">Votre message</label>
+          <textarea name="message" class="field-input"></textarea>
         </div>
         <input class="btn btn-default" type="submit" name="submit" value="envoyer">
         <br><br>

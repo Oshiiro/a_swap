@@ -54,7 +54,7 @@
     <div class="container-fluid explications">
       <div class="row">
         <div class="col-md-6 col-md-push-3">
-          <h3>A-Swap, c'est quoi ?</h3>
+          <h2 class="white">A-Swap, c'est quoi ?</h2>
           <p>
             a-Swap : Qu'est ce que c'est ? <br>
 
