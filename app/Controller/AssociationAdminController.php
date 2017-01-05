@@ -165,11 +165,14 @@ class AssociationAdminController extends AppController
 			);
 			$this->assos->update($data, $id);
 			$flash = new FlashBags();
-			$flash->setFlash('warning', 'Votre assos à bien été modifié');
+			$flash->setFlash('warning', 'Votre association a bien été modifiée');
 		}
 
-
-    	$this->show('association/modifassos_admin_back', array('error' => $error));
+			$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
+    	$this->show('association/modifassos_admin_back', array(
+				'error' => $error,
+				'slug' => $slug,
+			));
 	}
 
 
