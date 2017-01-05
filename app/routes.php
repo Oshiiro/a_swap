@@ -50,7 +50,8 @@
 		['GET', '/messagerie/reception/', 'Message#getMessage', 'get_message'],
 		['POST', '/messagerie/[:page_rec]/[:page_sen]', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
 		['POST', '/messagerie/confirmation/', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
-		['GET', '/messagerie/deletemessage/[:page_rec]/[:page_sen]/[:id]', 'Message#DeleteMessage', 'delete_message'],
+		['GET', '/messagerie/deletemessagerecu/[:page_rec]/[:page_sen]/[:id]', 'Message#DeleteMessageRecu', 'delete_message_recu'],
+		['GET', '/messagerie/deletemessageenvoye/[:page_rec]/[:page_sen]/[:id]', 'Message#DeleteMessageEnvoye', 'delete_message_envoye'],
 
 
 
@@ -64,7 +65,7 @@
 		['POST', '/admin/crediter/', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
 
 		// Admin Association Back
-		['GET', '/admin/back/gestion/association/[:slug]/[:page]', 'AssociationAdmin#backAssos', 'admin_back_assos'],
+		['GET', '/admin/back/gestion/association/[:slug]', 'AssociationAdmin#backAssos', 'admin_back_assos'],
 		['GET', '/admin/back/modification/[:slug]', 'AssociationAdmin#backAssosModif', 'admin_back_modifassos'],
 
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)

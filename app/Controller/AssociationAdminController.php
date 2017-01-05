@@ -59,7 +59,7 @@ class AssociationAdminController extends AppController
 			//limit d'affichage par page
 			$Pagination = new Pagination('users');
 			//on precise la table a exploiter
-			$calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'',$limit,$page);
+			$calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'', $limit,$page);
 			//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
 			//ce qui calcule le nombre de page total et le offset
 			$affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back_assos',['slug'=>$slug]);
@@ -189,6 +189,7 @@ class AssociationAdminController extends AppController
 		$id_admin = $_SESSION['user']['id'];
 		$email   = trim(strip_tags($_POST['mail_invite']));
 		$email_sender = $_SESSION['user']['email'];
+		$slug = $this->assos->getSlugByIdUser($id_admin);
 
 		// On verifie que c'est bien une adresse mail qui a été renseignée
 		$error['email'] = $this->valid->emailValid($email,'email', 3, 50);
@@ -271,11 +272,12 @@ class AssociationAdminController extends AppController
 
 				}
 			}
-			$this->redirectToRoute('admin_back_assos');
+			$this->redirectToRoute('admin_back_assos', ['slug' => $slug]);
 
 		} else {
 			$this->show('admin/back', array(
 				'error' => $error,
+
 			));
 		}
 	}
@@ -287,6 +289,7 @@ class AssociationAdminController extends AppController
 		$this->allowTo(array('admin'));
 
 		$id_logged = $_SESSION['user']['id'];
+		$slug = $this->assos-> getSlugByIdUser($id_logged);
 
 		// Verifier que le user qu'on est en train de delete fait bien parti de l'asso dont je suis admin
 		$isInMyTeam = $this->intermediaire->isInMyteam($id_logged, $id_user);
@@ -296,7 +299,7 @@ class AssociationAdminController extends AppController
 			// doit-on faire apparaitre un message de confirmation ?
 			$flash = new FlashBags();
 			$flash->setFlash('warning', 'Cet utilisateur ne fait désormais plus parti de votre association.');
-			$this->redirectToRoute('admin_back_assos');
+			$this->redirectToRoute('admin_back_assos', ['slug' => $slug]);
 		} else {
 			$this->showForbidden(); // erreur 403
 		}

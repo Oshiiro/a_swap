@@ -26,7 +26,9 @@ class MessageModel extends Model
 
       $sql = "SELECT pm.created_at, pm.content, u.username, pm.id FROM private_message AS pm
               LEFT JOIN users AS u ON pm.id_user_sender = u.id
-              WHERE pm.id_user_receiver = :id AND pm.active = 1 LIMIT $limit OFFSET $offset";
+              WHERE pm.id_user_receiver = :id AND pm.active_receiver = 1
+              ORDER BY created_at DESC
+              LIMIT $limit OFFSET $offset";
       $affMessages = $this->dbh->prepare($sql);
       $affMessages->bindValue(':id', $id);
       $affMessages->execute();
@@ -39,7 +41,9 @@ class MessageModel extends Model
 
       $sql = "SELECT pm.created_at, pm.content, u.username, pm.id FROM private_message AS pm
               LEFT JOIN users AS u ON pm.id_user_receiver = u.id
-              WHERE pm.id_user_sender = :id AND pm.active = 1 LIMIT $limit OFFSET $offset";
+              WHERE pm.id_user_sender = :id AND pm.active_sender = 1
+              ORDER BY created_at DESC
+              LIMIT $limit OFFSET $offset";
       $affMessages = $this->dbh->prepare($sql);
       $affMessages->bindValue(':id', $id);
       $affMessages->execute();
@@ -78,7 +82,7 @@ class MessageModel extends Model
       $id_receiver = trim(strip_tags($_POST['destinataire']));
       $message = trim(strip_tags($_POST['message']));
 
-            $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at, active) VALUES (:id_sender, :id_receiver, :message, NOW(), 1)");
+            $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at, active_receiver, active_sender) VALUES (:id_sender, :id_receiver, :message, NOW(), 1, 1)");
             $insMessages->bindValue(':id_sender', $id_sender);
             $insMessages->bindValue(':id_receiver', $id_receiver);
             $insMessages->bindValue(':message', $message);
@@ -115,14 +119,54 @@ class MessageModel extends Model
                 // rajouter une colone "active" a la table "private-message"
                 // ou delete le private_message.
 
-    $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at, active)
-                                        VALUES (:id_sender, :id_receiver, :message, NOW(), 1)");
+    $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at, active_receiver , active_sender)
+                                        VALUES (:id_sender, :id_receiver, :message, NOW(), 1, 1)");
     $insMessages->bindValue(':id_sender', $id_sender);
     $insMessages->bindValue(':id_receiver', $id_receiver);
     $insMessages->bindValue(':message', $message);
     $insMessages->execute();
   }
 
+//SECURITER :  Verifier que l'utilisateur supprime bien un message qui lui appartient
+public function VerifMessageReceiver($page_rec, $page_sen, $idmessage)
+{
+  $id = $_SESSION['user']['id'];
+
+  $sql = "SELECT id FROM private_message
+          WHERE id = $idmessage
+          AND id_user_receiver = :id
+          ";
+  $affMessages = $this->dbh->prepare($sql);
+  $affMessages->bindValue(':id', $id);
+  $affMessages->execute();
+  $verifmessagerec = $affMessages->fetchColumn();
+  if($idmessage === $verifmessagerec) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// SECURITER : verifier que l'utilisateur supprimer bien un message que lui même à envoyer
+public function VerifMessageSender($page_rec, $page_sen, $idmessage)
+{
+  $id = $_SESSION['user']['id'];
+
+  $sql = "SELECT id FROM private_message
+          WHERE id = $idmessage
+          AND id_user_sender = :id
+          ";
+  $affMessages = $this->dbh->prepare($sql);
+  $affMessages->bindValue(':id', $id);
+  $affMessages->execute();
+  $verifmessagesender = $affMessages->fetch();
+
+  if($idmessage === $verifmessagesender['id']) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 
 

@@ -1,6 +1,7 @@
 <?php $this->layout('layout_admin_back', ['title' => 'Admin Association', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
+<!-- <?php debug($affichage_pagination); ?> -->
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
@@ -28,8 +29,8 @@
 								<td><?php echo $adherant['username']; ?></td>
 								<td><?php echo $adherant['email']; ?></td>
 								<td><?php echo $adherant['wallet']; ?></td>
-								<td><a href="<?php echo $this->url('admin_back_credite', array('id' => $adherant['id_users'])) ?>" title="Créditer le portefeuille"><i class="fa fa-money fa-2x" aria-hidden="true"> </i></a></td>
-								<td><a href="<?php echo $this->url('admin_back_delete', array('id' => $adherant['id_users'])) ; ?>" title="Exclure ce membre"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
+								<td><a href="<?php echo $this->url('admin_back_credite', array('id' => $adherant['id_users'], 'slug' => $slug, 'page' => $page)) ?>"  title="Créditer le portefeuille"><i class="fa fa-money fa-2x" aria-hidden="true"> </i></a></td>
+								<td><a onclick="return confirm('Etes-vous sûr de vouloir le supprimer?')" href="<?php echo $this->url('admin_back_delete', array('id' => $adherant['id_users'])) ; ?>" title="Exclure ce membre"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a></td>
 							</tr>
 						<?php } ?>
 						</table>
