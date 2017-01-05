@@ -92,7 +92,6 @@ public function MakeTransactionAdmin() {
 // Transaction pour admin
 public function MakeCreditAdmin() {
 
-  // debug($_POST['destinataire']);
   if(!empty($_POST['submit'])) {
 
     $id_buyer = $_SESSION['user']['id'];
