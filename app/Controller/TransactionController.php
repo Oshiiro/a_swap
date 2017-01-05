@@ -53,9 +53,6 @@ class TransactionController extends AppController
     $slug = $this->AssosModel->getSlugByIdUser($_SESSION['user']['id']);
     $newTransac = $this->transactionModel->makeTransactionUser();
     $adherants = $this->usersModel->affAdherants($slug);
-    $this->authentificationmodel->refreshUser();
-    $_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
-    $_SESSION['user']['wallet'] = $this->model_intermediaire->FindElementByElement('wallet', 'id_users', $_SESSION['user']['id']);
     $this->show('transaction/users_transaction', array(
       'newTransac' => $newTransac,
       'adherants' => $adherants,

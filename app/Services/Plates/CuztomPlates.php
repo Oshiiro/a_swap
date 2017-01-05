@@ -21,7 +21,6 @@ class CuztomPlates implements ExtensionInterface
       $engine->registerFunction('maj', [$this, 'Majuscule']);
       $engine->registerFunction('logged', [$this, 'isLogged']);
 			$engine->registerFunction('getFlash', [$this, 'getFlash']);
-			$engine->registerFunction('findElementByElement', [$this, 'findElementByElement']);
 
 
     }

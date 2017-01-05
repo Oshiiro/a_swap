@@ -27,11 +27,12 @@ class AppController extends Controller
     $app = getApp();
 
     // créer un array assos avec tout les elements utilisable
-
-    if(!empty($_SESSION['user'])) {
+    $dataAssos = [];
+    if(!empty($_SESSION['user']))
+    {
       $model_assos = new AssosModel();
       $dataAssos = $model_assos->getAssosById($_SESSION['user']['id']);
-
+      debug($dataAssos);
     }
 
     // Rend certaines données disponibles à tous les vues
@@ -41,6 +42,7 @@ class AppController extends Controller
         'w_user' 		  => $this->getUser(),
         'w_current_route' => $app->getCurrentRoute(),
         'w_site_name'	  => $app->getConfig('site_name'),
+        'dataAssos'  => $dataAssos
       ]
     );
 

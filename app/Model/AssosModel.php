@@ -43,6 +43,7 @@ class AssosModel extends UModel
     $sth->bindValue(':id', $id);
     $sth->execute();
     $result = $sth->fetch();
+    return $result;
   }
 
   public function assoExists($nom_asso)

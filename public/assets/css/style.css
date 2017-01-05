@@ -241,6 +241,18 @@ li a:hover {
   color: white;
 }
 
+.moneyLayout {
+  font-family: 'Space Mono', monospace;
+  font-weight: 900;
+  font-size: 15px;
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  transition: color 1s;
+  transition: background-color 1s;
+  z-index: 1;
+}
+
 /* -------------------------------------------------------------------------- */
 /* HOME */
 
