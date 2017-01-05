@@ -64,8 +64,8 @@
 						<span class="errorMessage"><br><?php if(!empty($error['checkbox'])) { echo($error['checkbox']);} ?></span>
 					</div>
 					<input type="submit" class="btn btn-default">
-    </form>
-  </div>
+      </form>
+    </div>
 	</div>
 </div>
 
