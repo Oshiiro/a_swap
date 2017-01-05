@@ -383,6 +383,7 @@ class UserController extends AppController
 			$this->model->update($data, $id);
 			$this->authentificationmodel->refreshUser();
 			$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
+			$_SESSION['user']['wallet'] = $this->model_intermediaire->FindElementByElement('wallet', 'id_users', $_SESSION['user']['id']);
 
 
 
