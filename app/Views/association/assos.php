@@ -6,6 +6,29 @@
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 			<h2><?php echo $_SESSION['user']['nom_assos'] ?></h2>
+<?php debug($dataAssos);?>
+      <div class="panel panel-default container">
+        <div class="panel-heading">Infos Associations</div>
+          <table class="col-xs-10">
+            <tr>
+              <th>Acheteur</th>
+              <th>Vendeur</th>
+              <th>Somme</th>
+              <th>Description</th>
+
+            </tr>
+
+            <tr>
+              <td><?php echo $dataAssos['name']; ?></td>
+              <td><?php echo $dataAssos['money_name']; ?></td>
+              <td><?php echo $dataAssos['description']; ?></td>
+              <td><?php echo $dataAssos['rules']; ?></td>
+
+            </tr>
+
+          </table>
+      </div>
+
 			<div class="panel panel-default container">
 				<div class="panel-heading">Vos transactions</div>
 				  <table class="col-xs-10">

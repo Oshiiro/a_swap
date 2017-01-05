@@ -132,7 +132,8 @@ class UserController extends AppController
 					// 'pagination_adh'=>$pagination_adh,
 					'slug' => $slug,
 					'adherants' => $adherants,
-					'trans' => $trans
+					'trans' => $trans,
+					'dataAssos' => $dataAssos
 				));
 
 			} else {
@@ -165,13 +166,13 @@ class UserController extends AppController
 		$exist = $this->model->usernameExists($username,'username', 3, 50);
 		if($exist == true)
 		{
-			$error['username'] = 'Votre pseudo est deja pris';
+			$error['username'] = 'Votre pseudo est déjà pris';
 		} else {
 			$error['username']   = $this->valid->textValid($username,'username', 3, 50);
 		}
 
 		if(empty($_POST['lastname'])){
-			$error['lastname'] = 'Veuillez renseigner un prenom';
+			$error['lastname'] = 'Veuillez renseigner un prénom';
 		} else {
 			$error['lastname']   = $this->valid->textValid($lastname,'lastname', 3, 50);
 		}
@@ -194,7 +195,7 @@ class UserController extends AppController
 
 		$exist = $this->model->emailExists($email,'email', 3, 50);
 		if($exist == true){
-			$error['email'] = 'le mail et deja prit';
+			$error['email'] = 'le mail est déjà pris';
 		} else {
 			$error['email'] = $this->valid->emailValid($email,'email', 3, 50);
 		}

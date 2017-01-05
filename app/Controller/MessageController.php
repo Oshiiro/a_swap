@@ -108,20 +108,46 @@ class MessageController extends AppController
   }
 
   /**
-  * Supprimer un message
+  * Supprimer un message recu
   */
-  public function DeleteMessage($page_rec, $page_sen, $id)
+  public function DeleteMessageRecu($page_rec, $page_sen, $id)
   {
+    $VerifMessage = $this->messageModel->VerifMessageReceiver($page_rec, $page_sen, $id);
+    if($VerifMessage === true) {
+      $active_receiver = '0';
+      $data = array(
+        'active_receiver' => $active_receiver,
+      );
 
-    $active = '0';
-    $data = array(
-      'active' => $active,);
+      $this->messageModel->update($data, $id);
 
-    $this->messageModel->update($data, $id);
+      $this->redirectToRoute('message',['page_rec'=> $page_rec, 'page_sen' => $page_sen]);
+
+    } else {
+      $this->showForbidden(); // erreur 403
+    }
+  }
 
 
-  // $SupprimerMessage = $deleteMessage->DeleteMessage();
-  $this->redirectToRoute('message',['page_rec'=> $page_rec, 'page_sen' => $page_sen]);
+  /**
+  * Supprimer un message envoyé
+  */
+  public function DeleteMessageEnvoye($page_rec, $page_sen, $id)
+  {
+    $VerifMessageS = $this->messageModel->VerifMessageSender($page_rec, $page_sen, $id);
+      if($VerifMessageS === true) {
+
+        $active_sender = '0';
+        $data = array(
+          'active_sender' => $active_sender,
+        );
+
+        $this->messageModel->update($data, $id);
+
+        $this->redirectToRoute('message',['page_rec'=> $page_rec, 'page_sen' => $page_sen]);
+      } else {
+        $this->showForbidden(); // erreur 403
+        }
   }
 
 

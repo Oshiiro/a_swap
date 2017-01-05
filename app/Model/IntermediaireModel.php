@@ -105,13 +105,15 @@ class IntermediaireModel extends UModel
     $sth->execute();
     $id_asso_user = $sth->fetch();
 
-    if($id_asso_admin == $id_asso_user){
+    if($id_asso_admin == $id_asso_user) {
       return true;
     } else {
       return false;
     }
 
   }
+
+
 
 }
 ?>
