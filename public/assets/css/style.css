@@ -67,7 +67,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .allContent {
-  min-height: 42.8em;
+  min-height: 38.5em;
   max-width: 1920px;
   margin: auto;
   position: relative;
@@ -246,8 +246,7 @@ li a:hover {
   font-weight: 900;
   font-size: 15px;
   color: white;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding: 15px;
   transition: color 1s;
   transition: background-color 1s;
   z-index: 1;

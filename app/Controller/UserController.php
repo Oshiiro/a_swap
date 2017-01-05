@@ -133,7 +133,6 @@ class UserController extends AppController
 					'slug' => $slug,
 					'adherants' => $adherants,
 					'trans' => $trans,
-					'dataAssos' => $dataAssos
 				));
 
 			} else {

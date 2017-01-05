@@ -4,7 +4,7 @@
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
-			<h2><?php echo $_SESSION['user']['nom_assos'] ?></h2>
+			<h2><?php echo $dataAssos['name'] ?></h2>
 			<h3 style="text-align : center">Liste des dernières transaction au sein de votre association.</h3>
       <div class="pagination" >  <?php if(!empty($pagination)){
         echo $pagination;

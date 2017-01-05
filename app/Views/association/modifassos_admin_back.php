@@ -10,7 +10,7 @@
         <legend><h2>Editer Votre Association</h2></legend>
 
           <div class="form-group">
-            <input type="text" name="name" class="form-control" placeholder="" value="<?php if(!empty($_POST['name'])) {echo $_POST['name'];}else{echo $_SESSION['user']['nom_assos'];} ?>">
+            <input type="text" name="name" class="form-control" placeholder="" value="<?php if(!empty($_POST['name'])) {echo $_POST['name'];}else{echo $dataAssos['name'];} ?>">
             <span class="errorMessage"><?php if(!empty($error['name'])) { echo($error['name']);} ?></span>
           </div>
 

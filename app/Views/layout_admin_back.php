@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title><?= $this->e($title) ?></title>
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/icons/css/font-awesome.min.css') ?>">
-	<link rel="stylesheet" href="<?= $this->assetUrl('css/style_back.css') ?>">
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<title><?= $this->e($title) ?></title>
+		<link rel="stylesheet" href="<?= $this->assetUrl('css/bootstrap.min.css') ?>">
+		<link rel="stylesheet" href="<?= $this->assetUrl('css/icons/css/font-awesome.min.css') ?>">
+		<link rel="stylesheet" href="<?= $this->assetUrl('css/style_back.css') ?>">
+	</head>
+	<body>
 		<header>
 			<nav class="navbar">
 				<div class="wrap">
@@ -28,7 +28,7 @@
 								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug), 'page'=>1]) ?>">Transactions</a></li>
 								<li><a href="<?php echo $this->url('admin_back_assos', ['slug' => $this->e($slug)]) ?>">Gestion</a></li>
 								<li><a href="<?php echo $this->url('association', ['slug' => $this->e($slug)]) ?>">Front Office</a></li>
-								<li><a href="<?php echo $this->url('admin_back_modifassos', ['slug' => $this->e($slug)]) ?>"><?php echo $_SESSION['user']['nom_assos'] ?></a></li> <!-- possibilité de modifier l'assos -->
+								<li><a href="<?php echo $this->url('admin_back_modifassos', ['slug' => $this->e($slug)]) ?>"><?php echo $dataAssos['name']; ?></a></li> <!-- possibilité de modifier l'assos -->
 								<li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a><li>
 							</ul>
 						</div>

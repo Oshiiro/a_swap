@@ -32,7 +32,6 @@ class AppController extends Controller
     {
       $model_assos = new AssosModel();
       $dataAssos = $model_assos->getAssosById($_SESSION['user']['id']);
-      debug($dataAssos);
     }
 
     // Rend certaines données disponibles à tous les vues

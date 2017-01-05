@@ -26,7 +26,7 @@
 						<div class="collapse navbar-collapse" id="navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
 								<?php if(!empty($_SESSION['user'])) { ?>
-								<li class="moneyLayout"><?php echo $dataAssos['money_name'] . ' : ' . $_SESSION['user']['wallet'] ?></li>
+								<li class="moneyLayout"><?php echo $_SESSION['user']['wallet'] . ' ' .$dataAssos['money_name'] ?></li>
 								<li><a href="<?php echo $this->url('message',['page_rec'=>1, 'page_sen'=>1])  ?>">Messagerie</a></li>
 								<?php if (!empty($_SESSION['user']['nom_assos'])) { ?>
 									<li><a href="<?php echo $this->url('association',['slug' => $this->e($slug)]) ?>">Association</a></li>
