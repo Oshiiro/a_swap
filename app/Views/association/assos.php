@@ -5,7 +5,7 @@
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
-			<h2>Votre association</h2>
+			<h2><?php echo $_SESSION['user']['nom_assos'] ?></h2>
 			<div class="panel panel-default container">
 				<div class="panel-heading">Vos transactions</div>
 				  <table class="col-xs-10">

@@ -286,6 +286,7 @@ class UserController extends AppController
         if($this->authentificationmodel->isValidLoginInfo($usernameOrEmail, $plainPassword)){
           $this->authentificationmodel->logUserIn($sessionActive);
 					$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
+					$_SESSION['user']['wallet'] = $this->model_intermediaire->FindElementByElement('wallet', 'id_users', $_SESSION['user']['id']);
 
 					$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 					$this->redirectToRoute('message', array(
@@ -310,7 +311,7 @@ class UserController extends AppController
 /**
   * Deconnexion
   */
-	public function Deconnexion()
+	public function Deconnexion() // pas de majuscule pour les function plz
 	{
 		$this->authentificationmodel->logUserOut();
     $this->redirectToRoute('default_home');

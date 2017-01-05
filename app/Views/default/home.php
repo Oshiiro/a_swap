@@ -7,7 +7,6 @@
   .allContent{top: 0;}
   .extension_head{height:0px}
 </style>
-
 <!-- Infographies -->
   <?php if(empty($_SESSION['user']['role'])) { ?>
     <h2 class="accroche">Petite phrase d'accroche trop stylé</h2>

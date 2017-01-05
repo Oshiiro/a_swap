@@ -31,7 +31,7 @@
 									<?php if($_SESSION['user']['role'] == 'admin') { ?>
 								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug), 'page'=> 1]) ?>">Back Office</a></li>
 									<?php } ?>
-								<li><a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?></a></li>
+								<li><a href="<?php echo $this->url('profil') ?>"><?php echo $_SESSION['user']['username'] ?> Crédit:<?php echo $_SESSION['user']['wallet'] ?></a></li>
 								<li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a></li>
 								<?php } else { ?>
 								<li><a href="<?php echo $this->url('try_register') ?>" class="inscription">Inscription</a></li>

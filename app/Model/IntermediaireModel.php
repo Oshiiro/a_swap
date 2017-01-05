@@ -13,6 +13,21 @@ class IntermediaireModel extends UModel
     $this->setTable('intermediaire');
   }
 
+  public function FindElementByElement($search,$colone,$where)
+   {
+     $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where LIMIT 1';
+     $sth = $this->dbh->prepare($sql);
+     $sth->bindValue(':where', $where);
+     if($sth->execute()){
+       $foundUser = $sth->fetchColumn();
+       if(!empty($foundUser)){
+         return $foundUser ;
+       }else{
+         return false;
+       }
+     }
+   }
+
   public function getAssoAndAdmin($slug, $username_admin)
   {
     $app = getApp();
