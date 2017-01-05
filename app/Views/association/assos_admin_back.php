@@ -11,7 +11,7 @@
         <input type="email" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
         <input type="submit" value="Inviter">
       </form>
-			<div class="container">
+			<div class="">
 					<br><br><br>
 
 					  <table class="col-md-12">
