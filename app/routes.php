@@ -42,7 +42,9 @@
 
 
 		// Association
-		['GET', '/association/[:slug]', 'User#association', 'association'], // A faire page detransaction
+		['GET', '/association/[:slug]/[i:page]', 'User#associationTrans', 'association'],
+		['GET', '/association/[:slug]/infos', 'User#associationInfos', 'association_infos'],
+		['GET', '/association/[:slug]/adherants/[i:page]', 'User#associationAdherants', 'association_adherants'],
 
 
 		// Messagerie
@@ -65,7 +67,7 @@
 		['POST', '/admin/crediter/', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
 
 		// Admin Association Back
-		['GET', '/admin/back/gestion/association/[:slug]', 'AssociationAdmin#backAssos', 'admin_back_assos'],
+		['GET', '/admin/back/gestion/association/[:slug]/[:page]', 'AssociationAdmin#backAssos', 'admin_back_assos'],
 		['GET', '/admin/back/modification/[:slug]', 'AssociationAdmin#backAssosModif', 'admin_back_modifassos'],
 
 		// Formulaire pour mettre à jour son assos (changer logo, texte...)

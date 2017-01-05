@@ -17,6 +17,7 @@ use \Services\Tools\Tools;
 use \Model\BackModel;
 use PHPMailer;
 
+
 class AssociationAdminController extends AppController
 {
 	private $valid;
@@ -44,39 +45,45 @@ class AssociationAdminController extends AppController
 	/**
 	 * Page Back Association Admin
 	 */
-	public function backAssos($slug, $page=1)
+	public function backAssos($slug, $page)
 	{
 		$this->allowTo(array('admin'));
-		$slug_is_mine = $this->assos->slugIsMine($slug);
+		if ($this->tools->isLogged() == true) {
+			$slug_is_mine = $this->assos->slugIsMine($slug);
+			if($slug_is_mine == true) {
+				$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
+				$adherants = $this->our_u_model->affAllAdherants($slug);
 
-		if($slug_is_mine == true) {
-			$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
+				$limit = 1;
+				$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
+				//limit d'affichage par page
+				$Pagination = new Pagination('intermediaire');
+				//on precise la table a exploiter
+				$calcul = $Pagination->calcule_page('id_assos = \''.$id_asso.'\'',$limit,$page);
+				//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+				//ce qui calcule le nombre de page total et le offset
+				$pagination_trans = $Pagination->pagination($calcul['page'],$calcul['nb_page'],'admin_back_assos', ['slug' => $slug,'page' => $page]);
+				//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
 
 
-			$limit = 5;
+				$this->show('association/assos_admin_back', array(
+					'pagination_trans'=> $pagination_trans,
+					'slug' => $slug,
+					'adherants' => $adherants,
+					'page' => $page
 
-			$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
-			//limit d'affichage par page
-			$Pagination = new Pagination('users');
-			//on precise la table a exploiter
-			$calcule = $Pagination->calcule_page('id = \''.$id_asso.'\'', $limit,$page);
-			//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
-			//ce qui calcule le nombre de page total et le offset
-			$affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back_assos',['slug'=>$slug]);
-			//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+				));
 
-
-			$adherants = $this->our_u_model->affAllAdherants($id_asso,$limit,$calcule['offset']);
-			$this->show('association/assos_admin_back',
-			[
-				'affichage_pagination'=> $affichage_pagination,
-				'adherants' => $adherants,
-				'slug'      => $slug]
-			);
+			} else {
+				$this->showForbidden(); // erreur 403
+			}
 		} else {
 			$this->showForbidden(); // erreur 403
 		}
+
 	}
+
+
 
 	/**
 	 * Modification Association Admin ( page de modif )
