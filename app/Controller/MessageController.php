@@ -38,7 +38,6 @@ class MessageController extends AppController
     if ($this->tools->isLogged() == true) {
       $showMessages = new MessageModel();
       $users = $showMessages->ListAdherantsMessage();
-      // debug($articles);
       $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 
 

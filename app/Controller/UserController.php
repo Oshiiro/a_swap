@@ -277,6 +277,7 @@ class UserController extends AppController
 	{
 		$error = array();
 
+		$slug = null;
 		$usernameOrEmail  = trim(strip_tags($_POST['emailOrPseudo']));
 		$plainPassword   = trim(strip_tags($_POST['password']));
 
