@@ -31,7 +31,8 @@
 									<?php } ?>
 								<li><a href="<?php echo $this->url('message',['page_rec'=>1, 'page_sen'=>1])  ?>">Messagerie</a></li>
 								<?php if (!empty($dataAssos)) { ?>
-									<li><a href="<?php echo $this->url('association',['slug' => $this->e($slug)]) ?>">Association</a></li>
+									<li><a href="<?php echo $this->url('association',['slug' => $this->e($slug), 'page' => 1]) ?>">Association</a></li>
+
 								<?php } ?>
 									<?php if($_SESSION['user']['role'] == 'admin') { ?>
 								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug), 'page'=> 1]) ?>">Back Office</a></li>

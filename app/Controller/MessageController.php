@@ -40,13 +40,12 @@ class MessageController extends AppController
       $users = $showMessages->ListAdherantsMessage();
       $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 
-
+      $Pagination = new PaginationDuo('private_message');
+      //on precise la table a exploiter
 
       $limit_receiver = 3;
       $id_receiver = $_SESSION['user']['id'];
       //limit d'affichage par page
-      $Pagination = new PaginationDuo('private_message');
-      //on precise la table a exploiter
       $calcule_receiver = $Pagination->calcule_page('id_user_receiver = \''.$id_receiver.'\'',$limit_receiver,$page_rec);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
