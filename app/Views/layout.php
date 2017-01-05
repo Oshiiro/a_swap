@@ -26,9 +26,11 @@
 						<div class="collapse navbar-collapse" id="navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
 								<?php if(!empty($_SESSION['user'])) { ?>
-								<li class="moneyLayout"><span id="response"></span><?php echo ' '.$dataAssos['money_name']; ?></li>
+									<?php if (!empty($dataAssos)) { ?>
+										<li class="moneyLayout"><span id="response"></span><?php echo ' '.$dataAssos['money_name']; ?></li>
+									<?php } ?>
 								<li><a href="<?php echo $this->url('message',['page_rec'=>1, 'page_sen'=>1])  ?>">Messagerie</a></li>
-								<?php if (!empty($_SESSION['user']['nom_assos'])) { ?>
+								<?php if (!empty($dataAssos)) { ?>
 									<li><a href="<?php echo $this->url('association',['slug' => $this->e($slug)]) ?>">Association</a></li>
 								<?php } ?>
 									<?php if($_SESSION['user']['role'] == 'admin') { ?>

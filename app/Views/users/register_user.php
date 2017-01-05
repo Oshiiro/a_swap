@@ -6,7 +6,7 @@
 		<form method="POST" action="<?php echo $this->url('try_register') ?>" class="">
 			<div class="container block-message">
 				<div class="row">
-					<div class="block col-xs-9 col-xs-push-2 col-md-push-1 col-lg-10">
+					<div class="block col-xs-10 col-xs-push-1 col-lg-10">
 						<legend><h2>Créer votre compte</h2></legend>
 
 					<!-- Si le champ est remplie aucune données entre en BDD -->

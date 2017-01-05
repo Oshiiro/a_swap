@@ -33,10 +33,17 @@ h2  {
   padding: 3em 9em;
 }
 
+@media screen and (max-width: 768px) {
+  .block {
+    padding: 2em 3em;
+  }
+}
+
 .block-message {
   margin-top: 10px;
   margin-bottom: 50px;
 }
+
 
 .block-message-1 {
   height: 150px;

@@ -62,10 +62,6 @@ th {
   margin-bottom: 8px;
 }
 
-input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-  background-color: blue !important;
-}
-
 .allContent {
   min-height: 38.5em;
   max-width: 1920px;
@@ -95,6 +91,20 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   /*height: 100%;*/
   max-width: 1920px;
   margin: auto;
+}
+
+
+.block{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
+  margin-top: 1em;
+  background-color: #F5F5F5;
+  padding: 3em 9em;
+}
+
+@media screen and (max-width: 768px) {
+  .block {
+    padding: 2em 3em;
+  }
 }
 
 .errorMessage {
@@ -339,12 +349,6 @@ background-color: rgb(21, 138, 138);
   z-index: -1;
 }
 
-.block{
-  box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
-  margin-top: 1em;
-  background-color: #F5F5F5;
-  padding: 3em 9em;
-}
 
 .block-message {
   margin-top: 10px;
