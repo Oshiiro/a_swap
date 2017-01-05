@@ -33,8 +33,8 @@
 		['POST', '/connexion/forgot_password/', 'User#tryForgotPassword', 'try_forgot_password'],
 
 		// Modify password
-		['GET', '/connexion/modify_password/', 'User#modifyPassword', 'modify_password'],
-		['POST', '/connexion/modify_password/', 'User#tryModifyPassword', 'try_modify_password'],
+		['GET', '/connexion/modify_password', 'User#modifyPassword', 'modify_password'], //Kilian : ne pas mettre de "/" a la fin de l'URL SVP
+		['POST', '/connexion/modify_password', 'User#tryModifyPassword', 'try_modify_password'], //Kilian : ne pas mettre de "/" a la fin de l'URL SVP
 
 		// Connexion
 		['GET', '/connexion/', 'User#login', 'login'],
@@ -48,7 +48,7 @@
 		// Messagerie
 		['GET', '/messagerie/[:page_rec]/[:page_sen]', 'Message#message', 'message'],
 		['GET', '/messagerie/reception/', 'Message#getMessage', 'get_message'],
-		['POST', '/messagerie/[:page]', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
+		['POST', '/messagerie/[:page_rec]/[:page_sen]', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
 		['POST', '/messagerie/confirmation/', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
 		['GET', '/messagerie/deletemessage/[:page_rec]/[:page_sen]/[:id]', 'Message#DeleteMessage', 'delete_message'],
 
@@ -73,7 +73,7 @@
 		// ['POST', '/admin/back/association/', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Page accueil users connecté
-		['GET', '/accueil/[:slug]', 'User#usersAccueil', 'users_accueil'], // Afficher la page d'accueil du user avec liste des adhérants et bouton transaction
+		// ['GET', '/accueil/[:slug]', 'User#usersAccueil', 'users_accueil'], // Kilian : a supprimer, pas utile car User#usersAccueil n'existe pas.
 		['GET', '/transaction/[:slug]', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
 		['POST', '/transaction/', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
 

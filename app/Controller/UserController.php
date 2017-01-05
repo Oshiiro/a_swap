@@ -105,8 +105,8 @@ class UserController extends AppController
 	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
 	public function association($slug, $page1=1, $page2 = 1)
 	{
-		$slug_is_mine = $this->model_assos->slugIsMine($slug);
 		if ($this->tools->isLogged() == true) {
+			$slug_is_mine = $this->model_assos->slugIsMine($slug);
 			if($slug_is_mine == true) {
 
 				$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
@@ -288,9 +288,11 @@ class UserController extends AppController
 					$_SESSION['user']['nom_assos'] = $this->model_assos->getNameByIdAdmin($_SESSION['user']['id']);
 
 					$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-          $this->redirectToRoute('association', array(
-						'slug' => $slug,
+					$this->redirectToRoute('message', array(
+						'page_rec'=> 1,
+						'page_sen' => 1,
 					));
+
         } else {
           $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
         }

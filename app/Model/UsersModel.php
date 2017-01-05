@@ -50,8 +50,8 @@ class UsersModel extends UModel
   // le token sont passés en GET
   public function getIdByEmailAndToken()
   {
-    $email = trim(strip_tags($_GET['email']));
-    $token = trim(strip_tags($_GET['token']));
+    $email = (!empty($_GET['email'])) ? trim(strip_tags($_GET['email'])) : null;
+    $token = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : null;
 
     $app = getApp();
     $sql = 'SELECT id FROM users WHERE email = :email AND token = :token LIMIT 1';
@@ -69,8 +69,8 @@ class UsersModel extends UModel
   // Fonction qui verifie que le token est bien le bon
   public function tokenIsActive()
   {
-    $tokenGET = trim(strip_tags($_GET['token']));
-    $email = trim(strip_tags($_GET['email']));
+    $tokenGET = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : 'xxx';
+    $email = (!empty($_GET['email'])) ? trim(strip_tags($_GET['email'])) : 'xxx';
 
     $app = getApp();
     $sql = 'SELECT token FROM users WHERE email = :email LIMIT 1';

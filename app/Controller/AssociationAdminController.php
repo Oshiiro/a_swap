@@ -13,10 +13,9 @@ use \Model\InvitationModel;
 use \Services\Flash\FlashBags;
 use \Services\Tools\ValidationTools;
 use \Services\Pagination;
-
+use \Services\Tools\Tools;
 use \Model\BackModel;
 use PHPMailer;
-
 
 class AssociationAdminController extends AppController
 {
@@ -26,6 +25,7 @@ class AssociationAdminController extends AppController
 	private $our_u_model;
 	private $intermediaire;
 	private $invitation;
+	private $tools;
 
 	public function __construct()
 	{
@@ -36,9 +36,7 @@ class AssociationAdminController extends AppController
 		$this->intermediaire = new IntermediaireModel();
 		$this->backmodel = new BackModel(); //
 		$this->invitation = new InvitationModel();
-
-
-
+		$this->tools = new Tools();
 	}
 // ===================================================================================================================
 // 																								AFFICHAGE DES PAGES
@@ -48,6 +46,7 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssos($slug, $page=1)
 	{
+		$this->allowTo(array('admin'));
 		$slug_is_mine = $this->assos->slugIsMine($slug);
 
 		if($slug_is_mine == true) {
@@ -84,6 +83,7 @@ class AssociationAdminController extends AppController
 	 */
 	public function backAssosModif($slug)
 	{
+		$this->allowTo(array('admin'));
 		$slug_is_mine = $this->assos->slugIsMine($slug);
 		if($slug_is_mine == true) {
 			$association = $this->assos->ModifAssos();
