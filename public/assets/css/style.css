@@ -61,6 +61,10 @@ th {
   margin-bottom: 8px;
 }
 
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: blue !important;
+}
+
 .allContent {
   min-height: 42.8em;
   max-width: 1920px;
@@ -297,16 +301,6 @@ width : auto;
    text-align: center;
    font-size: 1.5em;
    font-family: space mono;
- }
-
- th {
- font-family: space mono;
- text-align: center;
- }
-
- td {
-   text-align: center;
-   border-bottom: 1px solid rgb(100, 178, 137);
  }
 /* -------------------------------------------------------------------------- */
 /* MESSAGERIE */
