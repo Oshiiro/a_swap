@@ -38,8 +38,7 @@
 			</nav>
 		</header>
 
-		<div class="container-fluid allContent">
-
+		<div class="allContent">
 			<?php echo $this->getFlash(); ?>
 			<?= $this->section('main_content') ?>
 		</div>

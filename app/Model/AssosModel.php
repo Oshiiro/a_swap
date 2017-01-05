@@ -14,7 +14,7 @@ class AssosModel extends UModel
   }
 
   public function FindElementByElement($search,$colone,$where)
-   {
+  {
      $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where LIMIT 1';
      $sth = $this->dbh->prepare($sql);
      $sth->bindValue(':where', $where);
@@ -28,6 +28,22 @@ class AssosModel extends UModel
      }
    }
 
+  /**
+   * Créer un array avec toute les infos de l'assos par l'utilisateur
+   */
+  public function getAssosById($id)
+  {
+    $sql = 'SELECT a.* FROM assos AS a
+            INNER JOIN intermediaire AS i ON a.id = i.id_assos
+            INNER JOIN users AS u ON :id = i.id_users
+            LIMIT 1';
+
+    $dbh = ConnectionModel::getDbh();
+    $sth = $dbh->prepare($sql);
+    $sth->bindValue(':id', $id);
+    $sth->execute();
+    $result = $sth->fetch();
+  }
 
   public function assoExists($nom_asso)
 	{

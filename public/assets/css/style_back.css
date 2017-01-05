@@ -22,6 +22,7 @@ h2  {
   color : darkgrey;
   text-align: center;
   margin-bottom: 2em;
+  margin-top: 0;
   color: rgb(133, 0, 50);
 }
 
@@ -29,7 +30,7 @@ h2  {
   box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
   margin-top: 1em;
   background-color: #F5F5F5;
-  padding: 1em;
+  padding: 3em 9em;
 }
 
 .block-message {
@@ -68,6 +69,14 @@ h2  {
 
 .errorMessage {
   color: red;
+}
+
+.flash p {
+  text-align: center;
+  margin: 0 0 0 0;
+  font-size: 1.5em;
+  color: white;
+  z-index: 1;
 }
 
 input:-webkit-autofill,

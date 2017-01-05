@@ -3,6 +3,8 @@
 namespace Controller;
 
 use \W\Controller\Controller;
+use \Model\AssosModel;
+
 
 class AppController extends Controller
 {
@@ -23,6 +25,14 @@ class AppController extends Controller
     $engine->loadExtension(new \Services\Plates\CuztomPlates());
 
     $app = getApp();
+
+    // créer un array assos avec tout les elements utilisable
+
+    if(!empty($_SESSION['user'])) {
+      $model_assos = new AssosModel();
+      $dataAssos = $model_assos->getAssosById($_SESSION['user']['id']);
+
+    }
 
     // Rend certaines données disponibles à tous les vues
     // accessible avec $w_user & $w_current_route dans les fichiers de vue

@@ -164,7 +164,10 @@ class AssociationAdminController extends AppController
 				'rules' => $rules,
 			);
 			$this->assos->update($data, $id);
+			$flash = new FlashBags();
+			$flash->setFlash('warning', 'Votre assos à bien été modifié');
 		}
+
 
     	$this->show('association/modifassos_admin_back', array('error' => $error));
 			// $this->redirectToRoute('admin_association_update_form');
