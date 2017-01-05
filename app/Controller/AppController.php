@@ -53,8 +53,4 @@ class AppController extends Controller
     die();
   }
 
-
-
-
-
 }

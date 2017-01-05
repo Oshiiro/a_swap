@@ -1,3 +1,15 @@
+<?php
+// public function getSlugIfHaveAssos($slugUrl, $_SESSION['user']['nom_assos'])
+// {
+// EN COUR DE CONSTRUCTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Benjamin
+// Slug association URL utilise la variable en dessous pour test
+		if (!empty($dataAssos)){
+			$slugUrl = $dataAssos['slug'];
+		}else{
+			$slugUrl = '';
+		}
+ ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -31,7 +43,7 @@
 									<?php } ?>
 								<li><a href="<?php echo $this->url('message',['page_rec'=>1, 'page_sen'=>1])  ?>">Messagerie</a></li>
 								<?php if (!empty($dataAssos)) { ?>
-									<li><a href="<?php echo $this->url('association',['slug' => $this->e($slug), 'page' => 1]) ?>">Association</a></li>
+									<li><a href="<?php echo $this->url('association',['slug' => $slugUrl, 'page' => 1]) ?>">Association</a></li>
 
 								<?php } ?>
 									<?php if($_SESSION['user']['role'] == 'admin') { ?>

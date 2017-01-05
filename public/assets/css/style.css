@@ -62,8 +62,12 @@ th {
   margin-bottom: 8px;
 }
 
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: blue !important;
+}
+
 .allContent {
-  min-height: 38.5em;
+  min-height: 42.8em;
   max-width: 1920px;
   margin: auto;
   position: relative;
@@ -91,20 +95,6 @@ th {
   /*height: 100%;*/
   max-width: 1920px;
   margin: auto;
-}
-
-
-.block{
-  box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
-  margin-top: 1em;
-  background-color: #F5F5F5;
-  padding: 3em 9em;
-}
-
-@media screen and (max-width: 768px) {
-  .block {
-    padding: 2em 3em;
-  }
 }
 
 .errorMessage {
@@ -308,13 +298,11 @@ background-color: rgb(21, 138, 138);
 }
 
 .texteExplicatif {
-
   color : #1C1C1C;
   font-family: monospace;
   text-align: center;
   margin-top : 20px;
   margin-bottom: 100px;
-
 }
 
 .thumbnail {
@@ -330,7 +318,6 @@ background-color: rgb(21, 138, 138);
 
  .pagination {
   text-align: center;
-
  }
 
  .panel-default > .panel-heading {
@@ -349,6 +336,12 @@ background-color: rgb(21, 138, 138);
   z-index: -1;
 }
 
+.block{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
+  margin-top: 1em;
+  background-color: #F5F5F5;
+  padding: 3em 9em;
+}
 
 .block-message {
   margin-top: 10px;
@@ -442,4 +435,23 @@ font-size: 2em;
   text-align: center;
   color: #555;
   font-size: 1.5em;
+}
+
+/*-------------------------------------------------------------------------*/
+/*CGU*/
+.cgu h1 {
+  /*font-family: Helvetica, Arial, sans-serif;*/
+  color : rgb(21, 138, 138);
+  font-size: 3em;
+  margin-bottom: 0.3em;
+}
+
+.cgu h2 {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+
+.cgu legend {
+  border-bottom: 1px solid darkgrey;
+  margin-bottom: 1.5em;
 }
