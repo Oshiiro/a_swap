@@ -128,7 +128,7 @@ class AssociationAdminController extends AppController
 
 		// verif de name
 		if(empty($_POST['name'])){
-			$error['name'] = 'Veuillez renseigner un name pour votre association';
+			$error['name'] = 'Veuillez renseigner un nom pour votre association';
 		} else {
 			$error['name']   = $this->valid->textValid($name,'name', 3, 50);
 		}
@@ -167,7 +167,6 @@ class AssociationAdminController extends AppController
 		}
 
     	$this->show('association/modifassos_admin_back', array('error' => $error));
-			// $this->redirectToRoute('admin_association_update_form');
 	}
 
 

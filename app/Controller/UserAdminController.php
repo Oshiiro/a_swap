@@ -69,9 +69,9 @@ class UserAdminController extends AppController
 
       //  $trans = $this->backmodel->GetTrans();
       $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-      
+
       $limit = 5;
-      
+
       $id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
       //limit d'affichage par page
       $Pagination = new Pagination('transaction');
@@ -81,7 +81,7 @@ class UserAdminController extends AppController
       //ce qui calcule le nombre de page total et le offset
       $affichage_pagination = $Pagination->pagination($calcule['page'],$calcule['nb_page'],'admin_back',['slug'=>$slug]);
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
-      
+
       $trans = $this->backmodel->GetTransTempo($id_asso,$limit,$calcule['offset']);
       $this->show('admin/back',
       ['trans'    => $trans,
