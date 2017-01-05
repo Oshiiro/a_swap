@@ -29,6 +29,7 @@ h2 {
   color : rgb(21, 138, 138);
   text-align: center;
   margin-bottom: 2em;
+  margin-top: 0em;
 }
 
 h3 {
@@ -331,7 +332,7 @@ width : auto;
   box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
   margin-top: 1em;
   background-color: #F5F5F5;
-  padding: 1em;
+  padding: 3em 9em;
 }
 
 .block-message {
