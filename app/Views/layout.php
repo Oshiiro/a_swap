@@ -106,7 +106,7 @@
 		});
 	}
 	window.onload=function(){reload(response)};
-	setInterval(reload, 1000);
+	setInterval(reload, 180000);
 
 	</script>
 	</body>
