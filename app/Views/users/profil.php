@@ -5,7 +5,6 @@
   <div class="row">
     <div class="block col-xs-10 col-xs-push-1 col-lg-10">
       <form method="POST" action="<?php echo $this->url('update_profil') ?>" enctype="multipart/form-data">
-        <fieldset>
           <legend><h2>Profil</h2></legend>
 
           <div class="col-md-3">
@@ -39,8 +38,6 @@
           <div class="center">
             <input type="submit" value="Valider" class="btn btn-default">
           </div>
-
-        </fieldset>
       </form>
     </div>
   </div>

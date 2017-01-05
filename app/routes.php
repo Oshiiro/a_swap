@@ -76,6 +76,7 @@
 		// Page accueil users connecté
 		// ['GET', '/accueil/[:slug]', 'User#usersAccueil', 'users_accueil'], // Kilian : a supprimer, pas utile car User#usersAccueil n'existe pas.
 		['GET', '/transaction/[:slug]', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
+		['GET', '/transaction/', 'Transaction#getWalletById', 'users_wallet'], // Wallet user by id
 		['POST', '/transaction/', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
 
 		// Formulaire pour inviter un nouveau membre

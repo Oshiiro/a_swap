@@ -91,5 +91,20 @@
 	<script type="text/javascript" src="<?= $this->assetUrl('js/jquery-3.1.0.min.js') ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/bootstrap.min.js') ?>"></script>
 	<script type="text/javascript" src="<?= $this->assetUrl('js/app.js') ?>"></script>
+	<script type="text/javascript">
+
+	function reload() {
+		$.ajax({
+			type: "GET",
+			url: "<?= $this->url('users_wallet') ?>",
+			success: function (response) {
+				$('.messages').prepend(response);
+				console.log(response);
+			},
+		});
+	}
+	setInterval(reload, 3000);
+
+	</script>
 	</body>
 </html>
