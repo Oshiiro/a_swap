@@ -349,6 +349,12 @@ background-color: rgb(21, 138, 138);
   padding: 3em 9em;
 }
 
+@media screen and (max-width: 768px) {
+   .block {
+     padding: 2em 3em;
+   }
+ }
+
 .block-message {
   margin-top: 10px;
   margin-bottom: 15px;
