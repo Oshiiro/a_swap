@@ -50,9 +50,9 @@ class ValidationTools
     if(!empty($text)) {
       $strtext = strlen($text);
       if($strtext > $max) {
-        $error = 'Le ' . $title . ' est trop long';
+        $error = 'Votre ' . $title . ' est trop long';
       } elseif($strtext < $min) {
-        $error = 'Le ' . $title . ' est trop court';
+        $error = 'Votre ' . $title . ' est trop court';
       }
     } else {
       if(!$empty) {

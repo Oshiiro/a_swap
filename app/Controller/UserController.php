@@ -224,19 +224,19 @@ class UserController extends AppController
 		{
 			$error['username'] = 'Votre pseudo est déjà pris';
 		} else {
-			$error['username']   = $this->valid->textValid($username,'username', 3, 50);
+			$error['username']   = $this->valid->textValid($username,'pseudo', 3, 50);
 		}
 
 		if(empty($_POST['lastname'])){
 			$error['lastname'] = 'Veuillez renseigner un prénom';
 		} else {
-			$error['lastname']   = $this->valid->textValid($lastname,'lastname', 3, 50);
+			$error['lastname']   = $this->valid->textValid($lastname,'nom', 3, 50);
 		}
 
 		if(empty($_POST['firstname'])){
 			$error['firstname'] = 'Veuillez renseigner un nom';
 		} else {
-			$error['firstname']   = $this->valid->textValid($firstname,'firstname', 3, 50);
+			$error['firstname']   = $this->valid->textValid($firstname,'prénom', 3, 50);
 		}
 
 		if(!empty($_POST['antiBot'])){
@@ -402,7 +402,7 @@ class UserController extends AppController
 		// si l'utilisateur tente de prendre un pseudo deja existant, on le bloque mamene
 		if($exist == true)
 		{
-			$error['username'] = 'Votre pseudo et deja prit';
+			$error['username'] = 'Ce pseudo est deja pris';
 		} else {
 			$error['username']   = $this->valid->textValid($username,'username', 3, 50);
 		}

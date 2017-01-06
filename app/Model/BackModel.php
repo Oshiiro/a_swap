@@ -56,6 +56,7 @@ class BackModel extends UModel
             LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
             LEFT JOIN assos ON transaction.id_asso = assos.id
             WHERE transaction.id_asso = :result
+            ORDER BY transaction.created_at DESC
             -- LIMIT ".(($cPage-1)).", $nbrParPage
     ";
 
@@ -77,7 +78,10 @@ class BackModel extends UModel
             LEFT JOIN users as userbuyer ON transaction.id_user_buyer = userbuyer.id
             LEFT JOIN users as userseller ON transaction.id_user_seller = userseller.id
             LEFT JOIN assos ON transaction.id_asso = assos.id
-            WHERE transaction.id_asso = :result LIMIT $limit OFFSET $offset
+            WHERE transaction.id_asso = :result
+            ORDER BY transaction.created_at DESC
+            LIMIT $limit OFFSET $offset
+
     ";
 
     $query = $this->dbh->prepare($sql);
