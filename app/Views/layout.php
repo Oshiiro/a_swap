@@ -82,7 +82,7 @@
 							<div class="lienUtiles col-md-4">
 								<p>Liens utiles :</p>
 								<a href="<?php echo $this->url('cgu') ?>">CGU</a><br>
-								<a>Concept</a>
+								<a href="<?php echo $this->url('default_home') ?>#concept">Concept</a>
 							</div>
 							<div class="lienReseaux col-md-4 navbar-right">
 								<p>Rejoignez-nous :</p>

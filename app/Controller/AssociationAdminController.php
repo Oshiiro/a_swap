@@ -216,9 +216,10 @@ class AssociationAdminController extends AppController
 						$mail->Subject = "Invitation a rejoindre une association";
 						// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
 						// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
+						$invitation_mail = $this->generateUrl('register_user_from_invite', ['token_asso' => $token_assos, 'token_invit' => $token_invitation], true);
 						$mail->Body = $_SESSION['user']['firstname']. ' '. $_SESSION['user']['lastname'] .
 													' souhaite vous inviter a rejoindre son association : "' . $name_asso . '". Cliquez ici pour le rejoindre :
-													<a href="http://localhost/a_swap/public/inscription/user/' .$token_assos. '/' .$token_invitation. '">Rejoindre l\'association</a>';
+													<a href="' .$invitation_mail. '">Rejoindre l\'association</a>';
 						$mail->AddAddress($email);
 						$mail->send();
 
@@ -281,6 +282,7 @@ class AssociationAdminController extends AppController
 						$token_assos = $this->assos->getToken($id_admin);
 						$name_asso = $this->assos->getNameByIdAdmin($id_admin);
 						$token_invitation = StringUtils::randomString(40);
+						$invitation_mail = $this->generateUrl('register_user_from_invite', ['token_asso' => $token_assos, 'token_invit' => $token_invitation], true);
 						// On envoi l'invit par mail
 						$mailEncode = urlencode($email);
 						$mail = new PHPMailer();
@@ -290,7 +292,7 @@ class AssociationAdminController extends AppController
 						$mail->Subject = "Invitation a rejoindre une association";
 						$mail->Body = $_SESSION['user']['firstname']. ' '. $_SESSION['user']['lastname'] .
 													' souhaite vous inviter a rejoindre son association : "' . $name_asso . '". Cliquez ici pour le rejoindre :
-													<a href="' .$app->getConfig('url_de_base'). '/inscription/user/' .$token_assos. '/' .$token_invitation. '">Rejoindre l\'association</a>';
+													<a href="' .$invitation_mail. '">Rejoindre l\'association</a>';
 						$mail->AddAddress($email);
 						$mail->send();
 
