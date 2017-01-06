@@ -297,6 +297,7 @@ text-align: right;
   font-family: 'Roboto';
   color :rgb(21, 138, 138);
   background-color: rgb(208, 39, 64);
+  height: 150px;
 }
 
 .lienUtiles, .lienReseaux, .lienRedirectionSite {
