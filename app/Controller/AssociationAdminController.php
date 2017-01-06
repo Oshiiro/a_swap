@@ -64,7 +64,6 @@ class AssociationAdminController extends AppController
 				//ce qui calcule le nombre de page total et le offset
 				$pagination_adh = $Pagination->pagination($calcul['page'],$calcul['nb_page'],'admin_back_assos', ['slug' => $slug,'page' => $page]);
 				//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
-       debug($calcul);
 				$adherants = $this->our_u_model->affAllAdherants($slug, $id_asso, $limit, $calcul['offset']);
 
 				$this->show('association/assos_admin_back', array(
@@ -167,9 +166,9 @@ class AssociationAdminController extends AppController
 		}
 
 			$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
-    	$this->show('association/modifassos_admin_back', array(
-				'error' => $error,
+			$this->redirectToRoute('admin_association_update', array(
 				'slug' => $slug,
+				'error' => $error,
 			));
 	}
 

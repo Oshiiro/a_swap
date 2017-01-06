@@ -86,8 +86,8 @@
 							</div>
 							<div class="lienReseaux col-md-4 navbar-right">
 								<p>Rejoignez-nous :</p>
-								<a><i class="fa fa-facebook-official" aria-hidden="true"></i></a><br>
-								<a>Instagram</a><br>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a><br>
+								<a href="https://www.instagram.com/" target="_blank">Instagram</a><br>
 								<a href="https://twitter.com/aswap" class="twitter-follow-button" data-show-count="false">Follow @a-swap</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><br>
 							</div>
 						</div>
