@@ -52,7 +52,7 @@ class AssociationAdminController extends AppController
 			$slug_is_mine = $this->assos->slugIsMine($slug);
 			if($slug_is_mine == true) {
 				$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
-				$adherants = $this->our_u_model->affAllAdherants($slug);
+
 
 				$limit = 1;
 				$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
@@ -62,15 +62,17 @@ class AssociationAdminController extends AppController
 				$calcul = $Pagination->calcule_page('id_assos = \''.$id_asso.'\'',$limit,$page);
 				//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
 				//ce qui calcule le nombre de page total et le offset
-				$pagination_trans = $Pagination->pagination($calcul['page'],$calcul['nb_page'],'admin_back_assos', ['slug' => $slug,'page' => $page]);
+				$pagination_adh = $Pagination->pagination($calcul['page'],$calcul['nb_page'],'admin_back_assos', ['slug' => $slug,'page' => $page]);
 				//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
-
+       debug($calcul);
+				$adherants = $this->our_u_model->affAllAdherants($slug, $limit, $calcul['offset']);
 
 				$this->show('association/assos_admin_back', array(
-					'pagination_trans'=> $pagination_trans,
+
 					'slug' => $slug,
 					'adherants' => $adherants,
-					'page' => $page
+					'page' => $page,
+					'pagination_adh'=> $pagination_adh,
 
 				));
 
@@ -88,7 +90,7 @@ class AssociationAdminController extends AppController
 	/**
 	 * Modification Association Admin ( page de modif )
 	 */
-	public function backAssosModif($slug)
+	public function updateAssosForm($slug)
 	{
 		$this->allowTo(array('admin'));
 		$slug_is_mine = $this->assos->slugIsMine($slug);
@@ -106,10 +108,11 @@ class AssociationAdminController extends AppController
 	}
 
 	/**
-	 *
+	 * Modification de l'Association Admin
 	 */
-	public function updateaction()
+	public function updateAssosAction($slug)
 	{
+		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
 		// protection XSS
 		$name   = trim(strip_tags($_POST['name']));
 		$description   = trim(strip_tags($_POST['description']));
@@ -140,12 +143,6 @@ class AssociationAdminController extends AppController
 			$error['name']   = $this->valid->textValid($name,'name', 3, 50);
 		}
 
-		// verif de description
-		if(empty($_POST['description'])){
-			$error['description'] = 'Veuillez renseigner une description';
-		} else {
-			$error['description']   = $this->valid->textValid($description,'description', 3, 150);
-		}
 
 		// verif de la monnaie de l'assos
 		if(empty($_POST['money_name'])){
@@ -154,12 +151,6 @@ class AssociationAdminController extends AppController
 			$error['money_name']   = $this->valid->textValid($money_name,'money_name', 3, 150);
 		}
 
-		// verif des régles
-		if(empty($_POST['rules'])){
-			$error['rules'] = 'Veuillez renseigner des règles à suivre pour vos adhérants';
-		} else {
-			$error['rules']   = $this->valid->textValid($rules,'rules', 3, 150);
-		}
 
 		// GG si il n'y a pas d'erreur
 		if ($this->valid->IsValid($error)){
@@ -169,6 +160,7 @@ class AssociationAdminController extends AppController
 				'description' => $description,
 				'money_name' => $money_name,
 				'rules' => $rules,
+				'slug' => $slug
 			);
 			$this->assos->update($data, $id);
 			$flash = new FlashBags();

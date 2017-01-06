@@ -68,11 +68,8 @@
 
 		// Admin Association Back
 		['GET', '/admin/back/gestion/association/[:slug]/[:page]', 'AssociationAdmin#backAssos', 'admin_back_assos'],
-		['GET', '/admin/back/modification/[:slug]', 'AssociationAdmin#backAssosModif', 'admin_back_modifassos'],
-
-		// Formulaire pour mettre à jour son assos (changer logo, texte...)
-		['GET', '/admin/back/association/modification/', 'AssociationAdmin#backAssosModif', 'admin_association_update_form'],
-		['POST', '/admin/back/association/modification/', 'AssociationAdmin#updateaction', 'admin_association_update_action'],
+		['GET', '/admin/back/association/modification/[:slug]', 'AssociationAdmin#updateAssosForm', 'admin_association_update'],
+		['POST', '/admin/back/association/modification/[:slug]', 'AssociationAdmin#updateAssosAction', 'admin_association_update_action'],
 		// ['POST', '/admin/back/association/', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Page accueil users connecté
