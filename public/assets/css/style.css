@@ -34,7 +34,7 @@ h2 {
 
 h3 {
   font-family: 'Space Mono', monospace;
-  color : white;
+  color : rgb(21, 138, 138);;
   margin-top: 0.5em;
   display: inline-block;
 }
@@ -44,6 +44,11 @@ h5 {
   color : darkgrey;
   text-align: center;
   font-size: 20px;
+}
+
+.white {
+  color: white;
+  text-align: left;
 }
 
 table {

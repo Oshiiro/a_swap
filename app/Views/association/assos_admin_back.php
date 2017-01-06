@@ -6,10 +6,13 @@
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
       <h2>Gestion association</h2>
       <button title="Envoyer une invitation"  class="btn btn-default sendMessage" type="button">Inviter un nouveau membre</button>
-      <form class="form-group formulaire" style="display : none;" action="<?php echo $this->url('admin_association_invite'); ?>"  method="POST" action="" name="mail_invite"><br>
-        <input type="email" name="mail_invite" value="" placeholder="Adresse mail de la personne a inviter">
-        <input type="submit" value="Inviter">
-      </form>
+      <div class="formulaire" style="display : none;">
+        <form class="field" action="<?php echo $this->url('admin_association_invite'); ?>"  method="POST" action="" name="mail_invite">
+          <label class="field-label" for="email">Adresse mail de la personne a inviter</label>
+          <input class="field-input" type="email" name="mail_invite"><br>
+          <input type="submit" value="Inviter">
+        </form>
+      </div>
 			<div class="">
 					<br><br><br>
 

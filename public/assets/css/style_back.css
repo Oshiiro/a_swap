@@ -126,7 +126,7 @@ select:-webkit-autofill:focus {
 
 .field.formbar::after{
   height: 2px;
-  background-color: rgb(100, 178, 137);
+  background-color: rgb(208, 39, 64);
   width: 100%;
   position: absolute;
   bottom: 16px;
@@ -163,7 +163,7 @@ select:-webkit-autofill:focus {
 .is-focused .field-label {
   transform: translateY(0);
   font-size: 1em;
-  color: rgb(100, 178, 137);
+  color: rgb(208, 39, 64);
   box-sizing: content-box;
 }
 /* -------------------------------------------------------------------------- */
