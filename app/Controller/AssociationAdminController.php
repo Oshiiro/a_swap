@@ -345,9 +345,10 @@ class AssociationAdminController extends AppController
 				$this->redirectToRoute('admin_back_assos', ['slug' => $slug]);
 
 			} else {
-				$this->show('admin/back', array(
+				$adherants = $this->our_u_model->affAllAdherants($slug, $limit, $calcul['offset']);
+				$this->redirectToRoute('admin_back_assos', array(
+					'slug' => $slug,
 					'error' => $error,
-
 				));
 			}
 		} // by kilian
