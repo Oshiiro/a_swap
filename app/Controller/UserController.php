@@ -97,8 +97,10 @@ class UserController extends AppController
 	{
 		$this->allowTo(array('user','admin', 'superadmin'));
 		$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+		$avatar = $this->model_avatar->FindElementByElement('link_relative', 'id_user', $_SESSION['user']['id']);
 		$this->show('users/profil', array(
 			'slug' => $slug,
+			'avatar' => $avatar,
 		));
 	}
 

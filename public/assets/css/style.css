@@ -433,6 +433,16 @@ font-size: 2em;
   color : rgb(21, 138, 138);
 }
 
+.photoProfil {
+  height: 150px;
+  width: 150px;
+}
+
+.photoMessagerie {
+  height: 150px;
+  width: 150px;
+}
+
 /*-------------------------------------------------------------------------*/
 /* FOOTER: */
 
