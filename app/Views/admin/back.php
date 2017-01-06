@@ -12,7 +12,7 @@
 
 			<br>
 
-			  <table class="col-md-offset-2 col-md-8">
+			  <table class="col-md-12">
 					<tr>
             <th>De</th>
 						<th>Vers</th>
