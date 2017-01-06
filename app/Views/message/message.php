@@ -22,8 +22,8 @@
         <legend></legend>
       </form>
 
-      <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-primary messagesEnvoyes btn-lg" type="button">Messages reçus</button></a>
-      <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-primary messagesEnvoyes btn-lg" type="button">Messages envoyés</button></a>
+      <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso messagesEnvoyes " >Messages reçus</button></a>
+      <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
 <!-- Messages reçus -->
       <table>
         <?php if(!empty($messages)) {

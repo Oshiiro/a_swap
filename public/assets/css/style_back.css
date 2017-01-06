@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 /* BASE */
 
@@ -100,6 +101,77 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: black;
   background-color: white;
   transition: background-color 5000s ease-in-out 0s;
+}
+/* -------------------------------------------------------------------------- */
+/* BOUTON; */
+/*Boutons ronds */
+.sendMessage {
+  margin-top: 100px;
+  position: absolute;
+}
+
+.btn-circle.btn-lg {
+  width: 70px;
+  height: 70px;
+  font-size: 18px;
+  line-height: 1.33;
+  margin-left: 5px;
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
+}
+
+.btn-primary {
+background-color: rgb(208, 39, 64);
+border : rgb(208, 39, 64);
+}
+
+.btn-primary:hover {
+background-color: rgb(208, 39, 64);
+}
+
+
+/*Bouton en longueur avec le margin bottom */
+.btn-perso {
+  background-color: transparent;
+  border-bottom: 1px solid rgb(133, 0, 50);
+  border-radius: 0px;
+  margin-bottom: 10px;
+  color: rgb(133, 0, 50);
+}
+
+a:hover .btn-perso {
+  border: none;
+  border-bottom: 2px solid rgb(133, 0, 50);
+  color: rgb(133, 0, 50);
+}
+
+/* Icones crediter et supprimer*/
+.fa-trash-o {
+color :rgb(133, 0, 50); }
+
+.fa-money {
+color :green; }
+/* -------------------------------------------------------------------------- */
+/*TABLEAU */
+
+th {
+  background-color: rgb(133, 0, 50);
+  color : white;
+  padding : 10px;
+  text-align: center;
+}
+
+td {
+text-align: center;
+
 }
 
 /* -------------------------------------------------------------------------- */
