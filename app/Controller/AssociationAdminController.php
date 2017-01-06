@@ -350,7 +350,7 @@ class AssociationAdminController extends AppController
 
 				));
 			}
-		}
+		} // by kilian
 
 
 	//Supprimer un membre de l'association (le compte user existe toujours, mais il ne figure
