@@ -265,6 +265,10 @@ class UserController extends AppController
 			if($invit_exist == false){
 				$error['tokens'] = 'Vous utilisez un mail d\'invitation invalide.';
 			}
+			$email_of_this_invitation = $this->model_invitation->getEmailByTokens($token_asso, $token_invit);
+			if($email_of_this_invitation != $email){
+				$error['email'] = 'Vous devez vous inscrire avec le mail sur lequel vous avez reçu l\'invitation';
+			}
 		}
 
 		if($password == $password_confirm){
