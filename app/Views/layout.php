@@ -110,8 +110,10 @@
 			url: "<?= $this->url('users_wallet') ?>",
 			success: function (response) {
 				document.getElementById("response").innerHTML = response;
-				console.log('prout');
 			},
+			error: function (result) {
+				document.getElementById("result");
+			}
 		});
 	}
 	window.onload=function(){reload(response)};
