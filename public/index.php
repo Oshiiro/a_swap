@@ -1,4 +1,5 @@
 <?php
+define('WEBROOT',__DIR__);
 
 //autochargement des classes
 require '../vendor/autoload.php';

@@ -58,7 +58,6 @@
 				</div>
 			</nav>
 		</header>
-
 		 <!-- echo $this->findElementByElement('wallet', 'id_users', $_SESSION['user']['id'])  -->
 		<div class="allContent">
 				<?php if (!empty($_SESSION['flash']['message'])) { ?>
@@ -67,7 +66,6 @@
 
 				<?= $this->section('main_content') ?>
 		</div>
-
 
 		<footer>
 			<div class="lienFooter">

@@ -65,4 +65,15 @@ class AppController extends Controller
     }
   }
 
+  /**
+   * Retourne l'URL relative d'un asset
+   * @param string $path Le chemin vers le fichier, relatif à public/assets/
+   * @return string L'URL relative vers le fichier
+   */
+  public function assetUrl($path)
+  {
+      $app = getApp();
+      return $app->getBasePath() . '/assets/' . ltrim($path, '/');
+  }
+
 }

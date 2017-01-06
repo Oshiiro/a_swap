@@ -462,11 +462,11 @@ class UserController extends AppController
 	public function updateProfilImg()
 	{
 		// endroit ou on sauvegarde l'image
-		$storage = new \Upload\Storage\FileSystem('C:\xampp\htdocs\a_swap\public\assets\img\profil');
+		$storage = new \Upload\Storage\FileSystem(WEBROOT . '\assets\img\profil', true);
 		$file = new \Upload\File('foo', $storage);
 
 		// Optionally you can rename the file on upload
-		$new_filename = uniqid();
+		$new_filename = 'profil-' . $_SESSION['user']['slug'];
 		$file->setName($new_filename);
 
 		// Validate file upload
