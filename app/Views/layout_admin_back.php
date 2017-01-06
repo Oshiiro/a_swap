@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8">
@@ -28,7 +29,7 @@
 								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug), 'page'=>1]) ?>">Transactions</a></li>
 								<li><a href="<?php echo $this->url('admin_back_assos', ['slug' => $this->e($slug), 'page' => 1]) ?>">Gestion</a></li>
 								<li><a href="<?php echo $this->url('association', ['slug' => $this->e($slug), 'page' => 1]) ?>">Front Office</a></li>
-								<li><a href="<?php echo $this->url('admin_back_modifassos', ['slug' => $this->e($slug)]) ?>"><?php echo $dataAssos['name']; ?></a></li> <!-- possibilité de modifier l'assos -->
+								<li><a href="<?php echo $this->url('admin_association_update', ['slug' => $this->e($slug)]) ?>"><?php echo $dataAssos['name']; ?></a></li> <!-- possibilité de modifier l'assos -->
 								<li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a><li>
 							</ul>
 						</div>
