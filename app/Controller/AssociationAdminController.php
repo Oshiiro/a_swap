@@ -193,6 +193,8 @@ class AssociationAdminController extends AppController
 	*/
 	public function inviteNewMemberByMail()
 	{
+		$app = getApp();
+
 		$id_admin = $_SESSION['user']['id'];
 		$email   = trim(strip_tags($_POST['mail_invite']));
 		$email_sender = $_SESSION['user']['email'];
@@ -223,11 +225,9 @@ class AssociationAdminController extends AppController
 					$mail->From = "no.reply@a-swap.com";
 					$mail->FromName = "A-Swap Admin";
 					$mail->Subject = "Invitation a rejoindre une association";
-					// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
-					// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
 					$mail->Body = $_SESSION['user']['firstname']. ' '. $_SESSION['user']['lastname'] .
 												' souhaite vous inviter a rejoindre son association : "' . $name_asso . '". Cliquez ici pour le rejoindre :
-												<a href="http://localhost/a_swap/public/inscription/user/' .$token_assos. '/' .$token_invitation. '">Rejoindre l\'association</a>';
+												<a href="' .$app->getConfig('url_de_base'). '/inscription/user/' .$token_assos. '/' .$token_invitation. '">Rejoindre l\'association</a>';
 					$mail->AddAddress($email);
 					$mail->send();
 
