@@ -1,6 +1,6 @@
 <?php
 	$w_routes = array(
-
+ 
 		// home / accueil
 		['GET', '/', 'Default#home', 'default_home'],
 
