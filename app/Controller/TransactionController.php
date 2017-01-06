@@ -63,8 +63,12 @@ class TransactionController extends AppController
 
   public function getWalletById() {
     $result = $this->model_intermediaire->FindElementByElement('wallet', 'id_users', $_SESSION['user']['id']);
+    if (empty($result)) {
+      $result = '0';
+      return $this->showJson($result);
+    } else {
     return $this->showJson($result);
-
+    }
   }
 
 
