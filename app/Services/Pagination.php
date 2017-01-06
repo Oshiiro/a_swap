@@ -40,6 +40,7 @@ class Pagination extends Model
     }
     return $result;
   }
+
   //on generer et retourne l'affichage de la pagination si elle a lieu d'etre
   public function pagination($page,$nb_page,$route,$arg='')
   {

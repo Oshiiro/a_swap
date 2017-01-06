@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Messagerie', 'slug' => $slug, 'page_rec' => 1]) ?>
+<?php $this->layout('layout', ['title' => 'Messagerie', 'slug' => $slug, 'page_sen' => 1]) ?>
 
 <?php $this->start('main_content') ?>
 <button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
@@ -22,28 +22,28 @@
         <legend></legend>
       </form>
 
+      <!-- Messages envoyés -->
       <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-primary messagesEnvoyes btn-lg" type="button">Messages reçus</button></a>
       <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-primary messagesEnvoyes btn-lg" type="button">Messages envoyés</button></a>
-<!-- Messages reçus -->
-      <table>
-        <?php if(!empty($messages)) {
-        foreach ($messages as $message) { ?>
-            <th>Message de :<?php echo ' ' .$message['username'];?></th>
-            <tr>
-              <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($message['created_at'])).
-                             ' à ' .date('H\hi', strtotime($message['created_at']));?></td>
-              <td><a href="<?php echo $this->url('delete_message_recu', array('page_rec'=> $page_rec, 'id' => $message['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-            </tr>
-            <tr>
-              <td><?php echo $message['content'];?></td>
-            </tr>
-        <?php } } else {
-          echo '<div class="block-message-1">Vous n\'avez aucun message</div>';
-        }?>
-
-      </table>
-      <?php echo $pagination; ?>
-      <!-- Messages envoyés -->
+      <div class="envoyes"style="display : none;">
+        <table>
+          <br>
+          <?php if(!empty($messagesenvoyes)) {
+            foreach ($messagesenvoyes as $messagesenvoye) { ?>
+              <th>Envoyé à :<?php echo ' ' .$messagesenvoye['username'];?></th>
+              <tr>
+                <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($messagesenvoye['created_at'])).
+                               ' à ' .date('H\hi', strtotime($messagesenvoye['created_at']));?></td>
+                <td><a href="<?php echo $this->url('delete_message_envoye', array( 'page_sen' => $page_sen,'id' => $messagesenvoye['id'])) ?>" title='Supprimer message'><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
+              </tr>
+              <tr>
+                <td><?php echo $messagesenvoye['content'];?></td>
+              </tr>
+          <?php  }
+          } else { echo 'Vous n\'avez aucun message envoyé.'; }?>
+        </table>
+      </div>
+      <?php echo $pagination2; ?>
     </div>
   </div>
 </div>

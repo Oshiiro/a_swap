@@ -33,7 +33,7 @@ class MessageController extends AppController
 /**
 * Page de messagerie
 */
-  public function message($page_rec = 1,$page_sen = 1)
+  public function message($page_rec)
   {
     if ($this->tools->isLogged() == true) {
       $showMessages = new MessageModel();
@@ -49,33 +49,18 @@ class MessageController extends AppController
       $calcule_receiver = $Pagination->calcule_page('id_user_receiver = \''.$id_receiver.'\'',$limit_receiver,$page_rec);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
-      $affichage_pagination_receiver = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_rec' =>$page_rec]);
+      $pagination = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_rec' =>$page_rec]);
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
       $messages = $showMessages->AfficherMessages($limit_receiver,$calcule_receiver['offset']);
 
-      $limit_sender = 3;
-      $id_sender = $_SESSION['user']['id'];
-      //limit d'affichage par page
-      //on precise la table a exploiter
-      $calcule_sender = $Pagination->calcule_page('id_user_sender = \''.$id_sender.'\'',$limit_sender,$page_sen);
-      //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
-      //ce qui calcule le nombre de page total et le offset
-      $affichage_pagination_sender = $Pagination->pagination($calcule_sender['page'],'page_sen',$calcule_sender['nb_page'],'message',['page_sen' =>$page_sen]);
-      //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
-      $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes($limit_sender,$calcule_sender['offset']);
-
-
-
       $this->show('message/message',
         [
-        'pagination_receiver'=> $affichage_pagination_receiver,
-        'pagination_sender'=> $affichage_pagination_sender,
+        'pagination'=> $pagination,
         'slug' => $slug,
         'users' => $users,
         'messages' => $messages,
-        'messagesenvoyes' => $messagesenvoyes,
         'page_rec'=> $page_rec,
-        'page_sen' => $page_sen
+
       ]
       );
     } else {
@@ -83,6 +68,45 @@ class MessageController extends AppController
     }
   }
 
+  /**
+  * Page de messagerie
+  */
+    public function messagesEnvoyes($page_sen)
+    {
+      if ($this->tools->isLogged() == true) {
+        $showMessages = new MessageModel();
+        $users = $showMessages->ListAdherantsMessage();
+        $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+
+        $Pagination = new PaginationDuo('private_message');
+        //on precise la table a exploiter
+
+
+        $limit_sender = 3;
+        $id_sender = $_SESSION['user']['id'];
+        //limit d'affichage par page
+        //on precise la table a exploiter
+        $calcule_sender = $Pagination->calcule_page2('id_user_sender = \''.$id_sender.'\'',$limit_sender,$page_sen);
+
+        //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
+        //ce qui calcule le nombre de page total et le offset
+        $pagination2 = $Pagination->pagination($calcule_sender['page'],'page_sen',$calcule_sender['nb_page'],'messages_envoyes',['page_sen' =>$page_sen]);
+        //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
+        $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes($limit_sender,$calcule_sender['offset']);
+        $this->show('message/messagesenvoyes',
+          [
+          'pagination2'=> $pagination2,
+          'slug' => $slug,
+          'users' => $users,
+          'messagesenvoyes' => $messagesenvoyes,
+          'page_sen'=> $page_sen,
+
+        ]
+        );
+      } else {
+        $this->showForbidden(); // erreur 403
+      }
+    }
 
   // ===================================================================================================================
   // TRAITEMENT DES FORMULAIRES
@@ -90,7 +114,7 @@ class MessageController extends AppController
   /**
   * Envois d'un message
   */
-  public function sendMessage()
+  public function sendMessage($page_rec)
   {
     $newMessages = new MessageModel();
     $message = $newMessages->sendMessages();
@@ -108,9 +132,9 @@ class MessageController extends AppController
   /**
   * Supprimer un message recu
   */
-  public function DeleteMessageRecu($page_rec, $page_sen, $id)
+  public function DeleteMessageRecu($page_rec, $id)
   {
-    $VerifMessage = $this->messageModel->VerifMessageReceiver($page_rec, $page_sen, $id);
+    $VerifMessage = $this->messageModel->VerifMessageReceiver($page_rec, $id);
     if($VerifMessage === true) {
       $active_receiver = '0';
       $data = array(
@@ -130,9 +154,9 @@ class MessageController extends AppController
   /**
   * Supprimer un message envoyé
   */
-  public function DeleteMessageEnvoye($page_rec, $page_sen, $id)
+  public function DeleteMessageEnvoye($page_sen, $id)
   {
-    $VerifMessageS = $this->messageModel->VerifMessageSender($page_rec, $page_sen, $id);
+    $VerifMessageS = $this->messageModel->VerifMessageSender($page_sen, $id);
       if($VerifMessageS === true) {
 
         $active_sender = '0';

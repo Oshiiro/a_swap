@@ -42,18 +42,19 @@
 
 
 		// Association
-		['GET', '/association/[:slug]/[i:page]', 'User#associationTrans', 'association'],
+		['GET', '/association/[:slug]/transactions/[i:page]', 'User#associationTrans', 'association'],
 		['GET', '/association/[:slug]/infos', 'User#associationInfos', 'association_infos'],
 		['GET', '/association/[:slug]/adherants/[i:page]', 'User#associationAdherants', 'association_adherants'],
 
 
 		// Messagerie
-		['GET', '/messagerie/[:page_rec]/[:page_sen]', 'Message#message', 'message'],
+		['GET', '/messagerie/[:page_rec]', 'Message#message', 'message'],
+		['GET', '/messagerie/envoyes/[:page_sen]', 'Message#messagesEnvoyes', 'messages_envoyes'],
 		['GET', '/messagerie/reception/', 'Message#getMessage', 'get_message'],
 		['POST', '/messagerie/[:page_rec]/[:page_sen]', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
 		['POST', '/messagerie/confirmation/', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
-		['GET', '/messagerie/deletemessagerecu/[:page_rec]/[:page_sen]/[:id]', 'Message#DeleteMessageRecu', 'delete_message_recu'],
-		['GET', '/messagerie/deletemessageenvoye/[:page_rec]/[:page_sen]/[:id]', 'Message#DeleteMessageEnvoye', 'delete_message_envoye'],
+		['GET', '/messagerie/deletemessagerecu/[:page_rec]/[:id]', 'Message#DeleteMessageRecu', 'delete_message_recu'],
+		['GET', '/messagerie/deletemessageenvoye/[:page_sen]/[:id]', 'Message#DeleteMessageEnvoye', 'delete_message_envoye'],
 
 
 

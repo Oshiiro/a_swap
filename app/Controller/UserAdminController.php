@@ -70,7 +70,7 @@ class UserAdminController extends AppController
       //  $trans = $this->backmodel->GetTrans();
       $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 
-      $limit = 5;
+      $limit = 10;
 
       $id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
       //limit d'affichage par page
