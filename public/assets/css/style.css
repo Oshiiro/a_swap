@@ -376,6 +376,15 @@ background-color: rgb(21, 138, 138);
   line-height: 1.428571429;
   border-radius: 50%;
   box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
+  background-color: rgb(100, 178, 137);
+  border-color: rgb(100, 178, 137);
+  color: white;
+}
+
+a:hover .btn-circle{
+  background-color: rgb(100, 178, 137);
+  border-color: rgb(100, 178, 137);
+  color: black;
 }
 
 .btn-circle.btn-lg {
