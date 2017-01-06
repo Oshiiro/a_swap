@@ -118,7 +118,7 @@ class MessageController extends AppController
   {
     $newMessages = new MessageModel();
     $message = $newMessages->sendMessages();
-    $this->message();
+    $this->message($page_rec);
   }
 
   /**

@@ -29,7 +29,8 @@
 							<td><?php echo $tran['username_seller']; ?></td>
 							<td><?php echo $tran['sum']; ?></td>
 							<td><?php echo $tran['description']; ?></td>
-							<td><?php echo $tran['created_at']; ?></td>
+							<td><?php echo 'Le ' .date('d-m-Y', strtotime($tran['created_at'])).
+                             ' à ' .date('H\hi', strtotime($tran['created_at']));?></td>
 						</tr>
 					<?php } ?>
 					</table>
