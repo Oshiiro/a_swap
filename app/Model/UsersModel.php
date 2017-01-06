@@ -89,7 +89,7 @@ class UsersModel extends UModel
   }
 
 // Fonction permettant d'afficher ses derniers transactions et seulement les siennes (pour user).
-  public function GetItsTrans($limit, $offset)
+  public function GetItsTrans($slug, $limit, $offset)
   {
 
     $id = $_SESSION['user']['id'];
@@ -122,24 +122,24 @@ class UsersModel extends UModel
 
 
   // Afficher liste des adhérerants y compris l'admin
-    public function affAllAdherants()
+    public function affAllAdherants($slug, $id_asso, $limit, $offset)
     {
-  // Recuperation de l'idée de l'assos via l'id user de la session
+
+    // Recuperation de l'idée de l'assos via l'id user de la session
       $id = $_SESSION['user']['id'];
 
-      $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+      $sql = "SELECT id FROM assos WHERE slug = :slug";
       $query = $this->dbh->prepare($sql);
-      $query->bindValue(':id', $id);
+      $query->bindValue(':slug', $slug);
       $query->execute();
       $result = $query->fetch();
-
 
       $sql = "SELECT * FROM users
               INNER JOIN intermediaire ON users.id = intermediaire.id_users
               WHERE intermediaire.id_assos = :result
-              ORDER BY username";
+              ORDER BY username LIMIT $limit OFFSET $offset";
       $query = $this->dbh->prepare($sql);
-      $query->bindValue(':result', $result['id_assos']);
+      $query->bindValue(':result', $id_asso);
       $query->execute();
       return $query->fetchAll();
     }

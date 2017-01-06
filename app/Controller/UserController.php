@@ -110,9 +110,8 @@ class UserController extends AppController
 			$slug_is_mine = $this->model_assos->slugIsMine($slug);
 			if($slug_is_mine == true) {
 				$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-				$adherants = $this->ourumodel->affAllAdherants($slug);
 
-				$limit1 = 5;
+				$limit1 = 10;
 				$id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
 				//limit d'affichage par page
 				$Pagination = new Pagination('transaction');
@@ -120,9 +119,10 @@ class UserController extends AppController
 				$calcul1 = $Pagination->calcule_page('id_asso = \''.$id_asso.'\'',$limit1,$page);
 				//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
 				//ce qui calcule le nombre de page total et le offset
+				$adherants = $this->ourumodel->affAllAdherants($slug, $id_asso, $limit1, $calcul1['offset']);
 				$pagination_trans = $Pagination->pagination($calcul1['page'],$calcul1['nb_page'],'association', ['slug' => $slug,'page' => $page]);
 				//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
-				$trans = $this->ourumodel->GetItsTrans($limit1,$calcul1['offset']);
+				$trans = $this->ourumodel->GetItsTrans($slug, $limit1,$calcul1['offset']);
 
 				$this->show('association/assos_trans', array(
 					'pagination_trans'=> $pagination_trans,
@@ -171,9 +171,8 @@ class UserController extends AppController
 			$slug_is_mine = $this->model_assos->slugIsMine($slug);
 			if($slug_is_mine == true) {
 				$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-				$adherants = $this->ourumodel->affAllAdherants($slug);
 
-				$limit1 = 2;
+				$limit1 = 10;
 				$id_asso = $this->model_assos->FindElementByElement('id', 'slug', $slug);
 				//limit d'affichage par page
 				$Pagination = new Pagination('intermediaire');
@@ -181,6 +180,7 @@ class UserController extends AppController
 				$calcul1 = $Pagination->calcule_page('id_assos = \''.$id_asso.'\'',$limit1,$page);
 				//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
 				//ce qui calcule le nombre de page total et le offset
+				$adherants = $this->ourumodel->affAllAdherants($slug,$id_asso, $limit1, $calcul1['offset']);
 				$pagination_adh = $Pagination->pagination($calcul1['page'],$calcul1['nb_page'],'association_adherants', ['slug' => $slug,'page' => $page]);
 				//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
 

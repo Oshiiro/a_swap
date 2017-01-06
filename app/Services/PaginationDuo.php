@@ -40,6 +40,33 @@ class PaginationDuo extends Model
     }
     return $result;
   }
+
+  public function calcule_page2($where='',$num,$page)
+  {
+    //on calcule le nombre de page en divisan le total par mon nombre d'article
+    //et on arrondi avec ceil pour avoir un nombre entier
+    $where_full ='';
+    if($where != ''){
+      $where_full = 'WHERE '.$where;
+    }
+    $tab = $this->getTable() ;
+    $sql = "SELECT COUNT(id) FROM $this->table $where_full ";
+    $sth = $this->dbh->prepare($sql);
+    $sth->execute();
+    $count = $sth->fetchColumn();
+
+    $nb_page = ceil($count/$num);
+    $result['nb_page'] = $nb_page;
+    //on declare page et offset
+    if(!empty($page) && is_numeric($page) && ctype_digit($page) && ($page <= $nb_page) && ($page > 0)){
+      $result['page'] = $page;
+      $result['offset'] = (($page-1)*$num);
+    }else {
+      $result['page'] = 1;
+      $result['offset'] = 0;
+    }
+    return $result;
+  }
   //on generer et retourne l'affichage de la pagination si elle a lieu d'etre
   public function pagination($page,$keyPage,$nb_page,$route,$arg='')
   {

@@ -128,7 +128,7 @@ class MessageModel extends Model
   }
 
 //SECURITER :  Verifier que l'utilisateur supprime bien un message qui lui appartient
-public function VerifMessageReceiver($page_rec, $page_sen, $idmessage)
+public function VerifMessageReceiver($page_rec,$idmessage)
 {
   $id = $_SESSION['user']['id'];
 
@@ -148,7 +148,7 @@ public function VerifMessageReceiver($page_rec, $page_sen, $idmessage)
 }
 
 // SECURITER : verifier que l'utilisateur supprimer bien un message que lui même à envoyer
-public function VerifMessageSender($page_rec, $page_sen, $idmessage)
+public function VerifMessageSender($page_sen, $idmessage)
 {
   $id = $_SESSION['user']['id'];
 

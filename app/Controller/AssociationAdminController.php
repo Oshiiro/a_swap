@@ -54,7 +54,7 @@ class AssociationAdminController extends AppController
 				$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
 
 
-				$limit = 1;
+				$limit = 10;
 				$id_asso = $this->assos->FindElementByElement('id', 'slug', $slug);
 				//limit d'affichage par page
 				$Pagination = new Pagination('intermediaire');
@@ -65,7 +65,7 @@ class AssociationAdminController extends AppController
 				$pagination_adh = $Pagination->pagination($calcul['page'],$calcul['nb_page'],'admin_back_assos', ['slug' => $slug,'page' => $page]);
 				//on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
        debug($calcul);
-				$adherants = $this->our_u_model->affAllAdherants($slug, $limit, $calcul['offset']);
+				$adherants = $this->our_u_model->affAllAdherants($slug, $id_asso, $limit, $calcul['offset']);
 
 				$this->show('association/assos_admin_back', array(
 
