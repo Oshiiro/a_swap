@@ -68,7 +68,6 @@ class AssociationAdminController extends AppController
 				$adherants = $this->our_u_model->affAllAdherants($slug, $limit, $calcul['offset']);
 
 				$this->show('association/assos_admin_back', array(
-
 					'slug' => $slug,
 					'adherants' => $adherants,
 					'page' => $page,
@@ -187,6 +186,7 @@ class AssociationAdminController extends AppController
 	{
 			$app = getApp();
 
+			$error = array();
 			$id_admin = $_SESSION['user']['id'];
 			$email   = trim(strip_tags($_POST['mail_invite']));
 			$email_sender = $_SESSION['user']['email'];
@@ -342,19 +342,22 @@ class AssociationAdminController extends AppController
 
 					}
 				}
-				$this->redirectToRoute('admin_back_assos', ['slug' => $slug]);
+				$this->redirectToRoute('admin_back_assos', array(
+					'slug' => $slug,
+				));
 
 			} else {
-				$adherants = $this->our_u_model->affAllAdherants($slug, $limit, $calcul['offset']);
+				$flash = new FlashBags();
+				$flash->setFlash('warning', 'Merci d\'indiquer une adresse mail');
 				$this->redirectToRoute('admin_back_assos', array(
 					'slug' => $slug,
 					'error' => $error,
 				));
 			}
-		} // by kilian
+		} // by Kilian
 
 
-	//Supprimer un membre de l'association (le compte user existe toujours, mais il ne figure
+	// Supprimer un membre de l'association (le compte user existe toujours, mais il ne figure
 	// plus dans la table intermediaire.)
 	public function deleteUser($id_user) {
 		$this->allowTo(array('admin'));
@@ -367,7 +370,7 @@ class AssociationAdminController extends AppController
 
 		if($isInMyTeam == true) {
 			$supprimerIntermediaire = $this->intermediaire->DeleteIntermediaireUser($id_user);
-			// doit-on faire apparaitre un message de confirmation ?
+
 			$flash = new FlashBags();
 			$flash->setFlash('warning', 'Cet utilisateur ne fait désormais plus parti de votre association.');
 			$this->redirectToRoute('admin_back_assos', ['slug' => $slug]);

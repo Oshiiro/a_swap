@@ -17,8 +17,8 @@
 				<div class="panel-heading">Vos transactions</div>
 				  <table class="col-xs-10">
 						<tr>
-							<th>Acheteur</th>
-							<th>Vendeur</th>
+							<th>De</th>
+							<th>Vers</th>
 							<th>Somme</th>
 							<th>Description</th>
 							<th>Date de la transaction</th>

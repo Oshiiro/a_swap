@@ -9,7 +9,7 @@
 </style>
 <!-- Infographies -->
   <?php if(empty($_SESSION['user']['role'])) { ?>
-    <h2 class="accroche">Petite phrase d'accroche trop stylé</h2>
+    <h2 class="accroche">Créez et gérez votre monnaie virtuelle !</h2>
     <div class="barreEmailInscription row">
       <div class="col-md-9">
         <h3> Inscris ton assos'</h3>
