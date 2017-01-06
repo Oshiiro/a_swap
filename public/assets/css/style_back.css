@@ -41,7 +41,7 @@ h2  {
 
 .block-message {
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 15px;
 }
 
 
@@ -61,7 +61,7 @@ h2  {
 }
 
 .allContent {
-  min-height: 38.5em;
+  min-height: 41em;
   max-width: 1920px;
   margin: auto;
   position: relative;

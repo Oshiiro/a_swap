@@ -72,7 +72,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 
 .allContent {
-  min-height: 42.8em;
+  min-height: 41em;
   max-width: 1920px;
   margin: auto;
   position: relative;
@@ -351,7 +351,7 @@ background-color: rgb(21, 138, 138);
 
 .block-message {
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 15px;
 }
 
 .block-message-1 {
