@@ -19,10 +19,8 @@ class CuztomPlates implements ExtensionInterface
     public function register(Engine $engine)
     {
       $engine->registerFunction('maj', [$this, 'Majuscule']);
-      $engine->registerFunction('logged', [$this, 'isLogged']);
+      $engine->registerFunction('getValueInArray', [$this, 'getValueInArray']);
 			$engine->registerFunction('getFlash', [$this, 'getFlash']);
-
-
     }
 
 		/**
@@ -46,11 +44,19 @@ class CuztomPlates implements ExtensionInterface
     }
 
     /**
-     * @return bool
+	   * Permet de recuperer la valeur d'une clef dans un array
+     * @return value
+		 * Or
+		 * @return ''
+		 * by Oshiiro
      */
-    public function isLogged($w_user)
-    {
-
-    }
+		 public function getValueInArray($array, $key)
+		 {
+			 if (!empty($array)){
+				 return $array[$key];
+			 }else{
+				 return '';
+			 }
+		 }
 
 }

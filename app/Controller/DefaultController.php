@@ -31,9 +31,7 @@ class DefaultController extends AppController
 		if ($this->tools->isLogged() == true){
 			$slug = new AssosModel();
 			$slug = $slug->getSlugByIdUser($_SESSION['user']['id']);
-			$this->show('default/home', array(
-				'slug' => $slug,
-			));
+			$this->show('default/home');
 		} else {
 			$this->show('default/home');
 		}
@@ -47,9 +45,7 @@ class DefaultController extends AppController
 		if ($this->tools->isLogged() == true){
 			$slug = new AssosModel();
 			$slug = $slug->getSlugByIdUser($_SESSION['user']['id']);
-			$this->show('default/contact', array(
-				'slug' => $slug,
-			));
+			$this->show('default/contact');
 		} else {
 			$this->show('default/contact');
 		}

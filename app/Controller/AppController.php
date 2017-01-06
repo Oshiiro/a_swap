@@ -53,4 +53,16 @@ class AppController extends Controller
     die();
   }
 
+  // permet de recuperer le slug dans un array
+  public function getSlugForURL($array)
+  {
+    if (!empty($array)){
+      $slugUrl = $dataAssos['slug'];
+      return $slugUrl;
+    }else{
+      $slugUrl = '';
+      return $slugUrl;
+    }
+  }
+
 }

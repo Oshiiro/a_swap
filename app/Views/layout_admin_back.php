@@ -25,10 +25,10 @@
 						</div>
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->e($slug), 'page'=>1]) ?>">Transactions</a></li>
-								<li><a href="<?php echo $this->url('admin_back_assos', ['slug' => $this->e($slug), 'page' => 1]) ?>">Gestion</a></li>
-								<li><a href="<?php echo $this->url('association', ['slug' => $this->e($slug), 'page' => 1]) ?>">Front Office</a></li>
-								<li><a href="<?php echo $this->url('admin_association_update', ['slug' => $this->e($slug)]) ?>"><?php echo $dataAssos['name']; ?></a></li> <!-- possibilité de modifier l'assos -->
+								<li><a href="<?php echo $this->url('admin_back', ['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page'=>1]) ?>">Transactions</a></li>
+								<li><a href="<?php echo $this->url('admin_back_assos', ['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]) ?>">Gestion</a></li>
+								<li><a href="<?php echo $this->url('association', ['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]) ?>">Front Office</a></li>
+								<li><a href="<?php echo $this->url('admin_association_update', ['slug' => $this->getValueInArray($dataAssos, 'slug')]) ?>"><?php echo $dataAssos['name']; ?></a></li> <!-- possibilité de modifier l'assos -->
 								<li><a href="<?= $this->url('deconnexion') ?>">Deconnexion</a><li>
 							</ul>
 						</div>
