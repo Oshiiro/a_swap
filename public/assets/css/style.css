@@ -194,7 +194,6 @@ select:-webkit-autofill:focus {
   font-weight: 900;
   font-size: 15px;
   color: white;
-  padding : 2em;
   transition: color 1s;
   transition: background-color 1s;
   z-index: 1;
@@ -206,7 +205,10 @@ select:-webkit-autofill:focus {
   margin-bottom: 0;
   border: none;
   box-shadow: 0 3px 6px rgba(0,0,0,0.70);
+}
 
+.navbar-header {
+  height: 50px;
 }
 
 .container-fluid>.navbar-header {
@@ -443,6 +445,15 @@ font-size: 2em;
   width: 150px;
 }
 
+.logoSvg {
+  color: white;
+  height: 55px;
+  width: 200px;
+}
+
+.sLogoAswap {
+  z-index: 2;
+}
 /*-------------------------------------------------------------------------*/
 /* FOOTER: */
 
