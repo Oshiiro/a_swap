@@ -114,10 +114,6 @@
                 <line fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-miterlimit="10" x1="188.536" y1="127.861" x2="219.719" y2="135.521"/>
               </svg>
               </a>
-
-
-
-
 						</div>
 						<div class="collapse navbar-collapse" id="navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">

@@ -32,9 +32,12 @@
   				 <?php } ?>
          </tbody>
 				</table>
-		</div>
-	</div>
+		  </div>
+	  </div>
+  </div>
 </div>
+
+
 
 
 <?php $this->stop('main_content') ?>
