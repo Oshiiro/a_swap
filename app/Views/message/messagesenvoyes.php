@@ -4,8 +4,8 @@
 <button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 <div class="container block-message">
   <div class="row">
-    <h2>Messagerie</h2>
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
+      <h2>Messagerie</h2>
       <form class="form-group formulaire" style="display : none;" name="class" method="POST" action="">
         <h4>Envoyer un message</h4>
         <label for="">Destinataire</label>
@@ -23,9 +23,9 @@
         <legend></legend>
       </form>
 
-      <!-- Messages envoyés -->
       <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso  " >Messages reçus</button></a>
       <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso ">Messages envoyés</button></a>
+      <!-- Messages envoyés -->
       <div class="envoyes">
         <table>
 
@@ -42,7 +42,7 @@
                 <td><?php echo $messagesenvoye['content'];?></td>
               </tr>
           <?php  }
-          } else { echo 'Vous n\'avez aucun message envoyé.'; }?>
+        } else { echo '<div class="block-message-1">Vous n\'avez aucun message envoyé.</div>'; }?>
         </table>
       </div>
       <?php echo $pagination2; ?>

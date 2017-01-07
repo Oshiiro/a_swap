@@ -6,9 +6,11 @@
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 			<h2><?php echo $dataAssos['name'] ?></h2>
 			<h2>Liste des dernières transactions au sein de votre association.</h2>
-      <div class="pagination" >  <?php if(!empty($pagination)){
+      <div class="pagination" >
+        <?php if(!empty($pagination)){
         echo $pagination;
-      } ?></div>
+      } ?>
+      </div>
       <div class="table-responsive shadow-z-1">
         <table id="table" class="table table-hover" >
           <thead>

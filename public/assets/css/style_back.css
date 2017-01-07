@@ -102,6 +102,13 @@ select:-webkit-autofill:focus {
   background-color: white;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+.logoSvg {
+  color: white;
+  height: 55px;
+  width: 200px;
+}
+
 /* -------------------------------------------------------------------------- */
 /* BOUTON; */
 /*Boutons ronds */
@@ -245,7 +252,6 @@ text-align: center;
   font-weight: 900;
   font-size: 15px;
   color: white;
-  padding : 2em;
   transition: color 1s;
   transition: background-color 1s;
 }
@@ -267,6 +273,10 @@ text-align: right;
 .navbar-nav a:hover {
     color: rgb(133, 0, 50);
     background-color: white;
+}
+
+.navbar-header {
+  height: 50px;
 }
 
 .logo {

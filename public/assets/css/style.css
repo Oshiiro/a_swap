@@ -273,6 +273,7 @@ li a:hover {
   transition: color 1s;
   transition: background-color 1s;
   z-index: 1;
+  height: 50px;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -466,9 +467,6 @@ font-size: 2em;
   width: 200px;
 }
 
-.sLogoAswap {
-  z-index: 2;
-}
 /*-------------------------------------------------------------------------*/
 /* FOOTER: */
 
