@@ -10,8 +10,6 @@
         echo $pagination;
       } ?></div>
 
-			<br>
-
 			  <table class="col-md-12">
 					<tr>
             <th>De</th>

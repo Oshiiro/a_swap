@@ -48,7 +48,7 @@ class UserController extends AppController
 // 																								AFFICHAGE DES PAGES
 // ===================================================================================================================
 	/**
-	 * Page d'inscription
+	 * Page d'inscription grace à l'invit
 	 */
 	public function registerUserFromInvite($token_asso, $token_invit)
 	{
@@ -65,6 +65,9 @@ class UserController extends AppController
 
 	}
 
+	/**
+	 * Page d'inscription
+	 */
 	public function registerUser()
 	{
 		if ($this->tools->isLogged() == false) {
@@ -104,7 +107,11 @@ class UserController extends AppController
 		));
 	}
 
-	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
+	/**
+	 * Blah blab blah
+	 * @slug blah blah
+	 * @page blah blah
+	 */
 	public function associationTrans($slug,$page)
 	{
 
