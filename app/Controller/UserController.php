@@ -253,7 +253,7 @@ class UserController extends AppController
 
 		$exist = $this->model->emailExists($email,'email', 3, 50);
 		if($exist == true){
-			$error['email'] = 'le mail est déjà pris';
+			$error['email'] = 'L\'e-mail est déjà pris';
 		} else {
 			$error['email'] = $this->valid->emailValid($email,'email', 3, 50);
 		}
@@ -265,11 +265,11 @@ class UserController extends AppController
 			// dans la table invitation avec ce mail, ce token_asso et ce token_invit
 			$invit_exist = $this->model_invitation->invationIsValid($token_asso, $token_invit);
 			if($invit_exist == false){
-				$error['tokens'] = 'Vous utilisez un mail d\'invitation invalide.';
+				$error['tokens'] = 'Vous utilisez un e-mail d\'invitation invalide.';
 			}
 			$email_of_this_invitation = $this->model_invitation->getEmailByTokens($token_asso, $token_invit);
 			if($email_of_this_invitation != $email){
-				$error['email'] = 'Vous devez vous inscrire avec le mail sur lequel vous avez reçu l\'invitation';
+				$error['email'] = 'Vous devez vous inscrire avec l\'e-mail sur lequel vous avez reçu l\'invitation';
 			}
 		}
 
@@ -318,7 +318,7 @@ class UserController extends AppController
 				}
 
 				$flash = new FlashBags();
-				$flash->setFlash('warning', 'Bravo vous etes inscrit');
+				$flash->setFlash('warning', 'Bravo vous êtes inscrits');
 				$this->show('users/login');
 			} else {
 				$this->show('users/register_user', array(
@@ -359,7 +359,7 @@ class UserController extends AppController
 					));
 
         } else {
-          $error['emailOrPseudo'] = "Le pseudo/mail ne correspond pas au mot de passe";
+          $error['emailOrPseudo'] = "Le pseudo/e-mail ne correspond pas au mot de passe";
         }
       } else {
         $error['emailOrPseudo'] = "Ce compte n'existe pas";
@@ -404,7 +404,7 @@ class UserController extends AppController
 		// si l'utilisateur tente de prendre un pseudo deja existant, on le bloque mamene
 		if($exist == true)
 		{
-			$error['username'] = 'Ce pseudo est deja pris';
+			$error['username'] = 'Ce pseudo est déjà pris';
 		} else {
 			$error['username']   = $this->valid->textValid($username,'username', 3, 50);
 		}
@@ -452,7 +452,7 @@ class UserController extends AppController
 
 
 			$flash = new FlashBags();
-			$flash->setFlash('warning', 'Votre profil à bien été modifié');
+			$flash->setFlash('warning', 'Votre profil a bien été modifié');
 			$this->profil();
 		}
     $this->show('users/profil', array('error' => $error));
@@ -568,7 +568,7 @@ class UserController extends AppController
 	    $mail->send();
 
 			$flash = new FlashBags();
-			$flash->setFlash('warning', 'Un email vous a été envoyer');
+			$flash->setFlash('warning', 'Un e-mail vous a été envoyé');
 			$this->show('users/login');
 
 		}
@@ -599,7 +599,7 @@ class UserController extends AppController
 		//Verfication que le token est bien le bon dans la BDD (si non, cela veux dire que c'est un ancien mail)
 		$verif_token = $getId->tokenIsActive();
 		if($verif_token == false){
-			$error['token'] = 'Le mail que vous avez utilisé n\'est plus valide.';
+			$error['token'] = 'L\'e-mail que vous avez utilisé n\'est plus valide.';
 		}
 
 		if(!empty($password)) {
@@ -620,7 +620,7 @@ class UserController extends AppController
 					$this->model->update($data, $id);
 					//Redirection vers la page de login
 					$flash = new FlashBags();
-					$flash->setFlash('warning', 'Votre mot de passe a bien été changer');
+					$flash->setFlash('warning', 'Votre mot de passe a bien été changé');
 					$this->show('users/login');
 				}
 

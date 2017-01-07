@@ -7,11 +7,11 @@
 		<div class="panel-heading">Transaction</div>
 		  <table class="col-md-offset-1 col-md-9">
 				<tr>
-					<th>Buyer</th>
-					<th>Seller</th>
-					<th>Sum</th>
+					<th>De </th>
+					<th>A</th>
+					<th>Somme</th>
 					<th>Description</th>
-					<th>Created_at</th>
+					<th>Créer le</th>
 				</tr>
 				<?php foreach ($trans as $tran){ ?>
 				<tr>
@@ -34,7 +34,7 @@
 					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Pseudo</th>
-					<th>Adresse-mail</th>
+					<th>Adresse e-mail</th>
 					<th>Portefeuille</th>
 				</tr>
 				<?php foreach ($adherants as $adherant){ ?>

@@ -122,6 +122,21 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 /* -------------------------------------------------------------------------- */
+/*TABLEAU */
+
+th {
+  background-color: rgb(21, 138, 138);
+  color : white;
+  padding : 10px;
+  text-align: center;
+}
+
+td {
+text-align: center;
+
+}
+
+/* -------------------------------------------------------------------------- */
 /* FORM; */
 
 .field {

@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Creez votre association']) ?>
+<?php $this->layout('layout', ['title' => 'Créez votre association']) ?>
 
 <?php $this->start('main_content') ?>
   <!-- RESTE A PREVOIR/FAIRE : uploader le logo de l'assoc -->
@@ -7,7 +7,7 @@
 					<div class="block col-xs-9 col-xs-push-2 col-md-push-1 col-lg-10">
             <form class="" action="" method="POST">
                   <!-- partie du formulaire pour la creation de l'asso -->
-						<h2>Creez la page de votre asso</h2>
+						<h2>Créez la page de votre assos'</h2>
 						<h3>L'association :</h3>
 			      <div class="field">
               <label for="nom_assos"class="field-label">Nom de l'association</label>
@@ -54,7 +54,7 @@
   						<span class="errorMessage"><?php if(!empty($error['username'])) { echo($error['username']);} ?></span>
   					</div>
   					<div class="field">
-              <label for="email" class="field-label">Email</label>
+              <label for="email" class="field-label">E-mail</label>
   						<input type="email" class="field-input" name="email" value="<?php if(!empty($_POST['email'])) {echo $_POST['email'];} ?>">
   						<span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
   					</div>

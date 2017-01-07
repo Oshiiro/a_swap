@@ -128,7 +128,7 @@ public function MakeCreditAdmin() {
       $query->execute();
 
       $flash = new FlashBags();
-      $flash->setFlash('success', 'Creditation effectuée');
+      $flash->setFlash('success', 'L\'utilisateur a bien été crédité');
 
       } else {
         $flash = new FlashBags();

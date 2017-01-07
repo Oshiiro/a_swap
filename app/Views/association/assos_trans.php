@@ -12,31 +12,32 @@
       <a href="<?php echo $this->url('association_adherants',['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]); ?>" title="Liste des adhérants"><button type="button" class="btn btn-perso" name="button">Adhérants</button></a>
 
 
-
-			<div class="panel panel-default container">
-				<div class="panel-heading">Vos transactions</div>
-				  <table class="col-xs-10">
+      <div class="table-responsive shadow-z-1">
+				<h3>Vos transactions</h3>
+        <table id="table" class="table table-hover" >
+          <thead>
 						<tr>
-							<th>De</th>
-							<th>Vers</th>
+							<th>De </th>
+							<th>Vers </th>
 							<th>Somme</th>
 							<th>Description</th>
 							<th>Date de la transaction</th>
 						</tr>
+          </thead>
+          <tbody>
 						<?php foreach ($trans as $tran){ ?>
 						<tr>
 							<td><?php echo $tran['username_buyer']; ?></td>
 							<td><?php echo $tran['username_seller']; ?></td>
 							<td><?php echo $tran['sum']; ?></td>
 							<td><?php echo $tran['description']; ?></td>
-							<td><?php echo 'Le ' .date('d-m-Y', strtotime($tran['created_at'])).
-                             ' à ' .date('H\hi', strtotime($tran['created_at']));?></td>
+							<td><?php echo $tran['created_at']; ?></td>
 						</tr>
+          </tbody>
 					<?php } ?>
-					</table>
+				</table>
 			</div>
-        <?php if(!empty($pagination_trans)) { echo $pagination_trans;} ?>
-
+      <?php if(!empty($pagination_trans)) { echo $pagination_trans;} ?>
 		</div>
 	</div>
 </div>

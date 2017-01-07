@@ -96,7 +96,7 @@ class DefaultController extends AppController
 
 			// Tous s'est bien passé, on envoi un flash mesasge a l'utilisateur.
 			$flash = new FlashBags();
-			$flash->setFlash('warning', 'L\'équipe d\'A-Swap recevra votre message ; vous recevrez une reponse sous 48h.');
+			$flash->setFlash('warning', 'L\'équipe d\'A-Swap recevra votre message ; vous recevrez une réponse sous 48h.');
 
 			$this->redirectToRoute('default_home', array(
 				'slug' => $slug,

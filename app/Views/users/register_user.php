@@ -33,7 +33,7 @@
 						<span class="errorMessage"><?php if(!empty($error['username'])) { echo($error['username']);} ?></span>
 					</div>
 					<div class="field">
-						<label for="" class="field-label">Email</label>
+						<label for="" class="field-label">E-mail</label>
 						<input type="email" class="field-input" name="email" value="<?php if(!empty($_POST['email'])) {echo $_POST['email'];} ?>">
 						<span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
 					</div>

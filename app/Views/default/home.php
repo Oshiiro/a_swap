@@ -28,7 +28,7 @@
           <div class="thumbnail texteExplicatif">
             <img src="../public/assets/img/01swap.png" alt="...">
             <div class="caption">
-              <p>Pour acceder aux nos services, il suffit de t'inscrire, suite à l'invitation du président de ton assos'</p>
+              <p>Pour accéder à nos services, il suffit de t'inscrire, suite à l'invitation du président de ton assos'</p>
             </div>
           </div>
         </div>

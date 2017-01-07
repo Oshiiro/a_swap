@@ -11,7 +11,7 @@
 					<!-- Si le champ est remplie aucune données entre en BDD -->
 					<input type="text" name="antiBot" value="" class="hide">
 					<div class="field">
-						<label for="emailOrPseudo" class="field-label">Mail ou Pseudo</label>
+						<label for="emailOrPseudo" class="field-label">E-mail ou Pseudo</label>
 						<input type="text" class="field-input" name="emailOrPseudo" value="<?php if(!empty($_POST['emailOrPseudo'])) {echo $_POST['emailOrPseudo'];} ?>">
 						<span class="errorMessage"><?php if(!empty($error)) { echo($error['emailOrPseudo']);} ?></span>
 					</div>
