@@ -8,10 +8,9 @@
       <h2>Gestion association</h2>
       <div class="formulaire" style="display : none;">
         <form class="field" action="<?php echo $this->url('admin_association_invite'); ?>"  method="POST" action="" name="mail_invite">
-          <label class="field-label" for="email">Adresse mail de la personne a inviter</label>
-          <input class="field-input" type="email" name="mail_invite">
+          <label class="field-label" for="email">Adresse e-mail de la personne à inviter</label>
+          <input class="field-input" type="email" name="mail_invite"><br>
           <span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
-
           <input type="submit" value="Inviter">
         </form>
       </div>
@@ -24,7 +23,7 @@
 							<th>Nom</th>
 							<th>Prénom</th>
 							<th>Pseudo</th>
-							<th>Adresse-mail</th>
+							<th>Adresse e-mail</th>
 							<th>Portefeuille</th>
               <th>Crediter</th>
               <th>Supprimer</th>

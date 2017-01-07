@@ -13,26 +13,29 @@
 
 			<!-- ////////////////////// LISTE DES ADHERANTS /////////////////////////////-->
 
-			<div class="panel panel-default container">
-				<div class="panel-heading">Liste des adhérents</div>
-			  <table>
-					<tr>
-						<th>Nom</th>
-						<th>Prénom</th>
-						<th>Pseudo</th>
-						<th>Adresse-mail</th>
-						<th>Portefeuille</th>
-					</tr>
-
-					<?php foreach ($adherants as $adherant){ ?>
-					<tr>
-						<td><?php echo $adherant['lastname']; ?></td>
-						<td><?php echo $adherant['firstname']; ?></td>
-						<td><?php echo $adherant['username']; ?></td>
-						<td><?php echo $adherant['email']; ?></td>
-						<td><?php echo $adherant['wallet']; ?></td>
-					</tr>
-				<?php } ?>
+      <div class="table-responsive shadow-z-1">
+        <h3>Adhérants</h3>
+        <table id="table" class="table table-hover" >
+          <thead>
+  					<tr>
+  						<th>Nom</th>
+  						<th>Prénom</th>
+  						<th>Pseudo</th>
+  						<th>Adresse e-mail</th>
+  						<th>Portefeuille</th>
+  					</tr>
+          </thead>
+          <tbody>
+  					<?php foreach ($adherants as $adherant){ ?>
+  					<tr>
+  						<td><?php echo $adherant['lastname']; ?></td>
+  						<td><?php echo $adherant['firstname']; ?></td>
+  						<td><?php echo $adherant['username']; ?></td>
+  						<td><?php echo $adherant['email']; ?></td>
+  						<td><?php echo $adherant['wallet']; ?></td>
+  					</tr>
+  				  <?php } ?>
+          </tbody>
 				</table>
         <?php if(!empty($pagination_adh)) { echo $pagination_adh;} ?>
 			</div>

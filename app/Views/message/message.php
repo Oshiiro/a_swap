@@ -4,6 +4,7 @@
 <button title="Envoyer un message" class="btn btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 <div class="container block-message">
   <div class="row">
+  <h2>Messagerie</h2>
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
       <form class="form-group formulaire" style="display : none;" name="class" method="POST" action="">
         <h4>Envoyer un message</h4>
@@ -25,7 +26,8 @@
       <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso messagesEnvoyes " >Messages reçus</button></a>
       <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
 <!-- Messages reçus -->
-      <table>
+      <table><br>
+        <h3>Messages reçus</h3>
         <?php if(!empty($messages)) {
         foreach ($messages as $message) { ?>
             <th>Message de :<?php echo ' ' .$message['username'];?></th>

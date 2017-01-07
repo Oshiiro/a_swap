@@ -212,12 +212,12 @@ class AssociationAdminController extends AppController
 						$mail->CharSet = "utf8";
 						$mail->From = "no.reply@a-swap.com";
 						$mail->FromName = "A-Swap Admin";
-						$mail->Subject = "Invitation a rejoindre une association";
+						$mail->Subject = "Invitation à rejoindre une association";
 						// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
 						// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
 						$invitation_mail = $this->generateUrl('register_user_from_invite', ['token_asso' => $token_assos, 'token_invit' => $token_invitation], true);
 						$mail->Body = $_SESSION['user']['firstname']. ' '. $_SESSION['user']['lastname'] .
-													' souhaite vous inviter a rejoindre son association : "' . $name_asso . '". Cliquez ici pour le rejoindre :
+													' souhaite vous inviter à rejoindre son association : "' . $name_asso . '". Cliquez ici pour le rejoindre :
 													<a href="' .$invitation_mail. '">Rejoindre l\'association</a>';
 						$mail->AddAddress($email);
 						$mail->send();
@@ -235,7 +235,7 @@ class AssociationAdminController extends AppController
 
 
 						$flash = new FlashBags();
-						$flash->setFlash('warning', 'L\'utilisateur recevera une nouvelle invitation par mail.');
+						$flash->setFlash('warning', 'L\'utilisateur recevra une nouvelle invitation par mail.');
 					} else {
 						$id_invit = $this->invitation->getIdByEmails($email_sender, $email);
 						$token_assos = $this->assos->getToken($id_admin);
@@ -264,7 +264,7 @@ class AssociationAdminController extends AppController
 							$this->invitation->update($data_invit, $id_invit);
 
 							$flash = new FlashBags();
-							$flash->setFlash('warning', 'L\'utilisateur recevera une nouvelle invitation dans son espace messagerie.');
+							$flash->setFlash('warning', 'L\'utilisateur recevra une nouvelle invitation dans son espace messagerie.');
 						} else {
 							// On affiche un message d'erreur "ce user a deja rejoint une association"
 							$flash = new FlashBags();
@@ -308,7 +308,7 @@ class AssociationAdminController extends AppController
 
 
 						$flash = new FlashBags();
-						$flash->setFlash('warning', 'L\'utilisateur recevera votre invitation par mail.');
+						$flash->setFlash('warning', 'L\'utilisateur recevra votre invitation par mail.');
 					} else {
 						$token_assos = $this->assos->getToken($id_admin);
 						$token_invitation = StringUtils::randomString(40);
@@ -334,7 +334,7 @@ class AssociationAdminController extends AppController
 							$this->invitation->insert($data_invit);
 
 							$flash = new FlashBags();
-							$flash->setFlash('warning', 'L\'utilisateur recevera votre invitation dans son espace messagerie.');
+							$flash->setFlash('warning', 'L\'utilisateur recevra votre invitation dans son espace messagerie.');
 						} else {
 							// On affiche un message d'erreur "ce user a deja rejoint une association"
 							$flash = new FlashBags();
@@ -349,7 +349,7 @@ class AssociationAdminController extends AppController
 
 			} else {
 				$flash = new FlashBags();
-				$flash->setFlash('warning', 'Merci d\'indiquer une adresse mail');
+				$flash->setFlash('warning', 'Merci d\'indiquer une adresse e-mail');
 				$this->redirectToRoute('admin_back_assos', array(
 					'slug' => $slug,
 					'error' => $error,

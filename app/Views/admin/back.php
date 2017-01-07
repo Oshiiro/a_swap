@@ -5,29 +5,32 @@
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 			<h2><?php echo $dataAssos['name'] ?></h2>
-			<h3 style="text-align : center">Liste des dernières transaction au sein de votre association.</h3>
+			<h2>Liste des dernières transactions au sein de votre association.</h2>
       <div class="pagination" >  <?php if(!empty($pagination)){
         echo $pagination;
       } ?></div>
-
-			  <table class="col-md-12">
-					<tr>
-            <th>De</th>
-						<th>Vers</th>
-						<th>Somme</th>
-						<th>Description</th>
-						<th>Date de la transaction</th>
-					</tr>
-					<?php foreach ($trans as $tran){ ?>
-					<tr>
-            <td><?php echo $tran['username_buyer']; ?></td>
-            <td><?php echo $tran['username_seller']; ?></td>
-						<td><?php echo $tran['sum']; ?></td>
-						<td><?php echo $tran['description']; ?></td>
-						<td><?php echo 'Le ' .date('d-m-Y', strtotime($tran['created_at'])).
-                           ' à ' .date('H\hi', strtotime($tran['created_at']));?></td>
-					</tr>
-				<?php } ?>
+      <div class="table-responsive shadow-z-1">
+        <table id="table" class="table table-hover" >
+          <thead>
+  					<tr>
+              <th>De</th>
+  						<th>Vers </th>
+  						<th>Somme</th>
+  						<th>Description</th>
+  						<th>Date de la transaction</th>
+  					</tr>
+  					<?php foreach ($trans as $tran){ ?>
+          </thead>
+          <tbody>
+  					<tr>
+              <td><?php echo $tran['username_buyer']; ?></td>
+              <td><?php echo $tran['username_seller']; ?></td>
+  						<td><?php echo $tran['sum']; ?></td>
+  						<td><?php echo $tran['description']; ?></td>
+  						<td><?php echo $tran['created_at']; ?></td>
+  					</tr>
+  				 <?php } ?>
+         </tbody>
 				</table>
 		</div>
 	</div>
