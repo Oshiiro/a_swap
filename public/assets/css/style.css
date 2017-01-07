@@ -134,7 +134,7 @@ select:-webkit-autofill:focus {
 .field::after {
   content: '';
   height: 2px;
-  background-color: #e7e7e7;
+  background-color: #BDBDBD;
   width: 100%;
   position: absolute;
   bottom: 16px;
@@ -164,6 +164,7 @@ select:-webkit-autofill:focus {
   transform: translateY(0.8em) scale(0.75);
   transition: transform 0.3s, font-size 0.3s;
   transform-origin: 0 50%;
+  color: #BDBDBD;
 }
 
 .field-input {
