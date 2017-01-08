@@ -29,8 +29,10 @@ class InvitationController extends AppController
 //
 // ===================================================================================================================
   /**
-	* Page Association
-	*/
+  * Traitement de l'acceptation d'une invitation par un user
+  * @param string $token_asso token de l'association dont l'admin a envoyé l'invitation
+  * @param string $token_invit token de l'invitation
+  */
 	public function accept($token_asso, $token_invit)
 	{
 

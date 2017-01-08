@@ -42,8 +42,8 @@ class UserAdminController extends AppController
 // 																								AFFICHAGE DES PAGES
 // ===================================================================================================================
   /**
-   * Page d'inscription Admin
-   */
+  * Affichage de la page d'inscription pour un admin
+  */
   public function registerAdmin()
   {
     $nom_assos = (!empty($_POST['nom_assos'])) ? trim(strip_tags($_POST['nom_assos'])) : null;
@@ -56,9 +56,10 @@ class UserAdminController extends AppController
   }
 
   /**
-   * Page Back de l'admin
-   */
-
+  * Affichage du back office de l'admin connécté
+  * @param string $slug Slug de l'association
+  * @param int $page Numero de la page affichée
+  */
   public function back($slug, $page = 1)
   {
     $this->allowTo(array('admin'));
@@ -94,30 +95,13 @@ class UserAdminController extends AppController
 
   }
 
-// <<<<<<< HEAD CONFLIT PAS SUR (voir AssociationAdminController)
-// =======
-  // Page des dernières transactions et liste des membres sur page association de l'admin
-  // public function adminAssos()
-  // {
-  //   $this->allowTo(array('admin'));
-  //
-  //   $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-  //   $adherants = $this->backmodel->affAdherants($slug);
-  //   $trans = $this->backmodel->GetTrans($slug);
-  //   $this->show('association/assos', array(
-  //     'slug' => $slug,
-  //     'adherants' => $adherants,
-  //     'trans' => $trans
-  //   ));
-  // }
-// >>>>>>>
-
 // ===================================================================================================================
 // 																						TRAITEMENT DES FORMULAIRES
 // ===================================================================================================================
+
   /**
-	 * Page d'inscription Admin traitement
-	 */
+	* Traitement de la page d'inscription d'un admin et de son association
+	*/
 	public function tryRegisterAdmin()
 	{
     $validation = new ValidationTools();
@@ -143,7 +127,6 @@ class UserAdminController extends AppController
     if(!empty($_POST['antiBot'])){
       $error['antiBot'] = 'BIM';
     }
-
 
     // Verification des champs partie assos
     // verifier que le nom de l'asso est libre.

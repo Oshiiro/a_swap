@@ -43,8 +43,10 @@ class AssociationAdminController extends AppController
 // 																								AFFICHAGE DES PAGES
 // ===================================================================================================================
 	/**
-	 * Page Back Association Admin
-	 */
+  * Affiche le back office de l'admin connécté
+  * @param string $slug Slug de l'assocation de l'admin connécté
+  * @param string $page numero de la page
+  */
 	public function backAssos($slug, $page)
 	{
 		$this->allowTo(array('admin'));
@@ -83,11 +85,10 @@ class AssociationAdminController extends AppController
 
 	}
 
-
-
 	/**
-	 * Modification Association Admin ( page de modif )
-	 */
+  * Affichage de la page de modification de l'association
+  * @param string $slug Slug de l'assocation de l'admin connécté
+  */
 	public function updateAssosForm($slug)
 	{
 		$this->allowTo(array('admin'));
@@ -106,16 +107,17 @@ class AssociationAdminController extends AppController
 	}
 
 	/**
-	 * Modification de l'Association Admin
-	 */
+  * Traitement de la page de modification de l'association
+  * @param string $slug Slug de l'assocation de l'admin connécté
+  */
 	public function updateAssosAction($slug)
 	{
 		$slug = $this->assos->getSlugByIdUser($_SESSION['user']['id']);
 		// protection XSS
-		$name   = trim(strip_tags($_POST['name']));
-		$description   = trim(strip_tags($_POST['description']));
-		$money_name   = trim(strip_tags($_POST['money_name']));
-		$rules   = trim(strip_tags($_POST['rules']));
+		$name   = (!empty($_POST['name'])) ? trim(strip_tags($_POST['name'])) : null;
+		$description   = (!empty($_POST['description'])) ? trim(strip_tags($_POST['description'])) : null;
+		$money_name   = (!empty($_POST['money_name'])) ? trim(strip_tags($_POST['money_name'])) : null;
+		$rules   = (!empty($_POST['rules'])) ? trim(strip_tags($_POST['rules'])) : null;
 		$id = $this->assos->FindElementByElement('id','name', $_SESSION['user']['nom_assos']);
 		// verif de pseudo
 		$exist = $this->assos->nameAssosExists($name,'name', 3, 50);
@@ -180,7 +182,7 @@ class AssociationAdminController extends AppController
 
 	/**
 	* Invitation d'un membre a rejoindre l'assocation
-	*/
+  */
 	public function inviteNewMemberByMail()
 	{
 			$app = getApp();
@@ -213,8 +215,6 @@ class AssociationAdminController extends AppController
 						$mail->From = "no.reply@a-swap.com";
 						$mail->FromName = "A-Swap Admin";
 						$mail->Subject = "Invitation à rejoindre une association";
-						// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
-						// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
 						$invitation_mail = $this->generateUrl('register_user_from_invite', ['token_asso' => $token_assos, 'token_invit' => $token_invitation], true);
 						$mail->Body = $_SESSION['user']['firstname']. ' '. $_SESSION['user']['lastname'] .
 													' souhaite vous inviter à rejoindre son association : "' . $name_asso . '". Cliquez ici pour le rejoindre :
@@ -359,9 +359,11 @@ class AssociationAdminController extends AppController
 			}
 		} // by Kilian
 
-
-	// Supprimer un membre de l'association (le compte user existe toujours, mais il ne figure
-	// plus dans la table intermediaire.)
+	/**
+  * Exclusion d'un membre de l'association (le compte user existe toujours, mais il ne figure
+	* plus dans la table intermediaire.)
+  * @param integer Id de l'utilisateur à exclure
+  */
 	public function deleteUser($id_user) {
 		$this->allowTo(array('admin'));
 

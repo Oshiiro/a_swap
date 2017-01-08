@@ -24,8 +24,8 @@ class DefaultController extends AppController
 // 																								AFFICHAGE DES PAGES
 // ===================================================================================================================
 	/**
-	 * Page d'accueil par défaut
-	 */
+	* Affichage de la page d'accueil par défaut
+	*/
 	public function home()
 	{
 		if ($this->tools->isLogged() == true){
@@ -38,8 +38,8 @@ class DefaultController extends AppController
 	}
 
 	/**
-	 * Page de contact
-	 */
+	* Affichage de la page de contact
+	*/
 	public function contact()
 	{
 		if ($this->tools->isLogged() == true){
@@ -52,8 +52,8 @@ class DefaultController extends AppController
 	}
 
 	/**
-	 * Page de CGU
-	 */
+	* Affichage de la page de CGU
+	*/
 	public function cgu()
 	{
 		$this->show('default/cgu');
@@ -63,8 +63,8 @@ class DefaultController extends AppController
 // 																							TRAITEMENT DES FORMULAIRES
 // ===================================================================================================================
 	/**
-	 * Page de contact - Envois du mail traitement
-	 */
+	* Page de contact - Traintement de l'envoi du mail
+	*/
 	public function sendMailContact()
 	{
 		if ($this->tools->isLogged() == true){

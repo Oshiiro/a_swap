@@ -48,8 +48,10 @@ class UserController extends AppController
 // 																								AFFICHAGE DES PAGES
 // ===================================================================================================================
 	/**
-	 * Page d'inscription grace à l'invit
-	 */
+  * Affichage pour un utilisateur de la page d'inscription faisant suite à une invitation
+  * @param string $token_asso Token de l'association qui invite
+  * @param string $token_invit Token de l'invitation concernée
+  */
 	public function registerUserFromInvite($token_asso, $token_invit)
 	{
 		if ($this->tools->isLogged() == false) {
@@ -66,7 +68,7 @@ class UserController extends AppController
 	}
 
 	/**
-	 * Page d'inscription
+	 * Affichage de la page d'inscription pour un utilisateur
 	 */
 	public function registerUser()
 	{
@@ -82,8 +84,8 @@ class UserController extends AppController
 	}
 
 	/**
-	 * Page de connexion
-	 */
+	* Affichage de la page de connexion
+	*/
 	public function login()
 	{
 		if ($this->tools->isLogged() == false) {
@@ -94,8 +96,8 @@ class UserController extends AppController
 	}
 
 	/**
-	 * Page de profil
-	 */
+	* Affichage de la page profil d'un utilisateur
+	*/
 	public function profil()
 	{
 		$this->allowTo(array('user','admin', 'superadmin'));
@@ -108,10 +110,10 @@ class UserController extends AppController
 	}
 
 	/**
-	 * Blah blab blah
-	 * @slug blah blah
-	 * @page blah blah
-	 */
+	* Affichage de la page transactions de l'utilisateur
+	* @param string $slug Slug de l'association pour laquelle l'utilisateur consulte ses transactions
+	* @param int $page Numero de la page consultée
+	*/
 	public function associationTrans($slug,$page)
 	{
 
@@ -150,7 +152,10 @@ class UserController extends AppController
 
 	}
 
-
+	/**
+	* Affichage de la page "Info" de l'association
+	* @param string $slug Slug de l'association concernée
+	*/
 	public function associationInfos($slug)
 	{
 		if ($this->tools->isLogged() == true) {
@@ -171,8 +176,11 @@ class UserController extends AppController
 
 	}
 
-
-	// Afficher les adhérants et derniers transaction sur page d'accueil d'un user
+	/**
+	* Affichage des dernieres transaction effectuée par l'utilisateur
+	* @param string $slug Slug de l'association concernée
+	* @param int $page Numero de la page consultée
+	*/
 	public function associationAdherants($slug, $page)
 	{
 
@@ -215,18 +223,18 @@ class UserController extends AppController
 // ===================================================================================================================
 
 	/**
-	 * Page d'inscription traitement
-	 */
+ 	* Traitement de l'inscription d'un utilisateur
+ 	*/
 	public function tryRegister()
 	{
-		$token_asso = trim(strip_tags($_POST['token_asso']));
-		$token_invit = trim(strip_tags($_POST['token_invit']));
-		$lastname   = trim(strip_tags($_POST['lastname']));
-		$firstname   = trim(strip_tags($_POST['firstname']));
-		$username   = trim(strip_tags($_POST['username']));
-		$email = trim(strip_tags($_POST['email']));
-		$password  = trim(strip_tags($_POST['password']));
-		$password_confirm  = trim(strip_tags($_POST['password_confirm']));
+		$token_asso = (!empty($_POST['token_asso'])) ? trim(strip_tags($_POST['token_asso'])) : null ;
+		$token_invit = (!empty($_POST['token_invit'])) ? trim(strip_tags($_POST['token_invit'])) : null ;
+		$lastname   = (!empty($_POST['lastname'])) ? trim(strip_tags($_POST['lastname'])) : null ;
+		$firstname   = (!empty($_POST['firstname'])) ? trim(strip_tags($_POST['firstname'])) : null ;
+		$username   = (!empty($_POST['username'])) ? trim(strip_tags($_POST['username'])) : null ;
+		$email = (!empty($_POST['email'])) ? trim(strip_tags($_POST['email'])) : null ;
+		$password  = (!empty($_POST['password'])) ? trim(strip_tags($_POST['password'])) : null ;
+		$password_confirm  = (!empty($_POST['password_confirm'])) ? trim(strip_tags($_POST['password_confirm'])) : null ;
 		// verif de pseudo
 		$exist = $this->model->usernameExists($username,'username', 3, 50);
 		if($exist == true)
@@ -340,16 +348,16 @@ class UserController extends AppController
 		}
 	}
 
-/**
-	* Page de connexion traitement
+	/**
+	* Traitement de la page de connexion
 	*/
 	public function tryLogin()
 	{
-		$error = array();
 
+		$error = array();
 		$slug = null;
-		$usernameOrEmail  = trim(strip_tags($_POST['emailOrPseudo']));
-		$plainPassword   = trim(strip_tags($_POST['password']));
+		$usernameOrEmail  = (!empty($_POST['emailOrPseudo'])) ? trim(strip_tags($_POST['emailOrPseudo'])) : null ;
+		$plainPassword   = (!empty($_POST['password'])) ? trim(strip_tags($_POST['password'])) : null ;
 
 		$sessionActive = $this->model->getUserByUsernameOrEmail($usernameOrEmail);
 
@@ -379,8 +387,8 @@ class UserController extends AppController
 
 	}
 
-/**
-  * Deconnexion
+	/**
+  * Traitement de la page de deconnexion
   */
 	public function Deconnexion() // pas de majuscule pour les function plz
 	{
@@ -388,15 +396,15 @@ class UserController extends AppController
     $this->redirectToRoute('default_home');
 	}
 
-/**
-  * Page de profil modification traitement
+	/**
+  * Traitement de la page de modification de profil
   */
 	public function updateProfil()
 	{
 		// protection XSS
-		$lastname   = trim(strip_tags($_POST['lastname']));
-		$firstname   = trim(strip_tags($_POST['firstname']));
-		$username   = trim(strip_tags($_POST['username']));
+		$lastname   = (!empty($_POST['lastname'])) ? trim(strip_tags($_POST['lastname'])) : null;
+		$firstname   = (!empty($_POST['firstname'])) ? trim(strip_tags($_POST['firstname'])) : null;
+		$username   = (!empty($_POST['username'])) ? trim(strip_tags($_POST['username'])) : null;
 		$id = $_SESSION['user']['id'];
 
 		// verif de pseudo
@@ -465,8 +473,8 @@ class UserController extends AppController
     $this->show('users/profil', array('error' => $error));
 	}
 
-/**
-  * Modifier photo de profil
+	/**
+  * Traitement de la modification de photo de profil
   */
 	public function updateProfilImg()
 	{
@@ -530,22 +538,27 @@ class UserController extends AppController
 // =============================================================================
 // ===============================FORGOT PASSWORD===============================
 // =============================================================================
+	/**
+	* Affichage de la page d'oubli de mot de passe
+	*/
 	public function forgotPassword()
 	{
 		$this->show('users/forgot_password');
 	}
 
+	/**
+	* Traitement de la page d'oubli de mot de passe
+	*/
 	public function tryForgotPassword()
 	{
-		$email   = trim(strip_tags($_POST['email']));
+		$email   = (!empty($_POST['email'])) ? trim(strip_tags($_POST['email'])) : null ;
 
+		$error['email'] = $this->valid->emailValid($email,'email', 3, 50);
 		// verif que le mail existe bien dans la BDD
 		$exist = $this->model->emailExists($email,'email', 3, 50);
 		if($exist == false){
 			$error['email'] = 'Cet utilisateur n\'existe pas.';
-		} else {
-			$error['email'] = $this->valid->emailValid($email,'email', 3, 50);
-		}
+		} 
 
 		// S'il n'y a pas d'erreurs
 		if ($this->valid->IsValid($error)) {
@@ -589,21 +602,27 @@ class UserController extends AppController
 //==============================================================================
 //================================MODIFY PASSWORD===============================
 //==============================================================================
+	/**
+	* Affichage de la page de modification de mot de passe
+	*/
 	public function modifyPassword()
 	{
 		$this->show('users/modify_password');
 	}
 
+	/**
+	* Traitement de la page de modification de mot de passe
+	*/
 	public function tryModifyPassword()
 	{
 		$getId = new OurUModel();
 		$id = $getId->getIdByEmailAndToken();
-		$password  = trim(strip_tags($_POST['password']));
-		$password_confirm  = trim(strip_tags($_POST['repeat']));
+		$password  = (!empty($_POST['password'])) ? trim(strip_tags($_POST['password'])) : null ;
+		$password_confirm  = (!empty($_POST['repeat'])) ? trim(strip_tags($_POST['repeat'])) : null ;
 
 		$error['password']  = $this->valid->textValid($password,'password', 3, 50);
 
-		//Verfication que le token est bien le bon dans la BDD (si non, cela veux dire que c'est un ancien mail)
+		//Verification que le token est bien le bon dans la BDD (si non, cela veux dire que c'est un ancien mail)
 		$verif_token = $getId->tokenIsActive();
 		if($verif_token == false){
 			$error['token'] = 'L\'e-mail que vous avez utilisé n\'est plus valide.';

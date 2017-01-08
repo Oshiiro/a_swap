@@ -26,7 +26,10 @@ class TransactionController extends AppController
     $this->AssosModel = new AssosModel();
   }
 
-  // Affichage du formulaire pour transaction, avec liste des adhérants
+  /**
+  * Affichage du formulaire pour une transaction
+  * @param string $slug Slug de l'association au sein de laquelle on est en train de faire une transaction
+  */
   public function ShowFormTransaction($slug) {
     if ($this->tools->isLogged() == true){
       $slug_is_mine = $this->AssosModel->slugIsMine($slug);
@@ -48,6 +51,9 @@ class TransactionController extends AppController
     }
   }
 
+  /**
+  * Affichage de la page de transaction d'un utilisateur
+  */
   public function makeTransactionUser()
   {
     $slug = $this->AssosModel->getSlugByIdUser($_SESSION['user']['id']);
@@ -61,6 +67,9 @@ class TransactionController extends AppController
 
   }
 
+  /**
+  * Affichage en AJAX du portefeuille de l'utilisateur connécté
+  */
   public function getWalletById() {
     $result = $this->model_intermediaire->FindElementByElement('wallet', 'id_users', $_SESSION['user']['id']);
     if (empty($result)) {

@@ -20,7 +20,7 @@ class SuperAdminController extends AppController
   }
 
   /**
-   * accueil du super Admin
+   * Affichage de la page d'accueil du super Admin
    */
   public function superAccueil()
   {
@@ -34,8 +34,6 @@ class SuperAdminController extends AppController
     $allAssos = $this->model_stats->allAssos();
     $most_money_asso = $this->model_stats->mostMoneyAsso();
     $most_active_asso = $this->model_stats->mostActiveAsso();
-
-
 
       $this->show('super_admin/back', array(
         'nombreAsso' => $nombreAsso,

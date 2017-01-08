@@ -25,25 +25,10 @@ class TransactionAdminController extends AppController
     $this->tools = new Tools();
   }
 
-// Affichage du formulaire pour transaction, alors liste des adhérants
-
-  // public function ShowFormTransaction() {
-  //   $adherants = $this->backModel->affAdherants();
-  //   $this->show('transaction/admin_transaction', array(
-  //   'adherants' => $adherants
-  //   ));
-  // }
-  //
-  // public function makeTransactionAdmin()
-  // {
-  // $newTransactions = $this->transactionModel->MakeTransactionAdmin();
-  // $adherants = $this->backModel->affAdherants();
-  // $this->show('transaction/admin_transaction', array(
-  // 'newTransactions' => $newTransactions,
-  // 'adherants' => $adherants
-  // ));
-  // }
-
+  /**
+  * Affichage du formulaire pour une transaction
+  * @param int $id_seller Id du membre qui effectue la transaction
+  */
   public function ShowFormCredit($id_seller) {
     if ($this->tools->isLogged() == true){
       $adherants = $this->ourumodel->affOneAdherants($id_seller);
@@ -57,6 +42,9 @@ class TransactionAdminController extends AppController
     }
   }
 
+  /**
+  * Affichage du formulaire pour un credit de depart par l'admin
+  */
   public function makeCreditAdmin()
   {
     $newTransactions = $this->transactionModel->MakeCreditAdmin();

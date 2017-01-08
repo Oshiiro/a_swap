@@ -53,7 +53,11 @@ class AppController extends Controller
     die();
   }
 
-  // permet de recuperer le slug dans un array
+  /**
+   * Rend disponible le slug de l'association pour toutes les vues
+   * @param array $array
+   * @return string Le slug de l'assocation
+   */
   public function getSlugForURL($array)
   {
     if (!empty($array)){
