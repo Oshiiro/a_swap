@@ -54,10 +54,10 @@ class AppController extends Controller
   }
 
   /**
-   * Rend disponible le slug de l'association pour toutes les vues
-   * @param array $array
-   * @return string Le slug de l'assocation
-   */
+  * Rend disponible le slug de l'association pour toutes les vues
+  * @param array $array
+  * @return string Le slug de l'assocation
+  */
   public function getSlugForURL($array)
   {
     if (!empty($array)){

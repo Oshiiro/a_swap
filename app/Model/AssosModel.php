@@ -13,6 +13,14 @@ class AssosModel extends UModel
     $this->setTable('assos');
   }
 
+  /**
+  * Fonction facilitant la recherche d'un element par un autre dans une table de la BDD
+  * !ATTENTION! : utilise un fetchColomn, donc ne fonctionne que pour UN element à la fois
+  * @param string $search element qu'on recherche
+  * @param string $colone nom de la colonne de reference
+  * @param string $where element de reference pour la recherche
+  * @return string L'element recherché
+  */
   public function FindElementByElement($search,$colone,$where)
   {
      $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where LIMIT 1';
@@ -29,8 +37,10 @@ class AssosModel extends UModel
    }
 
   /**
-   * Créer un array avec toute les infos de l'assos par l'utilisateur
-   */
+  * Créer un array avec toute les infos d'une assos
+  * @param int $id Id de l'association dont on veut recuperer des infos
+  * @return array Tableaux d'information
+  */
   public function getAssosById($id)
   {
     $sql = 'SELECT a.* FROM assos AS a
@@ -46,6 +56,11 @@ class AssosModel extends UModel
     return $result;
   }
 
+  /**
+  * Verifie qu'une association portant ce nom n'est pas deja present en BDD
+  * @param string $nom_asso Nom à verifier
+  * @return boolean true si présent en base de données, false sinon
+  */
   public function assoExists($nom_asso)
 	{
 	    $app = getApp();
@@ -63,6 +78,11 @@ class AssosModel extends UModel
 	    return false;
 	}
 
+  /**
+  * Verifie qu'une association portant ce slug n'est pas deja present en BDD
+  * @param string $slug_asso Slug à verifier
+  * @return boolean true si présent en base de données, false sinon
+  */
   public function slugExist($slug_asso)
   {
     $app = getApp();
@@ -80,6 +100,12 @@ class AssosModel extends UModel
     return false;
   }
 
+  /**
+  * Verifie que le slug passé en argument correspont bien au slug de l'association
+  * dont l'utilisateur connécté est membre
+  * @param string $slug Slug à verifier
+  * @return boolean true correspondance, false sinon
+  */
   public function slugIsMine($slug)
   {
     $myId = $_SESSION['user']['id'];
@@ -102,7 +128,12 @@ class AssosModel extends UModel
     }
   }
 
-  public function getToken($id_admin) //renommer en getTokenByIdAdmin ??
+  /**
+  * Recupere le token de l'association dont l'id de l'utilisateur est passé en argument
+  * @param string $id_admin Id de l'utiisateur
+  * @return string Token de l'association
+  */
+  public function getToken($id_admin)
   {
     $app = getApp();
     $sql = 'SELECT a.token FROM assos AS a
@@ -119,7 +150,11 @@ class AssosModel extends UModel
     return $token['token'];
   }
 
-  // fonction qui retourne le nom de l'asso dont l'ID de l'admin est passé en argument.
+  /**
+  * Recupere le nom de l'association dont l'id de l'utilisateur est passé en argument
+  * @param string $id_admin Id de l'utiisateur
+  * @return string Nom de l'association
+  */
   public function getNameByIdAdmin($id_admin)
   {
     $app = getApp();
@@ -137,6 +172,11 @@ class AssosModel extends UModel
     return $name['name'];
   }
 
+  /**
+  * Recupere le slug de l'association dont l'id de l'utilisateur est passé en argument
+  * @param string $id Id de l'utiisateur
+  * @return string Slug de l'association
+  */
   public function getSlugByIdUser($id)
   {
     $app = getApp();
@@ -153,6 +193,11 @@ class AssosModel extends UModel
     return $slug['slug'];
   }
 
+  /**
+  * Recupere l'Id' de l'association dont le token est passé en argument
+  * @param string $token_asso Token de l'association
+  * @return string Id de l'association
+  */
   public function getIdByToken($token_asso)
   {
     $app = getApp();
@@ -167,37 +212,40 @@ class AssosModel extends UModel
     return $token['id'];
   }
 
-// Modification de l'association dans le back
-public function ModifAssos()
-{
+  /**
+  * Modification de l'association dans le back
+  */
+  public function ModifAssos()
+  {
+    $id = $_SESSION['user']['id'];
+    // Récuperer l'id de l'assos en cours
+    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':id', $id);
+    $query->execute();
+    $id_asso = $query->fetch();
 
-  $id = $_SESSION['user']['id'];
-  // Récuperer l'id de l'assos en cours
-  $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
-  $query = $this->dbh->prepare($sql);
-  $query->bindValue(':id', $id);
-  $query->execute();
-  $id_asso = $query->fetch();
 
+    // Selectionner infos de l'asso
+    $sql = "SELECT * FROM assos
+    WHERE id = :id_asso";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':id_asso', $id_asso['id_assos']);
+    $query->execute();
+    $assos = $query->fetch();
+    return $assos;
+  }
 
-  // Selectionner infos de l'asso
-  $sql = "SELECT * FROM assos
-  WHERE id = :id_asso";
-  $query = $this->dbh->prepare($sql);
-  $query->bindValue(':id_asso', $id_asso['id_assos']);
-  $query->execute();
-  $assos = $query->fetch();
-  return $assos;
-}
-
-public function nameAssosExists($name)
-{
-
+  /**
+  * Verifie qu'une association portant ce nom n'est pas deja present en BDD
+  * @param string $name Nom à verifier
+  * @return boolean true si présent en base de données, false sinon
+  */
+  public function nameAssosExists($name)
+  {
     $app = getApp();
-
     $sql = 'SELECT ' . 'name' . ' FROM ' . $this->table .
            ' WHERE ' . 'name' . ' = :name LIMIT 1';
-
     $dbh = ConnectionModel::getDbh();
     $sth = $dbh->prepare($sql);
     $sth->bindValue(':name', $name);
@@ -207,9 +255,8 @@ public function nameAssosExists($name)
             return true;
         }
     }
-
     return false;
-}
+  }
 
 }
 ?>

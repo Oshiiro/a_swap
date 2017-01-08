@@ -3,6 +3,11 @@ namespace Services\Tools;
 
 class Tools
 {
+  /**
+  * Fonction permettant de "slugifier" un texte
+  * @param string $text Le texte a "slugifier" <= ceci est un neologisme, oui ! Et alors ?!!!!
+  * @return string Le text "slugifié"
+  */
   public function slugify($text)
   {
     // replace non letter or digits by -
@@ -24,13 +29,12 @@ class Tools
     return $text;
   }
 
-  function isLogged()
+  /**
+  * Fonction permettant de verifier qu'une session est bien en cours
+  */
+  public function isLogged()
   {
    if((!empty($_SESSION['user'])) && (!empty($_SESSION['user']['id'])) && (!empty($_SESSION['user']['username']))) {
-    //  $ip = $_SERVER['REMOTE_ADDR'];
-    //  if($ip == $_SESSION['user']['ip']){
-    //    return true;
-    //  }
      return true;
    } else {
      return false;
