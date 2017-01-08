@@ -55,6 +55,10 @@ table {
   width: 100%;
 }
 
+.table-responsive {
+  margin-top: 2em;
+}
+
 td {
   font-family: monospace;
   padding : 3px;
@@ -572,10 +576,20 @@ background-color: rgb(21, 138, 138);
   margin-bottom: 1.4em;
 }
 
+.ligne2 {
+  border-top: 1px solid #bfbfbf;
+  margin-top: 0.5em;
+  margin-bottom: 1.4em;
+}
+
+.ligneVide {
+  margin-bottom: 0.7em;
+}
+
 .logoSvg {
   color: white;
   height: 55px;
-  width: 200px;
+  width: 180px;
 }
 
 /*-------------------------------------------------------------------------*/
@@ -601,6 +615,7 @@ background-color: rgb(21, 138, 138);
 }
 
 
+
 /*-------------------------------------------------------------------------*/
 /* ERROR 404 403 : */
 
@@ -616,6 +631,13 @@ background-color: rgb(21, 138, 138);
   text-align: center;
   color: #555;
   font-size: 1.5em;
+}
+
+.infoAssos h1 {
+  /*font-family: Helvetica, Arial, sans-serif;*/
+  color : rgb(21, 138, 138);
+  font-size: 3em;
+  margin-bottom: 0.3em;
 }
 
 /*-------------------------------------------------------------------------*/

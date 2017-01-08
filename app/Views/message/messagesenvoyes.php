@@ -23,9 +23,7 @@
         <div class="field field-select">
           <label for="destinataire" class="field-label-select">Destinataire</label>
           <select class="field-input-select" name="destinataire" >
-            <?php foreach ($users as $user): ?>
-              <option value=""></option>
-            <?php endforeach; ?>
+            <option value=""></option>
           </select>
         </div><br>
         <?php } ?>
