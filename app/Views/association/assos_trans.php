@@ -7,13 +7,12 @@
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 			<h2><?php echo $_SESSION['user']['nom_assos'] ?></h2>
 
-      <a href="<?php echo $this->url('association',['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]); ?>" title="Transactions"><button type="button" class="btn btn-perso" name="button">Transactions</button></a>
+      <a href="<?php echo $this->url('association',['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]); ?>" title="Transactions"><button type="button" class="btn btn-perso2" name="button">Transactions</button></a>
       <a href="<?php echo $this->url('association_infos',['slug' => $this->getValueInArray($dataAssos, 'slug')]); ?>" title="Infos de l'association"><button type="button" class="btn btn-perso" name="button">Infos</button></a>
       <a href="<?php echo $this->url('association_adherants',['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]); ?>" title="Liste des adhérants"><button type="button" class="btn btn-perso" name="button">Adhérants</button></a>
 
 
       <div class="table-responsive shadow-z-1">
-				<h3>Vos transactions</h3>
         <table id="table" class="table table-hover" >
           <thead>
 						<tr>

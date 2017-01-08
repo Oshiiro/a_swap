@@ -8,30 +8,22 @@
 			<h2><?php echo $_SESSION['user']['nom_assos'] ?></h2>
 
       <a href="<?php echo $this->url('association',['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]); ?>" title="Transactions"><button type="button" class="btn btn-perso" name="button">Transactions</button></a>
-      <a href="<?php echo $this->url('association_infos',['slug' => $this->getValueInArray($dataAssos, 'slug')]); ?>" title="Infos de l'association"><button type="button" class="btn btn-perso" name="button">Infos</button></a>
+      <a href="<?php echo $this->url('association_infos',['slug' => $this->getValueInArray($dataAssos, 'slug')]); ?>" title="Infos de l'association"><button type="button" class="btn btn-perso2" name="button">Infos</button></a>
       <a href="<?php echo $this->url('association_adherants',['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]); ?>" title="Liste des adhérants"><button type="button" class="btn btn-perso" name="button">Adhérants</button></a>
 
-      <div class="table-responsive shadow-z-1">
-        <h3>Infos Associations</h3>
-          <table id="table" class="table table-hover">
-            <thead>
-              <tr>
-                <th>Nom de l'association</th>
-                <th>Nom de la monnaie</th>
-                <th>Description</th>
-                <th>Règles</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><?php echo $dataAssos['name']; ?></td>
-                <td><?php echo $dataAssos['money_name']; ?></td>
-                <td><?php echo $dataAssos['description']; ?></td>
-                <td><?php echo $dataAssos['rules']; ?></td>
-              </tr>
-            </tbody>
-        </table>
-      </div>
+
+
+              <th>Nom de l'association</th>
+              <th>Nom de la monnaie</th>
+              <th>Description</th>
+              <th>Règles</th>
+
+
+              <td><?php echo $dataAssos['name']; ?></td>
+              <td><?php echo $dataAssos['money_name']; ?></td>
+              <td><?php echo $dataAssos['description']; ?></td>
+              <td><?php echo $dataAssos['rules']; ?></td>
+
 		</div>
 	</div>
 </div>
