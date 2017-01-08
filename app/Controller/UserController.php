@@ -558,7 +558,7 @@ class UserController extends AppController
 		$exist = $this->model->emailExists($email,'email', 3, 50);
 		if($exist == false){
 			$error['email'] = 'Cet utilisateur n\'existe pas.';
-		} 
+		}
 
 		// S'il n'y a pas d'erreurs
 		if ($this->valid->IsValid($error)) {
