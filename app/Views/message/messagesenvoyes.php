@@ -10,19 +10,32 @@
 
       <form class="form-group formulaire" style="display : none;" name="class" method="POST" action="">
         <h4>Envoyer un message</h4>
-        <label for="">Destinataire</label>
-        <select class="form-control" name="destinataire" >
-          <?php foreach ($users as $user): ?>
-            <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
-          <?php endforeach; ?>
-        </select><br>
-        <div class="textfield field">
+        <?php if (!empty($users)) {?>
+        <div class="field">
+          <label for="destinataire" class="field-label">Destinataire</label>
+          <select class="field-input" name="destinataire" >
+            <?php foreach ($users as $user): ?>
+              <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
+            <?php endforeach; ?>
+          </select>
+        </div><br>
+        <?php } else { ?>
+        <div class="field field-select">
+          <label for="destinataire" class="field-label-select">Destinataire</label>
+          <select class="field-input-select" name="destinataire" >
+            <?php foreach ($users as $user): ?>
+              <option value=""></option>
+            <?php endforeach; ?>
+          </select>
+        </div><br>
+        <?php } ?>
+
+        <div class="textfield field" style="margin-bottom: 60px;">
           <label for="message" class="field-label">Votre message</label>
-          <textarea name="message" class="field-input" rows="30"></textarea>
+          <textarea name="message" class="field-input"></textarea>
         </div>
         <input class="btn btn-default" type="submit" name="submit" value="envoyer">
       </form>
-
       <div class="row">
         <div class="col-md-12">
           <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso  " >Messages reçus</button></a>

@@ -13,13 +13,13 @@
 
 
 
-              <th>Nom de l'association</th>
+
               <th>Nom de la monnaie</th>
               <th>Description</th>
               <th>Règles</th>
 
 
-              <td><?php echo $dataAssos['name']; ?></td>
+
               <td><?php echo $dataAssos['money_name']; ?></td>
               <td><?php echo $dataAssos['description']; ?></td>
               <td><?php echo $dataAssos['rules']; ?></td>
