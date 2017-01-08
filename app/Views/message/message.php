@@ -24,18 +24,18 @@
       </form>
       <div class="row">
         <div class="col-md-12">
-          <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso messagesEnvoyes " >Messages reçus</button></a>
+          <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso2 messagesEnvoyes " >Messages reçus</button></a>
           <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
         </div>
-        <h3 class="col-md-12">Messages reçus</h3>
       </div>
+      <div class="ligne col-md-12"></div>
+      
       <?php if(!empty($messages)) { ?>
         <?php foreach ($messages as $message) { ?>
           <div class="row messagerieRow">
 
             <div class="col-md-1 col-xs-2">
               <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl($avatar) ?>" alt="">
-
             </div>
 
             <div class="col-md-10 col-xs-9">

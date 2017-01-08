@@ -24,12 +24,10 @@
       </form>
 
       <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso  " >Messages reçus</button></a>
-      <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso ">Messages envoyés</button></a>
+      <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso2 ">Messages envoyés</button></a>
       <!-- Messages envoyés -->
       <div class="envoyes">
         <table>
-
-          <h3>Messages envoyés</h3>
           <?php if(!empty($messagesenvoyes)) {
             foreach ($messagesenvoyes as $messagesenvoye) { ?>
               <th>Envoyé à :<?php echo ' ' .$messagesenvoye['username'];?></th>

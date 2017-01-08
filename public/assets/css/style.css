@@ -431,11 +431,28 @@ a:hover .btn-circle{
   color: rgb(21, 138, 138);
 }
 
-a:hover .btn-perso {
+.btn-perso:hover {
+  border: none;
+  color: rgb(21, 138, 138);
+  border-bottom: 2px solid rgb(21, 138, 138);
+  color: rgb(21, 138, 138);
+}
+
+.btn-perso2 {
+  margin-bottom: 10px;
+  background-color: transparent;
+  border-radius: 0px;
   border: none;
   border-bottom: 2px solid rgb(21, 138, 138);
   color: rgb(21, 138, 138);
 }
+
+.btn-perso2:hover {
+    border: none;
+    color: rgb(21, 138, 138);
+    border-bottom: 2px solid rgb(21, 138, 138);
+    color: rgb(21, 138, 138);
+  }
 
 .fa {
 font-size: 2em;
