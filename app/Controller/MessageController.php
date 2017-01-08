@@ -52,7 +52,7 @@ class MessageController extends AppController
       $limit_receiver = 3;
       $id_receiver = $_SESSION['user']['id'];
       //limit d'affichage par page
-      $calcule_receiver = $Pagination->calcule_page('id_user_receiver = \''.$id_receiver.'\'',$limit_receiver,$page_rec);
+      $calcule_receiver = $Pagination->calcule_page('id_user_receiver = \''.$id_receiver.'\' AND active_receiver = 1',$limit_receiver,$page_rec);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
       $pagination = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_rec' =>$page_rec]);
@@ -95,7 +95,7 @@ class MessageController extends AppController
       $id_sender = $_SESSION['user']['id'];
       //limit d'affichage par page
       //on precise la table a exploiter
-      $calcule_sender = $Pagination->calcule_page2('id_user_sender = \''.$id_sender.'\'',$limit_sender,$page_sen);
+      $calcule_sender = $Pagination->calcule_page2('id_user_sender = \''.$id_sender.'\' AND active_sender = 1',$limit_sender,$page_sen);
 
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
