@@ -15,9 +15,9 @@
 							<span class="errorMessage"><?php if(!empty($error['name_asso'])) { echo($error['name_asso']);} ?></span>
 						</div>
 
-		        <div class="field">
+		        <div class="textfield field" style="margin-bottom: 60px;">
 							<label for="description_assos" class="field-label">Descriptif de votre association (facultatif)</label>
-		          <textarea name="description_assos"  class="materialize-textarea field-input"><?php if(!empty($_POST['description_assos'])) { echo $_POST['description_assos']; } ?></textarea>
+		          <textarea name="description_assos"  class="field-input"><?php if(!empty($_POST['description_assos'])) { echo $_POST['description_assos']; } ?></textarea>
 							<span class="errorMessage"><?php if(!empty($error['description_assos'])) { echo($error['description_assos']);} ?></span>
 					  </div>
 
@@ -27,7 +27,7 @@
 							<span class="errorMessage"><?php if(!empty($error['money_name'])) { echo($error['money_name']);} ?></span>
 					  </div>
 
-		        <div class="field">
+		        <div class="textfield field" style="margin-bottom: 60px;">
               <label for="rules_assos" class="field-label">Vous pouvez ici decrire la façon dont est gérée votre monnaie associative</label>
 		          <textarea name="rules_assos" class="field-input"><?php if(!empty($_POST['rules_assos'])) { echo $_POST['rules_assos']; } ?></textarea>
 							<span class="errorMessage"><?php if(!empty($error['rules_assos'])) { echo($error['rules_assos']);} ?></span>
