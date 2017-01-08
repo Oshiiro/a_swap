@@ -28,7 +28,6 @@
           <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
         </div>
       </div>
-
       <?php if(!empty($messages)) { ?>
         <div class="ligne col-md-12"></div>
         <?php foreach ($messages as $message) { ?>
