@@ -21,7 +21,7 @@
         <label for="destinataire" class="field-label-select">Destinataire</label>
         <select class="field-input-select" name="destinataire" >
           <?php foreach ($users as $user): ?>
-            <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
+            <option value=""></option>
           <?php endforeach; ?>
         </select>
         </div><br>
