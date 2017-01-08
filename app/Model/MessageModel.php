@@ -28,7 +28,7 @@ class MessageModel extends Model
   {
     $id = $_SESSION['user']['id'];
 
-    $sql = "SELECT pm.created_at, pm.content, u.username, pm.id FROM private_message AS pm
+    $sql = "SELECT pm.created_at, pm.content, u.username, pm.id, pm.id_user_sender FROM private_message AS pm
             LEFT JOIN users AS u ON pm.id_user_sender = u.id
             WHERE pm.id_user_receiver = :id AND pm.active_receiver = 1
             ORDER BY created_at DESC

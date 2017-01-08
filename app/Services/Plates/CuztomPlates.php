@@ -5,6 +5,8 @@ namespace Services\Plates;
 use League\Plates\Engine;
 use League\Plates\Extension\ExtensionInterface;
 use \Services\Flash\FlashBags;
+use \Model\AvatarModel;
+
 
 /**
  * @link http://platesphp.com/engine/extensions/ Documentation Plates
@@ -20,6 +22,7 @@ class CuztomPlates implements ExtensionInterface
     {
       $engine->registerFunction('maj', [$this, 'Majuscule']);
       $engine->registerFunction('getValueInArray', [$this, 'getValueInArray']);
+			$engine->registerFunction('FindLinkForImgGlobal', [$this, 'FindLinkForImgGlobal']);
 			$engine->registerFunction('getFlash', [$this, 'getFlash']);
     }
 
@@ -58,5 +61,12 @@ class CuztomPlates implements ExtensionInterface
 				 return '';
 			 }
 		 }
+
+		 public function FindLinkForImgGlobal($search,$colone,$where)
+		 {
+			 $model_avatar = new AvatarModel();
+			 $result = $model_avatar->FindLinkForImg($search,$colone,$where);
+			 return $result;
+			}
 
 }

@@ -58,7 +58,7 @@ class MessageController extends AppController
       $pagination = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_rec' =>$page_rec]);
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
       $messages = $showMessages->AfficherMessages($limit_receiver,$calcule_receiver['offset']);
-      $avatar = $this->model_avatar->FindLinkForImg('link_relative', 'id_user', $_SESSION['user']['id']);
+      // $avatar = $this->model_avatar->FindLinkForImg('link_relative', 'id_user', $_SESSION['user']['id']);
 
       $this->show('message/message',
         [
@@ -67,7 +67,7 @@ class MessageController extends AppController
         'users' => $users,
         'messages' => $messages,
         'page_rec'=> $page_rec,
-        'avatar' => $avatar,
+        // 'avatar' => $avatar,
 
       ]
       );
@@ -102,6 +102,7 @@ class MessageController extends AppController
       $pagination2 = $Pagination->pagination($calcule_sender['page'],'page_sen',$calcule_sender['nb_page'],'messages_envoyes',['page_sen' =>$page_sen]);
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
       $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes($limit_sender,$calcule_sender['offset']);
+      $avatar = $this->model_avatar->FindLinkForImg('link_relative', 'id_user', $_SESSION['user']['id']);
       $this->show('message/messagesenvoyes',
         [
         'pagination2'=> $pagination2,
@@ -109,8 +110,8 @@ class MessageController extends AppController
         'users' => $users,
         'messagesenvoyes' => $messagesenvoyes,
         'page_sen'=> $page_sen,
-
-      ]
+        'avatar' => $avatar,
+        ]
       );
     } else {
       $this->showForbidden(); // erreur 403
@@ -137,6 +138,7 @@ class MessageController extends AppController
   public function confirmAssosInvit()
   {
   $this->show('message/message');
+
   }
 
   /**

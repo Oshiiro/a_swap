@@ -62,4 +62,20 @@ class AvatarModel extends UModel
       }
     }
 
+    // 
+    //
+    // public function FindLinkForImgReveived($limit, $offset)
+    // {
+    //   $sql = "SELECT avatar.link_relative, users.id, avatar.id_user, avatar.id FROM avatar
+    //           LEFT JOIN users
+    //           ON avatar.id_user_sender = users.id
+    //           WHERE avatar.id_user_sender = users.id AND pm.active_receiver = 1
+    //           ORDER BY created_at DESC
+    //           LIMIT $limit OFFSET $offset";
+    //   $affAvatar = $this->dbh->prepare($sql);
+    //   $affAvatar->bindValue(':id', $id);
+    //   $affAvatar->execute();
+    //   return $affAvatar->fetchAll();
+    // }
+
 }

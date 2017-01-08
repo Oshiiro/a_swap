@@ -5,7 +5,9 @@
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
+
       <h2>Messagerie</h2>
+
       <form class="form-group formulaire" style="display : none;" name="class" method="POST" action="">
         <h4>Envoyer un message</h4>
         <label for="">Destinataire</label>
@@ -20,18 +22,21 @@
         </div>
         <input class="btn btn-default" type="submit" name="submit" value="envoyer">
       </form>
+
       <div class="row">
         <div class="col-md-12">
           <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso2 messagesEnvoyes " >Messages reçus</button></a>
           <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
         </div>
       </div>
+
       <?php if(!empty($messages)) { ?>
         <div class="ligne col-md-12"></div>
         <?php foreach ($messages as $message) { ?>
           <div class="row messagerieRow">
 
             <div class="col-md-1 col-xs-2">
+              <?php $avatar = $this->FindLinkForImgGlobal('link_relative', 'id_user', $message['id_user_sender']); ?>
               <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl($avatar) ?>" alt="">
             </div>
 
