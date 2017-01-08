@@ -4,7 +4,7 @@
 
 <div class="container block-message">
 	<div class="block col-xs-9 col-xs-push-2 col-md-push-1 col-lg-10">
-		<form class="formulaire" action="" method="POST">
+		<form class="" action="" method="POST">
 			<h2>Contact</h2>
 			<div class="field">
 				<label for="email" class="field-label">Votre e-mail</label>
@@ -16,7 +16,7 @@
 				<input type="text" name="objet" class="field-input" value="<?php if(!empty($_POST['objet'])) { echo $_POST['objet']; } ?>">
 				<span class="errorMessage"><?php if(!empty($error['objet'])) { echo($error['objet']);} ?></span>
 			</div>
-			<div class="field">
+			<div class="textfield field" style="margin-bottom: 60px;">
 				<label for="content" class="field-label">Message</label>
 				<textarea name="content"  class="materialize-textarea field-input"><?php if(!empty($_POST['content'])) { echo $_POST['content']; } ?></textarea>
 				<span class="errorMessage"><?php if(!empty($error['content'])) { echo($error['content']);} ?></span>

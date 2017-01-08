@@ -139,6 +139,12 @@ select:-webkit-autofill:focus {
   padding: 16px 0 8px 0;
 }
 
+.textfield.field {
+  position: relative;
+  height: 72px;
+  padding: 16px 0 8px 0;
+}
+
 .field-label {
   position: relative;
   margin: 0;
