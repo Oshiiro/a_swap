@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="ligne col-md-12"></div>
-      
+
       <?php if(!empty($messages)) { ?>
         <?php foreach ($messages as $message) { ?>
           <div class="row messagerieRow">
