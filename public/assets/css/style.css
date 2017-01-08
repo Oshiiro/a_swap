@@ -173,7 +173,7 @@ select:-webkit-autofill:focus {
   height: 2px;
   width: 100%;
   position: absolute;
-  bottom: -50px;
+  bottom: 10px;
   left: 0;
   background-color: #e6e6e6;
 }
