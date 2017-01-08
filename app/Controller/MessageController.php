@@ -180,7 +180,7 @@ class MessageController extends AppController
 
         $this->messageModel->update($data, $id);
 
-        $this->redirectToRoute('message',['page_rec'=> $page_rec, 'page_sen' => $page_sen]);
+        $this->redirectToRoute('messages_envoyes',['page_rec'=> $page_sen, 'page_sen' => $page_sen]);
       } else {
         $this->showForbidden(); // erreur 403
         }
