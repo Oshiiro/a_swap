@@ -10,12 +10,14 @@
 
       <form class="form-group formulaire" style="display : none;" name="class" method="POST" action="">
         <h4>Envoyer un message</h4>
-        <label for="">Destinataire</label>
-        <select class="form-control" name="destinataire" >
+        <div class="field">
+        <label for="" class="field-label">Destinataire</label>
+        <select class="field-input" name="destinataire" >
           <?php foreach ($users as $user): ?>
             <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
           <?php endforeach; ?>
-        </select><br>
+        </select>
+        </div><br>
         <div class="textfield field" style="margin-bottom: 60px;">
           <label for="message" class="field-label">Votre message</label>
           <textarea name="message" class="field-input"></textarea>
