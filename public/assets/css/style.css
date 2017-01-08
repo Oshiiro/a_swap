@@ -46,10 +46,6 @@ h5 {
   font-size: 20px;
 }
 
-.spacer {
-  clear: both;
-}
-
 .white {
   color: white;
   text-align: left;
@@ -82,9 +78,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 textarea {
     min-height: 80px;
-    max-height: 80px;
-    max-width: 723px;
-    min-width: 80px;
 }
 
 .allContent {
@@ -208,7 +201,7 @@ select:-webkit-autofill:focus {
   transition: transform 0.3s;
 }
 
-.textfield .field::after {
+.textfield.field::after {
   background-color: rgb(100, 178, 137);
   -webkit-transform: scaleX(0);
   -ms-transform: scaleX(0);
@@ -224,6 +217,11 @@ select:-webkit-autofill:focus {
   -ms-transform: translateY(0) scale(0.75);
   transform: translateY(0) scale(0.75);
 }
+.textfield.has-label .field-label {
+  -webkit-transform: translateY(0) scale(0.75);
+  -ms-transform: translateY(0) scale(0.75);
+  transform: translateY(0) scale(0.75);
+}
 
 /* Field focused
    ========================================================================== */
@@ -231,11 +229,18 @@ select:-webkit-autofill:focus {
   color: rgb(100, 178, 137);
 }
 
-.field .is-focused::after {
+.field.is-focused::after {
   -webkit-transform: scaleX(1);
   -ms-transform: scaleX(1);
   transform: scaleX(1);
 }
+
+.textfield.field.is-focused::after {
+  -webkit-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
 
 /* -------------------------------------------------------------------------- */
 /* BARRE DE MENU; */
