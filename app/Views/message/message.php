@@ -31,18 +31,29 @@
       </div>
       <?php if(!empty($messages)) { ?>
         <?php foreach ($messages as $message) { ?>
-          <div class="row">
-            <img class="col-md-1 img-circle img-messagerie" src="<?php echo $this->assetUrl($avatar) ?>" alt="">
-            <p class="col-md-10">
-              <?php echo 'Envoyé le ' .date('d-m-Y', strtotime($message['created_at'])). ' à ' .date('H\hi', strtotime($message['created_at']));?>
-              <br>
-              <?php echo '<b>' . $message['username'] . ' -</b>';?>
-              <?php echo $message['content'];?>
-            </p>
-            <a class="col-md-1" href="<?php echo $this->url('delete_message_recu', array('page_rec'=> $page_rec, 'id' => $message['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+          <div class="row messagerieRow">
+
+            <div class="col-md-1 col-xs-2">
+              <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl($avatar) ?>" alt="">
+
+            </div>
+
+            <div class="col-md-10 col-xs-9">
+              <p>
+                <?php echo 'Envoyé le : ' .date('d-m-Y', strtotime($message['created_at'])). ' à ' .date('H\hi', strtotime($message['created_at']));?>
+                <br>
+                <?php echo '<b>' . $message['username'] . ' -</b>';?>
+                <?php echo '<span class="message">' . $message['content'] . '</span>';?>
+              </p>
+            </div>
+
+            <div class="col-md-1 col-xs-1">
+              <a class="" href="<?php echo $this->url('delete_message_recu', array('page_rec'=> $page_rec, 'id' => $message['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+            </div>
+
             <br>
-            <div class="ligne col-md-12"></div>
           </div>
+          <div class="ligne col-md-12"></div>
         <?php } ?>
       <?php } else { ?>
         <div class="block-message-1">Vous n\'avez aucun message</div>
