@@ -580,7 +580,8 @@ class UserController extends AppController
 	    // On définit le corps du message
 			// ATTENTION PENSEZ A MODIFIER LE LIEN CI DESSOUS EN FONCTION DU NOM DU
 			// REPERTOIRE DU PROJET DANS VOTRE LOCALHOST
-	    $mail->Body = 'Cliquez : ' . '<a href="http://localhost/a_swap/public/connexion/modify_password?email=' . '' . $email . '&token=' . $token . '">Creer un nouveau mot de passe</a>';
+			$modify_mail = $this->generateUrl('modify_password', ['token' => $token], true);
+	    $mail->Body = 'Cliquez : ' . '<a href="' .$modify_mail. '">Creer un nouveau mot de passe</a>';
 	    // Il reste encore à ajouter au moins un destinataire
 	    // (ou plus, par plusieurs appel à cette méthode)
 	    $mail->AddAddress($email);
@@ -605,25 +606,28 @@ class UserController extends AppController
 	/**
 	* Affichage de la page de modification de mot de passe
 	*/
-	public function modifyPassword()
+	public function modifyPassword($token)
 	{
+		$email = (!empty($email)) ? trim(strip_tags($email)) : null;
+		$token = (!empty($token)) ? trim(strip_tags($token)) : null;
 		$this->show('users/modify_password');
 	}
 
 	/**
 	* Traitement de la page de modification de mot de passe
 	*/
-	public function tryModifyPassword()
+	public function tryModifyPassword($token)
 	{
+		$email  = (!empty($_POST['email'])) ? trim(strip_tags($_POST['email'])) : null ;
 		$getId = new OurUModel();
-		$id = $getId->getIdByEmailAndToken();
+		$id = $getId->getIdByEmailAndToken($email, $token);
 		$password  = (!empty($_POST['password'])) ? trim(strip_tags($_POST['password'])) : null ;
 		$password_confirm  = (!empty($_POST['repeat'])) ? trim(strip_tags($_POST['repeat'])) : null ;
 
 		$error['password']  = $this->valid->textValid($password,'password', 3, 50);
 
 		//Verification que le token est bien le bon dans la BDD (si non, cela veux dire que c'est un ancien mail)
-		$verif_token = $getId->tokenIsActive();
+		$verif_token = $getId->tokenIsActive($email, $token);
 		if($verif_token == false){
 			$error['token'] = 'L\'e-mail que vous avez utilisé n\'est plus valide.';
 		}
@@ -650,6 +654,8 @@ class UserController extends AppController
 					$this->show('users/login');
 				}
 
+				echo $verif_token;
+				die();
 				$this->show('users/modify_password', array(
 					'error' => $error,
 				));
