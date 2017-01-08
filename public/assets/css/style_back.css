@@ -117,33 +117,26 @@ select:-webkit-autofill:focus {
   position: absolute;
 }
 
-.btn-circle.btn-lg {
+.btn-circle {
   width: 70px;
   height: 70px;
   font-size: 18px;
   line-height: 1.33;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
+  background-color: rgb(208, 39, 64);
+  border-color: rgb(208, 39, 64);
+  color: white;
   margin-left: 5px;
 }
 
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 50%;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
+.fa {
+  color: white;
 }
 
-.btn-primary {
-background-color: rgb(208, 39, 64);
-border : rgb(208, 39, 64);
+.btn-circle:hover {
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
 }
-
-.btn-primary:hover {
-background-color: rgb(208, 39, 64);
-}
-
 
 /*Bouton en longueur avec le margin bottom */
 .btn-perso {

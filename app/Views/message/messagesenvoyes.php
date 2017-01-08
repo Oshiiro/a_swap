@@ -1,7 +1,7 @@
 <?php $this->layout('layout', ['title' => 'Messagerie', 'slug' => $slug, 'page_sen' => 1]) ?>
 
 <?php $this->start('main_content') ?>
-<button title="Envoyer un message" class="btn btn-primary btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
+<button title="Envoyer un message" class="btn btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 <div class="container block-message">
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">

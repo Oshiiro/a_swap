@@ -17,7 +17,7 @@
             <input type="text" name="nom_assos" placeholder="Inscris ton assos' !" class="form-control">
           </div>
           <div class="col-md-3">
-            <button type="submit" class="btn btn-primary btn-circle btn-lg inscripAssos"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
+            <button type="submit" class="btn btn-circle btn-lg inscripAssos"><i class="fa fa-check-circle fa-2x" aria-hidden="true"></i></button>
           </div>
         </form>
     </div>
