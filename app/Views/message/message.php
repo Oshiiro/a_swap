@@ -7,12 +7,19 @@
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 
       <h2>Messagerie</h2>
-
       <form class="form-group formulaire" style="display : none;" name="class" method="POST" action="">
         <h4>Envoyer un message</h4>
         <div class="field">
-        <label for="" class="field-label">Destinataire</label>
+        <label for="destinataire" class="field-label">Destinataire</label>
         <select class="field-input" name="destinataire" >
+          <?php foreach ($users as $user): ?>
+            <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
+          <?php endforeach; ?>
+        </select>
+        </div><br>
+        <div class="field field-select">
+        <label for="destinataire" class="field-label-select">Destinataire</label>
+        <select class="field-input-select" name="destinataire" >
           <?php foreach ($users as $user): ?>
             <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
           <?php endforeach; ?>
