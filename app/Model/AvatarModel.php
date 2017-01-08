@@ -31,4 +31,19 @@ class AvatarModel extends UModel
      }
    }
 
+   public function FindLinkForImg($search,$colone,$where)
+   {
+      $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where ORDER BY created_at DESC LIMIT 1';
+      $sth = $this->dbh->prepare($sql);
+      $sth->bindValue(':where', $where);
+      if($sth->execute()){
+        $foundUser = $sth->fetchColumn();
+        if(!empty($foundUser)){
+          return $foundUser ;
+        }else{
+          return false;
+        }
+      }
+    }
+
 }

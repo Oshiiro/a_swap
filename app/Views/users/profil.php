@@ -8,7 +8,7 @@
         <legend><h2>Profil</h2></legend>
 
         <div class="col-md-3">
-          <img class ="photoProfil" src="<?php echo $this->assetUrl($avatar) ?>" alt=""><br>
+          <img class ="img-circle img-profil" src="<?php echo $this->assetUrl($avatar) ?>" alt=""><br>
         </div>
 
         <div class="col-md-9">

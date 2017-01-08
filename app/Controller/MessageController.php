@@ -6,6 +6,7 @@ use \Controller\AppController;
 use \Model\MessageModel;
 use \Model\AssosModel;
 use \Model\BackModel;
+use \Model\AvatarModel;
 use \Model\UsersModel AS OurUModel;
 use \Services\Tools\Tools;
 use \Services\PaginationDuo;
@@ -16,6 +17,8 @@ class MessageController extends AppController
 {
   private $tools;
   private $model_assos;
+  private $model_avatar;
+
 
   public function __construct()
 	{
@@ -24,6 +27,8 @@ class MessageController extends AppController
     $this->backmodel = new BackModel();
     $this->OurUModel = new OurUModel();
     $this->messageModel = new MessageModel();
+    $this->model_avatar = new AvatarModel();
+
 
   }
 
@@ -52,6 +57,7 @@ class MessageController extends AppController
       $pagination = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_rec' =>$page_rec]);
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
       $messages = $showMessages->AfficherMessages($limit_receiver,$calcule_receiver['offset']);
+      $avatar = $this->model_avatar->FindLinkForImg('link_relative', 'id_user', $_SESSION['user']['id']);
 
       $this->show('message/message',
         [
@@ -60,6 +66,7 @@ class MessageController extends AppController
         'users' => $users,
         'messages' => $messages,
         'page_rec'=> $page_rec,
+        'avatar' => $avatar,
 
       ]
       );

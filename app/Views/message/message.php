@@ -22,30 +22,32 @@
         <br><br>
         <legend></legend>
       </form>
-
-      <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso messagesEnvoyes " >Messages reçus</button></a>
-      <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
-<!-- Messages reçus -->
-      <table><br>
-        <h3>Messages reçus</h3>
-        <?php if(!empty($messages)) {
-        foreach ($messages as $message) { ?>
-            <th>Message de :<?php echo ' ' .$message['username'];?></th>
-            <tr>
-              <td><?php echo 'Envoyé le ' .date('d-m-Y', strtotime($message['created_at'])).
-                             ' à ' .date('H\hi', strtotime($message['created_at']));?></td>
-              <td><a href="<?php echo $this->url('delete_message_recu', array('page_rec'=> $page_rec, 'id' => $message['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a></td>
-            </tr>
-            <tr>
-              <td><?php echo $message['content'];?></td>
-            </tr>
-        <?php } } else {
-          echo '<div class="block-message-1">Vous n\'avez aucun message</div>';
-        }?>
-
-      </table>
+      <div class="row">
+        <div class="col-md-12">
+          <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso messagesEnvoyes " >Messages reçus</button></a>
+          <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
+        </div>
+        <h3 class="col-md-12">Messages reçus</h3>
+      </div>
+      <?php if(!empty($messages)) { ?>
+        <?php foreach ($messages as $message) { ?>
+          <div class="row">
+            <img class="col-md-1 img-circle img-messagerie" src="<?php echo $this->assetUrl($avatar) ?>" alt="">
+            <p class="col-md-10">
+              <?php echo 'Envoyé le ' .date('d-m-Y', strtotime($message['created_at'])). ' à ' .date('H\hi', strtotime($message['created_at']));?>
+              <br>
+              <?php echo '<b>' . $message['username'] . ' -</b>';?>
+              <?php echo $message['content'];?>
+            </p>
+            <a class="col-md-1" href="<?php echo $this->url('delete_message_recu', array('page_rec'=> $page_rec, 'id' => $message['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+            <br>
+            <div class="ligne col-md-12"></div>
+          </div>
+        <?php } ?>
+      <?php } else { ?>
+        <div class="block-message-1">Vous n\'avez aucun message</div>
+      <?php }?>
       <?php echo $pagination; ?>
-      <!-- Messages envoyés -->
     </div>
   </div>
 </div>

@@ -276,6 +276,10 @@ li a:hover {
   height: 50px;
 }
 
+.img-circle {
+  max-width: 100%;
+}
+
 /* -------------------------------------------------------------------------- */
 /* HOME */
 
@@ -451,14 +455,22 @@ font-size: 2em;
   color : rgb(21, 138, 138);
 }
 
-.photoProfil {
+.img-profil {
   height: 150px;
   width: 150px;
 }
 
-.photoMessagerie {
-  height: 150px;
-  width: 150px;
+.img-messagerie {
+  height: 50px;
+  width: 50px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.ligne {
+  border-top: 1px solid #bfbfbf;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 .logoSvg {
