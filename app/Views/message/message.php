@@ -19,8 +19,6 @@
           <textarea name="message" class="field-input"></textarea>
         </div>
         <input class="btn btn-default" type="submit" name="submit" value="envoyer">
-        <br><br>
-        <legend></legend>
       </form>
       <div class="row">
         <div class="col-md-12">
