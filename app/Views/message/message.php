@@ -28,9 +28,9 @@
           <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
         </div>
       </div>
-      <div class="ligne col-md-12"></div>
-      
+
       <?php if(!empty($messages)) { ?>
+        <div class="ligne col-md-12"></div>
         <?php foreach ($messages as $message) { ?>
           <div class="row messagerieRow">
 
@@ -56,7 +56,7 @@
           <div class="ligne col-md-12"></div>
         <?php } ?>
       <?php } else { ?>
-        <div class="block-message-1">Vous n\'avez aucun message</div>
+        <div class="block-message-1 col-md-12">Vous n\'avez aucun message</div>
       <?php }?>
       <?php echo $pagination; ?>
     </div>
