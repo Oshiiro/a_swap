@@ -453,6 +453,11 @@ background-color: rgb(21, 138, 138);
   position: absolute;
 }
 
+.caption p {
+  color: white;
+  text-shadow: 1px 1px 1px rgba(0,0,0, 0.8);
+}
+
 .btn-perso {
   background-color: transparent;
   border-bottom: 1px solid rgb(21, 138, 138);
