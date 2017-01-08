@@ -344,6 +344,7 @@ class AssociationAdminController extends AppController
 					}
 				}
 				$this->redirectToRoute('admin_back_assos', array(
+					'page' => 1,
 					'slug' => $slug,
 				));
 
@@ -351,6 +352,7 @@ class AssociationAdminController extends AppController
 				$flash = new FlashBags();
 				$flash->setFlash('warning', 'Merci d\'indiquer une adresse e-mail');
 				$this->redirectToRoute('admin_back_assos', array(
+					'page' => 1,
 					'slug' => $slug,
 					'error' => $error,
 				));
@@ -374,7 +376,7 @@ class AssociationAdminController extends AppController
 
 			$flash = new FlashBags();
 			$flash->setFlash('warning', 'Cet utilisateur ne fait désormais plus parti de votre association.');
-			$this->redirectToRoute('admin_back_assos', ['slug' => $slug]);
+			$this->redirectToRoute('admin_back_assos', ['slug' => $slug, 'page' => 1]);
 		} else {
 			$this->showForbidden(); // erreur 403
 		}
