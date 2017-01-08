@@ -7,7 +7,7 @@
 			<div class="container block-message">
 				<div class="row">
 					<div class="block col-xs-10 col-xs-push-1 col-lg-10">
-						<legend><h2>Créer votre compte</h2></legend>
+						<h2>Créer votre compte</h2>
 
 					<!-- Si le champ est remplie aucune données entre en BDD -->
 					<input type="text" name="antiBot" value="" class="hide">
