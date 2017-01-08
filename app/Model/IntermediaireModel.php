@@ -13,21 +13,35 @@ class IntermediaireModel extends UModel
     $this->setTable('intermediaire');
   }
 
+  /**
+  * Fonction facilitant la recherche d'un element par un autre dans une table de la BDD
+  * !ATTENTION! : utilise un fetchColomn, donc ne fonctionne que pour UN element à la fois
+  * @param string $search element qu'on recherche
+  * @param string $colone nom de la colonne de reference
+  * @param string $where element de reference pour la recherche
+  * @return string L'element recherché
+  */
   public function FindElementByElement($search,$colone,$where)
-   {
-     $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where LIMIT 1';
-     $sth = $this->dbh->prepare($sql);
-     $sth->bindValue(':where', $where);
-     if($sth->execute()){
-       $foundUser = $sth->fetchColumn();
-       if(!empty($foundUser)){
-         return $foundUser ;
-       }else{
-         return false;
-       }
+  {
+   $sql = 'SELECT '.$search.' FROM '.$this->table.' WHERE '.$colone.' = :where LIMIT 1';
+   $sth = $this->dbh->prepare($sql);
+   $sth->bindValue(':where', $where);
+   if($sth->execute()){
+     $foundUser = $sth->fetchColumn();
+     if(!empty($foundUser)) {
+       return $foundUser ;
+     } else {
+       return false;
      }
    }
+  }
 
+  /**
+  * Prepare un tableau d'informations utile a l'ajout d'un user à la table intermediaire
+  * @param string $slug Slug d'association
+  * @param string $username_admin Username de l'admin de l'association
+  * @return array Tableau d'informations a ajouter à la table intermediaire
+  */
   public function getAssoAndAdmin($slug, $username_admin)
   {
     $app = getApp();
@@ -57,8 +71,12 @@ class IntermediaireModel extends UModel
     return $data_intermediaire;
   }
 
-  // Fonction qui verifie que le user dont l'ID est passé en argument n'est PAS
-  // inscrit dans la table intermediaire.
+  /**
+  * Fonction qui verifie que le user dont l'ID est passé en argument n'est PAS
+  * inscrit dans la table intermediaire.
+  * @param int $id Id de l'utilisateur
+  * @return boolean true si présent dans la table intermediaire, false sinon
+  */
   public function isFree($id)
   {
     $app = getApp();
@@ -77,6 +95,10 @@ class IntermediaireModel extends UModel
     }
   }
 
+  /**
+  * Fonction qui efface un utilisateur de la table intermediaire.
+  * @param int $id_user Id de l'utilisateur
+  */
   public function DeleteIntermediaireUser($id_user)
   {
     $sql = "DELETE FROM intermediaire WHERE id_users = $id_user";
@@ -85,8 +107,13 @@ class IntermediaireModel extends UModel
     $sth->execute();
   }
 
-  // Fonction qui verifie que le user dont l'id est passé en second argument fait bien parti de
-  // l'asso de l'admin dont l'id est passé en premier argument.
+  /**
+  * Fonction qui verifie que le user dont l'Id est passé en second argument est bien inscrit
+  * dans l'association de l'admin dont l'Id est passé en premier argument
+  * @param int $id_admin Id de l'admin
+  * @param int $id_user Id de l'utilisateur
+  * @return boolean true si OK, false sinon
+  */
   public function isInMyTeam($id_admin, $id_user)
   {
     $info = "SELECT id_assos FROM intermediaire WHERE id_users = :id_admin AND role = 'admin'";

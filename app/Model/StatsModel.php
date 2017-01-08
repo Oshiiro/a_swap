@@ -12,7 +12,10 @@ class StatsModel extends UModel
 
   }
 
-  // fonction qui compte le nombre d'association inscrite sur le site et retourne ce resultat
+  /**
+  * Compte le nombre d'association inscrite sur le site et retourne ce resultat
+  * @return int Count du nombre d'association inscrite sur le site
+  */
   public function countNbAsso()
   {
     $app = getApp();
@@ -26,7 +29,11 @@ class StatsModel extends UModel
     return count($count);
   }
 
-  // fonction qui compte le nombre de personnes inscrite sur le site et retourne ce resultat
+
+  /**
+  * Compte le nombre de personnes inscrite sur le site et retourne ce resultat
+  * @return int Count du nombre d'utilisateurs inscrits sur le site
+  */
   public function countNbUser()
   {
     $app = getApp();
@@ -40,7 +47,10 @@ class StatsModel extends UModel
     return count($count);
   }
 
-  // fonction qui retourne le nom de la derniere asso inscrite sur le site.
+  /**
+  * Retourne le nom de la derniere asso inscrite sur le site.
+  * @return string Nom de l'association
+  */
   public function lastAsso()
   {
     $app = getApp();
@@ -54,7 +64,10 @@ class StatsModel extends UModel
     return $name['name'];
   }
 
-  // fonction qui retourne le nom du dernier utilisateur inscrit sur le site.
+  /**
+  * Retourne le nom du dernier utilisateur inscrit sur le site.
+  * @return string Nom de l'utilisateur
+  */
   public function lastUser()
   {
     $app = getApp();
@@ -68,6 +81,10 @@ class StatsModel extends UModel
     return $name['firstname']. ' ' .$name['lastname'];
   }
 
+  /**
+  * Retourne la liste de tous les utilisateurs inscrits sur le site.
+  * @return array Liste des utilisateurs
+  */
   public function allUsers()
   {
     $app = getApp();
@@ -81,7 +98,10 @@ class StatsModel extends UModel
     return $users;
   }
 
-  // fonction qui retourne la liste de toutes les assos inscrites sur le site.
+  /**
+  * Retourne la liste de toutes les associations inscrites sur le site.
+  * @return array Liste des associations
+  */
   public function allAssos()
   {
     $app = getApp();
@@ -95,45 +115,51 @@ class StatsModel extends UModel
     return $assos;
   }
 
-  // Fonction qui retourne des infos sur l'asso ayant actuellement le + de coins en circulation.
- public function mostMoneyAsso()
- {
-  $app = getApp();
-  $sql = "SELECT DISTINCT id_assos FROM intermediaire";
-
-  $dbh = ConnectionModel::getDbh();
-  $sth = $dbh->prepare($sql);
-  $sth->execute();
-  $assos = $sth->fetchAll();
-
-  $most_money_asso = array('name'=>'Aucun', 'money'=>0);
-  foreach ($assos as $asso) {
-    $sql = "SELECT SUM(wallet) FROM intermediaire WHERE id_assos = $asso[id_assos]";
+  /**
+  * Retourne des infos sur l'asso ayant actuellement le + de coins en circulation
+  * @return array Infos sur l'association concernée
+  */
+   public function mostMoneyAsso()
+   {
+    $app = getApp();
+    $sql = "SELECT DISTINCT id_assos FROM intermediaire";
 
     $dbh = ConnectionModel::getDbh();
     $sth = $dbh->prepare($sql);
     $sth->execute();
-    $result =  $sth->fetch();
+    $assos = $sth->fetchAll();
 
-    if($result > $most_money_asso['money']) {
-      $app = getApp();
-      $sql = "SELECT name, money_name FROM assos WHERE id=$asso[id_assos]";
+    $most_money_asso = array('name'=>'Aucun', 'money'=>0);
+    foreach ($assos as $asso) {
+      $sql = "SELECT SUM(wallet) FROM intermediaire WHERE id_assos = $asso[id_assos]";
 
       $dbh = ConnectionModel::getDbh();
       $sth = $dbh->prepare($sql);
       $sth->execute();
-      $name = $sth->fetch();
+      $result =  $sth->fetch();
 
-      $most_money_asso['name'] = $name['name'];
-      $most_money_asso['money_name'] = $name['money_name'];
-      $most_money_asso['money'] = $result;
+      if($result > $most_money_asso['money']) {
+        $app = getApp();
+        $sql = "SELECT name, money_name FROM assos WHERE id=$asso[id_assos]";
+
+        $dbh = ConnectionModel::getDbh();
+        $sth = $dbh->prepare($sql);
+        $sth->execute();
+        $name = $sth->fetch();
+
+        $most_money_asso['name'] = $name['name'];
+        $most_money_asso['money_name'] = $name['money_name'];
+        $most_money_asso['money'] = $result;
+      }
     }
-  }
 
-  return $most_money_asso;
- }
+    return $most_money_asso;
+   }
 
- // Fonction qui retourne des infos sur l'asso qui a la moyenne de nombre de transaction par jour la + elevée.
+ /**
+ * Retourne des infos sur l'asso qui a la moyenne de nombre de transaction par jour la + elevée
+ * @return array Infos sur l'association concernée
+ */
   public function mostActiveAsso()
   {
     $app = getApp();

@@ -17,32 +17,13 @@ class BackModel extends UModel
     $this->setTable('intermediaire');
   }
 
-
-
+  /**
+  * Recupere les transaction de l'assocaition dont le slug est passé en argument
+  * @param string $slug Slug de l'association
+  * @return string Liste des transactions
+  */
   public function GetTrans($slug)
   {
-
-// ----------------------- PAGINATION -----------------------------
-    // $sql ="SELECT COUNT(id) as transNbr FROM transaction
-    // ";
-    //
-    // $query = $this->dbh->prepare($sql);
-    // $query->execute();
-    // $nbre = $query->fetchAll();
-    // print_r($nbre);
-    //
-    // if(isset($_GET['p'])) {
-    //   $cPage = $_GET['p'];
-    // } else {
-    //   $cPage = 1;
-    // }
-    //
-    // $transNbr = $nbre[0]['transNbr'];
-    // echo $nbre[0]['transNbr'];
-    // $nbrParPage = 3;
-    // $nbrPage = ceil($transNbr/$nbrParPage);
-    // echo $nbrPage;
-
     $id = $_SESSION['user']['id'];
     $sql = "SELECT id FROM assos WHERE slug = :slug";
     $query = $this->dbh->prepare($sql);
@@ -64,14 +45,16 @@ class BackModel extends UModel
     $query->bindValue(':result', $result['id']);
     $query->execute();
     return $query->fetchAll();
-
-
-
-    // SELECT id, prenom, nom, date_achat, num_facture, prix_total
-    // FROM utilisateur
-    // INNER JOIN commande ON utilisateur.id = commande.utilisateur_id
-
   }
+
+  /**
+  * Recupere les transaction de l'association dont l'id est passé en argument
+  * avec des limites pour la pagination
+  * @param int $id_asso Id de l'association
+  * @param int $limit Limit pour la pagination
+  * @param int $offset Offset pour la pagination
+  * @return string Liste des transactions
+  */
   public function GetTransTempo($id_asso,$limit,$offset)
   {
     $sql = "SELECT assos.name,transaction.created_at, transaction.sum,transaction.description ,userbuyer.username as username_buyer,userseller.username as username_seller FROM transaction

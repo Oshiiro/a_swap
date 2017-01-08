@@ -4,9 +4,6 @@ namespace Model;
 use \W\Model\UsersModel as UModel;
 use \W\Model\ConnectionModel;
 
-/**
- *
- */
 class UsersModel extends UModel
 {
 
@@ -16,7 +13,11 @@ class UsersModel extends UModel
     $this->setTable('users');
   }
 
-  // Fonction qui recupere et retourne le token du user dont le mail est passé en argument.
+  /**
+  * Recupere et retourne le token du user dont le mail est passé en argument
+  * @param string $mail Email de l'utilisateur
+  * @return string Token de l'utilisateur
+  */
   public function recupToken($mail)
   {
     $app = getApp();
@@ -31,7 +32,11 @@ class UsersModel extends UModel
     return $token['token'];
   }
 
-  // Fonction qui recupere et retourn l'ID correspondant au mail passé en argument
+  /**
+  * Recupere et retourne l'Id de l'utilisateur dont le mail est passé en argument
+  * @param string $mail Email de l'utilisateur
+  * @return string Id de l'utilisateur
+  */
   public function getIdByEmail($mail)
   {
     $app = getApp();
@@ -46,8 +51,11 @@ class UsersModel extends UModel
     return $id['id'];
   }
 
-  // Fonction qui recupere et retourne l'id de la ligne en dont l'adrese mail et
-  // le token sont passés en GET
+  /**
+  * Fonction qui recupere et retourne l'Id de l'utilisateur en dont l'adrese mail et
+  * le token sont passés en GET
+  * @return string Id de l'utilisateur
+  */
   public function getIdByEmailAndToken()
   {
     $email = (!empty($_GET['email'])) ? trim(strip_tags($_GET['email'])) : null;
@@ -66,7 +74,10 @@ class UsersModel extends UModel
     return $id['id'];
   }
 
-  // Fonction qui verifie que le token est bien le bon
+  /**
+  * Fonction qui verifie que le token est bien le bon
+  * @return boolean true si le token existe, false sinon
+  */
   public function tokenIsActive()
   {
     $tokenGET = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : 'xxx';
@@ -88,7 +99,12 @@ class UsersModel extends UModel
     }
   }
 
-// Fonction permettant d'afficher ses derniers transactions et seulement les siennes (pour user).
+  /**
+  *Fonction permettant d'afficher ses derniers transactions et seulement les siennes (pour user)
+  * @param string $slug Slug de l'association concernée
+  * @param int $limit Limit pour la pagination
+  * @param int $offset Offset pour la pagination
+  */
   public function GetItsTrans($slug, $limit, $offset)
   {
 
@@ -109,42 +125,41 @@ class UsersModel extends UModel
 
   }
 
-  public function registerProfilImage($id_user)
+  /**
+  * Affiche la liste des adhérerants y compris l'admin
+  * @param string $slug Slug de l'association concernée
+  * @param int $id_asso Id de l'association concernée
+  * @param int $limit Limit pour la pagination
+  * @param int $offset Offset pour la pagination
+  * @return array Liste des adherants.
+  */
+  public function affAllAdherants($slug, $id_asso, $limit, $offset)
   {
 
+  // Recuperation de l'idée de l'assos via l'id user de la session
+    $id = $_SESSION['user']['id'];
 
+    $sql = "SELECT id FROM assos WHERE slug = :slug";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':slug', $slug);
+    $query->execute();
+    $result = $query->fetch();
 
+    $sql = "SELECT * FROM users
+            INNER JOIN intermediaire ON users.id = intermediaire.id_users
+            WHERE intermediaire.id_assos = :result
+            ORDER BY username LIMIT $limit OFFSET $offset";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':result', $id_asso);
+    $query->execute();
+    return $query->fetchAll();
   }
 
-
-
-
-
-
-  // Afficher liste des adhérerants y compris l'admin
-    public function affAllAdherants($slug, $id_asso, $limit, $offset)
-    {
-
-    // Recuperation de l'idée de l'assos via l'id user de la session
-      $id = $_SESSION['user']['id'];
-
-      $sql = "SELECT id FROM assos WHERE slug = :slug";
-      $query = $this->dbh->prepare($sql);
-      $query->bindValue(':slug', $slug);
-      $query->execute();
-      $result = $query->fetch();
-
-      $sql = "SELECT * FROM users
-              INNER JOIN intermediaire ON users.id = intermediaire.id_users
-              WHERE intermediaire.id_assos = :result
-              ORDER BY username LIMIT $limit OFFSET $offset";
-      $query = $this->dbh->prepare($sql);
-      $query->bindValue(':result', $id_asso);
-      $query->execute();
-      return $query->fetchAll();
-    }
-
-  // Afficher liste des adhérerants sauf l'admin
+  /**
+  * Afficher liste des adhérerants hormis l'admin
+  * @param string $slug Slug de l'association concernée
+  * @return array Liste des adherants.
+  */
   public function affAdherants($slug)
   {
   // Recuperation de l'idée de l'assos via l'id user de la session
@@ -167,33 +182,29 @@ class UsersModel extends UModel
     return $query->fetchAll();
   }
 
+  /**
+  * Affichage de l'adhérant choisis par l'admin pour une créditation
+  * @param int $id Id de l'utilisateur
+  * @return int Id de l'assos
+  */
+  public function affOneAdherants($id)
+  {
+    // Recuperation de l'idée de l'assos via l'id user de la session
+    $id_session = $_SESSION['user']['id'];
 
-    //Function d'affichage de l'adhérant choisis par l'admin pour une créditation
-      public function affOneAdherants($id)
-      {
-        // Recuperation de l'idée de l'assos via l'id user de la session
-            $id_session = $_SESSION['user']['id'];
 
+    $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':id', $id_session);
+    $query->execute();
+    $result = $query->fetch();
 
-            $sql = "SELECT id_assos FROM intermediaire WHERE id_users = :id";
-            $query = $this->dbh->prepare($sql);
-            $query->bindValue(':id', $id_session);
-            $query->execute();
-            $result = $query->fetch();
-
-          // $sql = "SELECT * FROM users INNER JOIN intermediaire ON users.id = intermediaire.id_users
-          // WHERE intermediaire.id_assos = :result";
-          //   $query = $this->dbh->prepare($sql);
-          //   $query->bindValue(':result', $result['id_assos']);
-          //   $query->execute();
-          //   return $query->fetchAll();
-
-            $sql = "SELECT * FROM users
-            WHERE id = :id";
-              $query = $this->dbh->prepare($sql);
-              $query->bindValue(':id', $id);
-              $query->execute();
-              return $query->fetchAll();
-      }
+    $sql = "SELECT * FROM users WHERE id = :id";
+    $query = $this->dbh->prepare($sql);
+    $query->bindValue(':id', $id);
+    $query->execute();
+    
+    return $query->fetchAll();
+  }
 
 }
