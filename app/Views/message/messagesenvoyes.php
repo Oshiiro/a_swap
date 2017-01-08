@@ -16,7 +16,7 @@
         </select><br>
         <div class="field">
           <label for="message" class="field-label">Votre message</label>
-          <textarea name="message" class="field-input"></textarea>
+          <textarea name="message" class="field-input" rows="30"></textarea>
         </div>
         <input class="btn btn-default" type="submit" name="submit" value="envoyer">
         <br><br>
