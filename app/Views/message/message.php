@@ -14,7 +14,7 @@
             <option value="<?php echo $user['id_users'] ?>"><?php echo $user['username'];?></option>
           <?php endforeach; ?>
         </select><br>
-        <div class="field">
+        <div class="textfield field">
           <label for="message" class="field-label">Votre message</label>
           <textarea name="message" class="field-input"></textarea>
         </div>
