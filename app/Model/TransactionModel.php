@@ -21,8 +21,6 @@ class TransactionModel extends Model
   */
   public function MakeTransactionAdmin() {
 
-    if(!empty($_POST['submit'])) {
-
 
       $id_buyer = $_SESSION['user']['id'];
       $id_seller = trim(strip_tags($_POST['destinataire']));
@@ -87,15 +85,12 @@ class TransactionModel extends Model
         $flash = new FlashBags();
         $flash->setFlash('danger', 'Veuillez indiquer un chiffre supérieur à 0.');
       }
-    } // Submit
   } // MakeTransaction
 
   /**
   * Insert d'une transaction pour admin
   */
   public function MakeCreditAdmin() {
-
-    if(!empty($_POST['submit'])) {
 
       $id_buyer = $_SESSION['user']['id'];
       $id_seller = trim(strip_tags($_POST['destinataire']));
@@ -137,18 +132,13 @@ class TransactionModel extends Model
           $flash = new FlashBags();
           $flash->setFlash('danger', 'Veuillez indiquer un chiffre supérieur à 0.');
         }
-    } else {
-      $flash = new FlashBags();
-      $flash->setFlash('danger', 'Veuillez indiquer un chiffre supérieur à 0.');
-    }
+
   } // MakeTransaction
 
   /**
   * Insert d'une transaction pour un utilisateur
   */
   public function makeTransactionUser() {
-
-    if(!empty($_POST['submit'])) {
 
 
       $id_buyer = $_SESSION['user']['id'];
@@ -215,8 +205,5 @@ class TransactionModel extends Model
         $flash = new FlashBags();
         $flash->setFlash('danger', 'Veuillez indiquer un chiffre supérieur à 0.');
       }
-    } // Submit
   } // MakeTransaction
-
-
 } // Class
