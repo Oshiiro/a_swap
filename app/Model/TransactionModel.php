@@ -195,7 +195,6 @@ class TransactionModel extends Model
         $flash = new FlashBags();
         $flash->setFlash('success', 'Transaction effectuée');
 
-
       } else
         {
           $flash = new FlashBags();

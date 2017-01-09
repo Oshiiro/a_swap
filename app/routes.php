@@ -60,10 +60,7 @@
 
 
 		// Admin Back
-		// ['GET', '/admin/association/[:slug]', 'UserAdmin#adminAssos', 'admin_assos'],
 		['GET', '/admin/nostransactions/[:slug]/[:page]', 'UserAdmin#back', 'admin_back'],
-		// ['GET', '/admin/transaction/', 'TransactionAdmin#ShowFormTransaction', 'admin_back_transac'],
-		// ['POST', '/admin/transaction/', 'TransactionAdmin#makeTransactionAdmin', 'admin_back_transac_valid'],
 		['GET', '/admin/deleteuser/[i:id]', 'AssociationAdmin#deleteUser', 'admin_back_delete'], // Delete user
 		['GET', '/admin/crediter/[i:id]', 'TransactionAdmin#ShowFormCredit', 'admin_back_credite'], //credite de l'admin
 		['POST', '/admin/crediter/', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
@@ -75,10 +72,9 @@
 		// ['POST', '/admin/back/association/', 'AssociationAdmin#addCoinToUser', 'admin_back_assos_addcoinuser'],
 
 		// Page accueil users connecté
-		// ['GET', '/accueil/[:slug]', 'User#usersAccueil', 'users_accueil'], // Kilian : a supprimer, pas utile car User#usersAccueil n'existe pas.
 		['GET', '/transaction/[:slug]', 'Transaction#ShowFormTransaction', 'users_accueil_transac'], // Page de transaction, formulaire
 		['GET', '/transaction/', 'Transaction#getWalletById', 'users_wallet'], // Wallet user by id
-		['POST', '/transaction/', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
+		['POST', '/transaction/[:slug]', 'Transaction#makeTransactionUser', 'users_accueil_transac_valid'], // Post de la transaction user
 
 		// Formulaire pour inviter un nouveau membre
 		['GET', '/admin/back/invite/', 'UserAdmin#back', 'admin_association_invite'],

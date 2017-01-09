@@ -56,6 +56,7 @@ class TransactionController extends AppController
   */
   public function makeTransactionUser()
   {
+    if (!empty($adherants)) {
     $slug = $this->AssosModel->getSlugByIdUser($_SESSION['user']['id']);
     $newTransac = $this->transactionModel->makeTransactionUser();
     $adherants = $this->usersModel->affAdherants($slug);
@@ -64,6 +65,11 @@ class TransactionController extends AppController
       'adherants' => $adherants,
       'slug' => $slug
     ));
+  } else {
+    $flash = new FlashBags();
+    $flash->setFlash('success', 'Il vous faut un destinataire');
+    $this->showNotFound();
+  }
 
   }
 
