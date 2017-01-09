@@ -124,7 +124,7 @@ class IntermediaireModel extends UModel
     $sth->execute();
     $id_asso_admin = $sth->fetch();
 
-    $info = "SELECT id_assos FROM intermediaire WHERE id_users = :id_user AND role = 'user'";
+    $info = "SELECT id_assos FROM intermediaire WHERE id_users = :id_user";
 
     $dbh = ConnectionModel::getDbh();
     $sth = $dbh->prepare($info);
