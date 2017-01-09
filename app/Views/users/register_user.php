@@ -1,13 +1,13 @@
 <?php $this->layout('layout', ['title' => 'Inscription']) ?>
 
 <?php $this->start('main_content') ?>
-	<div class="extansion-head">
-	</div>
-		<form method="POST" action="<?php echo $this->url('try_register') ?>" class="">
-			<div class="container block-message">
-				<div class="row">
-					<div class="block col-xs-10 col-xs-push-1 col-lg-10">
-						<h2>Créer votre compte</h2>
+<div class="extansion-head">
+</div>
+	<div class="container block-message">
+		<div class="row">
+			<div class="block col-xs-10 col-xs-push-1 col-lg-10">
+				<form method="POST" action="<?php echo $this->url('try_register') ?>" class="">
+					<h2>Créer votre compte</h2>
 
 					<!-- Si le champ est remplie aucune données entre en BDD -->
 					<input type="text" name="antiBot" value="" class="hide">
@@ -54,9 +54,9 @@
 					<div class="center">
 						<button class="btn btn-circle btn-lg validform" type="submit" name="submit" value=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
 					</div>
-					</form>
-					</div>
-				</div>
+				</form>
 			</div>
+		</div>
+	</div>
 
 <?php $this->stop('main_content') ?>
