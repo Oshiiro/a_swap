@@ -201,7 +201,24 @@ td {
   text-align: center;
   font-family: Helvetica, Arial, sans-serif;
 }
+/* BOUTON PAGINATION */
 
+.pages {
+color: rgb(208, 39, 64);
+list-style-type: none;
+font-size: 17px;
+font-weight: bolder;
+}
+
+.pages:hover {
+color: rgb(208, 39, 64);
+list-style-type: none;
+font-size: 17px;
+font-weight: bolder;
+}
+
+.pagin {
+text-align: center;}
 /* -------------------------------------------------------------------------- */
 /* FORM; */
 
