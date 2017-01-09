@@ -9,7 +9,7 @@ use \Model\BackModel;
 use \Model\AvatarModel;
 use \Model\UsersModel AS OurUModel;
 use \Services\Tools\Tools;
-use \Services\PaginationDuo;
+use \Services\Pagination;
 
 
 
@@ -39,23 +39,23 @@ class MessageController extends AppController
   * Affichage d'une page "messages reçus"
   * @param int $page_rec Numero de la page a afficher
   */
-  public function message($page_rec)
+  public function message($page=1)
   {
     if ($this->tools->isLogged() == true) {
       $showMessages = new MessageModel();
       $users = $showMessages->ListAdherantsMessage();
       $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 
-      $Pagination = new PaginationDuo('private_message');
+      $Pagination = new Pagination('private_message');
       //on precise la table a exploiter
 
-      $limit_receiver = 3;
+      $limit_receiver = 5;
       $id_receiver = $_SESSION['user']['id'];
       //limit d'affichage par page
-      $calcule_receiver = $Pagination->calcule_page('id_user_receiver = \''.$id_receiver.'\' AND active_receiver = 1',$limit_receiver,$page_rec);
+      $calcule_receiver = $Pagination->calcule_page('id_user_receiver = \''.$id_receiver.'\' AND active_receiver = 1',$limit_receiver,$page);
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
-      $pagination = $Pagination->pagination($calcule_receiver['page'],'page_rec',$calcule_receiver['nb_page'],'message',['page_rec' =>$page_rec]);
+      $pagination = $Pagination->pagination($calcule_receiver['page'],$calcule_receiver['nb_page'],'message');
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
       $messages = $showMessages->AfficherMessages($limit_receiver,$calcule_receiver['offset']);
       // $avatar = $this->model_avatar->FindLinkForImg('link_relative', 'id_user', $_SESSION['user']['id']);
@@ -66,7 +66,7 @@ class MessageController extends AppController
         'slug' => $slug,
         'users' => $users,
         'messages' => $messages,
-        'page_rec'=> $page_rec,
+        'page'=> $page,
         // 'avatar' => $avatar,
 
       ]
@@ -80,26 +80,26 @@ class MessageController extends AppController
   * Affichage d'une page "messages envoyés"
   * @param int $page_sen Numero de la page a afficher
   */
-  public function messagesEnvoyes($page_sen)
+  public function messagesEnvoyes($page =1)
   {
     if ($this->tools->isLogged() == true) {
       $showMessages = new MessageModel();
       $users = $showMessages->ListAdherantsMessage();
       $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 
-      $Pagination = new PaginationDuo('private_message');
+      $Pagination = new Pagination('private_message');
       //on precise la table a exploiter
 
 
-      $limit_sender = 3;
+      $limit_sender = 5;
       $id_sender = $_SESSION['user']['id'];
       //limit d'affichage par page
       //on precise la table a exploiter
-      $calcule_sender = $Pagination->calcule_page2('id_user_sender = \''.$id_sender.'\' AND active_sender = 1',$limit_sender,$page_sen);
+      $calcule_sender = $Pagination->calcule_page('id_user_sender = \''.$id_sender.'\' AND active_sender = 1',$limit_sender,$page);
 
       //en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
       //ce qui calcule le nombre de page total et le offset
-      $pagination2 = $Pagination->pagination($calcule_sender['page'],'page_sen',$calcule_sender['nb_page'],'messages_envoyes',['page_sen' =>$page_sen]);
+      $pagination2 = $Pagination->pagination($calcule_sender['page'],$calcule_sender['nb_page'],'messages_envoyes');
       //on envoi les donnee calcule , la page actuel , puis le total de page , et la route sur quoi les lien pointe
       $messagesenvoyes = $showMessages->AfficherMessagesEnvoyes($limit_sender,$calcule_sender['offset']);
       $avatar = $this->model_avatar->FindLinkForImg('link_relative', 'id_user', $_SESSION['user']['id']);
@@ -109,7 +109,7 @@ class MessageController extends AppController
         'slug' => $slug,
         'users' => $users,
         'messagesenvoyes' => $messagesenvoyes,
-        'page_sen'=> $page_sen,
+        'page'=> $page,
         'avatar' => $avatar,
         ]
       );
