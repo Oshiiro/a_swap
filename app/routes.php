@@ -54,8 +54,8 @@
 		['POST', '/messagerie/[:page_rec]', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
 		['POST', '/messagerie/envoyes/[:page_sen]', 'Message#sendMessage', 'send_message_from_envoyes'],
 		['POST', '/messagerie/confirmation/', 'Message#confirmAssosInvit', 'confirm_assos_invit'],
-		['GET', '/messagerie/deletemessagerecu/[:page_rec]/[:id]', 'Message#DeleteMessageRecu', 'delete_message_recu'],
-		['GET', '/messagerie/deletemessageenvoye/[:page_sen]/[:id]', 'Message#DeleteMessageEnvoye', 'delete_message_envoye'],
+		['GET', '/messagerie/deletemessagerecu/[:page]/[:id]', 'Message#DeleteMessageRecu', 'delete_message_recu'],
+		['GET', '/messagerie/deletemessageenvoye/[:page]/[:id]', 'Message#DeleteMessageEnvoye', 'delete_message_envoye'],
 
 
 

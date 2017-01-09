@@ -113,7 +113,7 @@
 									<?php if (!empty($dataAssos)) { ?>
 										<li class="moneyLayout"><span id="response"></span><?php echo ' '.$dataAssos['money_name']; ?></li>
 									<?php } ?>
-								<li><a href="<?php echo $this->url('message',['page_rec'=>1])  ?>">Messagerie</a></li>
+								<li><a href="<?php echo $this->url('message',['page'=>1])  ?>">Messagerie</a></li>
 								<?php if (!empty($dataAssos)) { ?>
 									<li><a href="<?php echo $this->url('association',['slug' => $this->getValueInArray($dataAssos, 'slug'), 'page' => 1]) ?>">Association</a></li>
 
