@@ -63,7 +63,7 @@
 		['GET', '/admin/nostransactions/[:slug]/[:page]', 'UserAdmin#back', 'admin_back'],
 		['GET', '/admin/deleteuser/[i:id]', 'AssociationAdmin#deleteUser', 'admin_back_delete'], // Delete user
 		['GET', '/admin/crediter/[i:id]', 'TransactionAdmin#ShowFormCredit', 'admin_back_credite'], //credite de l'admin
-		['POST', '/admin/crediter/', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
+		['POST', '/admin/crediter/[i:id]', 'TransactionAdmin#makeCreditAdmin', 'admin_back_credite_valid'], //credite de l'admin
 
 		// Admin Association Back
 		['GET', '/admin/back/gestion/association/[:slug]/[:page]', 'AssociationAdmin#backAssos', 'admin_back_assos'],

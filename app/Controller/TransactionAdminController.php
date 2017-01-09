@@ -5,9 +5,11 @@ namespace Controller;
 use \Controller\AppController;
 use \Model\TransactionModel;
 use \Model\BackModel;
+use \Model\IntermediaireModel;
 use \Model\UsersModel as OurUModel;
 use \Model\AssosModel;
 use \Services\Tools\Tools;
+use \Services\Flash\FlashBags;
 
 class TransactionAdminController extends AppController
 {
@@ -15,6 +17,7 @@ class TransactionAdminController extends AppController
   private $transactionModel;
   private $model_assos;
   private $tools;
+  private $intermediaire;
 
   public function __construct()
   {
@@ -23,6 +26,7 @@ class TransactionAdminController extends AppController
     $this->ourumodel = new OurUModel();
     $this->model_assos = new AssosModel();
     $this->tools = new Tools();
+    $this->intermediaire = new IntermediaireModel();
   }
 
   /**
@@ -45,8 +49,16 @@ class TransactionAdminController extends AppController
   /**
   * Affichage du formulaire pour un credit de depart par l'admin
   */
-  public function makeCreditAdmin()
+  public function makeCreditAdmin($id_user)
   {
+    $id_logged = $_SESSION['user']['id'];
+    $isInMyTeam = $this->intermediaire->isInMyteam($id_logged, $id_user);
+
+		if($isInMyTeam == false) {
+      $flash = new FlashBags();
+      $flash->setFlash('warning', 'Vous ne pouvez pas envoyer de credit à cet utilisateur');
+      $this->showForbidden(); // erreur 403
+    }
     $newTransactions = $this->transactionModel->MakeCreditAdmin();
     $adherants = $this->ourumodel->affOneAdherants($_POST['destinataire']);
     $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
