@@ -69,18 +69,18 @@ class Pagination extends Model
 
     if($page == $nb_page && $page != 1){
       $argumentFull['page'] = ($page-1);
-      $html .='<a href="'.AppController::generateUrl($route,$argumentFull).'"> << </a>';
+      $html .='<a  class="pages" href="'.AppController::generateUrl($route,$argumentFull).'"> << </a>';
       $html .= $this->liste($nb_page,$route,$page,$argumentFull);
     }elseif ($page < $nb_page && $page > 1) {
       $argumentFull['page'] = ($page-1);
-      $html .= '<a href="'.AppController::generateUrl($route,$argumentFull).'"> << </a>';
+      $html .= '<a  class="pages" href="'.AppController::generateUrl($route,$argumentFull).'"> << </a>';
       $html .= $this->liste($nb_page,$route,$page,$argumentFull);
       $argumentFull['page'] = ($page+1);
-      $html .= '<a href="'.AppController::generateUrl($route,$argumentFull).'">  >> </a>';
+      $html .= '<a  class="pages" href="'.AppController::generateUrl($route,$argumentFull).'">  >> </a>';
     }elseif($page == 1 && $nb_page > 1){
       $argumentFull['page'] = ($page+1);
       $html .= $this->liste($nb_page,$route,$page,$argumentFull);
-      $html .= '<a href="'.AppController::generateUrl($route,$argumentFull).'">  >> </a>';
+      $html .= '<a  class="pages" href="'.AppController::generateUrl($route,$argumentFull).'">  >> </a>';
     }
     $html .='</div>';
     if($nb_page > 1){
@@ -94,22 +94,22 @@ class Pagination extends Model
     for($i=1; $i <= $nb_page; $i++) {
       if($i == $page){
         $argumentFull['page'] = $i;
-        $style = '<span class="actuel"><a href="'.AppController::generateUrl($route,$argumentFull).'">'.$i.'</a></span>';
+        $style = '<span  class="pages"><a class="pages"href="'.AppController::generateUrl($route,$argumentFull).'">'.$i.'</a></span>';
       }else {
         $argumentFull['page'] = $i;
-        $style = '<span class="voisin"><a href="'.AppController::generateUrl($route,$argumentFull).'">'.$i.'</a></span>';
+        $style = '<span  class="pages"><a class="pages"href="'.AppController::generateUrl($route,$argumentFull).'">'.$i.'</a></span>';
       }
 
       if($i ==1 && $i != $page){
         $html .= $style;
       }elseif($i ==1 && $i == $page){
-        $html .= $style.'<span class="voisin">...</span>';
+        $html .= $style.'<span  class="pages">...</span>';
       }elseif($i == $nb_page  && $i != $page){
         $html .= $style;
       }elseif($i == $nb_page  && $i == $page){
-        $html .= '<span class="voisin">...</span>'.$style;
+        $html .= '<span  class="pages">...</span>'.$style;
       }elseif($i == $page) {
-        $html .= '<span class="voisin">...</span>'.$style.'<span class="voisin">...</span>';
+        $html .= '<span class="pages">...</span>'.$style.'<span class="pages">...</span>';
       }
     }
     return $html;
