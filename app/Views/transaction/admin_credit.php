@@ -5,7 +5,7 @@
   <div class="row">
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 
-			<form class="form-group newCredit" name="newCredit" method="POST" action="<?php echo $this->url('admin_back_credite_valid')?>">
+			<form class="form-group newCredit" name="newCredit" method="POST" action="">
 				<h4>Crediter un membre</h4>
         <?php if (!empty($adherants)) {?>
         <div class="field">
