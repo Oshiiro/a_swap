@@ -370,7 +370,6 @@ class UserController extends AppController
 					$slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
 					$this->redirectToRoute('message', array(
 						'page'=> 1,
-						
 					));
 
         } else {

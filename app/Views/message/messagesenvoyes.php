@@ -75,7 +75,7 @@
           <div class="ligne col-md-12"></div>
         <?php } ?>
       <?php } else { ?>
-        <div class="block-message-1 col-md-12">Vous n\'avez aucun message</div>
+        <div class="block-message-1 col-md-12">Vous n'avez aucun message.</div>
       <?php }?>
       <?php echo $pagination2; ?>
     </div>
