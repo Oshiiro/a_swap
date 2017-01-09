@@ -9,6 +9,7 @@ use \Model\BackModel;
 use \Model\IntermediaireModel;
 use \Model\AssosModel;
 use \Services\Tools\Tools;
+use \Services\Flash\FlashBags;
 
 class TransactionController extends AppController
 {
