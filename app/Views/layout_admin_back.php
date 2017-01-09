@@ -132,22 +132,21 @@
 				<div class="wrap">
 					<div class="container">
 						<div class="row">
-							<div class="lienRedirectionSite col-md-4">
+							<div class="lienRedirectionSite col-md-4 col-xs-4">
 								<p>Site :</p>
 								<a href="<?php echo $this->url('default_home') ?>">Accueil</a><br>
 								<a href="<?php echo $this->url('contact') ?>">Contact</a>
 							</div>
-							<div class="lienUtiles col-md-4">
+							<div class="lienUtiles col-md-4 col-xs-4">
 								<p>Liens utiles :</p>
 								<a href="<?php echo $this->url('cgu') ?>">CGU</a><br>
 								<a href="<?php echo $this->url('default_home') ?>#concept">Concept</a>
 							</div>
-							<div class="lienReseaux col-md-4 navbar-right">
+							<div class="lienReseaux col-md-4 navbar-right col-xs-4">
 								<p>Rejoignez-nous :</p>
 								<a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a><br>
-								<a href="https://www.instagram.com/" target="_blank">Instagram</a><br>
-								<a href="https://twitter.com/aswap" class="twitter-follow-button" data-show-count="false">Follow @a-swap</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script><br>
-							</div>
+								<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a><br>
+								<a href="https://twitter.com/aswap"  target="_blak"><i class="fa fa-twitter" aria-hidden="true"></i></a><br>
 						</div>
 					</div>
 				</div>
