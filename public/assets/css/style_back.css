@@ -167,10 +167,22 @@ a:hover .btn-perso {
 
 /* Icones crediter et supprimer*/
 .fa-trash-o {
-color :rgb(133, 0, 50); }
+  color :rgb(133, 0, 50);
+}
+
+.fa-trash-o:hover {
+  color :rgb(190, 0, 50);
+}
+
 
 .fa-money {
-color :green; }
+  color :green;
+}
+
+.fa-money:hover {
+  color :rgb(30, 156, 60);
+
+}
 /* -------------------------------------------------------------------------- */
 /*TABLEAU */
 

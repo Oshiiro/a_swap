@@ -50,7 +50,11 @@
 
             <div class="col-md-1 col-xs-2">
               <?php $avatar = $this->FindLinkForImgGlobal('link_relative', 'id_user', $message['id_user_sender']); ?>
+              <?php if (!empty($avatar)) { ?>
               <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl($avatar) ?>" alt="">
+              <?php } else { ?>
+              <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl('img/profil/default-avatar.jpg') ?>" alt="default-avatar">
+              <?php } ?>
             </div>
 
             <div class="col-md-10 col-xs-9">

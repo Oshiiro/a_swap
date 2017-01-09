@@ -8,7 +8,11 @@
         <legend><h2>Profil</h2></legend>
 
         <div class="col-md-3">
+          <?php if (!empty($avatar)) { ?>
           <img class ="img-circle img-profil" src="<?php echo $this->assetUrl($avatar) ?>" alt=""><br>
+          <?php } else { ?>
+          <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl('img/profil/default-avatar.jpg') ?>" alt="default-avatar"><br>
+          <?php } ?>
         </div>
 
         <div class="col-md-9">
