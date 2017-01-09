@@ -58,11 +58,12 @@ class TransactionAdminController extends AppController
       $flash = new FlashBags();
       $flash->setFlash('warning', 'Vous ne pouvez pas envoyer de credit à cet utilisateur');
       $this->showForbidden(); // erreur 403
-    }
-    $newTransactions = $this->transactionModel->MakeCreditAdmin();
-    $adherants = $this->ourumodel->affOneAdherants($_POST['destinataire']);
-    $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
-    $this->redirectToRoute('admin_back_assos', array('slug' => $slug, 'page' => 1));
+    } else {
+      $newTransactions = $this->transactionModel->MakeCreditAdmin();
+      $adherants = $this->ourumodel->affOneAdherants($_POST['destinataire']);
+      $slug = $this->model_assos->getSlugByIdUser($_SESSION['user']['id']);
+      $this->redirectToRoute('admin_back_assos', array('slug' => $slug, 'page' => 1));
+      }
   }
 
 
