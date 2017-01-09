@@ -127,7 +127,7 @@ class UserController extends AppController
 				//limit d'affichage par page
 				$Pagination = new Pagination('transaction');
 				//on precise la table a exploiter
-				$calcul1 = $Pagination->calcule_page('id_asso = \''.$id_asso.'\'',$limit1,$page);
+				$calcul1 = $Pagination->calcule_page('id_asso = \''.$id_asso.'\' AND id_user_buyer = '.$_SESSION['user']['id'].' OR id_user_seller ='.$_SESSION['user']['id'].'',$limit1,$page);
 				//en premier on rempli le 'WHERE' , puis la nombre daffichage par page, et la page actuel
 				//ce qui calcule le nombre de page total et le offset
 				$adherants = $this->ourumodel->affAllAdherants($slug, $id_asso, $limit1, $calcul1['offset']);
