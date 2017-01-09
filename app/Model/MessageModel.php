@@ -133,7 +133,7 @@ class MessageModel extends Model
 
     $appController = new appController();
 
-    $invitation_MP = $appController->generateUrl('register_user_from_invite', ['token_asso' => $token_asso, 'token_invit' => $token_invitation], true);
+    $invitation_MP = $appController->generateUrl('accept_invitation', ['token_asso' => $token_asso, 'token_invit' => $token_invitation], true);
     $message =  $_SESSION['user']['firstname']. ' ' .$_SESSION['user']['lastname'].
                 ' souhaite vous inviter a rejoindre son association "' .$name_asso. '".
                 <a href="' .$invitation_MP. '"> Cliquez ici pour accepter </a>';
