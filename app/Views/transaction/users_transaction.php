@@ -9,17 +9,34 @@
 			<div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 				<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('users_accueil_transac_valid', ['slug' => $this->getValueInArray($dataAssos, 'slug')]) ?>">
 					<h4>Faire une transaction</h4>
-					<label for="">Destinataire</label>
-					<select class="form-control" name="destinataire" >
-						<?php foreach ($adherants as $adherant): ?>
-							<option value="<?php echo $adherant['id_users'] ?>"><?php echo $adherant['username'];?></option>
-						<?php endforeach; ?>
-					</select><br>
-					<div class="field">
+					<?php if (!empty($adherant)) {?>
+	        <div class="field">
+	          <label for="destinataire" class="field-label">Destinataire</label>
+	          <select class="field-input" name="destinataire" >
+	            <?php foreach ($adherants as $adherant): ?>
+	              <option value="<?php echo $adherant['id_users'] ?>"><?php echo $aderant['username'];?></option>
+	            <?php endforeach; ?>
+	          </select>
+	        </div><br>
+	        <?php } else { ?>
+	        <div class="field field-select">
+	          <label for="destinataire" class="field-label-select">Destinataire</label>
+	          <select class="field-input-select" name="destinataire" >
+	            <?php foreach ($adherants as $adherant): ?>
+	              <option value=""></option>
+	            <?php endforeach; ?>
+	          </select>
+	        </div><br>
+	        <?php } ?>
+
+					<div class="textfield field" style="margin-bottom: 60px;">
 						<label for="" class="field-label">Votre message</label>
 						<textarea name="description" class="field-input"></textarea>
 					</div>
-					<input type="number" class="number" name="sum" value=Montant>
+					<div class="field col-md-3">
+	          <label for="sum" class="field-label">Somme à crediter</label>
+					  <input type="number" class="number field-input" name="sum" value=Montant>
+	        </div>
 					<input class="btn btn-default" type="submit" name="submit" value="envoyer">
 				</form>
 			</div>

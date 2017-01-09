@@ -14,7 +14,7 @@
             <span class="errorMessage"><?php if(!empty($error['name'])) { echo($error['name']);} ?></span>
           </div>
 
-          <div class="field">
+          <div class="field textfield" style="margin-bottom: 60px;">
             <label for="" class="field-label">Descriptif de votre association (facultatif)</label>
             <textarea name="description"  class="field-input"><?php if (!empty($association['description'])) { echo $association['description'];} elseif (!empty($_POST['description'])) { echo $_POST['description']; } ?></textarea>
           </div>
@@ -25,7 +25,7 @@
             <span class="errorMessage"><?php if(!empty($error['money_name'])) { echo($error['money_name']);} ?></span>
           </div>
 
-          <div class="field">
+          <div class="field textfield" style="margin-bottom: 60px;">
             <label for="" class="field-label">Vous pouvez ici decrire la façon dont est gérée votre monnaie associative (facultatif)</label>
             <textarea name="rules" class="field-input"><?php if (!empty($association['rules'])) { echo $association['rules'];} elseif (!empty($_POST['rules'])) { echo $_POST['rules']; } ?></textarea>
           </div>

@@ -7,19 +7,32 @@
 
 			<form class="form-group newCredit" name="newCredit" method="POST" action="<?php echo $this->url('admin_back_credite_valid')?>">
 				<h4>Crediter un membre</h4>
-				<label for="">Destinataire</label>
-				<select class="form-control" name="destinataire" >
-
+        <?php if (!empty($adherants)) {?>
+        <div class="field">
+				<label for="" class="field-label">Destinataire</label>
+				<select class="field-input" name="destinataire" >
 					<?php foreach ($adherants as $adherant): ?>
 						<option value="<?php echo $adherant['id'] ?>"><?php echo $adherant['username'];?></option>
 					<?php endforeach; ?>
 				</select><br>
-				<div class="form-group">
-					<label for="">Texte explicatif</label>
-					<textarea name="description" class="form-control" placeholder="Votre message"></textarea>
+        <?php } else { ?>
+          <div class="field field-select">
+  				<label for="" class="field-label-select">Destinataire</label>
+  				<select class="field-imput-select" name="destinataire" >
+  					<?php foreach ($adherants as $adherant): ?>
+  						<option value="<?php echo $adherant['id'] ?>"><?php echo $adherant['username'];?></option>
+  					<?php endforeach; ?>
+  				</select><br>
+        <?php } ?>
+        </div>
+				<div class="textfield field" style="margin-bottom: 60px;">
+					<label for="" class="field-label" >Votre message</label>
+					<textarea name="description" class="field-input"></textarea>
 				</div>
-				<input type="number" class="number" name="sum" value=Montant>
-
+        <div class="field col-md-3">
+          <label for="sum" class="field-label">Somme à crediter</label>
+				  <input type="number" class="number field-input" name="sum" value=Montant>
+        </div>
 				<input class="btn btn-default" type="submit" name="submit" value="envoyer">
 			</form>
 
