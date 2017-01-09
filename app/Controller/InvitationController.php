@@ -55,7 +55,7 @@ class InvitationController extends AppController
 
       $flash = new FlashBags();
       $flash->setFlash('warning', 'Vous ne pouvez pas rejoindre plusieurs associations.');
-      $this->redirectToRoute('message');
+      $this->redirectToRoute('message', array('page' => 1));
     } else {
       // sinon, on fait un insert dans intermediaire et on maj l'invitation dans la table
       // correspondante puis on redirige.
