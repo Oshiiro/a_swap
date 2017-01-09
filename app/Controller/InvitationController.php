@@ -47,7 +47,7 @@ class InvitationController extends AppController
       $flash = new FlashBags();
       $flash->setFlash('warning', 'Vous utilisez une invitation privée invalide');
       $this->redirectToRoute('message', array(
-        'page_rec' => 1
+        'page' => 1
       ));
     } elseif ($user_is_free == false) {
       // si le user a deja rejoint une asso (il est deja dans la table intermediaire) :
@@ -81,7 +81,7 @@ class InvitationController extends AppController
       $flash = new FlashBags();
       $flash->setFlash('warning', 'Vous avez bien rejoint l\'association');
       $this->redirectToRoute('message', array(
-        'page_rec' => 1
+        'page' => 1,
       ));
     }
 	}
