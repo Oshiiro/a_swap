@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Orbitron|Space+Mono');
+@import url('https://fonts.googleapis.com/css?family=Orbitron|Space+Mono|Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 
@@ -24,7 +24,7 @@ h1 {
 }
 
 h2 {
-  font-family: monospace;
+  font-family: Montserrat;
   color : rgb(21, 138, 138);
   text-align: center;
   margin-bottom: 1.5em;
@@ -59,20 +59,24 @@ table {
 }
 
 td {
-  font-family: monospace;
+  font-family: Helvetica, Arial, sans-serif;
   padding : 3px;
   font-size: 15px;
   text-align: center;
 }
 
 th {
-  font-family: monospace;
-  font-size: 21px;
+  font-family: Montserrat;
+  font-size: 17px;
   margin-bottom: 8px;
   background-color: rgb(21, 138, 138);
   color : white;
   padding : 10px;
   text-align: center;
+}
+
+.fa {
+  color: white;
 }
 
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
@@ -257,7 +261,7 @@ select:-webkit-autofill:focus {
 /* -------------------------------------------------------------------------- */
 /* BARRE DE MENU; */
 .navbar a {
-  font-family: 'Space Mono', monospace;
+  font-family: Montserrat;
   font-weight: 900;
   font-size: 15px;
   color: white;
@@ -318,7 +322,7 @@ a:hover .btn-perso {
 }
 
 .moneyLayout {
-  font-family: 'Space Mono', monospace;
+  font-family: Montserrat;
   font-weight: 900;
   font-size: 15px;
   color: white;
@@ -399,16 +403,16 @@ margin-right: 10px;
 }
 
 .explications {
-font-size: 12px;
+font-size: 14px;
 color : white;
-font-family: monospace;
+font-family: Montserrat;
 padding : 2em;
 background-color: rgb(21, 138, 138);
 }
 
 .texteExplicatif {
   color : #1C1C1C;
-  font-family: monospace;
+  font-family: Montserrat;
   text-align: center;
   margin-top : 20px;
   margin-bottom: 100px;
@@ -549,6 +553,7 @@ background-color: rgb(21, 138, 138);
   color :  rgb(100, 178, 137);
   background-color: #FFFFE4;
   border-radius: 20px;
+  Montserrat
 }
 
 .formulaire a {
@@ -610,7 +615,7 @@ background-color: rgb(21, 138, 138);
   padding : 20px;
   width: 100%;
   font-size: 1em;
-  font-family: 'Roboto';
+  font-family: Roboto;
   color :rgb(21, 138, 138);
   background-color: rgb(100, 178, 137);
   height: 150px;
@@ -654,7 +659,7 @@ background-color: rgb(21, 138, 138);
 /*-------------------------------------------------------------------------*/
 /*CGU*/
 .cgu h1 {
-  /*font-family: Helvetica, Arial, sans-serif;*/
+  font-family: Montserrat;
   color : rgb(21, 138, 138);
   font-size: 3em;
   margin-bottom: 0.3em;

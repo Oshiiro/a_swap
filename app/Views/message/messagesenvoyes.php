@@ -50,7 +50,7 @@
 
             <div class="col-md-1 col-xs-2">
               <?php if (!empty($avatar)) { ?>
-              <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl($avatar) ?>" alt="">
+              <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl($avatar) ?>" alt="avatar aswap">
               <?php } else { ?>
               <img class="img-circle img-messagerie" src="<?php echo $this->assetUrl('img/profil/default-avatar.jpg') ?>" alt="default-avatar">
               <?php } ?>

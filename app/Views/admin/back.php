@@ -6,9 +6,6 @@
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 			<h2>Les dernières transactions.</h2>
       <div class="table-responsive shadow-z-1">
-          <?php if(!empty($pagination)){
-            echo $pagination;
-          } ?>
         <table id="table" class="table table-hover" >
           <thead>
   					<tr>
@@ -31,6 +28,9 @@
   				 <?php } ?>
          </tbody>
 				</table>
+        <?php if(!empty($pagination)){
+          echo $pagination;
+        } ?>
 		  </div>
 	  </div>
   </div>

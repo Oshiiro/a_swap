@@ -134,7 +134,6 @@
 				</div>
 			</nav>
 		</header>
-		 <!-- echo $this->findElementByElement('wallet', 'id_users', $_SESSION['user']['id'])  -->
 		<div class="allContent">
 				<?php if (!empty($_SESSION['flash']['message'])) { ?>
 					<?php echo $this->getFlash(); ?>
