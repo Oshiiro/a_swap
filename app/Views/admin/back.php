@@ -1,4 +1,4 @@
-<?php $this->layout('layout_admin_back', ['title' => 'Back A-Swap', 'slug' => $slug]) ?>
+<?php $this->layout('layout_admin_back', ['title' => 'Transactions', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 <div class="container block-message">

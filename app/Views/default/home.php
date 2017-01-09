@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Accueil', 'slug' => $slug]) ?>
+<?php $this->layout('layout', ['title' => 'A-Swap - Accueil', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 

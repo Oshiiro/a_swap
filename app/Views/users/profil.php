@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Profil', 'slug' => $slug]) ?>
+<?php $this->layout('layout', ['title' => 'Mon profil', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 <div class="container block-message">

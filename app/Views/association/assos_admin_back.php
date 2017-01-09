@@ -1,4 +1,4 @@
-<?php $this->layout('layout_admin_back', ['title' => 'Admin Association', 'slug' => $slug]) ?>
+<?php $this->layout('layout_admin_back', ['title' => 'Gérer mon association', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 <button title="Envoyer une invitation"  class="btn btn-circle sendMessage btn-lg" type="button"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i></button>
