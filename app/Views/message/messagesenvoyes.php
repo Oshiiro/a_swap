@@ -38,8 +38,8 @@
       </form>
       <div class="row">
         <div class="col-md-12">
-          <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso  " >Messages reçus</button></a>
-          <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso2 ">Messages envoyés</button></a>
+          <a href="<?php echo $this->url('message',['page'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso  " >Messages reçus</button></a>
+          <a href="<?php echo $this->url('messages_envoyes',['page'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso2 ">Messages envoyés</button></a>
         </div>
       </div>
 
@@ -62,7 +62,7 @@
             </div>
 
             <div class="col-md-1 col-xs-1">
-              <a class="" href="<?php echo $this->url('delete_message_envoye', array( 'page_sen' => $page_sen,'id' => $messagesenvoye['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a class="" href="<?php echo $this->url('delete_message_envoye', array( 'page' => $page,'id' => $messageenvoye['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             </div>
 
             <br>

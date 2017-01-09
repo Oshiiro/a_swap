@@ -146,9 +146,9 @@ class MessageController extends AppController
   * @param int $page_rec Numero de la page a afficher après traitement
   * @param int $id Id du message à supprimer
   */
-  public function DeleteMessageRecu($page_rec, $id)
+  public function DeleteMessageRecu($page, $id)
   {
-    $VerifMessage = $this->messageModel->VerifMessageReceiver($page_rec, $id);
+    $VerifMessage = $this->messageModel->VerifMessageReceiver($page, $id);
     if($VerifMessage === true) {
       $active_receiver = '0';
       $data = array(
@@ -157,7 +157,7 @@ class MessageController extends AppController
 
       $this->messageModel->update($data, $id);
 
-      $this->redirectToRoute('message',['page_rec'=> $page_rec, 'page_sen' => $page_sen]);
+      $this->redirectToRoute('message',['page'=> $page, 'page' => $page]);
 
     } else {
       $this->showForbidden(); // erreur 403
@@ -170,9 +170,9 @@ class MessageController extends AppController
   * @param int $page_sen Numero de la page a afficher après traitement
   * @param int $id Id du message à supprimer
   */
-  public function DeleteMessageEnvoye($page_sen, $id)
+  public function DeleteMessageEnvoye($page, $id)
   {
-    $VerifMessageS = $this->messageModel->VerifMessageSender($page_sen, $id);
+    $VerifMessageS = $this->messageModel->VerifMessageSender($page, $id);
       if($VerifMessageS === true) {
 
         $active_sender = '0';
@@ -182,7 +182,7 @@ class MessageController extends AppController
 
         $this->messageModel->update($data, $id);
 
-        $this->redirectToRoute('messages_envoyes',['page_rec'=> $page_sen, 'page_sen' => $page_sen]);
+        $this->redirectToRoute('messages_envoyes',['page'=> $page, 'page' => $page]);
       } else {
         $this->showForbidden(); // erreur 403
         }

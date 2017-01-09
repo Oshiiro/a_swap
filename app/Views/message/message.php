@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Messagerie', 'slug' => $slug]) ?>
+<?php $this->layout('layout', ['title' => 'Messagerie', 'slug' => $slug, 'page' => $page]) ?>
 
 <?php $this->start('main_content') ?>
 <button title="Envoyer un message" class="btn btn-circle sendMessage btn-lg" type="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
@@ -38,8 +38,8 @@
 
       <div class="row">
         <div class="col-md-12">
-          <a href="<?php echo $this->url('message',['page_rec'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso2 messagesEnvoyes " >Messages reçus</button></a>
-          <a href="<?php echo $this->url('messages_envoyes',['page_sen'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
+          <a href="<?php echo $this->url('message',['page'=>1])  ?>"><button type ="button" title="Afficher messages reçus" class="btn btn-perso2 messagesEnvoyes " >Messages reçus</button></a>
+          <a href="<?php echo $this->url('messages_envoyes',['page'=>1])  ?>"><button type ="button" title="Afficher messages envoyés" class="btn btn-perso messagesEnvoyes " >Messages envoyés</button></a>
         </div>
       </div>
 
@@ -63,7 +63,7 @@
             </div>
 
             <div class="col-md-1 col-xs-1">
-              <a class="" href="<?php echo $this->url('delete_message_recu', array('page_rec'=> $page_rec, 'id' => $message['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <a class="" href="<?php echo $this->url('delete_message_recu', array('page'=> $page, 'id' => $message['id'])) ?>" title="Supprimer le message"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             </div>
 
             <br>
