@@ -27,6 +27,11 @@ h2  {
   color: rgb(133, 0, 50);
 }
 
+
+.center {
+  text-align: center;
+}
+
 .block{
   box-shadow: 0 3px 6px rgba(0,0,0,0.46), 0 3px 6px rgba(0,0,0,0.50);
   margin-top: 1em;
@@ -107,6 +112,12 @@ select:-webkit-autofill:focus {
   color: white;
   height: 55px;
   width: 180px;
+}
+
+.validform {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  margin-left: 0px;
 }
 
 /* -------------------------------------------------------------------------- */

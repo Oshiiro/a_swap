@@ -7,11 +7,16 @@
     <div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
       <h2>Gestion association</h2>
       <div class="formulaire" style="display : none;">
-        <form class="field" action="<?php echo $this->url('admin_association_invite'); ?>"  method="POST" action="" name="mail_invite">
-          <label class="field-label" for="email">Adresse e-mail de la personne à inviter</label>
-          <input class="field-input" type="email" name="mail_invite"><br>
-          <span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
-          <input type="submit" value="Inviter">
+        <form action="<?php echo $this->url('admin_association_invite'); ?>"  method="POST" action="" name="mail_invite">
+          <div class="field">
+
+            <label class="field-label" for="email">Adresse e-mail de la personne à inviter</label>
+            <input class="field-input" type="email" name="mail_invite"><br>
+            <span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
+          </div>
+          <div class="center">
+            <button class="btn btn-circle btn-lg validform" type="submit" name="submit" value=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
+          </div>
         </form>
       </div>
 

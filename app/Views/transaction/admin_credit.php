@@ -20,7 +20,9 @@
 				</div>
 				<input type="number" class="number" name="sum" value=Montant>
 
-				<input class="btn btn-default" type="submit" name="submit" value="envoyer">
+        <div class="center">
+          <button class="btn btn-circle btn-lg validform" type="submit" name="submit" value=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
+        </div>
 			</form>
 
 		</div>

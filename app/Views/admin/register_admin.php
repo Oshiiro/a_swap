@@ -68,11 +68,13 @@
   						<input type="password" class="field-input" name="password_confirm">
   						<span class="errorMessage"><?php if(!empty($error['password_confirm'])) { echo($error['password_confirm']);} ?></span>
   					</div>
-  					<div class="form-group">
+  					<div class="form-group center">
   						<label><p class="acceptCGU"> <input type="checkbox" name="checkbox" value=""> J'accepte les <u><a href="<?php echo $this->url('cgu'); ?>">CGU</a></u></p></label>
   						<span class="errorMessage"><br><?php if(!empty($error['checkbox'])) { echo($error['checkbox']);} ?></span>
   					</div>
-  					<input type="submit" class="btn btn-default">
+            <div class="center">
+              <button class="btn btn-circle btn-lg validform" type="submit" name="submit" value=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
+            </div>
         </form>
       </div>
   	</div>

@@ -32,7 +32,9 @@
           <label for="message" class="field-label">Votre message</label>
           <textarea name="message" class="field-input"></textarea>
         </div>
-        <input class="btn btn-default" type="submit" name="submit" value="envoyer">
+        <div class="center">
+          <button class="btn btn-circle btn-lg validform" type="submit" name="submit" value=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
+        </div>
       </form>
       <div class="row">
         <div class="col-md-12">
