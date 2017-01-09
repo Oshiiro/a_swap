@@ -4,6 +4,7 @@ namespace Model;
 use \W\Model\Model;
 use \Model\AssosModel;
 use \Services\Flash\FlashBags;
+use \Controller\AppController;
 
 
 /**
@@ -130,7 +131,9 @@ class MessageModel extends Model
     $name_asso = AssosModel::getNameByIdAdmin($id_sender);
     $token_asso = AssosModel::getToken($id_sender);
 
-    $invitation_MP = $this->generateUrl('register_user_from_invite', ['token_asso' => $token_assos, 'token_invit' => $token_invitation], true);
+    $appController = new appController();
+
+    $invitation_MP = $appController->generateUrl('register_user_from_invite', ['token_asso' => $token_assos, 'token_invit' => $token_invitation], true);
     $message =  $_SESSION['user']['firstname']. ' ' .$_SESSION['user']['lastname'].
                 ' souhaite vous inviter a rejoindre son association "' .$name_asso. '".
                 <a href="' .$invitation_MP. '"> Cliquez ici pour accepter </a>';
