@@ -11,6 +11,10 @@
             <span class="errorMessage"><?php if(!empty($error['token'])) { echo($error['token']);} ?></span>
           </div>
 					<div class="form-group">
+						<input type="email" class="form-control" name="email" placeholder="Adresse e-mail" value="">
+						<span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
+					</div>
+					<div class="form-group">
 						<input type="password" class="form-control" name="password" placeholder="Mot de passe" value="">
 						<span class="errorMessage"><?php if(!empty($error['password'])) { echo($error['password']);} ?></span>
 					</div>

@@ -33,8 +33,8 @@
 		['POST', '/connexion/forgot_password/', 'User#tryForgotPassword', 'try_forgot_password'],
 
 		// Modify password
-		['GET', '/connexion/modify_password', 'User#modifyPassword', 'modify_password'], //Kilian : ne pas mettre de "/" a la fin de l'URL SVP
-		['POST', '/connexion/modify_password', 'User#tryModifyPassword', 'try_modify_password'], //Kilian : ne pas mettre de "/" a la fin de l'URL SVP
+		['GET', '/connexion/modify_password/[:token]', 'User#modifyPassword', 'modify_password'], //Kilian : ne pas mettre de "/" a la fin de l'URL SVP
+		['POST', '/connexion/modify_password/[:token]', 'User#tryModifyPassword', 'try_modify_password'], //Kilian : ne pas mettre de "/" a la fin de l'URL SVP
 
 		// Connexion
 		['GET', '/connexion/', 'User#login', 'login'],

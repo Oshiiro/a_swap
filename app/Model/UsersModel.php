@@ -52,15 +52,13 @@ class UsersModel extends UModel
   }
 
   /**
-  * Fonction qui recupere et retourne l'Id de l'utilisateur en dont l'adrese mail et
-  * le token sont passés en GET
+  * Fonction qui recupere et retourne l'Id d'un utilisateur
+  * @param string $mail Email de l'utilisateur
+  * @param string $token Token de l'utilisateur
   * @return string Id de l'utilisateur
   */
-  public function getIdByEmailAndToken()
+  public function getIdByEmailAndToken($email, $token)
   {
-    $email = (!empty($_GET['email'])) ? trim(strip_tags($_GET['email'])) : null;
-    $token = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : null;
-
     $app = getApp();
     $sql = 'SELECT id FROM users WHERE email = :email AND token = :token LIMIT 1';
 
@@ -69,19 +67,18 @@ class UsersModel extends UModel
     $sth->bindValue(':email', $email);
     $sth->bindValue(':token', $token);
     $sth->execute();
-    $id = $sth->fetch();
+    $id = $sth->fetchColumn();
 
-    return $id['id'];
+    return $id;
   }
 
   /**
   * Fonction qui verifie que le token est bien le bon
   * @return boolean true si le token existe, false sinon
   */
-  public function tokenIsActive()
+  public function tokenIsActive($email, $token)
   {
-    $tokenGET = (!empty($_GET['token'])) ? trim(strip_tags($_GET['token'])) : 'xxx';
-    $email = (!empty($_GET['email'])) ? trim(strip_tags($_GET['email'])) : 'xxx';
+    $tokenGET = $token;
 
     $app = getApp();
     $sql = 'SELECT token FROM users WHERE email = :email LIMIT 1';
@@ -203,7 +200,7 @@ class UsersModel extends UModel
     $query = $this->dbh->prepare($sql);
     $query->bindValue(':id', $id);
     $query->execute();
-    
+
     return $query->fetchAll();
   }
 
