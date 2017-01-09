@@ -6,7 +6,11 @@ use \Controller\AppController;
 
 class PaginationDuo extends Model
 {
-  // la table dans la quel on va travailler
+
+
+  /**
+  * @param string $table Table dans laquelle on va travailler
+  */
   public function __construct($table)
   {
     $this->setTable($table);
@@ -14,6 +18,12 @@ class PaginationDuo extends Model
 
   }
 
+  /**
+  *@param string $where where de la requete sql
+  * @param int $num Nombre d'article par page
+  * @param int $page Page de base
+  * @return $result Retourne le tableau de la requète avec l'offset et la page
+  */
   public function calcule_page($where='',$num,$page)
   {
     //on calcule le nombre de page en divisan le total par mon nombre d'article
@@ -41,6 +51,12 @@ class PaginationDuo extends Model
     return $result;
   }
 
+  /**
+  * @param string $where where de la requete sql
+  * @param int $num Nombre d'article par page
+  * @param int $page Page de base
+  * @return $result Retourne le tableau de la requète avec l'offset et la page
+  */
   public function calcule_page2($where='',$num,$page)
   {
     //on calcule le nombre de page en divisan le total par mon nombre d'article
@@ -68,6 +84,14 @@ class PaginationDuo extends Model
     return $result;
   }
   //on generer et retourne l'affichage de la pagination si elle a lieu d'etre
+  /**
+  *@param int $page Page actuelle
+  * @param int $keyPage
+  * @param int $nb_page Nombre total de page
+  * @param string $route Le nom de la route pour générer l'url
+  * @param string $arg Tableau d'argument qui génère l'url (ex : ['slug' => $slug])
+  * @return $result Retourne le tableau de la requète avec l'offset et la page
+  */
   public function pagination($page,$keyPage,$nb_page,$route,$arg='')
   {
     $html = '';
