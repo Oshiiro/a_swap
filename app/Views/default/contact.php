@@ -21,7 +21,9 @@
 				<textarea name="content"  class="materialize-textarea field-input"><?php if(!empty($_POST['content'])) { echo $_POST['content']; } ?></textarea>
 				<span class="errorMessage"><?php if(!empty($error['content'])) { echo($error['content']);} ?></span>
 			</div>
-			<input type="submit" class="btn btn-default">
+			<div class="center">
+				<button class="btn btn-circle btn-lg validform" type="submit" name="submit" value=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
+			</div>
 		</form>
 	</div>
 </div>

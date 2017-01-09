@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+@import url('https://fonts.googleapis.com/css?family=Space+Mono|Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 /* BASE */
@@ -19,7 +19,7 @@ body {
 }
 
 h2  {
-  font-family: monospace;
+  font-family: Montserrat;
   color : darkgrey;
   text-align: center;
   margin-bottom: 1.5em;
@@ -188,15 +188,18 @@ a:hover .btn-perso {
 /*TABLEAU */
 
 th {
+  font-family: Montserrat;
+  font-size: 17px;
   background-color: rgb(133, 0, 50);
   color : white;
   padding : 10px;
   text-align: center;
+
 }
 
 td {
-text-align: center;
-
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -351,7 +354,7 @@ textarea {
 /* -------------------------------------------------------------------------- */
 /* BARRE DE MENU; */
 .navbar a {
-  font-family: 'Space Mono', monospace;
+  font-family: Montserrat;
   font-weight: 900;
   font-size: 15px;
   color: white;

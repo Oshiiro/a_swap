@@ -6,7 +6,6 @@
     <div class="row">
 					<div class="block col-xs-9 col-xs-push-2 col-md-push-1 col-lg-10">
             <form class="" action="" method="POST">
-                  <!-- partie du formulaire pour la creation de l'asso -->
 						<h2>Créez la page de votre assos'</h2>
 						<h3>L'association :</h3>
 			      <div class="field">
@@ -34,7 +33,6 @@
 					  </div>
 			<br><br><br><br>
         <h3>Le tresorier :</h3>
-      <!-- formulaire de creation de l'admin -->
       	  <div class="">
       			<!-- Si le champ est remplie aucune données entre en BDD -->
       			<input type="text" name="antiBot" value="" class="hide">
