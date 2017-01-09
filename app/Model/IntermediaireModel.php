@@ -131,7 +131,7 @@ class IntermediaireModel extends UModel
     $sth->bindValue(':id_user', $id_user);
     $sth->execute();
     $id_asso_user = $sth->fetch();
-    debug($id_asso_user);
+    debug($id_asso_admin);
     die();
     if($id_asso_admin == $id_asso_user) {
       return true;
