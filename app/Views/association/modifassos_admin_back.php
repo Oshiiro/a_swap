@@ -30,7 +30,9 @@
             <textarea name="rules" class="field-input"><?php if (!empty($association['rules'])) { echo $association['rules'];} elseif (!empty($_POST['rules'])) { echo $_POST['rules']; } ?></textarea>
           </div>
 
-          <input type="submit" class="btn btn-default">
+          <div class="center">
+            <button class="btn btn-circle btn-lg validform" type="submit" name="submit" value=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
+          </div>
 
       </form>
     </div>

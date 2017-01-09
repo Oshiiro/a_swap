@@ -36,7 +36,9 @@
         </div>
 
         <div class="center">
-          <input type="submit" value="Valider" class="btn btn-default">
+          <div class="center">
+            <button class="btn btn-circle btn-lg validform" type="submit" name="submit" value=""><i class="fa fa-check fa-2x" aria-hidden="true"></i></button>
+          </div>
         </div>
       </form>
     </div>
