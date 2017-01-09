@@ -190,7 +190,7 @@
 		});
 	}
 	window.onload=function(){reload(response)};
-	setInterval(reload, 180000);
+	setInterval(reload, 60000);
 
 	</script>
 	</body>
