@@ -6,8 +6,9 @@
 	  <div class="block col-xs-10 col-xs-push-1 col-lg-10">
 			<form method="POST" action="" class="form-horizontal">
 				<h2>Mot de passe oublié ?</h2>
-				<div class="form-group">
-					<input type="email" class="form-control" name="email" placeholder="Merci d'indiquer votre adresse mail" value="<?php if(!empty($_POST['email'])) {echo $_POST['email'];} ?>">
+				<div class="field">
+          <label for="email" class="field-label">Merci d'indiquer votre adresse mail</label>
+					<input type="email" class="field-input" name="email" value="<?php if(!empty($_POST['email'])) {echo $_POST['email'];} ?>">
 					<span class="errorMessage"><?php if(!empty($error)) { echo($error['email']);} ?></span>
 				</div>
 				<div class="center">
