@@ -14,7 +14,7 @@ class Pagination extends Model
 
   }
 /**
-*@param string $where  where de la requete sql
+* @param string $where  where de la requete sql
 * @param int $num Nombre d'article par page
 * @param int $page Page de base
 * @return $result Retourne le tableau de la requète avec l'offset et la page
@@ -46,11 +46,11 @@ class Pagination extends Model
   }
 
   /**
-  *@param int $page Page actuelle
+  * @param int $page Page actuelle
   * @param int $nb_page Nombre total de page
   * @param string $route Le nom de la route pour générer l'url
   * @param string $arg Tableau d'argument qui génère l'url (ex : ['slug' => $slug])
-  * @return $result Retourne le tableau de la requète avec l'offset et la page 
+  * @return $result Retourne le tableau de la requète avec l'offset et la page
   */
   //on genere et retourne l'affichage de la pagination si elle a lieu d'etre
   public function pagination($page,$nb_page,$route,$arg='')

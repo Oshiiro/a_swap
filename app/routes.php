@@ -48,8 +48,8 @@
 
 
 		// Messagerie
-		['GET', '/messagerie/[:page_rec]', 'Message#message', 'message'],
-		['GET', '/messagerie/envoyes/[:page_sen]', 'Message#messagesEnvoyes', 'messages_envoyes'],
+		['GET', '/messagerie/[:page]', 'Message#message', 'message'],
+		['GET', '/messagerie/envoyes/[:page]', 'Message#messagesEnvoyes', 'messages_envoyes'],
 		['GET', '/messagerie/reception/', 'Message#getMessage', 'get_message'],
 		['POST', '/messagerie/[:page_rec]', 'Message#sendMessage', 'send_message'], // surement des parametre a passer en URL, ne pas oublier de changer dans les $this->show concerné
 		['POST', '/messagerie/envoyes/[:page_sen]', 'Message#sendMessage', 'send_message_from_envoyes'],
