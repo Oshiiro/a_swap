@@ -57,7 +57,7 @@ class TransactionController extends AppController
   */
   public function makeTransactionUser()
   {
-    if (!empty($adherants)) {
+    if (!empty($_POST['destinataire'])) {
     $slug = $this->AssosModel->getSlugByIdUser($_SESSION['user']['id']);
     $newTransac = $this->transactionModel->makeTransactionUser();
     $adherants = $this->usersModel->affAdherants($slug);
