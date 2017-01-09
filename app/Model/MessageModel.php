@@ -130,12 +130,10 @@ class MessageModel extends Model
     $name_asso = AssosModel::getNameByIdAdmin($id_sender);
     $token_asso = AssosModel::getToken($id_sender);
 
+    $invitation_MP = $this->generateUrl('register_user_from_invite', ['token_asso' => $token_assos, 'token_invit' => $token_invitation], true);
     $message =  $_SESSION['user']['firstname']. ' ' .$_SESSION['user']['lastname'].
                 ' souhaite vous inviter a rejoindre son association "' .$name_asso. '".
-                <a href="http://localhost/a_swap/public/acceptinvitation/' .$token_asso. '/' .$token_invitation. '"> Cliquez ici pour accepter </a>';
-                // ajoute-t-on un boutton pour refuser ? si oui, il faudra certainement
-                // rajouter une colone "active" a la table "private-message"
-                // ou delete le private_message.
+                <a href="' .$invitation_MP. '"> Cliquez ici pour accepter </a>';
 
     $insMessages = $this->dbh->prepare("INSERT INTO private_message (id_user_sender, id_user_receiver, content, created_at, active_receiver , active_sender)
                                         VALUES (:id_sender, :id_receiver, :message, NOW(), 1, 1)");
