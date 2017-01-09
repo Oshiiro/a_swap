@@ -10,16 +10,19 @@
         <div class="form-group">
           <span class="errorMessage"><?php if(!empty($error['token'])) { echo($error['token']);} ?></span>
         </div>
-				<div class="form-group">
-					<input type="email" class="form-control" name="email" placeholder="Adresse e-mail" value="">
+				<div class="field">
+          <label for="email" class="field-label"></label>
+					<input type="email" class="field-input" name="email" placeholder="Adresse e-mail" value="">
 					<span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
 				</div>
-				<div class="form-group">
-					<input type="password" class="form-control" name="password" placeholder="Mot de passe" value="">
+				<div class="field">
+          <label for="password" class="field-label"></label>
+					<input type="password" class="field-input" name="password" placeholder="Mot de passe" value="">
 					<span class="errorMessage"><?php if(!empty($error['password'])) { echo($error['password']);} ?></span>
 				</div>
-        <div class="form-group">
-					<input type="password" class="form-control" name="repeat" placeholder="repetez votre mot de passe" value="">
+        <div class="field">
+          <label for="repeat" class="field-label"></label>
+					<input type="password" class="field-input" name="repeat" placeholder="repetez votre mot de passe" value="">
 					<span class="errorMessage"><?php if(!empty($error['repeat'])) { echo($error['repeat']);} ?></span>
 				</div>
 
