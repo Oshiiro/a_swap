@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Association', 'slug' => $slug, 'page' => $page]) ?>
+<?php $this->layout('layout', ['title' => 'Informations sur l\'association', 'slug' => $slug, 'page' => $page]) ?>
 
 <?php $this->start('main_content') ?>
 <button class='btn btn-circle sendMessage btn-lg'><a href="<?php echo $this->url('users_accueil_transac',['slug' => $this->getValueInArray($dataAssos, 'slug')]); ?>" title="Faire une transaction"><i class="fa fa-exchange" aria-hidden="true"></i></a></button>

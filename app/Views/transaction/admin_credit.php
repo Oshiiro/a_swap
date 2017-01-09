@@ -1,4 +1,4 @@
-<?php $this->layout('layout_admin_back', ['title' => 'Back', 'slug' => $slug]) ?>
+<?php $this->layout('layout_admin_back', ['title' => 'Créditer un utilisateur', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 <div class="container block-message">

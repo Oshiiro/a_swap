@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Contact', 'slug' => $slug]) ?>
+<?php $this->layout('layout', ['title' => 'Contactez-nous', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 

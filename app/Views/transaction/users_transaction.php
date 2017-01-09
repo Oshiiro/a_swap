@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Transaction', 'slug' => $slug]) ?>
+<?php $this->layout('layout', ['title' => 'Effectuer une transaction', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 

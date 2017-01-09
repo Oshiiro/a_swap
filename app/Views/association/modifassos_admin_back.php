@@ -1,4 +1,4 @@
-<?php $this->layout('layout_admin_back', ['title' => 'Modif Assos', 'slug' => $slug]) ?>
+<?php $this->layout('layout_admin_back', ['title' => 'Modifier mon association', 'slug' => $slug]) ?>
 
 <?php $this->start('main_content') ?>
 

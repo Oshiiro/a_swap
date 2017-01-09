@@ -1,4 +1,4 @@
-<?php $this->layout('layout', ['title' => 'Modification de votre mot de passe']) ?>
+<?php $this->layout('layout', ['title' => 'Modifiez votre mot de passe']) ?>
 
 <?php $this->start('main_content') ?>
 <div class="container block-message">

@@ -1,4 +1,4 @@
-<?php $this->layout('layout_error', ['title' => 'Nothing to see here']) ?>
+<?php $this->layout('layout_error', ['title' => 'Vous ne passerez pas !!!']) ?>
 <?php $this->start('main_content'); ?>
 <style media="screen">
 .allContent{top: 0;}

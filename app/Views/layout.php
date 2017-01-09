@@ -1,11 +1,3 @@
-<?php
-// public function getSlugIfHaveAssos($slugUrl, $_SESSION['user']['nom_assos'])
-// {
-// EN COUR DE CONSTRUCTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Benjamin
-// Slug association URL utilise la variable en dessous pour test
-
- ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 	<head>

@@ -619,17 +619,17 @@ class UserController extends AppController
 	public function tryModifyPassword($token)
 	{
 		$email  = (!empty($_POST['email'])) ? trim(strip_tags($_POST['email'])) : null ;
-		$getId = new OurUModel();
-		$id = $getId->getIdByEmailAndToken($email, $token);
 		$password  = (!empty($_POST['password'])) ? trim(strip_tags($_POST['password'])) : null ;
 		$password_confirm  = (!empty($_POST['repeat'])) ? trim(strip_tags($_POST['repeat'])) : null ;
+		$getId = new OurUModel();
+		$id = $getId->getIdByEmailAndToken($email, $token);
 
 		$error['password']  = $this->valid->textValid($password,'password', 3, 50);
 
 		//Verification que le token est bien le bon dans la BDD (si non, cela veux dire que c'est un ancien mail)
 		$verif_token = $getId->tokenIsActive($email, $token);
 		if($verif_token == false){
-			$error['token'] = 'L\'e-mail que vous avez utilisé n\'est plus valide.';
+			$error['token'] = 'L\'e-mail que vous avez utilisé n\'est plus valide ou l\'adresse mail n\'est pas bonne.';
 		}
 
 		if(!empty($password)) {
@@ -653,9 +653,6 @@ class UserController extends AppController
 					$flash->setFlash('warning', 'Votre mot de passe a bien été changé');
 					$this->show('users/login');
 				}
-
-				echo $verif_token;
-				die();
 				$this->show('users/modify_password', array(
 					'error' => $error,
 				));
