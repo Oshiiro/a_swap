@@ -12,7 +12,7 @@
         </div>
 				<div class="field">
           <label for="email" class="field-label"></label>
-					<input type="email" class="field-input" name="email" placeholder="Adresse e-mail" value="">
+					<input type="email" class="field-input" name="email" placeholder="Adresse e-mail" value="<?php if(!empty($_POST['email'])) { echo $_POST['email']; }?>">
 					<span class="errorMessage"><?php if(!empty($error['email'])) { echo($error['email']);} ?></span>
 				</div>
 				<div class="field">
