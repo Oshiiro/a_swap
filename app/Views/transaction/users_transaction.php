@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="block col-xs-8 col-xs-push-2 col-sm-10 col-sm-push-1 col-md-push-1 col-md-10">
 				<form class="form-group newTransaction" name="newTransaction" method="POST" action="<?php echo $this->url('users_accueil_transac_valid', ['slug' => $this->getValueInArray($dataAssos, 'slug')]) ?>">
-					<h4>Faire une transaction</h4>
+					<h2>Faire une transaction</h2>
 					<?php if (!empty($adherant)) {?>
 	        <div class="field">
 	          <label for="destinataire" class="field-label">Destinataire</label>
