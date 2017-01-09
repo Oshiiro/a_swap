@@ -13,11 +13,15 @@ class Pagination extends Model
     $this->dbh = ConnectionModel::getDbh() ;
 
   }
-
+/**
+*@param string $where  where de la requete sql
+* @param int $num Nombre d'article par page
+* @param int $page Page de base
+* @return $result Retourne le tableau de la requète avec l'offset et la page
+*/
   public function calcule_page($where='',$num,$page)
   {
-    //on calcule le nombre de page en divisan le total par mon nombre d'article
-    //et on arrondi avec ceil pour avoir un nombre entier
+
     $where_full ='';
     if($where != ''){
       $where_full = 'WHERE '.$where;
@@ -41,7 +45,14 @@ class Pagination extends Model
     return $result;
   }
 
-  //on generer et retourne l'affichage de la pagination si elle a lieu d'etre
+  /**
+  *@param int $page Page actuelle
+  * @param int $nb_page Nombre total de page
+  * @param string $route Le nom de la route pour générer l'url
+  * @param string $arg Tableau d'argument qui génère l'url (ex : ['slug' => $slug])
+  * @return $result Retourne le tableau de la requète avec l'offset et la page 
+  */
+  //on genere et retourne l'affichage de la pagination si elle a lieu d'etre
   public function pagination($page,$nb_page,$route,$arg='')
   {
     $html = '';
