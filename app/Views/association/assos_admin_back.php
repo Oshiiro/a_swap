@@ -24,7 +24,7 @@
       <div class="table-responsive shadow-z-1">
         <table id="table" class="table table-hover table-mc-light-blue" >
           <thead>
-						<tr>
+						<tr class="gestAssos">
 							<th>Nom</th>
 							<th>Prénom</th>
 							<th>Pseudo</th>
